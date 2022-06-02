@@ -27,9 +27,19 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/style.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/dashboard/dashboard-1.js",
+              "src/assets/js/."
+//              "src/assets/js/plugins-init/bootstrap-duallistbox-init.js",
+//              "src/assets/js/plugins-init/jquery.bootgrid-init.js",
+//              "src/assets/js/plugins-init/jquery.flot.init.js",
+//              "src/assets/js/plugins-init/jquery.validate-init.js",
+//              "src/assets/js/plugins-init/jquery-asColorPicker.init.js",
+//              "src/assets/js/plugins-init/jquery-steps-init.js"
+            ]
           },
           "configurations": {
             "production": {
