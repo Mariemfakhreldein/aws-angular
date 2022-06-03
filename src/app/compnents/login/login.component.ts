@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     if (this.email=="abdokhattab@gmail.com" && this.password=="admin1234")
     {
       this.route.navigate(['/home']);
-      console.log("welcome");
+      //save the token in localstorage
     }
     else{
       this.validUser=true;
