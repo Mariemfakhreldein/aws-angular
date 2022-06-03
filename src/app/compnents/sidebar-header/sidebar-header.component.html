@@ -32,7 +32,7 @@
           <div class="drop-down animated fadeIn dropdown-menu">
             <div class="dropdown-content-heading d-flex justify-content-between">
               <span class="">3 New Messages</span>
-              <a href="javascript:void()" class="d-inline-block">
+              <a href="javascript:void(0)" class="d-inline-block">
                 <span class="badge badge-pill gradient-1">3</span>
               </a>
             </div>
@@ -45,14 +45,14 @@
           <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
             <div class="dropdown-content-heading d-flex justify-content-between">
               <span class="">2 New Notifications</span>
-              <a href="javascript:void()" class="d-inline-block">
+              <a href="javascript:void(0)" class="d-inline-block">
                 <span class="badge badge-pill gradient-2">5</span>
               </a>
             </div>
             <div class="dropdown-content-body">
               <ul>
                 <li>
-                  <a href="javascript:void()">
+                  <a href="javascript:void(0)">
                                         <span class="mr-3 avatar-icon bg-success-lighten-2"><i
                                           class="icon-present"></i></span>
                     <div class="notification-content">
@@ -62,7 +62,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="javascript:void()">
+                  <a href="javascript:void(0)">
                                         <span class="mr-3 avatar-icon bg-danger-lighten-2"><i
                                           class="icon-present"></i></span>
                     <div class="notification-content">
@@ -72,7 +72,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="javascript:void()">
+                  <a href="javascript:void(0)">
                                         <span class="mr-3 avatar-icon bg-success-lighten-2"><i
                                           class="icon-present"></i></span>
                     <div class="notification-content">
@@ -82,7 +82,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="javascript:void()">
+                  <a href="javascript:void(0)">
                                         <span class="mr-3 avatar-icon bg-danger-lighten-2"><i
                                           class="icon-present"></i></span>
                     <div class="notification-content">
@@ -103,8 +103,8 @@
           <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
             <div class="dropdown-content-body">
               <ul>
-                <li><a href="javascript:void()">English</a></li>
-                <li><a href="javascript:void()">Dutch</a></li>
+                <li><a href="javascript:void(0)">English</a></li>
+                <li><a href="javascript:void(0)">Dutch</a></li>
               </ul>
             </div>
           </div>
@@ -122,7 +122,7 @@
                     <span>Profile</span></a>
                 </li>
                 <li>
-                  <a href="javascript:void()">
+                  <a href="javascript:void(0)">
                     <i class="icon-envelope-open"></i> <span>Inbox</span>
                     <div class="badge gradient-3 badge-pill gradient-1">3</div>
                   </a>
@@ -176,9 +176,29 @@
           <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
         </a>
         <ul aria-expanded="true">
-          <li><a href="../../../index.html">Home 1</a></li>
+          <li><a [routerLink]="['/home']">Home 1</a></li>
         </ul>
       </li>
     </ul>
   </div>
 </div>
+
+
+
+
+<!--**********************************
+    Content body start
+***********************************-->
+
+
+<div class="content-body">
+
+  <div class="container-fluid">
+<h1>Hello from body</h1>
+    <router-outlet></router-outlet>
+  </div>
+  <!-- #/ container -->
+</div>
+<!--**********************************
+    Content body end
+***********************************-->
