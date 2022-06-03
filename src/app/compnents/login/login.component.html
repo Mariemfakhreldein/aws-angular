@@ -1,5 +1,5 @@
 <!-- Section: Design Block -->
-<section class="" style="padding-top: 8%;padding-bottom: 10%;background-color:#B52427 ">
+<section class="" style="padding-top: 7%;padding-bottom: 7%;background-color:#B52427 ">
   <!-- Jumbotron -->
   <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%) ; max-height: 100%">
     <div class="container">
@@ -21,6 +21,7 @@
 
         <div class="col-lg-6 mb-5 mb-lg-0">
           <div class="card">
+            <div *ngIf="validUser"  class="alert alert-danger">Sorry your email or password incorrect !!</div>
             <div class="card-body py-5 px-md-5">
                 <!-- Email input -->
                 <div class="form-outline mb-4">

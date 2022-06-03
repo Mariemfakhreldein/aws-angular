@@ -10,6 +10,7 @@ export class LoginComponent implements OnInit {
 
   email:string="";
   password:string="";
+  validUser=false;
 
   constructor(private route:Router) { }
 
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
       console.log("welcome");
     }
     else{
-
+      this.validUser=true;
     }
   }
 
