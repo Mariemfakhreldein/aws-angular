@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {EventEmitter, Injectable, OnInit} from '@angular/core';
 import { Observable} from "rxjs";
 import {LoginModel} from "../models/login.view.model";
 import {HttpClient} from "@angular/common/http";
@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService  implements OnInit{
 
   isAuthenticated = false;
   authenticationResultEvent = new EventEmitter<boolean>() ;
@@ -16,6 +16,9 @@ export class AuthService {
 
   constructor(private _http: HttpClient) { }
 
+  ngOnInit() {
+    console.log("auth service initialized")
+  }
 
   authenticate(loginModel: LoginModel) {
    this.validateUser(loginModel).subscribe(

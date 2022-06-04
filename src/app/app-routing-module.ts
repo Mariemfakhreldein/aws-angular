@@ -10,7 +10,7 @@ import { CreateInstanceComponent } from './compnents/instance/create-instance/cr
 import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance-details/view-instance-details.component';
 
 const routes: Routes = [
-  {path:'home', component:HomeComponent , canActivate:[AuthGuard]},
+  {path:'home', component:HomeComponent/* , canActivate:[AuthGuard]*/},
   {path:'instances/createInstance',component:CreateInstanceComponent},
   {path:'instances/:id',component:ViewInstanceDetailsComponent},
   {path:'instances',component:ViewInstancesComponent},
