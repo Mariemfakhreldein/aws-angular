@@ -1,0 +1,177 @@
+
+
+#myBody{
+
+  width: 98vw;
+  height: 98vh;
+  background-size: cover;
+}
+
+#myBody > div {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  opacity: 1;
+  z-index: 1;
+}
+
+
+.instanceStatus{
+  position: absolute;
+  top: 1rem;
+  padding-top: 1rem;
+  left: 0rem;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: .5;
+  transform-origin: bottom;
+  box-shadow: 0px -5px 1px rgba(0, 0, 0, 0.3);
+  transform: translateY(9rem);
+  transition: transform 250ms ease-in;
+}
+
+
+
+.instanceStatusContent{
+  transition: color 250ms ease-in;
+  color: transparent;
+}
+
+
+
+.instanceStatusContent button{
+  margin-left: 10px;
+}
+
+.hexagon {
+  z-index: 0;
+  display: flex;
+  width: 250px;
+  height: 270px;
+  position: relative;
+  /*background-image: linear-gradient(to bottom right, #2d2d2d, #9f9e9e);*/
+  margin-bottom: 20px !important;
+  cursor: pointer;
+}
+#myBody{
+
+  width: 98vw;
+  height: 98vh;
+  background-size: cover;
+  padding: 30px;
+}
+
+#myBody > div {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  opacity: 1;
+  z-index: 1;
+}
+
+
+.instanceStatus{
+  position: absolute;
+  top: 1rem;
+  padding-top: 1rem;
+  left: 0rem;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.3);
+  opacity: .5;
+  transform-origin: bottom;
+  box-shadow: 0px -5px 1px rgba(0, 0, 0, 0.3);
+  transform: translateY(9rem);
+  transition: transform 250ms ease-in;
+}
+
+
+
+.instanceStatusContent{
+  transition: color 250ms ease-in;
+  color: transparent;
+}
+
+
+
+.instanceStatusContent button{
+  margin-left: 10px;
+}
+
+.hexagon{
+  z-index: 0;
+  display: flex;
+  width: 250px;
+  height: 270px;
+  position: relative;
+  margin-bottom: 20px !important;
+  cursor: pointer;
+  transition: transform .5s ease-out;
+  transform: rotate(0deg) translateX(0px);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+
+
+}
+
+.hexagon:hover{
+
+
+  width: 270px;
+  height: 290px;
+
+
+}
+
+
+
+
+#createInstance{
+
+
+
+  background-color: rgb(255, 255, 255) !important;
+
+}
+
+
+#plusIcon {
+
+  margin-top: 25px;
+  font-size: 50px;
+  color: #14C38E
+}
+
+#createInstance h5{
+  font-size: 20px;
+  font-weight: bold;
+  color: #14C38E;
+}
+
+
+
+
+
+
+
+
+
+
