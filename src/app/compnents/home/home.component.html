@@ -1,3 +1,8 @@
 <!--<app-sidebar-header></app-sidebar-header>-->
 <p>home works!</p>
 <h1>Testing HOME!!</h1>
+
+
+<button *ngIf="branches" class="dt-button" (click)="onAdminClick()">Admin</button>
+<button *ngIf="templates" class="dt-button" (click)="onHelloClick()">Hello</button>
+<button class="dt-button" (click)="onUsersClick()">Users</button>
