@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router'; // import router from angular router
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from "../../services/auth.service";
+import {LoginModel} from "../../models/login.view.model"; // import router from angular router
 
 @Component({
   selector: 'app-login',
@@ -8,26 +10,34 @@ import {Router} from '@angular/router'; // import router from angular router
 })
 export class LoginComponent implements OnInit {
 
-  email:string="";
+  username:string="";
   password:string="";
   validUser=false;
 
-  constructor(private route:Router) { }
+  constructor(private route:Router,
+              private authService: AuthService,
+              private activatedRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.authService.authenticationResultEvent.subscribe(
+      result =>{
+        if(result){
+          const url = this.activatedRouter.snapshot.queryParams['requested'];
+          this.route.navigateByUrl("/home");
+        }else{
+          // this.message="wrong email or password";
+        }
+      }
+    )
   }
 
   loginUser()
   {
-
-    if (this.email=="abdokhattab@gmail.com" && this.password=="admin1234")
-    {
-      this.route.navigate(['/home']);
-      //save the token in localstorage
-    }
-    else{
-      this.validUser=true;
-    }
+    let loginModel = new LoginModel();
+    loginModel.username = this.username;
+    loginModel.password = this.password;
+    this.authService.authenticate(loginModel);
   }
 
 
