@@ -8,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ViewInstancesComponent implements OnInit {
 
 
-  result:string[]=['hh','hhh','kkkk','gggg','hh'];
-  statusArray:string[]=['running','stopped','running','stopped','running'];
+  result:string[]=['hh','hhh','kkkk','gggg','hh','gggg','hh'];
+  statusArray:string[]=['running','stopped','running','stopped','running','stopped','running'];
 
   totalLength:any;
   page:number=1;

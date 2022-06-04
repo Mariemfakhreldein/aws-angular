@@ -1,11 +1,13 @@
 
 
-<div class="container  text-center mt-2 w-100" id="myBody"   >
+<div class="bg-transparent bg-dark rounded shadow-lg p-lg-5 m-3" >
+<div class="container  text-center mt-2 w-100 h-100" id="myBody"   >
+
 
 
 
   <div  class="hexagon col-lg-8 col-12 mx-1" *ngFor="let res of result |
-      paginate:{itemsPerPage:11,currentPage:page,totalItems:totalLength};let currentIndex=index"
+      paginate:{itemsPerPage:5,currentPage:page,totalItems:totalLength};let currentIndex=index"
         [style.background-color]="statusArray[currentIndex]=='running' ? '#14C38E ' : '#B8F1B0'">
 
     <a  [routerLink]="['/instances/{{currentIndex+1}}']" class="text-decoration-none">
@@ -33,7 +35,7 @@
 
   </div>
 
-  <div class="hexagon " id="createInstance">
+  <div class="hexagon col-lg-8 col-12 mx-1" id="createInstance">
 
     <a  [routerLink]="['/instances/createInstance']" class="text-decoration-none">
 
@@ -50,10 +52,17 @@
     </a>
   </div>
 
-  <div  class="col-12  text-center mt-lg-5"  >
 
-    <pagination-controls  (pageChange)="page=$event"  ></pagination-controls>
+</div>
 
-  </div>
+
+
+</div>
+
+<div  class="col-12  text-center" >
+
+  <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+
+  </pagination-controls>
 
 </div>
