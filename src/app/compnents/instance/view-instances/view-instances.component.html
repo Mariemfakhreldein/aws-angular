@@ -1,0 +1,58 @@
+
+
+<div class="container  text-center mt-2 w-100" id="myBody"   >
+
+
+
+  <div  class="hexagon col-lg-8 col-12 mx-1" *ngFor="let res of result |
+      paginate:{itemsPerPage:11,currentPage:page,totalItems:totalLength};let currentIndex=index"
+        [style.background-image]="statusArray[currentIndex]=='running' ? 'linear-gradient(to bottom right,#706f6f, #008504 )' : 'linear-gradient(to bottom right, #706f6f, #F5EFEF)'">
+
+    <a  [routerLink]="['/instances/{{currentIndex+1}}']" class="text-decoration-none">
+
+      <h5 class="text-white mt-5 pt-4">Instance name <br>{{res}}</h5>
+
+    </a>
+    <div class="instanceStatus">
+
+
+      <div class="instanceStatusContent">
+
+        <button  type="button" id="button_play" class="btn btn-light " (click)="changeInstanceStatus(statusArray[currentIndex],currentIndex)" >
+          <i *ngIf="statusArray[currentIndex]==='stopped'" class="fa fa-play"></i>
+          <i *ngIf="statusArray[currentIndex]==='running'"class="fa fa-stop"></i>
+        </button>
+
+
+
+
+      </div>
+    </div>
+
+
+  </div>
+
+  <div class="hexagon " id="createInstance">
+
+    <a  [routerLink]="['/instances/createInstance']" class="text-decoration-none">
+
+      <h5 class="text-white mt-5 pt-4">create Instance <br></h5>
+
+
+
+      <i class="fa fa-plus" aria-hidden="true" id="plusIcon" ></i>
+
+
+
+
+
+    </a>
+  </div>
+
+  <div  class="col-12  text-center mt-lg-5"  >
+
+    <pagination-controls  (pageChange)="page=$event"  ></pagination-controls>
+
+  </div>
+
+</div>
