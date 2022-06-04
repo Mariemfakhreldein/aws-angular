@@ -123,36 +123,54 @@ img {
   width: 250px;
   height: 270px;
   position: relative;
-  /*background-image: linear-gradient(to bottom right, #706f6f, #F5EFEF);*/
   margin-bottom: 20px !important;
   cursor: pointer;
   transition: transform .5s ease-out;
   transform: rotate(0deg) translateX(0px);
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 
+
 }
 
-#plusIcon {
+.hexagon:hover{
 
-  margin-top: 25px;
-  font-size: 50px;
-  color: white
+
+  width: 270px;
+  height: 290px;
+
+
 }
 
 
-#plusIcon {
 
-  margin-top: 25px;
-  font-size: 50px;
-  color: white
-}
 
 #createInstance{
 
-  background-image: linear-gradient(to bottom right, #a90000, #640000) !important;
 
+
+  background-color: rgb(255, 255, 255) !important;
 
 }
+
+
+#plusIcon {
+
+  margin-top: 25px;
+  font-size: 50px;
+  color: #14C38E
+}
+
+#createInstance h5{
+  font-size: 20px;
+  font-weight: bold;
+  color: #14C38E;
+}
+
+
+
+
+
+
 
 
 

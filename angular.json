@@ -29,14 +29,7 @@
               "src/assets/images/avatar/1.png"
             ],
             "styles": [
-              "src/styles.css",
-              "src/assets/css/style.css",
-              "src/assets/icons/themify-icons/themify-icons.css",
-              "src/assets/icons/weather-icons/css/weather-icons.min.css",
-              "src/assets/icons/simple-line-icons/css/simple-line-icons.css",
-              "src/assets/icons/pe-icon-set-weather/css/helper.css",
-              "src/assets/icons/pe-icon-set-weather/css/pe-icon-set-weather.css",
-              "node_modules/bootstrap/dist/css/bootstrap.css"
+
             ],
             "scripts": [
               "src/assets/js/dashboard/dashboard-1.js",
