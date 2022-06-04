@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import {AuthModule} from "./auth/auth.module";
 
 import { AppComponent } from './app.component';
 import { SidebarHeaderComponent } from './compnents/sidebar-header/sidebar-header.component';
@@ -20,8 +19,7 @@ import {LoginComponent} from "./compnents/login/login.component";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    AuthModule
+    FormsModule
   ],
   exports:[
 
