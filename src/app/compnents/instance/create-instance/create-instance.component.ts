@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Instance} from "../../../models/instance.models";
+import {InstanceModel} from "../../../models/instances/instance.models";
+import {TemplateModel} from "../../../models/templates/template.model";
+import {UserModel} from "../../../models/users/user.model";
 
 @Component({
   selector: 'app-create-instance',
@@ -8,10 +10,15 @@ import {Instance} from "../../../models/instance.models";
 })
 export class CreateInstanceComponent implements OnInit {
   // createInstance:Instance;
+
+  students: UserModel[] = [];
+  templates: TemplateModel[] = [];
+
   constructor() {
   }
 
   ngOnInit(): void {
+
   }
   submitBtn()
   {

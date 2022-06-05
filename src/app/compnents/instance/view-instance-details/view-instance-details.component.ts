@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Instance} from "../../../models/instance.models";
+import {InstanceModel} from "../../../models/instances/instance.models";
 
 @Component({
   selector: 'app-view-instance-details',
@@ -10,7 +10,7 @@ export class ViewInstanceDetailsComponent implements OnInit {
 
   result:any[]=['name','email','pass','gggg','hh'];
 
-  instance:Instance=new Instance();
+  instance:InstanceModel=new InstanceModel();
 
 
 

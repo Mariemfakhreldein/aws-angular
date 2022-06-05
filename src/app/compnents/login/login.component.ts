@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AuthService} from "../../services/auth.service";
-import {LoginModel} from "../../models/login.view.model"; // import router from angular router
+import {LoginModel} from "../../models/users/login.view.model"; // import router from angular router
 
 @Component({
   selector: 'app-login',
@@ -40,19 +40,19 @@ export class LoginComponent implements OnInit {
     this.authService.authenticate(loginModel);
   }
 
-  // login(){
-  //   let loginModel = new LoginModel();
-  //   loginModel.username = this.username;
-  //   loginModel.password = this.password;
-  //   this.authService.login(loginModel).subscribe(
-  //     (reponse)=>{
-  //       this.authService.setToken(reponse.Data);
-  //       this.route.navigateByUrl("/home");
-  //     },
-  //     (error)=>{
-  //
-  //     }
-  //   )
-  // }
+  login(){
+    let loginModel = new LoginModel();
+    loginModel.username = this.username;
+    loginModel.password = this.password;
+    this.authService.login(loginModel).subscribe(
+      (response)=>{
+        this.authService.setToken(response['jwt']);
+        this.route.navigateByUrl("/home");
+      },
+      (error)=>{
+
+      }
+    )
+  }
 
 }

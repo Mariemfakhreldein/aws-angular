@@ -1,6 +1,6 @@
 import {EventEmitter, Injectable, OnInit} from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {LoginModel} from "../models/login.view.model";
+import {LoginModel} from "../models/users/login.view.model";
 import {HttpClient} from "@angular/common/http";
 import {ApiService} from "./api.service";
 import {TokenService} from "./token.service";

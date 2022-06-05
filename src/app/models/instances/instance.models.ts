@@ -1,5 +1,4 @@
-export class Instance {
-
+export class InstanceModel {
 
   id:number;
   name:string;
@@ -19,8 +18,5 @@ export class Instance {
   creator:string; /////////////////////////edit
   instanceUsers:[]; //////////////////////edit
   securityGroups:[];///////////////////////edit
-
-
-
 
 }
