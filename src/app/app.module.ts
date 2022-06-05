@@ -12,6 +12,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ViewInstancesComponent } from './compnents/instance/view-instances/view-instances.component';
 import { CreateInstanceComponent } from './compnents/instance/create-instance/create-instance.component';
 import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance-details/view-instance-details.component';
+import { LogoutComponent } from './compnents/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance
     LoginComponent,
     ViewInstancesComponent,
     CreateInstanceComponent,
-    ViewInstanceDetailsComponent
+    ViewInstanceDetailsComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,

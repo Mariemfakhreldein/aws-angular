@@ -4,20 +4,14 @@ import {LoginModel} from "../models/users/login.view.model";
 import {HttpClient} from "@angular/common/http";
 import {ApiService} from "./api.service";
 import {TokenService} from "./token.service";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService  implements OnInit {
 
-  isAuthenticated = false;
-  authenticationResultEvent = new EventEmitter<boolean>() ;
-  jwtObject:any;
-  headers:any;
-  jwt:any;
-
-  logged = new BehaviorSubject<boolean>(this.islogged());
-
+  logged = new BehaviorSubject<boolean>(this.isLogin());
   constructor(private http: HttpClient, private api: ApiService, private tokenService: TokenService) {
   }
 
@@ -26,7 +20,11 @@ export class AuthService  implements OnInit {
   }
 
   login(model: LoginModel) {
-    return this.api.post("/api/login", model);
+    return this.http.post(`${environment.baseURL}/api/login`,model);
+  }
+
+  logout(){
+    this.tokenService.removeToken();
   }
 
   setToken(token: string) {
@@ -37,49 +35,13 @@ export class AuthService  implements OnInit {
     return this.tokenService.getToken();
   }
 
-  islogged(): boolean {
+  isLogin(): boolean {
     let token = this.tokenService.getToken();
     return token != null;
   }
 
   changeLoggedStatus(status: boolean): void {
     this.logged.next(status);
-  }
-
-
-  authenticate(loginModel: LoginModel) {
-    this.validateUser(loginModel).subscribe(
-      next => {
-        this.jwtObject = next;
-        this.isAuthenticated = true;
-        const encodedPayload = this.jwtObject['jwt'];
-        this.jwt = encodedPayload;
-        localStorage.setItem('token', JSON.stringify(encodedPayload));
-
-        this.authenticationResultEvent.emit(true);
-      },
-      error => {
-        this.isAuthenticated = false;
-        this.authenticationResultEvent.emit(false);
-      }
-    )
-  }
-
-  validateUser(loginModel: LoginModel): Observable<Response> {
-    console.log(loginModel);
-    return this.http.post<Response>("http://localhost:4545/api/login", loginModel);
-
-  }
-
-
-  getPrivileges(): Array<String> {
-    let privileges = new Array<String>();
-    if (this.jwtObject == null)
-      return privileges;
-    const encodedPayload = this.jwtObject['jwt'];
-    let payload = encodedPayload.split(".")[1];
-    let decoded = atob(payload);
-    return JSON.parse(decoded).privileges;
   }
 
 }
