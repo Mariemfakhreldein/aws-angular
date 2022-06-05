@@ -8,7 +8,7 @@ import {TokenService} from "./token.service";
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService  implements OnInit {
+export class AuthService  {
 
   isAuthenticated = false;
   authenticationResultEvent = new EventEmitter<boolean>() ;
@@ -16,36 +16,9 @@ export class AuthService  implements OnInit {
   headers:any;
   jwt:any;
 
-  logged = new BehaviorSubject<boolean>(this.islogged());
 
   constructor(private http: HttpClient, private api: ApiService, private tokenService: TokenService) {
   }
-
-  ngOnInit() {
-    console.log("auth service initialized")
-  }
-
-  login(model: LoginModel) {
-    return this.api.post("/api/login", model);
-  }
-
-  setToken(token: string) {
-    this.tokenService.setToken(token);
-  }
-
-  getToken(): string {
-    return this.tokenService.getToken();
-  }
-
-  islogged(): boolean {
-    let token = this.tokenService.getToken();
-    return token != null;
-  }
-
-  changeLoggedStatus(status: boolean): void {
-    this.logged.next(status);
-  }
-
 
   authenticate(loginModel: LoginModel) {
     this.validateUser(loginModel).subscribe(
@@ -81,5 +54,7 @@ export class AuthService  implements OnInit {
     let decoded = atob(payload);
     return JSON.parse(decoded).privileges;
   }
+
+
 
 }

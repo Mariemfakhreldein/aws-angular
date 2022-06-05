@@ -40,19 +40,4 @@ export class LoginComponent implements OnInit {
     this.authService.authenticate(loginModel);
   }
 
-  login(){
-    let loginModel = new LoginModel();
-    loginModel.username = this.username;
-    loginModel.password = this.password;
-    this.authService.login(loginModel).subscribe(
-      (response)=>{
-        this.authService.setToken(response['jwt']);
-        this.route.navigateByUrl("/home");
-      },
-      (error)=>{
-
-      }
-    )
-  }
-
 }
