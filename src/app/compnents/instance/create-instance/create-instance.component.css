@@ -9,12 +9,19 @@
 }
 
 /**********************************************/
-
+.card-radio-container
+{
+  width: 450px;
+  height: 300px;
+  overflow: scroll;
+}
 .card-radio{
-  height: 150px;
-  width: 200px;
-  margin: 1%;
+  height: 200px;
+  width: 400px;
+  margin: 1.5%;
   position: relative;
+  overflow-wrap: break-word;
+
 }
 input[type="radio"]{
   -webkit-appearance: none;
@@ -66,15 +73,15 @@ input[type="radio"]:checked:after{
 }
 .h5-class{
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: 0.5px;
   margin: 15px 0 20px 0;
 }
 .h2-class{
-  font-size: 28px;
+  font-size: 12px;
 }
 .span-class{
   font-weight: 400;
-  font-size: 18px;
+  font-size: 5px;
   color: #7b7b93;
 }
