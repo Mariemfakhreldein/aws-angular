@@ -1,14 +1,14 @@
 export class Instance {
 
 
-  id:number;
-  name:string;
-  amiId:string;
-  instanceId:string;
-  state:string;
-  keyMaterial:string;
-  publicIp:string;
-  publicDnsName:string;
+  id:number=0;
+  name:string="";
+  amiId:string="";
+  instanceId:string="";
+  state:string="";
+  keyMaterial:string="";
+  publicIp:string="";
+  publicDnsName:string="";
   instanceType:string;
   subnetId:string;
   vpcId:string;

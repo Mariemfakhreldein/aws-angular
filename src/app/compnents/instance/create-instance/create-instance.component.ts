@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Instance} from "../../../models/instance.models";
 
 @Component({
   selector: 'app-create-instance',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateInstanceComponent implements OnInit {
 
+  createInstance:Instance;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  submitBtn():void
+  {
+    console.log(this.createInstance);
   }
 
 }
