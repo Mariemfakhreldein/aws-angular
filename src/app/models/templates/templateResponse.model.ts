@@ -1,9 +1,9 @@
 import {AmiModel} from "./ami.model";
 
-export class TemplateModel{
-  amiId :string;
+export class TemplateResponseModel{
+  id :number;
   subnetId: string;
   instanceType: string;
-  securityGroups: string[];
+  securityGroup: string[];
 
 }

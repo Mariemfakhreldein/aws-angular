@@ -11,7 +11,7 @@
 .card-checkbox-container
 {
   width: 450px;
-  height: 200px;
+  height: 200px !important;
   overflow-y: scroll;
   overflow-x:hidden;
 

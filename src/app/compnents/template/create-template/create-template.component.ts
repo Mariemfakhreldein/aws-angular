@@ -12,6 +12,7 @@ import {InstanceTypeModel} from "../../../models/templates/instanceType.model";
 import {SubnetModel} from "../../../models/templates/subnet.model";
 import {AmiModel} from "../../../models/templates/ami.model";
 import {SecurityGroupsModel} from "../../../models/templates/securityGroups.model";
+import {TemplateResponseModel} from "../../../models/templates/templateResponse.model";
 
 @Component({
   selector: 'app-create-template',
@@ -26,6 +27,7 @@ export class CreateTemplateComponent implements OnInit {
   subnets:SubnetModel[];
   securityGroups:SecurityGroupsModel[];
   instanceTypes:InstanceTypeModel[];
+  templateResponseModel:TemplateResponseModel;
 
   model = new TemplateModel();
   amiFlag:boolean = false;
@@ -54,7 +56,7 @@ export class CreateTemplateComponent implements OnInit {
   getSubnet(){
     this.templateService.getSubnet().subscribe(
       (response:any)=>{
-
+            console.log(response);
             this.subnets = response.subnetList;
           },(error:any)=>{
             console.log("fail Hello", error);
@@ -64,7 +66,7 @@ export class CreateTemplateComponent implements OnInit {
   }
 
   onChangeSubnet(vpc: any) {
-    if (vpc != "") {
+    if (vpc.vpcId != "") {
       this.templateService.getSecurityGroups(vpc).subscribe(
         (response:any)=>{
           console.log("success security groups", response.securityGroupResponseList);
@@ -119,26 +121,27 @@ export class CreateTemplateComponent implements OnInit {
 
       this.getAMI(templateModel.ami);
       this.model.amiId = templateModel.ami;
-      this.model.subnetId = templateModel.subnet;
-      this.model.securityGroups = this.selectedItemsList;
+      this.model.subnetId = this.getSubnetIdByVpc(templateModel.subnet);
+      alert(this.model.subnetId);
+      this.model.securityGroups = this.selectedItemsList.map(value => {return value.securityGroupId});
       this.model.instanceType = templateModel.instance;
-
-        // alert("Template Details " + "Subnet: " + model.subnetId + "AMI: " + model.amiId + "Security Groups: "+ model.securityGroups + "Instance Type: " +model.instanceType);
-
-        // this.templateService.add(model).subscribe(
-        // (response:any)=>{
-        //   console.log("success added");
-        //   this.instanceTypes = response.instanceType;
-        // },(error:any)=>{
-        //   console.log("fail to add", error);
-        // }
-      //)
 
     }
   }
 
   submit(){
     console.log("here " + this.amiFlag);
+    alert("Template Details " + "Subnet: " + this.model.subnetId + "AMI: " + this.model.amiId + "Security Groups: "+ this.model.securityGroups + "Instance Type: " + this.model.instanceType);
+
+    alert(this.model);
+    this.templateService.add(this.model).subscribe(
+    (response:any)=>{
+      console.log("success added");
+    },(error:any)=>{
+      console.log("fail to add", error);
+    }
+    )
+
   }
 
 
@@ -146,7 +149,11 @@ export class CreateTemplateComponent implements OnInit {
   isSecurityGroupsListChecked(){
     this.isChecked = [];
     for(let i=0; i<this.securityGroups.length;i++){
-      this.isChecked.push(false);
+      if (this.securityGroups[i].name === "default"){
+        this.isChecked.push(true);
+      }else{
+        this.isChecked.push(false);
+      }
     }
   }
 
@@ -158,5 +165,13 @@ export class CreateTemplateComponent implements OnInit {
         }
     }
    return this.selectedItemsList;
+  }
+  getSubnetIdByVpc(vpc:string): string{
+    for (let i of this.subnets){
+     if(i.vpcId === vpc){
+       return i.subnetId
+     }
+    }
+    return null;
   }
 }
