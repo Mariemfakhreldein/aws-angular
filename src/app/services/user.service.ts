@@ -12,4 +12,8 @@ export class UserService {
     return this.api.get("/api/users");
   }
 
+  getAllUsers() {
+    return this.api.get("/api/users");
+  }
+
 }
