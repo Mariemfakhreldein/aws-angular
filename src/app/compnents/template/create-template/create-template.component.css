@@ -1,0 +1,14 @@
+/*#btn-submit{*/
+/*  background-color: #901B20;*/
+/*  color: whitesmoke;*/
+/*}*/
+
+/*#btn-submit:hover{*/
+/*  background-color: #5d1518;*/
+/*  color: whitesmoke;*/
+/*}*/
+select.form-control[size], select.form-control[multiple]{
+  min-height: 40px !important;
+  height:40px !important;
+
+}
