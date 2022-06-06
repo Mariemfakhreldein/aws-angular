@@ -1,10 +1,9 @@
 import {AmiModel} from "./ami.model";
 
 export class TemplateModel{
-
-  ami = new AmiModel();
+  amiId :string;
   subnetId: string;
   instanceType: string;
-  securityGroups: string[] = [];
+  securityGroups: Array<number> ;
 
 }

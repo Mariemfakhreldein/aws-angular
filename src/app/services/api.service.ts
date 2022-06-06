@@ -12,7 +12,7 @@ export class ApiService {
 
   getHeaders():HttpHeaders{
     return new HttpHeaders({
-      Authorization : "Bearer "+this.tokenService.getToken()
+      Authorization : "Bearer eyJhbGciOiJIUzI1NiJ9.eyJwcml2aWxlZ2VzIjpbIlJFQUQiXSwiaWQiOiJkdW1iIGlkIiwic3ViIjoiYXNocmYiLCJpYXQiOjE2NTQyODM3NTMsImV4cCI6MTY1NDQ1NjU1M30.WxthxT6G87_UF8Hmn61F2TeMaCsqXDBehHZnER2M1AU"
     });
   }
 
