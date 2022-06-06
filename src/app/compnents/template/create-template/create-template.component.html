@@ -16,7 +16,7 @@
                         formControlName="subnet">
                   <option value="" selected disabled class="text-secondary">Please Select Your Subnet</option>
                   <option *ngFor="let subnet of subnets"
-                          [value]="subnet">{{subnet}} </option>
+                          [value]="subnet.vpcId">{{subnet.subnetId}} </option>
                 </select>
                 <div class="text-danger col-lg-6 align-items-end align-self-end"
                      *ngIf="templateFormGroup.controls['subnet'].errors && templateFormGroup.controls['subnet'].touched">
@@ -42,21 +42,14 @@
                         <div class="card-checkbox  p-1  = row">
                           <input type="checkbox" name="template-type" id="card1" class="col-2"  [(ngModel)]="isChecked[securityGroups.indexOf(securityG)]" [ngModelOptions]="{standalone: true}">
                           <label class="label-class" for="card1" >
-
                             <h2 class="h2-class securityName" >{{securityG}} </h2>
 
                           </label>
                         </div>
-
                       </div>
-
-
-
                     </div>
                   </div>
                 </div>
-
-
                 <div class="text-danger col-lg-6 align-items-end align-self-end">
                   <small *ngIf="isSecurityGroupsSelected==false"
                          class="form-text text-danger">required security group</small>
@@ -69,11 +62,11 @@
 
 
             <div class="form-group row">
-              <label class="col-lg-4 col-form-label" for="ami">AMI
+              <label class="col-lg-4 col-form-label" for="ami">AMI <a style="font-size: 13px" href="https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1&skipRegion=true#"> Click Here</a>
               </label>
               <div class="col-lg-6">
                 <input #inputAMI type="text" class="form-control" id="ami" name="ami" placeholder="Enter your AMI"
-                       [class.is-valid]="!templateFormGroup.controls['ami'].errors && templateFormGroup.controls['ami'].touched"
+                       [class.is-valid]="!templateFormGroup.controls['ami'].errors"
                        [class.is-invalid]="templateFormGroup.controls['ami'].errors && templateFormGroup.controls['ami'].touched"
                        formControlName="ami">
                 <div class="text-danger col-lg-6 align-items-end align-self-end"
@@ -93,7 +86,7 @@
                         formControlName="instance">
                   <option value="">Please Select Your Instance Type</option>
                   <option *ngFor="let instance of instanceTypes"
-                          [value]="instance">{{instance}} </option>
+                          [value]="instance.instanceType">{{instance.instanceType}} </option>
                 </select>
                 <div class="text-danger col-lg-6 align-items-end align-self-end"
                      *ngIf="templateFormGroup.controls['instance'].errors && templateFormGroup.controls['instance'].touched">

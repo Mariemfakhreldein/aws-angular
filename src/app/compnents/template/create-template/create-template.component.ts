@@ -8,6 +8,10 @@ import {parseJson} from "@angular/cli/utilities/json-file";
 import {Observable} from "rxjs";
 import {TemplateModel} from "../../../models/templates/template.model";
 import {newArray} from "@angular/compiler/src/util";
+import {InstanceTypeModel} from "../../../models/templates/instanceType.model";
+import {SubnetModel} from "../../../models/templates/subnet.model";
+import {AmiModel} from "../../../models/templates/ami.model";
+import {SecurityGroupsModel} from "../../../models/templates/securityGroups.model";
 
 @Component({
   selector: 'app-create-template',
@@ -19,27 +23,27 @@ export class CreateTemplateComponent implements OnInit {
   templateFormGroup: FormGroup = new FormGroup({});
   submitted: boolean=false;
 
-  subnets:string[];
-  securityGroups:string[];
+  subnets:SubnetModel[];
+  securityGroups:SecurityGroupsModel[];
+  instanceTypes:InstanceTypeModel[];
 
-  instanceTypes:string[];
+  model = new TemplateModel();
   amiFlag:boolean = false;
+
   private selectedItemsList: any[]=[] ;
   isChecked: any[]=[];
+
   isSecurityGroupsSelected=true;
 
   constructor(private _formBuilder:FormBuilder,
               private route:Router,
               private templateService: TemplateService,
               private activatedRouter: ActivatedRoute
-              ,private http: HttpClient,
-              private authService: AuthService,
               ) { }
 
   ngOnInit(): void {
     this.templateFormGroup=this._formBuilder.group({
       subnet:["",[Validators.required]],
-      // security:[""],
       ami:["ami-0022f774911c1d690",[Validators.required]],
       instance:["",[Validators.required]],
     });
@@ -50,117 +54,108 @@ export class CreateTemplateComponent implements OnInit {
   getSubnet(){
     this.templateService.getSubnet().subscribe(
       (response:any)=>{
-            console.log("success Hello", response.subnets);
-            this.subnets = response.subnets;
-            console.log("success Hello", this.subnets);
+
+            this.subnets = response.subnetList;
           },(error:any)=>{
             console.log("fail Hello", error);
           }
     )
 
-    this.securityGroups = this.templateService.getAllSecurityGroups();
-
-    for(let i=0; i<this.securityGroups.length;i++){
-
-      this.isChecked.push(false);
-      console.log(this.isChecked[0]);
-    }
-    console.log(this.isChecked);
   }
 
-  onChangeSubnet(subnet: any) {
-    // if (subnet != "") {
-    //   console.log("subnet" + subnet);
-    //   const headers = new HttpHeaders().append('Authorization', 'Bearer ' + this.authService.jwt)
-    //   this.http.get<Response>(`http://localhost:4545/api/template/${subnet}`, {headers:headers}).subscribe(
-    //     (response:any)=>{
-    //       console.log("success Hello", response);
-    //     },(error)=>{
-    //       console.log("fail Hello", error);
-    //     }
-    //   )
-    // }
-
-  }
-
-  getAMI(amiString:string){
-    if (amiString != "") {
-      console.log("subnet" + amiString);
-      const headers = new HttpHeaders().append('Authorization', 'Bearer ' + this.authService.jwt)
-      this.http.get<Response>(`http://localhost:4545/api/template/ami/${amiString}`, {headers:headers}).subscribe(
+  onChangeSubnet(vpc: any) {
+    if (vpc != "") {
+      this.templateService.getSecurityGroups(vpc).subscribe(
         (response:any)=>{
-          console.log("success Hello", response);
-          this.amiFlag = true;
-        },(error)=>{
-          console.log("fail Hello", error);
-          this.amiFlag = false;
+          console.log("success security groups", response.securityGroupResponseList);
+          this.securityGroups = response.securityGroupResponseList;
+          this.isSecurityGroupsListChecked();
+        },(error:any)=>{
+          console.log("fail security groups", error);
         }
       )
     }
+
+  }
+
+  getAMI(amiString:string) : boolean{
+    if (amiString != "") {
+      let amiModel = new AmiModel();
+      amiModel.amiId = amiString;
+      this.templateService.getAmi(amiModel).subscribe(
+        (response:any)=>{
+          this.amiFlag = response.success;
+          if(this.amiFlag){
+              this.submit();
+          }else{
+             alert("enter a valid ami please  ");
+          }
+        },(error:any)=>{
+          console.log("fail ami", error);
+        }
+      )
+    }
+    return this.amiFlag;
   }
   getInstanceType(){
     this.templateService.getInstancesTypes().subscribe(
       (response:any)=>{
-        console.log("success Hello", response.instanceType);
-        this.instanceTypes = response.instanceType;
+        console.log("success types", response.instanceTypeResponseList);
+        this.instanceTypes = response.instanceTypeResponseList;
       },(error:any)=>{
-        console.log("fail Hello", error);
+        console.log("fail types", error);
       }
     )
 
   }
 
   submitBtn() {
-
-
-
-
-
     if(this.fetchSelectedItems().length === 0 ){
       this.isSecurityGroupsSelected=false;
+
     }else{
-       let txt = JSON.stringify(this.templateFormGroup.value);
+      let txt = JSON.stringify(this.templateFormGroup.value);
       let templateModel = JSON.parse(txt);
-      // this.getAMI(templateModel.ami) // this method doesnot exist in api
-      // if(this.amiFlag) {
-        let model = new TemplateModel()
-        model.amiId = templateModel.ami;
-        model.subnetId = templateModel.subnet;
-        model.securityGroups = this.selectedItemsList;
-        model.instanceType = templateModel.instance;
-        alert("Template Details " + "Subnet: " + model.subnetId + "AMI: " + model.amiId + "Security Groups: "+ model.securityGroups + "Instance Type: " +model.instanceType);
 
-      this.templateService.add(model).subscribe(
-        (response:any)=>{
-          console.log("success added");
-          this.instanceTypes = response.instanceType;
-        },(error:any)=>{
-          console.log("fail to add", error);
-        }
-      )
-      // }else{
-      //   alert("enter a valid ami please  ");
-      // }
+      this.getAMI(templateModel.ami);
+      this.model.amiId = templateModel.ami;
+      this.model.subnetId = templateModel.subnet;
+      this.model.securityGroups = this.selectedItemsList;
+      this.model.instanceType = templateModel.instance;
+
+        // alert("Template Details " + "Subnet: " + model.subnetId + "AMI: " + model.amiId + "Security Groups: "+ model.securityGroups + "Instance Type: " +model.instanceType);
+
+        // this.templateService.add(model).subscribe(
+        // (response:any)=>{
+        //   console.log("success added");
+        //   this.instanceTypes = response.instanceType;
+        // },(error:any)=>{
+        //   console.log("fail to add", error);
+        // }
+      //)
+
     }
+  }
 
-
+  submit(){
+    console.log("here " + this.amiFlag);
   }
 
 
 
+  isSecurityGroupsListChecked(){
+    this.isChecked = [];
+    for(let i=0; i<this.securityGroups.length;i++){
+      this.isChecked.push(false);
+    }
+  }
+
   private fetchSelectedItems() {
-
     this.selectedItemsList=[];
-
     for (let i=0 ; i<this.isChecked.length ; i++){
-
         if(this.isChecked[i] == true){
-
           this.selectedItemsList.push(this.securityGroups[i]);
-
         }
-
-
     }
    return this.selectedItemsList;
   }
