@@ -27,7 +27,7 @@
             </div>
 
 
-            <div class="row " *ngIf="!templateFormGroup.controls['subnet'].errors ">
+<!--            <div class="row " *ngIf="!templateFormGroup.controls['subnet'].errors ">-->
 
               <div  class="form-group row">
               <label class="col-lg-4 col-form-label" for="security">Security Groups </label>
@@ -35,16 +35,17 @@
 
                 <div id="security"  class="form-group row radio-container border-bottom " style="border-color: #ced4da">
 
-                  <div class="form-group row" >
+                  <div class="form-group row " >
 
                     <div class="card-checkbox-container w-100 ">
-                      <div class="row" *ngFor="let securityG of securityGroups;let currentIndex=index">
-                        <div class="card-checkbox  p-1  = row">
+                      <div class="row pr-lg-4 pr-2" *ngFor="let securityG of securityGroups;let currentIndex=index">
+                        <div class="card-checkbox  p-1  w-100 mr-5 row">
                           <input type="checkbox" name="template-type" id="card1" class="col-2"  [(ngModel)]="isChecked[securityGroups.indexOf(securityG)]" [ngModelOptions]="{standalone: true}">
-                          <label class="label-class" for="card1" >
-
-                            <h2 class="h2-class securityName" >{{securityG}} </h2>
-
+                          <label class="label-class" for="card1">
+                            <h5 class="h5-class">Security Name: <span>{{securityG}}</span></h5>
+                            <h2 class="h2-class font-italic"><span class="font-weight-bold ">  Description : </span> {{securityG}} </h2>
+                            <h2 class="h2-class font-italic"> <span class="font-weight-bold "> VPC ID : </span> {{securityG}} </h2>
+                            <h2 class="h2-class font-italic"> <span class="font-weight-bold ">Security Group ID : </span>{{securityG}}</h2>
                           </label>
                         </div>
 
@@ -53,6 +54,10 @@
 
 
                     </div>
+
+
+
+
                   </div>
                 </div>
 
@@ -64,8 +69,7 @@
               </div>
             </div>
 
-            </div>
-
+<!--            </div>-->
 
 
             <div class="form-group row">
