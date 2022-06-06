@@ -14,6 +14,7 @@ import { CreateInstanceComponent } from './compnents/instance/create-instance/cr
 import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance-details/view-instance-details.component';
 import {CreateTemplateComponent} from "./compnents/template/create-template/create-template.component";
 import { CreatenewstuffComponent } from './compnents/user/staff/createnewstuff/createnewstuff.component';
+import { UserdetailsComponent } from './compnents/user/userdetails/userdetails.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CreatenewstuffComponent } from './compnents/user/staff/createnewstuff/c
     CreateInstanceComponent,
     ViewInstanceDetailsComponent,
     CreateTemplateComponent,
-    CreatenewstuffComponent
+    CreatenewstuffComponent,
+    UserdetailsComponent
   ],
     imports: [
         BrowserModule,

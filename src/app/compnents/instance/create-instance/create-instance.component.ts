@@ -9,7 +9,6 @@ import {UserModel} from "../../../models/users/user.model";
   styleUrls: ['./create-instance.component.css']
 })
 export class CreateInstanceComponent implements OnInit {
-  // createInstance:Instance;
 
   students: UserModel[] = [];
   templates: TemplateModel[] = [];
