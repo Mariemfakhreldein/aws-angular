@@ -7,22 +7,17 @@
 /*  background-color: #5d1518;*/
 /*  color: whitesmoke;*/
 /*}*/
-select.form-control[size], select.form-control[multiple]{
-  min-height: 40px !important;
-  height:40px !important;
-
-}
 
 .card-checkbox-container
 {
   width: 450px;
-  height: 150px;
+  height: 200px;
   overflow-y: scroll;
   overflow-x:hidden;
 
 }
 .card-checkbox{
-  height: 180px;
+  height: 150px !important;
   width: 400px;
   margin: 1.5%;
   position: relative;
@@ -165,7 +160,7 @@ input[type="checkbox"]:checked:after{
 
 .label-class{
   position: absolute;
-  margin: 20px;
+  /*margin: 20px;*/
   cursor: pointer;
 }
 .h5-class{
