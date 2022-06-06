@@ -29,13 +29,42 @@
             <div class="form-group row">
               <label class="col-lg-4 col-form-label" for="security">Security Groups </label>
               <div class="col-lg-6">
-                <select id="security" [disabled]="templateFormGroup.controls['subnet'].invalid" class="selectpicker" multiple [class.is-valid]="!templateFormGroup.controls['security'].errors && templateFormGroup.controls['security'].touched"
-                        [class.is-invalid]="templateFormGroup.controls['security'].errors && templateFormGroup.controls['security'].touched"
-                        formControlName="security">
-                  <option value="" disabled >Select one or more security group</option>
-                  <option *ngFor="let securityG of securityGroups"
-                          [value]="securityG">{{securityG}} </option>
-                </select>
+
+
+<!--                <select id="security1" [disabled]="templateFormGroup.controls['subnet'].invalid" class="selectpicker" multiple [class.is-valid]="!templateFormGroup.controls['security'].errors && templateFormGroup.controls['security'].touched"-->
+<!--                        [class.is-invalid]="templateFormGroup.controls['security'].errors && templateFormGroup.controls['security'].touched"-->
+<!--                        formControlName="security">-->
+<!--                  <option value="" disabled >Select one or more security group</option>-->
+<!--                  <option *ngFor="let securityG of securityGroups"-->
+<!--                          [value]="securityG">{{securityG}} </option>-->
+<!--                </select>-->
+
+                <div id="security" [disabled]="templateFormGroup.controls['subnet'].invalid" class="form-group row radio-container border-bottom " style="border-color: #ced4da"[class.is-valid]="!templateFormGroup.controls['security'].errors && templateFormGroup.controls['security'].touched"
+                     [class.is-invalid]="templateFormGroup.controls['security'].errors && templateFormGroup.controls['security'].touched"
+                     formControlName="security">
+
+                  <div class="form-group row" >
+
+                    <div class="col-lg-6 card-checkbox-container w-100 ">
+                      <div class="row" *ngFor="let securityG of securityGroups">
+                        <div class="card-checkbox col-lg-6 row">
+                          <input type="checkbox" name="template-type" id="card1" class="col-2" >
+                          <label class="label-class" for="card1" >
+
+                            <h2 class="h2-class securityName" >{{securityG}} </h2>
+
+                          </label>
+                        </div>
+
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+
+
                 <div class="text-danger col-lg-6 align-items-end align-self-end"
                      *ngIf="templateFormGroup.controls['security'].errors && templateFormGroup.controls['security'].touched">
                   <small *ngIf="templateFormGroup.controls['security'].hasError('required')"
