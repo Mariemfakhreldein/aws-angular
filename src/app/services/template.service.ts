@@ -34,6 +34,6 @@ export class TemplateService {
   }
 
   getAllTemplates() {
-    return this.api.get("/api/templates");
+    return this.api.get("/api/template");
   }
 }

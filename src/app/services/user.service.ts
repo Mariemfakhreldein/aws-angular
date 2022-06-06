@@ -9,11 +9,11 @@ export class UserService {
   constructor(private api: ApiService) { }
 
   getAllStudents() {
-    return this.api.get("/api/users");
+    return this.api.get("/api/dummystudent");
   }
 
   getAllUsers() {
-    return this.api.get("/api/users");
+    return this.api.get("/api/dummystudent");
   }
 
 }
