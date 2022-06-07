@@ -6,7 +6,7 @@
 
     <div class="nav-control">
       <div class="hamburger">
-        <span class="toggle-icon"><i class="icon-menu"></i></span>
+        <span class="toggle-icon" href="#sideBarMenu" data-toggle="collapse" aria-expanded="false"><i class="icon-menu"></i></span>
       </div>
     </div>
     <div class="header-left">
@@ -169,6 +169,78 @@
 
 <div class="nk-sidebar">
   <div class="nk-nav-scroll">
+<!--    <ul class="list-unstyled components collapse" id="sideBarMenu">-->
+<!--      <a class="has-arrow" aria-expanded="false">-->
+<!--        <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>-->
+<!--      </a>-->
+<!--      <li>-->
+<!--        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Pages</a>-->
+<!--        <ul class="collapse list-unstyled" id="pageSubmenu">-->
+<!--          <li>-->
+<!--            <a class="nav-link" href="#">Page 1</a>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <a class="nav-link" href="#">Page 2</a>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <a class="nav-link" href="#">Page 3</a>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a href="#instancesList" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text has-arrow">Instances</a>-->
+<!--        <ul id="instancesList" class="collapse list-unstyled">-->
+<!--          <li>-->
+<!--            <a class="nav-link" [routerLink]="['/instances']" routerLinkActive="active">View Instance</a>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <a class="nav-link" [routerLink]="['/instances/createInstance']" routerLinkActive="active">Create Instance</a>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a href="#templatesList"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text has-arrow" >Template</a>-->
+<!--        <ul id="templatesList" class="collapse list-unstyled">-->
+<!--          <li>-->
+<!--            <a class="nav-link" >View Templates</a>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <a class="nav-link" [routerLink]="['/template']" routerLinkActive="active">Create Templates</a>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </li>-->
+<!--      <li>-->
+<!--        <a href="#usersList"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text has-arrow">User</a>-->
+<!--        <ul id="usersList" class="collapse list-unstyled">-->
+<!--          <li>-->
+<!--            <a href="#staffList" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text has-arrow" >Staff</a>-->
+<!--            <ul id="staffList" class="collapse list-unstyled">-->
+<!--              <li>-->
+<!--                <a class="nav-link" [routerLink]="['/users']" routerLinkActive="active">View Staff</a>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <a class="nav-link" [routerLink]="['/user/createUser']" routerLinkActive="active">Add New Staff</a>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <a href="#studentList"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text has-arrow">Students</a>-->
+<!--            <ul id="studentList" class="collapse list-unstyled">-->
+<!--              <li>-->
+<!--                <a class="nav-link" [routerLink]="['/template']" routerLinkActive="active">View Students</a>-->
+<!--              </li>-->
+<!--              <li>-->
+<!--                <a class="nav-link" [routerLink]="['/user/createUser']" routerLinkActive="active">Add New Student</a>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </li>-->
+<!--    </ul>-->
+
+<!-- ****************************-->
+<!--    oldnav-->
+<!--&lt;!&ndash; *****************************   &ndash;&gt;-->
     <ul class="metismenu" id="menu">
       <li class="nav-label">Dashboard</li>
       <li>
@@ -179,6 +251,22 @@
           <li ><a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home 1</a></li>
           <li><a class="nav-link" [routerLink]="['/instances']" routerLinkActive="active" >Instances</a></li>
           <li><a class="nav-link" [routerLink]="['/template']" routerLinkActive="active" >Template</a></li>
+
+          <li>
+            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Pages</a>
+            <ul class="collapse list-unstyled" id="pageSubmenu">
+              <li>
+                <a class="nav-link" href="#">Page 1</a>
+              </li>
+              <li>
+                <a class="nav-link" href="#">Page 2</a>
+              </li>
+              <li>
+                <a class="nav-link" href="#">Page 3</a>
+              </li>
+            </ul>
+          </li>
+
         </ul>
       </li>
     </ul>
