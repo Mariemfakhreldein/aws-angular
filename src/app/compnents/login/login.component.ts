@@ -20,24 +20,25 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.authService.authenticationResultEvent.subscribe(
-      result =>{
-        if(result){
-          const url = this.activatedRouter.snapshot.queryParams['requested'];
-          this.route.navigateByUrl("/home");
-        }else{
-          // this.message="wrong email or password";
-        }
-      }
-    )
   }
 
-  loginUser()
-  {
+  login(){
     let loginModel = new LoginModel();
     loginModel.username = this.username;
     loginModel.password = this.password;
-    this.authService.authenticate(loginModel);
+
+    this.authService.login(loginModel).subscribe(
+      (response:any)=>{
+        console.log(response.jwt);
+        this.authService.setToken(response.jwt);
+        this.authService.changeLoggedStatus(true);
+        this.route.navigateByUrl("/home");
+      },
+      (error:any)=>{
+        console.log("fail");
+        console.log(error);
+      }
+    )
   }
 
 }

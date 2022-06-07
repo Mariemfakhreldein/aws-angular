@@ -9,14 +9,17 @@ import { ViewInstancesComponent } from './compnents/instance/view-instances/view
 import { CreateInstanceComponent } from './compnents/instance/create-instance/create-instance.component';
 import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance-details/view-instance-details.component';
 import {CreateTemplateComponent} from "./compnents/template/create-template/create-template.component";
+import {LogoutComponent} from "./compnents/logout/logout.component";
 
 const routes: Routes = [
-  {path:'home', component:HomeComponent/* , canActivate:[AuthGuard]*/},
+  {path:'home', component:HomeComponent , canActivate:[AuthGuard]},
   {path:'instances/createInstance',component:CreateInstanceComponent},
   {path:'instances/:id',component:ViewInstanceDetailsComponent},
   {path:'instances',component:ViewInstancesComponent},
   {path:'template',component:CreateTemplateComponent},
   {path:'login', component:LoginComponent},
+  {path:'login', component:LoginComponent},
+  {path:'logout', component:LogoutComponent}
 ]
 
 @NgModule({
