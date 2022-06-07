@@ -13,6 +13,8 @@ import { ViewInstancesComponent } from './compnents/instance/view-instances/view
 import { CreateInstanceComponent } from './compnents/instance/create-instance/create-instance.component';
 import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance-details/view-instance-details.component';
 import {CreateTemplateComponent} from "./compnents/template/create-template/create-template.component";
+import { CreatenewstaffComponent } from './compnents/user/staff/createnewstuff/createnewstaff.component';
+import { UserdetailsComponent } from './compnents/user/userdetails/userdetails.component';
 import { LogoutComponent } from './compnents/logout/logout.component';
 
 @NgModule({
@@ -25,7 +27,10 @@ import { LogoutComponent } from './compnents/logout/logout.component';
     CreateInstanceComponent,
     ViewInstanceDetailsComponent,
     LogoutComponent,
-    CreateTemplateComponent
+    CreateTemplateComponent,
+    CreateTemplateComponent,
+    CreatenewstaffComponent,
+    UserdetailsComponent
   ],
     imports: [
         BrowserModule,

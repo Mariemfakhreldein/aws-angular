@@ -13,15 +13,6 @@ export class InstanceService {
     return this.api.post("/api/instances", instanceCreateModel );
   }
 
-
-
-
-
-
-
-
-
-
   getAllInstances(){
      return this.api.get("/instances");
   }

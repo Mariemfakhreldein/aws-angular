@@ -42,4 +42,7 @@ export class TemplateService {
     return this.securityGroups;
   }
 
+  getAllTemplates() {
+    return this.api.get("/api/template");
+  }
 }
