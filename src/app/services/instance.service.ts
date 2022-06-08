@@ -14,7 +14,18 @@ export class InstanceService {
   }
 
   getAllInstances(){
-     return this.api.get("/instances");
+     return this.api.get("/api/instances");
+  }
+
+  startInstance(id:any){
+
+    return this.api.get(`/api/instances/start/${id}`);
+
+  }
+
+  stopInstance(id:any){
+
+    return this.api.get(`/api/instances/stop/${id}`);
   }
 
 }
