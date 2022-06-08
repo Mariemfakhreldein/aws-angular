@@ -10,6 +10,8 @@ export class BranchService{
   branchManagers:Array<string> = [];
   branchPrograms:Array<string> = [];
   branches:Array<BranchModel> = [];
+  branch1:BranchModel;
+
   constructor(private api: ApiService) { }
 
   getTrainingManager() {
@@ -74,5 +76,18 @@ export class BranchService{
     this.branches.push(branch5);
 
     return  this.branches;
+  }
+
+  getBranchDetails():BranchModel {
+    this.branch1 = new BranchModel();
+    this.branch1.name = "branch1";
+    this.branch1.location = "Giza";
+    this.branch1.trainingManager = "training manager 1";
+    this.branch1.trainingProgram.push("program 1");
+    this.branch1.trainingProgram.push("program 2");
+    this.branch1.trainingProgram.push("program 3");
+    this.branch1.trainingProgram.push("program 4");
+    this.branch1.trainingProgram.push("program 5");
+    return this.branch1;
   }
 }

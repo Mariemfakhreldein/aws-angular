@@ -11,6 +11,7 @@ import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance
 import {CreateTemplateComponent} from "./compnents/template/create-template/create-template.component";
 import {CreateBranchComponent} from "./compnents/branch/create-branch/create-branch.component";
 import {ShowBranchsComponent} from "./compnents/branch/show-branchs/show-branchs.component";
+import {DetailBranchComponent} from "./compnents/branch/detail-branch/detail-branch.component";
 
 const routes: Routes = [
   {path:'home', component:HomeComponent/* , canActivate:[AuthGuard]*/},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'branch/create', component:CreateBranchComponent},
   {path:'branch/show', component:ShowBranchsComponent},
+  {path:'branch/detail/:id', component:DetailBranchComponent},
 ]
 
 @NgModule({
