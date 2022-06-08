@@ -15,6 +15,7 @@ import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance
 import {CreateTemplateComponent} from "./compnents/template/create-template/create-template.component";
 import { CreatenewstaffComponent } from './compnents/user/staff/createnewstuff/createnewstaff.component';
 import { UserdetailsComponent } from './compnents/user/userdetails/userdetails.component';
+import { LogoutComponent } from './compnents/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,10 @@ import { UserdetailsComponent } from './compnents/user/userdetails/userdetails.c
     LoginComponent,
     ViewInstancesComponent,
     CreateInstanceComponent,
+    ViewInstanceDetailsComponent,
+    LogoutComponent,
+    CreateTemplateComponent,
+    LogoutComponent,
     ViewInstanceDetailsComponent,
     CreateTemplateComponent,
     CreatenewstaffComponent,
