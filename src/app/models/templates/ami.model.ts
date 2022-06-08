@@ -1,10 +1,9 @@
 export class AmiModel{
-
-  imageId: number;
+  imageId: string;
   imageName: string;
   description: string;
   platform: string;
   architecture: string;
   imageOwnerAlias: string;
-
+  amiId: string;
 }

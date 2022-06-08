@@ -8184,7 +8184,8 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
         color: #7571f9; }
       .nk-sidebar .metismenu > li.active > a {
         background: #F3F1FA;
-        color: #464a53; }
+        color: #464a53;
+      }
       .nk-sidebar .metismenu > li.active ul a {
         color: #464a53; }
       .nk-sidebar .metismenu > li a > i {
