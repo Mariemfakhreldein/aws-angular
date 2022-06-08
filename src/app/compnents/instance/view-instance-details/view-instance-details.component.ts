@@ -12,9 +12,8 @@ export class ViewInstanceDetailsComponent implements OnInit {
 
   result:any[]=['name','email','pass','gggg','hh'];
 
-  instance:InstanceModel=new InstanceModel();  //
-  instances:InstanceModel=new InstanceModel();
-
+  // instance:InstanceModel=new InstanceModel();  //
+  instance:InstanceModel=new InstanceModel();
 
 
   constructor(private _activatedRoute:ActivatedRoute,private instanceService: InstanceService ) { }
@@ -29,30 +28,28 @@ export class ViewInstanceDetailsComponent implements OnInit {
           console.log(id);
         }
       );
-
-
-    //
-    // this.instance.instanceId="122";
-    // this.instance.name=""
-    // this.instances.id=3444
-
-
-
-
-
-
-
   }
 
   private getInstanceDetails(id: string) {
     this.instanceService.getInstanceById(id).subscribe({
       next: (response:any) =>{
-        this.instances=response;
-        console.log(this.instances);
+        this.instance=response;
       },
       error: (e) => console.error(e+"errorr"),
       complete: () => console.info('complete')
     }) ;
+  }
+
+  next(){
+    let currentIndex= this.instance.id;
+
+
+
+  }
+
+  previous(){
+
+
   }
 
 
