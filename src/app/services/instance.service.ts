@@ -28,4 +28,8 @@ export class InstanceService {
     return this.api.get(`/api/instances/stop/${id}`);
   }
 
+  getInstanceById(id:any){
+    return this.api.get(`/api/instances/{instanceId::string`);
+  }
+
 }

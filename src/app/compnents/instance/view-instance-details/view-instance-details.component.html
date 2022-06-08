@@ -8,39 +8,116 @@
     <span class="slider round"></span>
   </label>
 
-<div class="bg-transparent  bg-danger rounded shadow-lg p-lg-5 m-lg-3 p-2 m-1 col-lg-10 m-auto " >
+<div class=" bg-light rounded shadow-lg p-lg-5 m-lg-3 p-2 m-1 col-lg-10 m-auto " >
 
 
 
-  <div class="row justify-content-center rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto my-2 ">
-      <h4  class="col-5  m-auto">ID :</h4>
-      <p  class="col-5  m-auto align-items-lg-start" >{{instance.instanceId}}</p>
+<!--  <div class="row border-start border-5 border-primary justify-content-center rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto my-2 ">-->
+<!--      <h4  class="col-6 col-lg-3  m-auto">ID :</h4>-->
+<!--      <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instances.id}}</p>-->
+
+<!--    <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2 ">ID :</h4>-->
+<!--    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instances.id}}</p>-->
+
+<!--  </div>-->
+
+  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+    <h4  class="col-6 col-lg-3  m-auto">Name : </h4>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instances.name}}</p>
+
+    <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2">Instance ID : </h4>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instance.instanceId}}</p>
+
   </div>
 
-  <div class="row justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto">Name : </h4>
-    <p  class="col-5  m-auto align-items-lg-start" >{{instance.instanceId}}</p>
+<!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
+<!--    <h4  class="col-5  m-auto">Instance ID : </h4>-->
+<!--    <p  class="col-5  m-auto align-items-lg-start" >{{instance.instanceId}}</p>-->
+<!--  </div>-->
+
+  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+    <h4  class="col-6 col-lg-3  m-auto">State : </h4>
+    <p  class="col-6 col-lg-3   m-auto align-items-lg-start" >{{instance.state}}</p>
+
+    <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2">key Material:</h4>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instance.keyMaterial}}</p>
+
   </div>
 
-  <div class="row justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto">Instance ID : </h4>
-    <p  class="col-5  m-auto align-items-lg-start" >{{instance.instanceId}}</p>
+<!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
+<!--    <h4  class="col-5  m-auto">key Material:</h4>-->
+<!--    <p  class="col-5  m-auto align-items-lg-start" >{{instance.keyMaterial}}</p>-->
+<!--  </div>-->
+
+  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+    <h4  class="col-6 col-lg-3   m-auto"> Public IP : </h4>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instance.publicIp}}</p>
+
+    <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2"> Ami ID : </h4>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instance.amiId}}</p>
   </div>
 
-  <div class="row justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto">State : </h4>
-    <p  class="col-5  m-auto align-items-lg-start" >{{instance.instanceId}}</p>
+<!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
+<!--    <h4  class="col-5  m-auto"> Ami ID : </h4>-->
+<!--    <p  class="col-5  m-auto align-items-lg-start" >{{instance.amiId}}</p>-->
+<!--  </div>-->
+
+  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+
+    <h4  class="col-6 col-lg-3  m-auto"> Key Pair : </h4>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instance.keyPair}}</p>
+
+    <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2 pr-0">Instance Type : </h4>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instance.instanceType}}</p>
   </div>
 
-  <div class="row justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto">key Material:</h4>
-    <p  class="col-5  m-auto align-items-lg-start" >{{instance.instanceId}}</p>
+<!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
+<!--    <h4  class="col-5  m-auto"> Instance Type  : </h4>-->
+<!--    <p  class="col-5  m-auto align-items-lg-start" >{{instance.instanceType}}</p>-->
+<!--  </div>-->
+
+  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+    <h4  class="col-6 col-lg-3  m-auto"> Subnet ID : </h4>
+    <p  class="col-6 col-lg-3   m-auto align-items-lg-start" >{{instance.subnetId}}</p>
+
+    <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2"> VPC ID : </h4>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instance.vpcId}}</p>
   </div>
 
-  <div class="row justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto"> Public IP : </h4>
-    <p  class="col-5  m-auto align-items-lg-start" >{{instance.instanceId}}</p>
+<!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
+<!--    <h4  class="col-5  m-auto"> VPC ID : </h4>-->
+<!--    <p  class="col-5  m-auto align-items-lg-start" >{{instance.vpcId}}</p>-->
+<!--  </div>-->
+
+  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+    <h4  class="col-6 col-lg-3  m-auto"> Platform : </h4>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instance.platform}}</p>
+
+    <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2"> Creation Date Time : </h4>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instance.creationDateTime}}</p>
   </div>
+
+<!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
+<!--    <h4  class="col-5  m-auto"> Creation Date Time : </h4>-->
+<!--    <p  class="col-5  m-auto align-items-lg-start" >{{instance.creationDateTime}}</p>-->
+<!--  </div>-->
+
+  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+
+    <h4  class="col-5 "> Public DNS Name : </h4>
+    <p  class="col-5  m-auto align-items-lg-start" >{{instance.publicDnsName}}</p>
+  </div>
+
+<!--  <div class="row justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
+<!--    <h4  class="col-5  m-auto">  : </h4>-->
+<!--    <p  class="col-5  m-auto align-items-lg-start" >{{instance.}}</p>-->
+<!--  </div>-->
+
+<!--  <div class="row justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
+<!--    <h4  class="col-5  m-auto">  : </h4>-->
+<!--    <p  class="col-5  m-auto align-items-lg-start" >{{instance.}}</p>-->
+<!--  </div>-->
+  <button class="btn btn-primary align-items-end">Previous << </button>
 
 
   <button class="btn btn-primary align-items-end">Next >> </button>
