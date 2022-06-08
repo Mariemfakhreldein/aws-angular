@@ -35,6 +35,7 @@ export class ViewInstancesComponent implements OnInit {
       next: (data:any) =>{
 
         data.listOfInstance.forEach(e => {
+
           console.log(e);
 
           this.instances.push(e);
