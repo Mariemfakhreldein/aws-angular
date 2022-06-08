@@ -21,7 +21,7 @@ const routes: Routes = [
   {path:'template',component:CreateTemplateComponent},
   {path:'login', component:LoginComponent},
   {path:'login', component:LoginComponent},
-  {path:'logout', component:LogoutComponent}
+  {path:'logout', component:LogoutComponent},
   {path:'user/createUser', component:CreatenewstaffComponent},
   {path:'users', component:UserdetailsComponent}
 ]
