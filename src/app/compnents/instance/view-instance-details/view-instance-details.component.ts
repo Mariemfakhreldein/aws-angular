@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {InstanceModel} from "../../../models/instances/instance.models";
+import {InstanceService} from "../../../services/instance.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-view-instance-details',
@@ -10,16 +12,47 @@ export class ViewInstanceDetailsComponent implements OnInit {
 
   result:any[]=['name','email','pass','gggg','hh'];
 
-  instance:InstanceModel=new InstanceModel();
+  instance:InstanceModel=new InstanceModel();  //
+  instances:InstanceModel=new InstanceModel();
 
 
 
-  constructor() { }
+  constructor(private _activatedRoute:ActivatedRoute,private instanceService: InstanceService ) { }
 
   ngOnInit(): void {
-    this.instance.instanceId="122";
+
+    this._activatedRoute.paramMap
+      .subscribe(
+        parms=>{
+          let id=parms.get('id');
+          this.getInstanceDetails(id);
+        }
+      );
+
+
+    //
+    // this.instance.instanceId="122";
+    // this.instance.name=""
+    // this.instances.id=3444
+
+
+
+
+
 
 
   }
+
+  private getInstanceDetails(id: string) {
+    this.instanceService.getInstanceById(id).subscribe({
+      next: (response:any) =>{
+        this.instances=response.data;
+        console.log(this.instances);
+      },
+      error: (e) => console.error(e+"errorr"),
+      complete: () => console.info('complete')
+    }) ;
+  }
+
 
 }

@@ -14,6 +14,7 @@ export class InstanceModel {
   decryptedPassword:string;
   username:string;
   creationDateTime:string;
+  platform:string;
   keyPair:string; //////////////////////////edit
   creator:string; /////////////////////////edit
   instanceUsers:[]; //////////////////////edit
