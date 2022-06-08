@@ -14,6 +14,7 @@ import { CreateInstanceComponent } from './compnents/instance/create-instance/cr
 import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance-details/view-instance-details.component';
 import {CreateTemplateComponent} from "./compnents/template/create-template/create-template.component";
 import { CreateBranchComponent } from './compnents/branch/create-branch/create-branch.component';
+import { ShowBranchsComponent } from './compnents/branch/show-branchs/show-branchs.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CreateBranchComponent } from './compnents/branch/create-branch/create-b
     CreateInstanceComponent,
     ViewInstanceDetailsComponent,
     CreateTemplateComponent,
-    CreateBranchComponent
+    CreateBranchComponent,
+    ShowBranchsComponent
   ],
     imports: [
         BrowserModule,
