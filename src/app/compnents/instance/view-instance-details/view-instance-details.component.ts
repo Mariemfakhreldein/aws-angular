@@ -14,6 +14,7 @@ export class ViewInstanceDetailsComponent implements OnInit {
 
   // instance:InstanceModel=new InstanceModel();  //
   instance:InstanceModel=new InstanceModel();
+  isChecked: any;
 
 
   constructor(private _activatedRoute:ActivatedRoute,private instanceService: InstanceService ) { }
@@ -26,6 +27,7 @@ export class ViewInstanceDetailsComponent implements OnInit {
           let id=parms.get('id');
           this.getInstanceDetails(id);
           console.log(id);
+
         }
       );
   }
@@ -34,11 +36,67 @@ export class ViewInstanceDetailsComponent implements OnInit {
     this.instanceService.getInstanceById(id).subscribe({
       next: (response:any) =>{
         this.instance=response;
+        if(this.instance.state=="Running"){
+          this.isChecked=true;
+        }else {
+          this.isChecked=false;
+        }
       },
       error: (e) => console.error(e+"errorr"),
       complete: () => console.info('complete')
     }) ;
   }
+
+  changeInstanceStatus(){
+
+    if(this.isChecked){
+
+      this.instanceService.stopInstance(this.instance.instanceId).subscribe({
+        next: (data:any) =>{
+
+        },
+        error: (e) => console.error(e+"errorr"),
+        complete: () => console.info('complete')
+      });
+
+
+
+    }
+    else{
+
+      this.instanceService.startInstance(this.instance.instanceId).subscribe({
+        next: (data:any) =>{
+        },
+        error: (e) => console.error(e+"errorr"),
+        complete: () => console.info('complete')
+      });
+
+
+    }
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   next(){
     let currentIndex= this.instance.id;

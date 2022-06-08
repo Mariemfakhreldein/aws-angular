@@ -4,7 +4,7 @@
 
 
   <label class="switch align-self-end m-lg-3  m-1 m-auto">
-    <input type="checkbox" checked>
+    <input type="checkbox" checked (change)="changeInstanceStatus()"  [ngModel]="isChecked">
     <span class="slider round"></span>
   </label>
 
