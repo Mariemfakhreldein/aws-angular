@@ -28,6 +28,8 @@ import { LogoutComponent } from './compnents/logout/logout.component';
     ViewInstanceDetailsComponent,
     LogoutComponent,
     CreateTemplateComponent,
+    LogoutComponent,
+    ViewInstanceDetailsComponent,
     CreateTemplateComponent,
     CreatenewstaffComponent,
     UserdetailsComponent
