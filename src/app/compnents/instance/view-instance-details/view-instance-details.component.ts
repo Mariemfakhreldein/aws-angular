@@ -26,6 +26,7 @@ export class ViewInstanceDetailsComponent implements OnInit {
         parms=>{
           let id=parms.get('id');
           this.getInstanceDetails(id);
+          console.log(id);
         }
       );
 
@@ -46,7 +47,7 @@ export class ViewInstanceDetailsComponent implements OnInit {
   private getInstanceDetails(id: string) {
     this.instanceService.getInstanceById(id).subscribe({
       next: (response:any) =>{
-        this.instances=response.data;
+        this.instances=response;
         console.log(this.instances);
       },
       error: (e) => console.error(e+"errorr"),

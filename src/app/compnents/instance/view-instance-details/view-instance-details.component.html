@@ -26,7 +26,7 @@
     <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instances.name}}</p>
 
     <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2">Instance ID : </h4>
-    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instance.instanceId}}</p>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instances.instanceId}}</p>
 
   </div>
 
@@ -37,7 +37,7 @@
 
   <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
     <h4  class="col-6 col-lg-3  m-auto">State : </h4>
-    <p  class="col-6 col-lg-3   m-auto align-items-lg-start" >{{instance.state}}</p>
+    <p  class="col-6 col-lg-3   m-auto align-items-lg-start" >{{instances.state}}</p>
 
     <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2">key Material:</h4>
     <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instance.keyMaterial}}</p>
@@ -51,10 +51,10 @@
 
   <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
     <h4  class="col-6 col-lg-3   m-auto"> Public IP : </h4>
-    <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instance.publicIp}}</p>
-
+<!--    <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instance.publicIp}}</p>-->
+<!---->
     <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2"> Ami ID : </h4>
-    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instance.amiId}}</p>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instances.amiId}}</p>
   </div>
 
 <!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
@@ -65,10 +65,10 @@
   <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
 
     <h4  class="col-6 col-lg-3  m-auto"> Key Pair : </h4>
-    <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instance.keyPair}}</p>
+<!--    <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instance.keyPair}}</p>-->
 
     <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2 pr-0">Instance Type : </h4>
-    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instance.instanceType}}</p>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instances.instanceType}}</p>
   </div>
 
 <!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
@@ -78,10 +78,10 @@
 
   <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
     <h4  class="col-6 col-lg-3  m-auto"> Subnet ID : </h4>
-    <p  class="col-6 col-lg-3   m-auto align-items-lg-start" >{{instance.subnetId}}</p>
+    <p  class="col-6 col-lg-3   m-auto align-items-lg-start" >{{instances.subnetId}}</p>
 
     <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2"> VPC ID : </h4>
-    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instance.vpcId}}</p>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instances.vpcId}}</p>
   </div>
 
 <!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
@@ -91,10 +91,10 @@
 
   <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
     <h4  class="col-6 col-lg-3  m-auto"> Platform : </h4>
-    <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instance.platform}}</p>
+<!--    <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instance.platform}}</p>-->
 
     <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2"> Creation Date Time : </h4>
-    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instance.creationDateTime}}</p>
+    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instances.creationDateTime}}</p>
   </div>
 
 <!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
@@ -105,7 +105,7 @@
   <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
 
     <h4  class="col-5 "> Public DNS Name : </h4>
-    <p  class="col-5  m-auto align-items-lg-start" >{{instance.publicDnsName}}</p>
+<!--    <p  class="col-5  m-auto align-items-lg-start" >{{instance.publicDnsName}}</p>-->
   </div>
 
 <!--  <div class="row justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->

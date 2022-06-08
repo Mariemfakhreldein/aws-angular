@@ -29,7 +29,7 @@ export class InstanceService {
   }
 
   getInstanceById(id:any){
-    return this.api.get(`/api/instances/{instanceId::string`);
+    return this.api.get(`/api/instances/${id}`);
   }
 
 }
