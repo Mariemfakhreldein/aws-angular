@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {InstanceService} from "../../../services/instance.service";
 import {InstanceModel} from "../../../models/instances/instance.models";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-view-instances',
@@ -11,29 +12,39 @@ export class ViewInstancesComponent implements OnInit {
 
 
   instances:InstanceModel[]=[];
+  instancesBackup:InstanceModel[]=[];
 
-  // statusArray:string[]=[];
-  statusArray:string[]=['running','stopped','running','stopped','running','stopped','running'];
+  statusArray:string[]=[];
+  // statusArray:string[]=['running','stopped','running','stopped','running','stopped','running'];
 
   page:number=1;
-  status:string='running'
+  status:string='Running'
 
-  constructor(private instanceService: InstanceService ) { }
+  constructor(private instanceService: InstanceService ,private router: Router) { }
 
   ngOnInit(): void {
 
+    this.getInstances();
 
+  }
+
+
+  getInstances(){
     console.log("********");
     this.instanceService.getAllInstances().subscribe({
       next: (data:any) =>{
 
         data.listOfInstance.forEach(e => {
           console.log(e);
+
           this.instances.push(e);
-          this.statusArray.push(e.status);
+          this.statusArray.push(e.state);
+          this.instancesBackup.push(e);
+
         })
 
-       console.log("data"+data.listOfInstance);
+        console.log(this.statusArray);
+
       },
       error: (e) => console.error(e+"errorr"),
       complete: () => console.info('complete')
@@ -43,52 +54,56 @@ export class ViewInstancesComponent implements OnInit {
 
     console.log("******kkkkkkkkkkkk**");
   }
-
   changeInstanceStatus(instance:InstanceModel ,currentIndex:number){
 
 
 
-      if( instance.state==='running'){
+    if( instance.state==='Running'){
 
-          this.instanceService.stopInstance(instance.instanceId).subscribe({
-            next: (data:any) =>{
+      this.instanceService.stopInstance(instance.instanceId).subscribe({
+        next: (data:any) =>{
 
-              console.log("data"+data);
-              this.statusArray[currentIndex]='stopped';
-              this.status='stopped';
-              console.log("statArray in run"+this.statusArray[currentIndex]);
-            },
-            error: (e) => console.error(e+"errorr"),
-            complete: () => console.info('complete')
-          });
-
-
-
-        }
-        else{
-
-          this.instanceService.startInstance(instance.instanceId).subscribe({
-            next: (data:any) =>{
-
-              console.log("data"+data);
-              this.statusArray[currentIndex]='running';
-              this.status='running';
-              console.log("statArray in stop"+this.statusArray[currentIndex]);
-            },
-            error: (e) => console.error(e+"errorr"),
-            complete: () => console.info('complete')
-          });
+          console.log("data"+data);
+          this.statusArray[currentIndex]='Stopped';
+          this.status='Stopped';
+          console.log("statArray in run"+this.statusArray[currentIndex]);
+          this.getBackUpInstances();
+        },
+        error: (e) => console.error(e+"errorr"),
+        complete: () => console.info('complete')
+      });
 
 
-        }
-      }
+
+    }
+    else{
+
+      this.instanceService.startInstance(instance.instanceId).subscribe({
+        next: (data:any) =>{
+
+          console.log("data"+data);
+          this.statusArray[currentIndex]='Running';
+          this.status='Running';
+          console.log("statArray in stop"+this.statusArray[currentIndex]);
+          // this.router.navigate((['/instances']));
+          this.getBackUpInstances();
+        },
+        error: (e) => console.error(e+"errorr"),
+        complete: () => console.info('complete')
+      });
+
+
+    }
+
+
+  }
 
 
   getTotalNumberOfRunningInstances():number{
 
     let runningCounter = 0;
     this.statusArray.forEach(s =>{
-      if (s ==="running"){
+      if (s ==="Running"){
 
         runningCounter++;
 
@@ -104,7 +119,7 @@ export class ViewInstancesComponent implements OnInit {
 
     let stoppedCounter = 0;
     this.statusArray.forEach(s =>{
-      if (s ==="stopped"){
+      if (s ==="Stopped"){
 
         stoppedCounter++;
 
@@ -129,10 +144,15 @@ export class ViewInstancesComponent implements OnInit {
 
 
 
-  // rebootInstance(){
-  //
-  //   console.log("stopInstance");
-  //
-  // }
+  getBackUpInstances(){
+
+    let i = 0;
+    this.instancesBackup.forEach(e=>{
+      e.state=this.statusArray[i];
+      i++;
+    });
+
+
+  }
 
 }
