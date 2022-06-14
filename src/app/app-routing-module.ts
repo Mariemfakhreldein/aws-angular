@@ -12,6 +12,9 @@ import {LogoutComponent} from "./compnents/logout/logout.component";
 import {CreateTemplateComponent} from "./compnents/template/create-template/create-template.component";
 import {CreatenewstaffComponent} from "./compnents/user/staff/createnewstuff/createnewstaff.component";
 import {UserdetailsComponent} from "./compnents/user/userdetails/userdetails.component";
+import {CreateBranchComponent} from "./compnents/branch/create-branch/create-branch.component";
+import {ShowBranchsComponent} from "./compnents/branch/show-branchs/show-branchs.component";
+import {DetailBranchComponent} from "./compnents/branch/detail-branch/detail-branch.component";
 
 const routes: Routes = [
   {path:'home', component:HomeComponent , canActivate:[AuthGuard]},
@@ -23,7 +26,10 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'logout', component:LogoutComponent},
   {path:'user/createUser', component:CreatenewstaffComponent},
-  {path:'users', component:UserdetailsComponent}
+  {path:'users', component:UserdetailsComponent},
+  {path:'branch/create', component:CreateBranchComponent},
+  {path:'branch/show', component:ShowBranchsComponent},
+  {path:'branch/detail/:id', component:DetailBranchComponent},
 ]
 
 @NgModule({

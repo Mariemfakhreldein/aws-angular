@@ -16,6 +16,9 @@ import {CreateTemplateComponent} from "./compnents/template/create-template/crea
 import { CreatenewstaffComponent } from './compnents/user/staff/createnewstuff/createnewstaff.component';
 import { UserdetailsComponent } from './compnents/user/userdetails/userdetails.component';
 import { LogoutComponent } from './compnents/logout/logout.component';
+import { CreateBranchComponent } from './compnents/branch/create-branch/create-branch.component';
+import { ShowBranchsComponent } from './compnents/branch/show-branchs/show-branchs.component';
+import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-branch.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,11 @@ import { LogoutComponent } from './compnents/logout/logout.component';
     ViewInstanceDetailsComponent,
     CreateTemplateComponent,
     CreatenewstaffComponent,
-    UserdetailsComponent
+    UserdetailsComponent,
+    CreateTemplateComponent,
+    CreateBranchComponent,
+    ShowBranchsComponent,
+    DetailBranchComponent
   ],
     imports: [
         BrowserModule,

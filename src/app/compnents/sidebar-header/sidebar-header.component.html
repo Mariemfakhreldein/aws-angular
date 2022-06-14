@@ -253,6 +253,17 @@
           <li><a class="nav-link" [routerLink]="['/template']" routerLinkActive="active" >Template</a></li>
 
           <li>
+            <a class="has-arrow"  aria-expanded="false">
+              <span class="nav-text">Branch</span>
+            </a>
+            <ul aria-expanded="false">
+              <li><a class="nav-link" [routerLink]="['/branch/create']" routerLinkActive="active">Create</a></li>
+              <li><a class="nav-link" [routerLink]="['/branch/show']" routerLinkActive="active">Branches</a></li>
+            </ul>
+          </li>
+
+
+          <li>
             <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Pages</a>
             <ul class="collapse list-unstyled" id="pageSubmenu">
               <li>
