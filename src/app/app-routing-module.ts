@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:'instances',component:ViewInstancesComponent},
   {path:'template',component:CreateTemplateComponent},
   {path:'login', component:LoginComponent},
-  {path:'user/createUser', component:CreatenewstaffComponent},
+  {path:'user/createStaff', component:CreatenewstaffComponent},
   {path:'users', component:UserdetailsComponent}
 ]
 

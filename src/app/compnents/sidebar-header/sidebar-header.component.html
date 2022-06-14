@@ -241,7 +241,7 @@
 <!-- ****************************-->
 <!--    oldnav-->
 <!--&lt;!&ndash; *****************************   &ndash;&gt;-->
-    <ul class="metismenu" id="menu">
+    <ul  id="menu">
       <li class="nav-label">Dashboard</li>
       <li>
         <a class="has-arrow" aria-expanded="false">
@@ -251,22 +251,28 @@
           <li ><a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home 1</a></li>
           <li><a class="nav-link" [routerLink]="['/instances']" routerLinkActive="active" >Instances</a></li>
           <li><a class="nav-link" [routerLink]="['/template']" routerLinkActive="active" >Template</a></li>
-
+          <li><a class="nav-link" [routerLink]="['/user/createStaff']" routerLinkActive="active" ></a></li>
+        <li>
+          <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false"  class="dropdown-toggle nav-link nav-text">User</a>
+          <ul class="collapse list-unstyled" id="userSubmenu">
           <li>
-            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Pages</a>
-            <ul class="collapse list-unstyled" id="pageSubmenu">
+            <a href="#staffSubmenu" data-toggle="collapse" aria-expanded="false"  class="dropdown-toggle nav-link nav-text">Staff</a>
+            <ul class="collapse list-unstyled" id="staffSubmenu">
               <li>
-                <a class="nav-link" href="#">Page 1</a>
-              </li>
-              <li>
-                <a class="nav-link" href="#">Page 2</a>
-              </li>
-              <li>
-                <a class="nav-link" href="#">Page 3</a>
+                <a class="nav-link" [routerLink]="['/user/createStaff']" routerLinkActive="active">Add new Staff</a>
               </li>
             </ul>
           </li>
-
+          <li>
+            <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false"  class="dropdown-toggle nav-link nav-text">Student</a>
+            <ul class="collapse list-unstyled" id="studentSubmenu">
+              <li>
+                <a class="nav-link" [routerLink]="['/user/createStaff']" routerLinkActive="active">Add new Student</a>
+              </li>
+            </ul>
+          </li>
+          </ul>
+        </li>
         </ul>
       </li>
     </ul>
