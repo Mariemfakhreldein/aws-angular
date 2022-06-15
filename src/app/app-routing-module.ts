@@ -22,7 +22,7 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'login', component:LoginComponent},
   {path:'logout', component:LogoutComponent},
-  {path:'user/createUser', component:CreatenewstaffComponent},
+  {path:'user/createStaff', component:CreatenewstaffComponent},
   {path:'users', component:UserdetailsComponent}
 ]
 
