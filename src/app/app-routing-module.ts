@@ -25,11 +25,11 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'login', component:LoginComponent},
   {path:'logout', component:LogoutComponent},
-  {path:'user/createUser', component:CreatenewstaffComponent},
+  {path:'user/createStaff', component:CreatenewstaffComponent},
   {path:'users', component:UserdetailsComponent},
   {path:'branch/create', component:CreateBranchComponent},
   {path:'branch/show', component:ShowBranchsComponent},
-  {path:'branch/detail/:id', component:DetailBranchComponent},
+  {path:'branch/detail/:id', component:DetailBranchComponent}
 ]
 
 @NgModule({
