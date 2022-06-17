@@ -44,4 +44,11 @@ export class AuthService  implements OnInit {
     this.logged.next(status);
   }
 
+  getPrivileges():string[]{
+    const jwtToken = this.tokenService.getToken();
+    const encodedPayLoad = jwtToken.split(".")[1];
+    const payLoad = atob(encodedPayLoad);
+    return JSON.parse(payLoad).privileges;
+  }
+
 }

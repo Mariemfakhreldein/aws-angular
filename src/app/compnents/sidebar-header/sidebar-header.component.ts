@@ -9,11 +9,11 @@ import {AuthService} from "../../services/auth.service";
 export class SidebarHeaderComponent implements OnInit {
 
 
-
+  canManageTemplate:boolean = false;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-
+    this.canManageTemplate = this.authService.getPrivileges().some(function(p){ return p === 'MANAGE_TEMPLATE'});
   }
 
 }

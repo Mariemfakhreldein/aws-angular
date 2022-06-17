@@ -26,6 +26,7 @@ export class ViewInstancesComponent implements OnInit {
 
     this.getInstances();
 
+
   }
 
 
