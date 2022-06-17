@@ -2,13 +2,27 @@
 /*    DEMO STYLE*/
 /**!*/
 
-#side-bar{
+#nav-bar{
   background-color: #5d1518;
 }
 
-.active-color:active
-{
-  background-color: #636c72;
+#side-bar{
+  background-color: rgb(229, 229, 229);
+}
+
+.imagesize{
+  max-width: 35px;
+  max-height: 40px;
+}
+.brand-title{
+  margin-left:1% ;
+  font-size: 45px;
+  color: white;
+  font-weight: 900;
+}
+#subtitle{
+  color: ghostwhite;
+  font-weight: 500;
 }
 
 
