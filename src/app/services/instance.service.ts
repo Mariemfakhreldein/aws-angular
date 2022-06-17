@@ -32,4 +32,28 @@ export class InstanceService {
     return this.api.get(`/api/instances/${id}`);
   }
 
+  getAllBranches(){
+    return this.api.get("/api/branches");
+  }
+
+  getTrainingProgramsByBranch(branchId: any) {
+    return this.api.get(`/api/branches/${branchId}/trainingPrograms`)
+  }
+
+  getIntakeByTrainingProgram(trainingProgramId:any) {
+    return this.api.get(`/api/trainingPrograms/${trainingProgramId}/intakes`)
+
+  }
+
+  getTrackByIntake(intakeId: any) {
+    return this.api.get(`/api/intakes/${intakeId}/tracks`)
+  }
+
+  getIntakes() {
+    return this.api.get("/api/intakes")
+  }
+
+  getStudentsByTrack(trackId) {
+    return this.api.get(`/api/tracks/${trackId}/students`)
+  }
 }

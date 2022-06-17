@@ -10,6 +10,10 @@ import {TemplateResponseModel} from "../../../models/templates/template.response
 import {InstanceCreateModel} from "../../../models/instances/instance.create.model";
 import {InstanceService} from "../../../services/instance.service";
 import {compareNumbers} from "@angular/compiler-cli/src/version_helpers";
+import {BranchModel} from "../../../models/branch/branch.model";
+import {TrainingProgram} from "../../../models/instances/training.program.model";
+import {Intake} from "../../../models/instances/intake.model";
+import {Track} from "../../../models/instances/track.model";
 
 @Component({
   selector: 'app-create-instance',
@@ -24,6 +28,12 @@ export class CreateInstanceComponent implements OnInit {
   templateId: number;
   isSuccess=false;
   currentItem='instance';
+  branches:BranchModel[]=[];
+  trainingPrograms:TrainingProgram[]=[];
+  intakes:Intake[]=[];
+  tracks:Track[] = [];
+
+  myGroup: FormGroup = new FormGroup({});
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
@@ -32,13 +42,20 @@ export class CreateInstanceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.instanceFormGroup=this.formBuilder.group({
-    //   instanceName:["",[Validators.required]],
-    //   instanceTemplate:["",[Validators.required]],
-    //   instanceKeyPair:["",[Validators.required]],
-    // });
+    this.myGroup=this.formBuilder.group({
+      instanceName:["",[Validators.required]],
+      instanceTemplate:["",[Validators.required]],
+      instanceKeyPair:["",[Validators.required]],
+      branches:[],
+      trainingPrograms:[],
+      intakes:[],
+      tracks:[]
+    });
 
-    this.getAllStudents();
+    // this.getAllStudents();
+
+    this.getAllIntakes();
+    this.getAllBranches();
     this.getAllTemplates();
   }
   submitBtn(instanceName: string, keyPairName: string, studentId: number) {
@@ -88,5 +105,103 @@ export class CreateInstanceComponent implements OnInit {
 
   getIsSuccess(): boolean{
     return this.isSuccess;
+  }
+
+  onChangeBranch(branchId:any) {
+
+    console.log("on change" + branchId);
+    this.instanceService.getTrainingProgramsByBranch(branchId).subscribe(
+      {
+        next: (data: any) => {
+
+          data.trainingPrograms.forEach(e => {
+
+              console.log( "trainingPrograms" + e);
+
+              this.trainingPrograms.push(e);
+            }
+          )
+        }
+
+      }
+    )
+
+  }
+
+  private getAllBranches() {
+
+    this.instanceService.getAllBranches().subscribe(
+      {
+        next: (data: any) => {
+
+          data.branchResponsesList.forEach(e => {
+
+              console.log( "eeee" + e);
+
+              this.branches.push(e);
+            }
+          )
+        }
+
+
+      }
+
+      );
+    console.log( "bbbbbbbbranches" + this.branches);
+  }
+
+  onChangeTrainingProgram(trainingProgramId:any) {
+
+  }
+
+  onChangeIntake(intakeId: any) {
+      console.log("++++"  + intakeId)
+    this.instanceService.getTrackByIntake(intakeId).subscribe(
+      {
+        next: (data: any) => {
+          data.trackResponsesList.forEach(e => {
+
+              console.log( "trainingPrograms" + e);
+
+              this.tracks.push(e);
+            }
+          )
+        }
+
+      }
+    )
+  }
+
+  onChangeTrack(trackId: any) {
+    this.instanceService.getStudentsByTrack(trackId).subscribe({
+
+      next: (data: any) => {
+
+        data.userResponsesList.forEach(e => {
+
+            console.log("eeee" + e);
+
+            this.students.push(e);
+          }
+        )
+      }
+
+    })
+  }
+
+  private getAllIntakes() {
+     this.instanceService.getIntakes().subscribe({
+       next: (data: any) => {
+
+         data.intakeResponsesList.forEach(e => {
+
+             console.log("eeee" + e);
+
+             this.intakes.push(e);
+           }
+         )
+       }
+     }
+  );
   }
 }
