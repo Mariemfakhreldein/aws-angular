@@ -4,7 +4,7 @@
 
 
   <label class="switch align-self-end m-lg-3  m-1 m-auto">
-    <input type="checkbox" checked>
+    <input type="checkbox" checked  (change)="checkValue($event)">
     <span class="slider round"></span>
   </label>
 
@@ -29,10 +29,7 @@
 
   </div>
 
-  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto"> Ami ID : </h4>
-    <p  class="col-5  m-auto align-items-lg-start" >{{instance.amiId}}0000000000000</p>
-  </div>
+
 
   <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
     <h4  class="col-5  m-auto"> Instance Type  : </h4>
@@ -59,11 +56,45 @@
     <p  class="col-5  m-auto align-items-lg-start" >{{instance.creationDateTime}}0000000000000</p>
   </div>
 
+  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+    <h4  class="col-5 m-auto"> key Material : </h4>
+    <h4  class="col-5  m-auto"></h4>
+    <p  class="col-11 m-auto align-items-lg-start mt-3" [ngClass]="{'limitTextHeight': isReadMore}">{{instance.keyMaterial}}MIIEpAIBAAKCAQEAqpuTOqoR8gTRvIvyr4D6/a03sxCABUt5DDvCQbTgItbLowx2
+      6tHMmLBXB/PStpecS73CyhrOpv5fHyeuyZeqjUMO3GcaYBiBQoBDWHTxeqFXAp7z
+      L+Ts4CEdu8e6qQtiLfZm8i0XhhttcYc+V0i8ObCHz3b+VlDl6b9UKkF9CoR/xX7Y
+      tFz7Q8/8IyK77S3DPiPSRbW42D+yjewNZ5E/BYUgAuR33gnhFdUn0JbvLHjiXUcY
+      rv77AuyJDkg41pC4gYbqO8aNlhLMQUhNJ4JHbojgDZmKZIdfhrAbp5KYPLDCuTux
+      OF1CqY+0JSilhAXvIuPD/+uCEL+MJ0Q8snN4vwIDAQABAoIBABVMCGv5UPYqPdhQ
+      jAH2kt5Z4isbMy/2BO1PBGfZYWVX9OGsq6eSevzQfnzCphofAOa/kHJUOFnGRS+J
+      b5tAsIyjw1YmFLfMN06K3l1Lc92ACHGOUAM5i4xK9gA75YQ2pJHiQWWX1WjrQZU7
+      cb/Jl52H+NwgGY3C2YB9Xs9Lj4VhYrZmoxHT/yyLz5bqpkSpsajsI9v3XEU9zgT8
+      SrL19VJ7ae7ce8zoRMkq9IcFpoSnVISWk0UrcvoTjGLcQlU+Rnc9EnmodtFud2ZV
+      LZYh6oym/Qt66qZLXcDxtmbg0cuc6RXs2+pg8fmkOTiBCkwwTBashPD13HrducLo
+      TNg6x2ECgYEA1NCz7ei3Yq/9if3d7hDLBfqlS6DiZznjkmV/K2INlLIXmNF9n99K
+      Kqwr2CmMVxP/1Af5grgO5CYlkFioUbuaMn3B3yw7S4SnLKdUEIsHYM7BJ2nhiiU9
+      MwknxiMgJ+Tathi+Z80maQgF5/wbJ0Hf59UGz23Jl9VizASys/J+D5ECgYEAzTpI
+      Agfpx//HrVvNo2tMKuxCI6HwkceZszypWVSBj1agvXncax4x+CTDsylt/fEMt7gu
+      1IZ7raxqJRmdHJlVGNoibXOGHH1WcavFvUY5OpgYxuzhdXXk0UOwuKHKwVA1x/Ix
+      0L/VDS6Qr6FsyJnfbND9Krjo0xWWHtYOvcXye08CgYEAxpX1wMSPE80L9w9pX7RV
+      7z9jrX30psSzIjIKCA6Yg6/oKxcZdezkBYvh4fVrWvpzmITUhPGCG82o8dh5QMOh
+      8Qm+tqVMs3yWjymZXVKO0Pw966x25PU49X3Omqq+X9vDZ3cRfkVGWW4+LKrpH6nt
+      6SS1FSzql/9sENs1couOrLECgYEAuwPWJIujfQ5XnmFe9gFL6n1bE+95Ms8J/+xS
+      gkXgvob5eVB4DOD6Nh8CetxRECy+IxjjC+X1BGFuZJp/slUD197HqqewWXvZ70HR
+      stYwRnXddkDcf1ZMimm9u7Ir+pcmOys4O/rjodyCGpnmcLLPh/C2E11nRRuRrk3w
+      Jv0gJz8CgYBtzC8ACYPtC8NskfMqCNwI9H2DI2XUF47qiKKh2yrE7RCDzpWA1vOB
+      smr7EOeGx5In6PqYG6VWaUJBVTlGEU7uOdVuIkE5gc3eFAni1G2gaoV0iNlKrkGe
+      RDmuukwvjNSFpi/Be5iGwMNlhmjxM5OOS+AXR/X1dexKFN+j/XJ84Q==
+    </p>
+    <button type="button" class="btn-primary col-2 mt-2" (click)="showText()">
+      {{ isReadMore ? 'Read More': 'Read Less' }}
+    </button>
+  </div>
 
-  <button class="btn btn-primary align-items-end mr-2"> << Previous </button>
+
+<!--  <button class="btn btn-primary align-items-end mr-2"> << Previous </button>-->
 
 
-  <button class="btn btn-primary align-items-end"> Next >> </button>
+<!--  <button class="btn btn-primary align-items-end"> Next >> </button>-->
 
 
 
@@ -112,5 +143,20 @@
 
 </div>
 
+<!--  <p type="text" id="myInput"></p>-->
+<!--  <button onclick="myFunction()">Copy text</button>-->
+<!--</div>-->
 
+<!--<script>-->
+<!--  function myFunction() {-->
+<!--    var copyText = document.getElementById("myInput");-->
+
+<!--    copyText.select();-->
+<!--    copyText.setSelectionRange(0, 99999); /* For mobile devices */-->
+
+<!--    navigator.clipboard.writeText(copyText.value);-->
+
+<!--    alert("Copied the text: " + copyText.value);-->
+<!--  }-->
+<!--</script>-->
 </div>
