@@ -7,9 +7,19 @@
 }
 
 #side-bar{
+  position: relative;
   background-color: rgb(229, 229, 229);
 }
 
+.nav-link{
+  width: 100%;
+  font-family:"Roboto", sans-serif;
+  /*font-weight: 500;*/
+  font-size: 18px;
+}
+.nav-link:active{
+  color: #5d1518;
+}
 .imagesize{
   max-width: 35px;
   max-height: 40px;
