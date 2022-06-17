@@ -3,7 +3,7 @@
 <div class="bg-transparent bg-dark rounded shadow-lg p-lg-5 m-3" >
 
   <div class=" row">
-    <div class="col-4">
+    <div class="col-3">
       <div class=" row">
     <div class="status rounded-circle p-1  col-1" style="background-color: #14C38E"  ></div>
     <h6 class="col-11 bottom-50">number of running : {{getTotalNumberOfRunningInstances()}}</h6>
@@ -12,7 +12,7 @@
     </div>
 
 
-      <div class="col-4">
+      <div class="col-3">
         <div class=" row">
         <div class="status rounded-circle p-1  col-1" style="background-color: #B8F1B0" ></div>
         <h6 class="col-11 bottom-50">number of STOPPED : {{getTotalNumberOfStoppedInstances()}}</h6>
@@ -20,12 +20,26 @@
       </div>
 
 
-        <div class="col-4">
+        <div class="col-3">
           <div class=" row">
           <div class="status rounded-circle p-1  col-1"  style="background-color: #000000"></div>
           <h6 class="col-11 bottom-50">number of ALL : {{getNumberOfInstances()}}</h6>
         </div>
+
         </div>
+        <div class="col-3">
+          <div class=" row">
+
+            <button href="/instances"
+                    class="col-3 rounded shadow p-1 btn btn-light">
+<!--              <i class="fa fa-play"></i>-->
+              <i class="fa fa-refresh" aria-hidden="true"></i>
+
+            </button>
+        </div>
+        </div>
+
+
   </div>
 
 <div class="container  text-center mt-2 w-100 h-100" id="myBody"   >
@@ -56,10 +70,12 @@
 
 <!--        </button>-->
 
-        <button  type="button" id="button_play" class="btn btn-light "
+        <button   type="button" id="button_play" class="btn btn-light "
                  (click)="changeInstanceStatus(instance,currentIndex)" href="/instances">
           <i *ngIf="statusArray[currentIndex]==='Stopped'" class="fa fa-play"></i>
           <i *ngIf="statusArray[currentIndex]==='Running'"class="fa fa-stop"></i>
+<!--          <i *ngIf=" statusArray[currentIndex]!=='Running' && statusArray[currentIndex]!=='Stopped'"class=""></i>-->
+
         </button>
 
 
