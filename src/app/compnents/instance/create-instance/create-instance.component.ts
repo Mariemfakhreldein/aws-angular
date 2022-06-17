@@ -9,6 +9,7 @@ import {TemplateService} from "../../../services/template.service";
 import {TemplateResponseModel} from "../../../models/templates/template.response.model";
 import {InstanceCreateModel} from "../../../models/instances/instance.create.model";
 import {InstanceService} from "../../../services/instance.service";
+import {compareNumbers} from "@angular/compiler-cli/src/version_helpers";
 
 @Component({
   selector: 'app-create-instance',
@@ -39,7 +40,11 @@ export class CreateInstanceComponent implements OnInit {
     this.getAllTemplates();
   }
   submitBtn(instanceName: string, keyPairName: string, studentId: number) {
-    let instanceModel = new InstanceCreateModel(instanceName, keyPairName, studentId, this.templateId);
+    console.log(studentId);
+
+    let studentIds:number[] = [studentId];
+
+    let instanceModel = new InstanceCreateModel(instanceName, keyPairName, studentIds, this.templateId);
     this.instanceService.createInstance(instanceModel).subscribe(
       (response:any)=>{
           console.log("success instance");
@@ -53,8 +58,8 @@ export class CreateInstanceComponent implements OnInit {
   private getAllStudents(){
     this.userService.getAllStudents().subscribe(
       (response:any)=>{
-        console.log(response.dummyObjectResponses)
-        this.students = response.dummyObjectResponses;
+        console.log(response.userResponsesList)
+        this.students = response.userResponsesList;
       },(error:any)=>{
            console.log(error);
       }
