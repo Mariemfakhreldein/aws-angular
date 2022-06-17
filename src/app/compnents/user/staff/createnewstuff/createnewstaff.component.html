@@ -1,46 +1,61 @@
-<div class="card">
-  <div class="card-body">
-    <h4 class="card-title">Adding Staff Form</h4>
-    <div class="basic-form">
-      <form>
-        <div class="form-row">
-          <div class="form-group col-md-8">
-            <label>Username</label>
-            <input type="text" class="form-control" placeholder="Username">
+<div >
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Adding New Staff Form</h4>
+      <div class="basic-form" [formGroup]="createStaff">
+          <div class="form-row">
+            <div class="form-group col-md-8">
+              <label>Username</label>
+              <input type="text" formControlName="username" class="form-control" placeholder="Username"
+              [class.is-invalid]="createStaff.controls['username'].errors && createStaff.controls['username'].touched"
+              [class.is-valid]="!createStaff.controls['username'].errors && createStaff.controls['username'].touched"
+              >
+            </div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label>Email</label>
-            <input type="email" class="form-control" placeholder="Email">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Email</label>
+              <input type="email" formControlName="email" class="form-control" placeholder="Email"
+                     [class.is-invalid]="createStaff.controls['email'].errors && createStaff.controls['email'].touched"
+                     [class.is-valid]="!createStaff.controls['email'].errors && createStaff.controls['email'].touched"
+              >
+            </div>
+            <div class="form-group col-md-6">
+              <label>Password</label>
+              <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                     [class.is-invalid]="createStaff.controls['password'].errors && createStaff.controls['password'].touched"
+                     [class.is-valid]="!createStaff.controls['password'].errors && createStaff.controls['password'].touched"
+              >
+            </div>
           </div>
-          <div class="form-group col-md-6">
-            <label>Password</label>
-            <input type="password" class="form-control" placeholder="Password">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label>Track</label>
+              <select id="track" formControlName="trackName" class="form-control"
+                      [class.is-invalid]="createStaff.controls['trackName'].errors && createStaff.controls['trackName'].touched"
+                      [class.is-valid]="!createStaff.controls['trackName'].errors && createStaff.controls['trackName'].touched"
+              >
+                <option selected="selected">Choose...</option >
+                <option>AI</option>
+                <option>Data Management</option>
+                <option>Java Enterprise</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label>Role</label>
+              <select id="role" class="form-control" formControlName="role"
+                      [class.is-invalid]="createStaff.controls['role'].errors && createStaff.controls['role'].touched"
+                      [class.is-valid]="!createStaff.controls['role'].errors && createStaff.controls['role'].touched"
+              >
+                <option selected="selected">Choose...</option>
+                <option>Supervisor</option>
+                <option>instructor</option>
+                <option>Training Manger</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-4">
-            <label>Track</label>
-            <select id="track" class="form-control">
-              <option selected="selected">Choose...</option>
-              <option>AI</option>
-              <option>Data Management</option>
-              <option>Java Enterprise</option>
-            </select>
-          </div>
-          <div class="form-group col-md-4">
-            <label>Role</label>
-            <select id="role" class="form-control">
-              <option selected="selected">Choose...</option>
-              <option>Supervisor</option>
-              <option>instructor</option>
-              <option>Training Manger</option>
-            </select>
-          </div>
-        </div>
-        <button type="button" class="btn btn-outline-success">Add</button>
-      </form>
+          <button type="button" [disabled]="createStaff.invalid"  class="btn btn-outline-success">Add</button>
+      </div>
     </div>
   </div>
 </div>
