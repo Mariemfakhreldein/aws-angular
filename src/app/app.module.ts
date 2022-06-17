@@ -19,6 +19,7 @@ import { LogoutComponent } from './compnents/logout/logout.component';
 import { CreateBranchComponent } from './compnents/branch/create-branch/create-branch.component';
 import { ShowBranchsComponent } from './compnents/branch/show-branchs/show-branchs.component';
 import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-branch.component';
+import { SuccessPopupComponent } from './compnents/success-popup/success-popup.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-b
     CreateTemplateComponent,
     CreateBranchComponent,
     ShowBranchsComponent,
-    DetailBranchComponent
+    DetailBranchComponent,
+    SuccessPopupComponent
   ],
     imports: [
         BrowserModule,

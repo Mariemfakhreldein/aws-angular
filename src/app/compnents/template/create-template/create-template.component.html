@@ -109,7 +109,9 @@
 
             <div class="form-group row">
               <div class="col-lg-8 ml-auto">
-                <button type="button" id="btn-submit" (click)="submitBtn()" class="btn btn-primary col-lg-4 col-form-label" [disabled]="templateFormGroup.invalid">Submit</button>
+                <button type="button" id="btn-submit" (click)="submitBtn()" class="btn btn-primary col-lg-4 col-form-label" [disabled]="templateFormGroup.invalid"
+                        data-toggle="modal" data-target="#exampleModalCenter">Submit</button>
+
               </div>
             </div>
           </div>
@@ -119,6 +121,16 @@
   </div>
 </div>
 </div>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="border-radius: 20px ;">
+  <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" ></app-success-popup>
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border-radius: 20px ;">
+</div>
+
+
+
 <!-- #/ container -->
 
 

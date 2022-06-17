@@ -5,7 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
 import {TemplateService} from "../../../services/template.service";
 import {parseJson} from "@angular/cli/utilities/json-file";
-import {Observable} from "rxjs";
+import {delay, Observable} from "rxjs";
 import {TemplateModel} from "../../../models/templates/template.model";
 import {newArray} from "@angular/compiler/src/util";
 import {InstanceTypeModel} from "../../../models/templates/instanceType.model";
@@ -36,6 +36,11 @@ export class CreateTemplateComponent implements OnInit {
   isChecked: any[]=[];
 
   isSecurityGroupsSelected=true;
+
+  isSuccess=false;
+
+  currentItem='template';
+
 
   constructor(private _formBuilder:FormBuilder,
               private route:Router,
@@ -122,7 +127,7 @@ export class CreateTemplateComponent implements OnInit {
       this.getAMI(templateModel.ami);
       this.model.amiId = templateModel.ami;
       this.model.subnetId = this.getSubnetIdByVpc(templateModel.subnet);
-      alert(this.model.subnetId);
+      // alert(this.model.subnetId);
       this.model.securityGroups = this.selectedItemsList.map(value => {return value.securityGroupId});
       this.model.instanceType = templateModel.instance;
 
@@ -130,15 +135,16 @@ export class CreateTemplateComponent implements OnInit {
   }
 
   submit(){
+    console.log(this.isSuccess);
     console.log("here " + this.amiFlag);
-    alert("Template Details " + "Subnet: " + this.model.subnetId + "AMI: " + this.model.amiId + "Security Groups: "+ this.model.securityGroups + "Instance Type: " + this.model.instanceType);
-
-    alert(this.model);
+    // alert("Template Details " + "Subnet: " + this.model.subnetId + "AMI: " + this.model.amiId + "Security Groups: "+ this.model.securityGroups + "Instance Type: " + this.model.instanceType);
+    //
+    // alert(this.model);
     this.templateService.add(this.model).subscribe(
     (response:any)=>{
-      console.log("success added");
+      this.isSuccess=true;
     },(error:any)=>{
-      console.log("fail to add", error);
+      // this.isSuccess=false;
     }
     )
 
@@ -174,4 +180,11 @@ export class CreateTemplateComponent implements OnInit {
     }
     return null;
   }
+
+   getIsSuccess(): boolean{
+    return this.isSuccess;
+  }
+
 }
+
+
