@@ -23,7 +23,7 @@
           <div class="card">
             <br/>
             <h3 style="align-self: center ; color: #B52427">Sign In</h3>
-            <div *ngIf="validUser"  class="alert alert-danger">Sorry your email or password incorrect !!</div>
+            <div *ngIf="!validUser"  class="alert alert-danger">Sorry your email or password incorrect !!</div>
             <div class="card-body py-5 px-md-5">
                 <!-- Email input -->
                 <div class="form-outline mb-4">

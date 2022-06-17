@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   username:string="";
   password:string="";
-  validUser=false;
+  validUser=true;
 
   constructor(private route:Router,
               private authService: AuthService,
@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       },
       (error:any)=>{
         console.log("fail");
+        this.validUser = false;
         console.log(error);
       }
     )
