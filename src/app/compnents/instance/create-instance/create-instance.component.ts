@@ -21,6 +21,8 @@ export class CreateInstanceComponent implements OnInit {
   students: UserModel[] = [];
   templates: TemplateResponseModel[] = [];
   templateId: number;
+  isSuccess=false;
+  currentItem='instance';
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
@@ -42,10 +44,12 @@ export class CreateInstanceComponent implements OnInit {
     let instanceModel = new InstanceCreateModel(instanceName, keyPairName, studentId, this.templateId);
     this.instanceService.createInstance(instanceModel).subscribe(
       (response:any)=>{
-          console.log("success instance");
+          // console.log("success instance");
+          this.isSuccess=true;
       }, (error: any)=>{
-        console.log(error);
-        console.log("fail instance");
+        // console.log(error);
+        // console.log("fail instance");
+        this.isSuccess=false;
       }
     )
   }
@@ -77,4 +81,7 @@ export class CreateInstanceComponent implements OnInit {
     console.log(event.target.value);
   }
 
+  getIsSuccess(): boolean{
+    return this.isSuccess;
+  }
 }
