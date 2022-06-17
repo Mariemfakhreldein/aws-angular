@@ -15,6 +15,7 @@ import {UserdetailsComponent} from "./compnents/user/userdetails/userdetails.com
 import {CreateBranchComponent} from "./compnents/branch/create-branch/create-branch.component";
 import {ShowBranchsComponent} from "./compnents/branch/show-branchs/show-branchs.component";
 import {DetailBranchComponent} from "./compnents/branch/detail-branch/detail-branch.component";
+import {CreatenewstudentComponent} from "./compnents/user/student/createnewstudent/createnewstudent.component";
 
 const routes: Routes = [
   {path:'home', component:HomeComponent , canActivate:[AuthGuard]},
@@ -29,7 +30,8 @@ const routes: Routes = [
   {path:'users', component:UserdetailsComponent},
   {path:'branch/create', component:CreateBranchComponent},
   {path:'branch/show', component:ShowBranchsComponent},
-  {path:'branch/detail/:id', component:DetailBranchComponent}
+  {path:'branch/detail/:id', component:DetailBranchComponent},
+  {path:'user/createStudent',component:CreatenewstudentComponent}
 ]
 
 @NgModule({
