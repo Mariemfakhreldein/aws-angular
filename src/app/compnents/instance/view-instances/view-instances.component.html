@@ -50,7 +50,7 @@
 
   <div  class="hexagon col-lg-8 col-12 mx-1" *ngFor="let instance of instancesBackup |
       paginate:{itemsPerPage:5,currentPage:page,totalItems:instances.length};let currentIndex=index"
-        [style.background-color]="statusArray[currentIndex]=='Running' ? '#14C38E ' : '#B8F1B0'">
+        [style.background-color]="statusArray[currentIndex]=='running' ? '#14C38E ' : statusArray[currentIndex]=='stopped'? '#B8F1B0': 'rgba(20,195,142,0.53)'">
 
     <a  routerLink="/instances/{{instance.instanceId}}" class="text-decoration-none">
 
@@ -72,9 +72,10 @@
 
         <button   type="button" id="button_play" class="btn btn-light "
                  (click)="changeInstanceStatus(instance,currentIndex)" href="/instances">
-          <i *ngIf="statusArray[currentIndex]==='Stopped'" class="fa fa-play"></i>
-          <i *ngIf="statusArray[currentIndex]==='Running'"class="fa fa-stop"></i>
-<!--          <i *ngIf=" statusArray[currentIndex]!=='Running' && statusArray[currentIndex]!=='Stopped'"class=""></i>-->
+          <i *ngIf="statusArray[currentIndex]==='stopped'" class="fa fa-play"></i>
+          <i *ngIf="statusArray[currentIndex]==='running'"class="fa fa-stop"></i>
+
+          <i id="btn-pending" *ngIf=" statusArray[currentIndex]!=='running' && statusArray[currentIndex]!=='stopped'" class="fa fa-circle-o-notch fa-spin"></i>
 
         </button>
 
