@@ -1,3 +1,58 @@
+<!--**********************************
+    Nav header start
+***********************************-->
+<div class="nav-header">
+  <div class="brand-logo">
+    <a href="index.html">
+      <b class="logo-abbr"><img src="images/logo.png" alt=""> </b>
+      <span class="logo-compact"><img src="./images/logo-compact.png" alt=""></span>
+      <span class="brand-title">
+          <img src="images/logo-text.png" alt="">
+      </span>
+    </a>
+  </div>
+</div>
+<!--**********************************
+    Nav header end
+***********************************-->
+
+
+<!--**********************************
+    Header start
+***********************************-->
+<div class="header">
+  <div class="header-content clearfix">
+    <div class="header-right">
+      <ul class="clearfix">
+        <li class="icons dropdown">
+          <div class="user-img c-pointer position-relative" data-toggle="dropdown">
+            <span class="activity active"></span>
+            <img src="../../../images/user/1.png" height="40" width="40" alt="">
+          </div>
+          <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
+            <div class="dropdown-content-body">
+              <ul>
+                <li>
+                  <a href="app-profile.html"><i class="icon-user"></i>
+                    <span>Profile</span></a>
+                </li>
+
+                <hr class="my-2">
+                <li><a  [routerLink]="['/logout']" routerLinkActive="active" ><i class="icon-key"></i> <span>Logout</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--**********************************
+    Header end ti-comment-alt
+***********************************-->
+
+
 <div class="container-fluid">
   <div class="row flex-nowrap">
     <div id="side-bar" class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
@@ -62,7 +117,7 @@
         </ul>
         <hr>
         <div class="dropdown pb-4">
-          <a [routerLink]="['/logout']" class="d-flex align-items-center text-white text-decoration-none ">
+          <a [routerLink]="['/logout']" routerLinkActive="active" class="d-flex align-items-center text-white text-decoration-none ">
             <i class="icon-key"></i><span class="d-none d-sm-inline mx-1">Logout</span>
           </a>
         </div>
