@@ -1,131 +1,63 @@
-<!--<div class="container-fluid">-->
-<!--  <div class="row flex-nowrap">-->
-<!--    <div id="side-bar" class="col-auto col-md-3 col-lg-2 px-sm-2 px-0">-->
-<!--      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">-->
-<!--        <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">-->
-<!--          <img src="../../src/assets/images/logo-white.png">-->
-<!--        </a>-->
-<!--        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">-->
-<!--          <li class="nav-item">-->
-<!--            <a href="#" class="nav-link align-middle px-0 text-white text-decoration-none">-->
-<!--              <i class="fs-4 fa-amazon"></i> <span class="ms-1 d-none d-sm-inline">Home</span>-->
-<!--            </a>-->
-<!--          </li>-->
-<!--          <li><a class="nav-link text-white text-decoration-none active-color" [routerLink]="['/instances']" routerLinkActive="active" >Instances</a></li>-->
-<!--          <li><a class="nav-link text-white text-decoration-none" [routerLink]="['/template']" routerLinkActive="active" >Template</a></li>-->
-<!--          <li>-->
-<!--            <a href="#userSubmenu1" data-toggle="collapse" aria-expanded="false" class="text-white text-decoration-none px-0 align-middle dropdown-toggle nav-link nav-text">Users</a>-->
-<!--            <ul class="collapse show nav flex-column ms-1"  id="userSubmenu1">-->
-<!--              <li class="w-100">-->
-<!--                <a href="#staffSubmenu1" data-toggle="collapse" aria-expanded="false" class="text-white text-decoration-none dropdown-toggle nav-link nav-text">Staff</a>-->
-<!--                <ul class="collapse list-unstyled"  id="staffSubmenu1">-->
-<!--                  <li>-->
-<!--                    <a class="nav-link text-white text-decoration-none" [routerLink]="['/user/createStaff']" routerLinkActive="active">Add Staff</a>-->
-<!--                  </li>-->
-<!--                </ul>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <a href="#studentSubmenu1" data-toggle="collapse" aria-expanded="false" class="text-white text-decoration-none dropdown-toggle nav-link nav-text">Student</a>-->
-<!--                <ul class="collapse list-unstyled" id="studentSubmenu1">-->
-<!--                  <li>-->
-<!--                    <a class="nav-link text-white text-decoration-none" [routerLink]="['/template']" routerLinkActive="active">Add Student</a>-->
-<!--                  </li>-->
-<!--                </ul>-->
-<!--              </li>-->
-<!--            </ul>-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--        <hr>-->
-<!--        <div class="dropdown pb-4">-->
-<!--          <a [routerLink]="['/logout']" class="d-flex align-items-center text-white text-decoration-none ">-->
-<!--            <i class="icon-key"></i><span class="d-none d-sm-inline mx-1">Logout</span>-->
-<!--          </a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--      &lt;!&ndash;**********************************-->
-<!--          Content body start-->
-<!--      ***********************************&ndash;&gt;-->
-<!--    <div class="col-md-9 col-lg-10">-->
-<!--      <div class="content-body">-->
-<!--        <div class="container-fluid">-->
-<!--          &lt;!&ndash;    <h1>Hello from body</h1>&ndash;&gt;-->
-<!--          <router-outlet></router-outlet>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; #/ container &ndash;&gt;-->
-<!--      </div>-->
-<!--    </div>-->
-<!--      &lt;!&ndash;**********************************-->
-<!--          Content body end-->
-<!--      ***********************************&ndash;&gt;-->
-
-<!--  </div>-->
-<!--</div>-->
-
 <div class="container-fluid">
   <div class="row flex-nowrap">
-    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+    <div id="side-bar" class="col-auto col-md-3 col-xl-2 px-sm-2 px-0">
       <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
         <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <span class="fs-5 d-none d-sm-inline">Menu</span>
         </a>
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
           <li class="nav-item">
-            <a href="#" class="nav-link align-middle px-0">
+            <a href="#" class="nav-link align-middle px-0 text-white text-decoration-none">
               <i class="fa fa-dashboard"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
             </a>
           </li>
+
           <li>
-            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+            <a href="#submenu8" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white text-decoration-none">
+              <i class="fa fa-object-group"></i> <span class="ms-1 d-none d-sm-inline">Instance</span> </a>
+            <ul class="collapse nav flex-column ms-1" id="submenu8" data-bs-parent="#menu">
+              <li class="w-100">
+                <a class="nav-link px-0 text-white text-decoration-none" > <span class="d-none d-sm-inline">Create</span> Instance </a>
+              </li>
+              <li>
+                <a [routerLink]="['/instances']" routerLinkActive="active"class="nav-link px-0 text-white text-decoration-none"> <span class="d-none d-sm-inline">View</span> Instance </a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white text-decoration-none">
               <i class="fa fa-server"></i> <span class="ms-1 d-none d-sm-inline">Template</span> </a>
-            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+            <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
               <li class="w-100">
-                <a href="#" class="nav-link px-0" [routerLink]="['/template']" routerLinkActive="active"> <span class="d-none d-sm-inline">Create</span> Template </a>
+                <a href="#" class="nav-link px-0 text-white text-decoration-none" [routerLink]="['/template']" routerLinkActive="active"> <span class="d-none d-sm-inline">Create</span> Template </a>
               </li>
               <li>
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">View</span> Templates </a>
+                <a href="#" class="nav-link px-0 text-white text-decoration-none"> <span class="d-none d-sm-inline">View</span> Templates </a>
               </li>
             </ul>
           </li>
           <li>
-            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-              <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Instances</span></a>
-            <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
-              <li class="w-100">
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Create</span> instance</a>
-              </li>
-              <li>
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">View</span> instances</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-              <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline">Products</span> </a>
+            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-white text-decoration-none">
+              <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline">Users</span> </a>
             <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
               <li class="w-100">
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Staff</span></a>
-                <ul class="collapse nav flex-column ms-1" id="submenu5" data-bs-parent="#menu">
-                  <li class="w-100">
-                    <a [routerLink]="['/user/createStaff']" routerLinkActive="active" class="nav-link px-0"> <span class="d-none d-sm-inline" >Add Staff</span></a>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">View Staff</span></a>
+                <a href="#staffSubmenu1" data-toggle="collapse" aria-expanded="false" class="text-white text-decoration-none dropdown-toggle nav-link nav-text">Staff</a>
+                <ul class="collapse list-unstyled"  id="staffSubmenu1">
+                  <li>
+                    <a class="nav-link text-white text-decoration-none" [routerLink]="['/user/createStaff']" routerLinkActive="active">Add Staff</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Students</span></a>
-                <ul class="collapse nav flex-column ms-1" id="submenu6" data-bs-parent="#menu">
-                  <li class="w-100">
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Add Student</span></a>
-                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">View Students</span></a>
+                <a href="#studentSubmenu1" data-toggle="collapse" aria-expanded="false" class="text-white text-decoration-none dropdown-toggle nav-link nav-text">Student</a>
+                <ul class="collapse list-unstyled" id="studentSubmenu1">
+                  <li>
+                    <a class="nav-link text-white text-decoration-none" [routerLink]="['/template']" routerLinkActive="active">Add Student</a>
                   </li>
                 </ul>
               </li>
             </ul>
-          </li>
-          <li>
-            <a href="#" class="nav-link px-0 align-middle">
-              <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
           </li>
         </ul>
         <hr>
