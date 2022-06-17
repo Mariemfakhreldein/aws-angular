@@ -10,7 +10,7 @@ export class SuccessPopupComponent implements OnInit {
   @Input()
   item:string;
 
-  isSuccess;
+  isLoading=true;
 
   constructor() { }
 

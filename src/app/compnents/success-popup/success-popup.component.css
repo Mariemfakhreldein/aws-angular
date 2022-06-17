@@ -129,20 +129,19 @@
 
 }
 
+.modal-body{
+  width: 500px;
+  margin: auto;
+}
+
 /*loader*/
 
-  section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #000;
-    height: 100vh;
-  }
+
 
 .loader {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 50px;
+  height: 140px;
   animation: animateBg;
   animation-duration: 2s;
   animation-iteration-count: infinite;
@@ -179,5 +178,5 @@
   width: calc(15px * (var(--i) / 20));
   height: calc(15px * (var(--i) / 20));
   border-radius: 50%;
-  background-color: #0d4dff;
+  background-color: #14C38E;
 }

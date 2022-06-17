@@ -22,6 +22,8 @@ import {TemplateResponseModel} from "../../../models/templates/templateResponse.
 export class CreateTemplateComponent implements OnInit {
 
 
+  isLoading:boolean=true;
+
   templateFormGroup: FormGroup = new FormGroup({});
   submitted: boolean=false;
 
@@ -108,6 +110,7 @@ export class CreateTemplateComponent implements OnInit {
   getInstanceType(){
     this.templateService.getInstancesTypes().subscribe(
       (response:any)=>{
+
         console.log("success types", response.instanceTypeResponseList);
         this.instanceTypes = response.instanceTypeResponseList;
       },(error:any)=>{
@@ -143,8 +146,10 @@ export class CreateTemplateComponent implements OnInit {
     // alert(this.model);
     this.templateService.add(this.model).subscribe(
     (response:any)=>{
+      this.isLoading=false;
       this.isSuccess=true;
     },(error:any)=>{
+        this.isLoading=false;
       // this.isSuccess=false;
     }
     )
