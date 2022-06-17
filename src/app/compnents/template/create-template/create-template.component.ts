@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -21,6 +21,7 @@ import {TemplateResponseModel} from "../../../models/templates/templateResponse.
 })
 export class CreateTemplateComponent implements OnInit {
 
+
   templateFormGroup: FormGroup = new FormGroup({});
   submitted: boolean=false;
 
@@ -37,7 +38,7 @@ export class CreateTemplateComponent implements OnInit {
 
   isSecurityGroupsSelected=true;
 
-  isSuccess=false;
+  @Output() isSuccess=false;
 
   currentItem='template';
 
