@@ -20,6 +20,7 @@ import { CreateBranchComponent } from './compnents/branch/create-branch/create-b
 import { ShowBranchsComponent } from './compnents/branch/show-branchs/show-branchs.component';
 import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-branch.component';
 import { SuccessPopupComponent } from './compnents/success-popup/success-popup.component';
+import { FailedPopupComponent } from './compnents/failed-popup/failed-popup.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SuccessPopupComponent } from './compnents/success-popup/success-popup.c
     CreateBranchComponent,
     ShowBranchsComponent,
     DetailBranchComponent,
-    SuccessPopupComponent
+    SuccessPopupComponent,
+    FailedPopupComponent
   ],
     imports: [
         BrowserModule,
