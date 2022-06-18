@@ -50,11 +50,13 @@ export class CreateInstanceComponent implements OnInit {
     this.myGroup=this.formBuilder.group({
       instanceName:["",[Validators.required]],
       instanceTemplate:["",[Validators.required]],
-      instanceKeyPair:["",[Validators.required]],
-      branches:[],
-      trainingPrograms:[],
-      intakes:[],
-      tracks:[]
+      keypairName:["",[Validators.required]],
+      timeToLiveInMinutes:["",[Validators.required, Validators.pattern("^[0-9]*$"),]],
+      branches:["",[Validators.required]],
+      trainingPrograms:["",[Validators.required]],
+      intakes:["",[Validators.required]],
+      tracks:["",[Validators.required]],
+      students:["",[Validators.required]],
     });
 
     this.getAllStudents();

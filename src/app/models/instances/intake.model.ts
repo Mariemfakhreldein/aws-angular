@@ -1,4 +1,4 @@
 export class Intake{
-  id:number;
+  id:any;
   intakeName:string;
 }
