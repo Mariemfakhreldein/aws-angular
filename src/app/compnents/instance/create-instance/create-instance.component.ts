@@ -25,7 +25,7 @@ export class CreateInstanceComponent implements OnInit {
   // instanceFormGroup: FormGroup = new FormGroup({});
   students: UserModel[] = [];
   templates: TemplateResponseModel[] = [];
-  templateId: number;
+  templateId=0;
   isSuccess=false;
   currentItem='instance';
   branches:BranchModel[]=[];
@@ -35,10 +35,12 @@ export class CreateInstanceComponent implements OnInit {
   isLoading=true;
   myGroup: FormGroup = new FormGroup({});
 
-  private selectedItemsList: any[]=[] ;
+  isTemplatesEmpty=false;
+  isStudentsEmpty=false;
+
+  selectedItemsList: any[]=[] ;
   isChecked: any[]=[];
 
-  isStudentSelected=true;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
@@ -49,17 +51,17 @@ export class CreateInstanceComponent implements OnInit {
   ngOnInit(): void {
     this.myGroup=this.formBuilder.group({
       instanceName:["",[Validators.required]],
-      instanceTemplate:["",[Validators.required]],
       keypairName:["",[Validators.required]],
       timeToLiveInMinutes:["",[Validators.required, Validators.pattern("^[0-9]*$"),]],
       branches:["",[Validators.required]],
       trainingPrograms:["",[Validators.required]],
       intakes:["",[Validators.required]],
       tracks:["",[Validators.required]],
-      students:["",[Validators.required]],
+      // template:["",[Validators.required]]
+
     });
 
-    this.getAllStudents();
+    // this.getAllStudents();
 
     this.getAllIntakes();
     this.getAllBranches();
@@ -67,34 +69,41 @@ export class CreateInstanceComponent implements OnInit {
   }
   submitBtn(instanceName: string, keyPairName: string, timeToLiveInMinutes:number) {
 
+    if(this.fetchSelectedItems().length == 0 ){
+      this.isStudentsEmpty=true;
 
-
-   let myList=this.fetchSelectedItems();
-   let studentIdList:number[] = [];
-    for(let i=0; i<myList.length; i++){
-      studentIdList.push(myList[i].id);
-      console.log("slected studentsss "+myList[i].username);
-      console.log("slected studentsss "+myList[i].id);
-      console.log("slected studentsss "+myList[i].email);
     }
-    console.log("student id list" + studentIdList);
-    console.log("instanceName "+instanceName);
-    console.log("keyPairName "+keyPairName);
-    console.log("timeToLiveInMinutes "+timeToLiveInMinutes);
-
-    let instanceModel = new InstanceCreateModel(instanceName, keyPairName, studentIdList, this.templateId, timeToLiveInMinutes);
-    this.instanceService.createInstance(instanceModel).subscribe(
-      (response:any)=>{
-          // console.log("success instance");
-        this.isLoading=false;
-          this.isSuccess=true;
-      }, (error: any)=>{
-        // console.log(error);
-        // console.log("fail instance");
-        this.isLoading=false;
-        this.isSuccess=false;
+    else {
+      this.isStudentsEmpty=false;
+      this.isTemplatesEmpty=false;
+      let myList=this.fetchSelectedItems();
+      let studentIdList:number[] = [];
+      for(let i=0; i<myList.length; i++){
+        studentIdList.push(myList[i].id);
+        console.log("slected studentsss "+myList[i].username);
+        console.log("slected studentsss "+myList[i].id);
+        console.log("slected studentsss "+myList[i].email);
       }
-    )
+      console.log("student id list" + studentIdList);
+      console.log("instanceName "+instanceName);
+      console.log("keyPairName "+keyPairName);
+      console.log("timeToLiveInMinutes "+timeToLiveInMinutes);
+
+      let instanceModel = new InstanceCreateModel(instanceName, keyPairName, studentIdList, this.templateId, timeToLiveInMinutes);
+      this.instanceService.createInstance(instanceModel).subscribe(
+        (response:any)=>{
+          this.isLoading=false;
+          this.isSuccess=true;
+        }, (error: any)=>{
+          this.isLoading=false;
+          this.isSuccess=false;
+        }
+      )
+    }
+
+
+
+
   }
 
   private getAllStudents(){
@@ -120,8 +129,13 @@ export class CreateInstanceComponent implements OnInit {
   }
 
   changeTemplateId(event: any){
+    console.log("eeeeeeeeeeeeeeeeevvvvvvvvvvveeeeeeeeeeennnntttttttttt"+event.target.value)
     this.templateId = event.target.value;
     console.log(event.target.value);
+    // if
+    // if()
+    // this.isTemplatesEmpty=true;
+
   }
 
   getIsSuccess(): boolean{
@@ -247,11 +261,9 @@ export class CreateInstanceComponent implements OnInit {
       }
     }
     return this.selectedItemsList;
+
+
   }
-
-
-
-
 
 
 }

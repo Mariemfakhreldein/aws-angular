@@ -143,9 +143,6 @@ export class CreateTemplateComponent implements OnInit {
   submit(){
     console.log(this.isSuccess);
     console.log("here " + this.amiFlag);
-    // alert("Template Details " + "Subnet: " + this.model.subnetId + "AMI: " + this.model.amiId + "Security Groups: "+ this.model.securityGroups + "Instance Type: " + this.model.instanceType);
-    //
-    // alert(this.model);
     this.templateService.add(this.model).subscribe(
     (response:any)=>{
       this.isLoading=false;

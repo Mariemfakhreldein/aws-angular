@@ -10,8 +10,6 @@ export class SuccessPopupComponent implements OnInit {
   @Input()
   item:string;
 
-  isLoading=true;
-
   constructor() { }
 
   ngOnInit(): void {
