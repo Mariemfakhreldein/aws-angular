@@ -11,7 +11,7 @@ import {BranchService} from "../../../services/branch.service";
 export class DetailBranchComponent implements OnInit {
 
   id:string;
-  branch:any;
+  branch:BranchModel;
   constructor(private _activatedRoute: ActivatedRoute,
               private branchService:BranchService) { }
 
@@ -20,13 +20,29 @@ export class DetailBranchComponent implements OnInit {
       .subscribe(
         parms => {
           this.id = parms.get('id');
+          alert(this.id)
+          this.getBranchDetails(this.id)
+
+
         }
       );
 
-    this.branch = this.branchService.getBranchDetails();
+    //this.branch = this.branchService.getBranchDetails();
 
 
   }
+  getBranchDetails(id:string){
+    alert("here" + this.id)
+    this.branchService.getBranch(id).subscribe(
+      (response:any)=>{
+        console.log(response);
+        this.branch = response;
+        console.log(response);
+      },(error:any)=>{
+        console.log("fail Hello", error);
+      }
+    )
 
+  }
 
 }

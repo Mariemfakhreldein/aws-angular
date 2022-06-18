@@ -1,7 +1,6 @@
 
-export class BranchModel{
+export class BranchPostModel{
 
-  id:number;
   address:string;
   name:string;
   branchStatus:boolean;

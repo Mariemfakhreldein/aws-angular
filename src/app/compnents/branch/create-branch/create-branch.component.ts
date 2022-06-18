@@ -6,6 +6,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "../../../services/auth.service";
 import {TemplateModel} from "../../../models/templates/template.model";
 import {BranchService} from "../../../services/branch.service";
+import {BranchModel} from "../../../models/branch/branch.model";
+import {BranchPostModel} from "../../../models/branch/branch.post.model";
 
 @Component({
   selector: 'app-create-branch',
@@ -15,14 +17,7 @@ import {BranchService} from "../../../services/branch.service";
 export class CreateBranchComponent implements OnInit {
 
   BranchFormGroup: FormGroup = new FormGroup({});
-
-  trainingManagers:string[];
-  trainingPrograms:string[];
-
-  isTrainingProgramsSelected=true;
-  isChecked: any[]=[];
-  private selectedItemsList: any[]=[] ;
-
+  branch = new BranchPostModel();
   constructor(private _formBuilder:FormBuilder,
               private branchService: BranchService,
   ) { }
@@ -30,56 +25,61 @@ export class CreateBranchComponent implements OnInit {
   ngOnInit(): void {
     this.BranchFormGroup=this._formBuilder.group({
       name:["",[Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-      location:["",[Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
-      trainingManager:["",[Validators.required]],
+      value:[true,[Validators.required]],
+      address:["",[Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
     });
-    this.getTrainingManager();
+    //this.getTrainingManager();
   }
 
-  getTrainingManager(){
-    this.trainingManagers = this.branchService.getAllTrainingManager();
-  }
-
-  onChangeSubnet(managerId: any) {
-    if (managerId != "") {
-      alert(managerId);
-      this.trainingPrograms = this.branchService.getAllTrainingPrograms();
-      this.isTrainingProgramsChecked();
-    }
-  }
+  // getTrainingManager(){
+  //   this.trainingManagers = this.branchService.getAllTrainingManager();
+  // }
 
 
   submitBtn() {
-
-    if(this.fetchSelectedItems().length === 0 ){
-      this.isTrainingProgramsSelected=false;
-
-    }else {
       let txt = JSON.stringify(this.BranchFormGroup.value);
       let templateModel = JSON.parse(txt);
+
       alert("Done: \n" + "Name: " + templateModel.name
-        + "\nLocation: " + templateModel.location
-        + "\ntraining Manager: " + templateModel.trainingManager
-        + "\ntraining Programs: " + this.selectedItemsList);
-    }
+        + "\naddress: " + templateModel.address
+        + "\nstatus: " + templateModel.value);
+
+    this.branch.name = templateModel.name;
+    this.branch.address = templateModel.address;
+    this.branch.branchStatus = templateModel.value;
+
+    this.postBranch(this.branch);
+
 
   }
 
-  isTrainingProgramsChecked(){
-    this.isChecked = [];
-    this.isChecked.push(true);
-    for(let i=1; i<this.trainingPrograms.length;i++){
-        this.isChecked.push(false);
-    }
-  }
-
-  private fetchSelectedItems() {
-    this.selectedItemsList=[];
-    for (let i=0 ; i<this.isChecked.length ; i++){
-      if(this.isChecked[i] == true){
-        this.selectedItemsList.push(this.trainingPrograms[i]);
+  postBranch(model:BranchPostModel){
+    this.branchService.add(model).subscribe(
+      (response:any)=>{
+        console.log(response);
+        alert("Successfully added");
+      },(error:any)=>{
+        console.log("fail Hello", error);
       }
-    }
-    return this.selectedItemsList;
+    )
   }
+
+  // isTrainingProgramsChecked(){
+  //   this.isChecked = [];
+  //   this.isChecked.push(true);
+  //   for(let i=1; i<this.trainingPrograms.length;i++){
+  //       this.isChecked.push(false);
+  //   }
+  // }
+  //
+  // private fetchSelectedItems() {
+  //   this.selectedItemsList=[];
+  //   for (let i=0 ; i<this.isChecked.length ; i++){
+  //     if(this.isChecked[i] == true){
+  //       this.selectedItemsList.push(this.trainingPrograms[i]);
+  //     }
+  //   }
+  //   return this.selectedItemsList;
+  // }
+
 }

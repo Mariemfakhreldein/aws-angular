@@ -1,40 +1,56 @@
 <div class="row">
   <div class="col-lg-12">
+
+    <div class="center" style="text-align: center">
+      <button style="margin-bottom: 20px; width: 300px; " type="button" (click)="createBranch()" id="btn-submit"
+              class="btn btn-secondary">Create Branch</button>
+    </div>
     <div class="card">
       <div class="card-body">
         <div class="active-member">
 
           <div class="row " *ngIf="!branches">
-
           <div class="center">
           <h1 > There is No Branches &nbsp;&nbsp;&nbsp;</h1>
-            <button type="button" (click)="createBranch()" id="btn-submit"
-                    class="btn btn-primary col-lg-4 col-form-label ">Create Branch</button>
           </div>
           </div>
+
           <div class="row " *ngIf="branches">
           <div class="table-responsive">
             <table class="table table-xs mb-0">
               <thead>
               <tr>
-                <th>Branch</th>
+                <th>Branch ID</th>
                 <th>Name</th>
-                <th>Location</th>
-                <th style="text-align: center; width: 200px">Details</th>
+                <th>Address</th>
+                <th>Activation</th>
+                <th style="text-align: center; width: 100px">Details/Edit</th>
+
               </tr>
               </thead>
               <tbody>
               <tr *ngFor="let branch of branches;let currentIndex=index">
-                <td><i class="icon-graph menu-icon"></i></td>
+                <td><i class="icon-graph menu-icon">&nbsp;&nbsp;{{branch.id}}</i></td>
                 <td>{{branch.name}}</td>
                 <td>
-                  <span>{{branch.location}}</span>
+                  <span>{{branch.address}}</span>
+                </td>
+
+                <td>
+                  <input type="checkbox" class="custom-control-input" checked>{{branch.branchStatus}}
                 </td>
                 <td>
-                <div class="card gradient-1" style="margin-top: 20px; width: 200px; text-align: center">
+                <div class="card gradient-1" style="margin-top: 20px; width: 100px; text-align: center">
 <!--                  routerLink="/branch/details/{{student.ID}}-->
-                  <a style="color: #fff;" routerLink="/branch/detail/{{branch.name}}" class="nav-link"> Show Details </a>
+                  <a style="color: #fff;" routerLink="/branch/detail/{{branch.id}}" class="nav-link">Details </a>
+
                 </div>
+
+                  <div class="card gradient-1" style=" width: 100px; text-align: center">
+                    <!--                  routerLink="/branch/details/{{student.ID}}-->
+                    <a style="color: #fff;" routerLink="/branch/edit/{{branch.id}}" class="nav-link">Edit </a>
+
+                  </div>
                 </td>
               </tr>
 
