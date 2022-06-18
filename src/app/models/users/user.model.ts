@@ -11,4 +11,8 @@ export class UserModel {
       this.email = email;
       this.role = role;
     }
+
+    toString(){
+    console.log(this.username+this.email+this.role);
+    }
 }

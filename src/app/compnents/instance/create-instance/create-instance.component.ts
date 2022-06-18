@@ -35,6 +35,11 @@ export class CreateInstanceComponent implements OnInit {
   isLoading=true;
   myGroup: FormGroup = new FormGroup({});
 
+  private selectedItemsList: any[]=[] ;
+  isChecked: any[]=[];
+
+  isStudentSelected=true;
+
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private templateService: TemplateService,
@@ -52,18 +57,30 @@ export class CreateInstanceComponent implements OnInit {
       tracks:[]
     });
 
-    // this.getAllStudents();
+    this.getAllStudents();
 
     this.getAllIntakes();
     this.getAllBranches();
     this.getAllTemplates();
   }
-  submitBtn(instanceName: string, keyPairName: string, studentId: number, timeToLiveInMinutes:number) {
-    console.log(studentId);
+  submitBtn(instanceName: string, keyPairName: string, timeToLiveInMinutes:number) {
 
-    let studentIds:number[] = [studentId];
 
-    let instanceModel = new InstanceCreateModel(instanceName, keyPairName, studentIds, this.templateId, timeToLiveInMinutes);
+
+   let myList=this.fetchSelectedItems();
+   let studentIdList:number[] = [];
+    for(let i=0; i<myList.length; i++){
+      studentIdList.push(myList[i].id);
+      console.log("slected studentsss "+myList[i].username);
+      console.log("slected studentsss "+myList[i].id);
+      console.log("slected studentsss "+myList[i].email);
+    }
+    console.log("student id list" + studentIdList);
+    console.log("instanceName "+instanceName);
+    console.log("keyPairName "+keyPairName);
+    console.log("timeToLiveInMinutes "+timeToLiveInMinutes);
+
+    let instanceModel = new InstanceCreateModel(instanceName, keyPairName, studentIdList, this.templateId, timeToLiveInMinutes);
     this.instanceService.createInstance(instanceModel).subscribe(
       (response:any)=>{
           // console.log("success instance");
@@ -164,7 +181,7 @@ export class CreateInstanceComponent implements OnInit {
           data.trackResponsesList.forEach(e => {
 
               console.log( "trainingPrograms" + e);
-
+              this.isStudentChecked();
               this.tracks.push(e);
             }
           )
@@ -206,4 +223,33 @@ export class CreateInstanceComponent implements OnInit {
      }
   );
   }
+
+  isStudentChecked(){
+    this.isChecked = [];
+    for(let i=0; i<this.students.length;i++){
+      if (this.selectedItemsList[i].username === this.students[i].username){
+        this.isChecked.push(true);
+      }else{
+        this.isChecked.push(false);
+      }
+    }
+  }
+
+
+
+  private fetchSelectedItems() {
+    this.selectedItemsList=[];
+    for (let i=0 ; i<this.isChecked.length ; i++){
+      if(this.isChecked[i] == true){
+        this.selectedItemsList.push(this.students[i]);
+      }
+    }
+    return this.selectedItemsList;
+  }
+
+
+
+
+
+
 }
