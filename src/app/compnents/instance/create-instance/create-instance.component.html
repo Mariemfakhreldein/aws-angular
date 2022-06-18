@@ -13,8 +13,21 @@
                   </label>
                   <div class="col-lg-6">
                     <input #instanceName type="text" class="form-control" id="val-username" name="val-username"
-                           placeholder="Enter a Instance Name.." required>
+                           placeholder="Enter a Instance Name.." required formControlName="instanceName"
+                           [class.is-valid]="!myGroup.controls['instanceName'].errors && myGroup.controls['instanceName'].touched"
+                           [class.is-invalid]="myGroup.controls['instanceName'].errors && myGroup.controls['instanceName'].touched"
+                    >
+                    <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                         *ngIf="myGroup.controls['instanceName'].errors && myGroup.controls['instanceName'].touched">
+                      <small *ngIf="myGroup.controls['instanceName'].hasError('required')"
+                             class="form-text text-danger">required instance name</small>
+                    </div>
                   </div>
+
+
+
+
+
                 </div>
 
                 <div class="form-group row">
@@ -23,7 +36,16 @@
                   </label>
                   <div class="col-lg-6">
                     <input #keypairName type="text" class="form-control" id="val-keyPairName" name="val-keyPairName"
-                           placeholder="Enter a Key Pair Name.." required>
+                           placeholder="Enter a Key Pair Name.." required formControlName="keypairName"
+                           [class.is-valid]="!myGroup.controls['keypairName'].errors && myGroup.controls['keypairName'].touched"
+                           [class.is-invalid]="myGroup.controls['keypairName'].errors && myGroup.controls['keypairName'].touched"
+                    >
+
+                    <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                         *ngIf="myGroup.controls['keypairName'].errors && myGroup.controls['keypairName'].touched">
+                      <small *ngIf="myGroup.controls['keypairName'].hasError('required')"
+                             class="form-text text-danger"> required keypair Name</small>
+                    </div>
                   </div>
                 </div>
 
@@ -33,8 +55,21 @@
                 </label>
                 <div class="col-lg-6">
                   <input #timeToLiveInMinutes type="text" class="form-control" id="val-timeToLiveInMinutes" name="val-timeToLiveInMinutes"
-                         placeholder="Enter TimeToLive" required>
+                         placeholder="Enter TimeToLive" required formControlName="timeToLiveInMinutes"
+                         [class.is-valid]="!myGroup.controls['timeToLiveInMinutes'].errors && myGroup.controls['timeToLiveInMinutes'].touched"
+                         [class.is-invalid]="myGroup.controls['timeToLiveInMinutes'].errors && myGroup.controls['timeToLiveInMinutes'].touched"
+                  >
+
+                  <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                       *ngIf="myGroup.controls['timeToLiveInMinutes'].errors && myGroup.controls['timeToLiveInMinutes'].touched">
+                    <small *ngIf="myGroup.controls['timeToLiveInMinutes'].hasError('required')"
+                           class="form-text text-danger">Required Time ToLive InMinutes</small>
+                    <small *ngIf="myGroup.controls['timeToLiveInMinutes'].errors?.['pattern'] "
+                           class="form-text text-danger">Only number allowed</small>
+                  </div>
                 </div>
+
+
               </div>
 
 
@@ -45,73 +80,111 @@
                   <label class="col-lg-4 col-form-label" for="branches">Select Branch <span class="text-danger">*</span>
                   </label>
                   <div class="col-lg-6">
-                    <!--<select #studentId class="form-control" id="val-branch" required>
-                      <option  value="{{student.id}}" *ngFor="let student of students">{{student.username}}</option>
-                    </select>-->
-                    <select class="form-control" id="branches" data-live-search="true"
-                            (ngModelChange)="onChangeBranch($event)" formControlName="branches">
 
-                      <option value="" selected disabled class="text-secondary">Please Select Branch</option>
+                    <select class="form-control" id="branches" data-live-search="true"
+                            (ngModelChange)="onChangeBranch($event)" formControlName="branches"
+
+                            [class.is-valid]="!myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
+                            [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
+                    >
+
+                      <option  selected disabled class="text-secondary" >Please Select Branch</option>
                       <option *ngFor="let branch of branches"
                               [value]="branch.id">{{branch.name}} </option>
                     </select>
-                    <!--                  <div class="text-danger col-lg-6 align-items-end align-self-end">-->
-                    <!--                    <small class="form-text text-danger">required subnet</small>-->
-                    <!--                  </div>-->
+                    <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                         *ngIf="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched">
+                      <small *ngIf="myGroup.controls['branches'].hasError('required')"
+                             class="form-text text-danger">required instance name</small>
+                    </div>
+
                   </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row" *ngIf="!myGroup.controls['branches'].errors" >
                   <label class="col-lg-4 col-form-label" for="trainingPrograms">Select Training Program <span class="text-danger">*</span>
                   </label>
                   <div class="col-lg-6">
                     <select class="form-control" id="trainingPrograms" data-live-search="true"
-                            (ngModelChange)="onChangeTrainingProgram($event)" formControlName="trainingPrograms">
+                            (ngModelChange)="onChangeTrainingProgram($event)" formControlName="trainingPrograms"
+                            [class.is-valid]="!myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched"
+                            [class.is-invalid]="myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched"
+                    >
 
                       <option value="" selected disabled class="text-secondary">Please Select Branch</option>
                       <option *ngFor="let trainingProgram of trainingPrograms"
                               [value]="trainingProgram.id">{{trainingProgram.name}} </option>
                     </select>
+                    <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                         *ngIf="myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched">
+                      <small *ngIf="myGroup.controls['trainingPrograms'].hasError('required')"
+                             class="form-text text-danger">required instance name</small>
+                    </div>
                   </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row" *ngIf="!myGroup.controls['trainingPrograms'].errors">
                   <label class="col-lg-4 col-form-label" for="intakes">Select Intake <span
                     class="text-danger">*</span>
                   </label>
                   <div class="col-lg-6">
                     <select class="form-control" id="intakes" data-live-search="true"
-                            (ngModelChange)="onChangeIntake($event)" formControlName="intakes">
+                            (ngModelChange)="onChangeIntake(1)" formControlName="intakes"
+                            [class.is-valid]="!myGroup.controls['intakes'].errors && myGroup.controls['intakes'].touched"
+                            [class.is-invalid]="myGroup.controls['intakes'].errors && myGroup.controls['intakes'].touched"
+                    >
 
                       <option value="" selected disabled class="text-secondary">Please Select Intake</option>
                       <option *ngFor="let intake of intakes"
                               [value]="intake.id">{{intake.intakeName}} </option>
                     </select>
+                    <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                         *ngIf="myGroup.controls['intakes'].errors && myGroup.controls['intakes'].touched">
+                      <small *ngIf="myGroup.controls['intakes'].hasError('required')"
+                             class="form-text text-danger">required instance name</small>
+                    </div>
                   </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row" *ngIf="!myGroup.controls['intakes'].errors">
                   <label class="col-lg-4 col-form-label" for="tracks">Select Track <span class="text-danger">*</span>
                   </label>
                   <div class="col-lg-6">
                     <select class="form-control" id="tracks" data-live-search="true"
-                            (ngModelChange)="onChangeTrack($event)" formControlName="tracks">
+                            (ngModelChange)="onChangeTrack($event)" formControlName="tracks"
+
+                            [class.is-valid]="!myGroup.controls['tracks'].errors && myGroup.controls['tracks'].touched"
+                            [class.is-invalid]="myGroup.controls['tracks'].errors && myGroup.controls['tracks'].touched"
+                    >
 
                       <option value="" selected disabled class="text-secondary">Please Select Track</option>
                       <option *ngFor="let track of tracks"
                               [value]="track.id">{{track.name}} </option>
                     </select>
+                    <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                         *ngIf="myGroup.controls['tracks'].errors && myGroup.controls['tracks'].touched">
+                      <small *ngIf="myGroup.controls['tracks'].hasError('required')"
+                             class="form-text text-danger">required instance name</small>
+                    </div>
                   </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row" *ngIf="!myGroup.controls['tracks'].errors">
                   <label class="col-lg-4 col-form-label" for="val-student">Select Student <span
                     class="text-danger">*</span>
                   </label>
                   <div class="col-lg-6">
-                    <select #studentId class="form-control" id="val-student" required>
+                    <select #studentId class="form-control" id="val-student" required formControlName="students"
+                            [class.is-valid]="!myGroup.controls['students'].errors && myGroup.controls['students'].touched"
+                            [class.is-invalid]="myGroup.controls['students'].errors && myGroup.controls['students'].touched"
+                    >
                       <option value="{{student.id}}" *ngFor="let student of students">{{student.username}}</option>
                     </select>
+                    <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                         *ngIf="myGroup.controls['students'].errors && myGroup.controls['students'].touched">
+                      <small *ngIf="myGroup.controls['students'].hasError('required')"
+                             class="form-text text-danger">required instance name</small>
+                    </div>
                   </div>
                 </div>
 
@@ -122,7 +195,7 @@
                       <div class="row" *ngFor="let template of templates">
                         <div class="card-radio col-lg-6">
                           <input (change)="changeTemplateId($event)" value="{{template.id}}" type="radio"
-                                 name="template-type" id="card5" required>
+                                 name="template-type" id="card5" required >
                           <label class="label-class" for="card5">
                             <h5 class="h5-class">Template {{template.id}}</h5>
                             <h2 class="h2-class">Ami Details </h2>
@@ -139,8 +212,8 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-lg-8 ml-auto">
-                    <button type="button" id="btn-submit"
-                            (click)="submitBtn( instanceName.value, keypairName.value, +studentId.value, +timeToLiveInMinutes.value)" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                    <button type="button" id="btn-submit" [disabled]="myGroup.invalid"
+                            (click)="submitBtn( instanceName.value, keypairName.value, +students, +timeToLiveInMinutes.value)" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
                       Submit
                     </button>
                   </div>

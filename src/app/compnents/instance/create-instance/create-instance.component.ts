@@ -45,11 +45,13 @@ export class CreateInstanceComponent implements OnInit {
     this.myGroup=this.formBuilder.group({
       instanceName:["",[Validators.required]],
       instanceTemplate:["",[Validators.required]],
-      instanceKeyPair:["",[Validators.required]],
-      branches:[],
-      trainingPrograms:[],
-      intakes:[],
-      tracks:[]
+      keypairName:["",[Validators.required]],
+      timeToLiveInMinutes:["",[Validators.required, Validators.pattern("^[0-9]*$"),]],
+      branches:["",[Validators.required]],
+      trainingPrograms:["",[Validators.required]],
+      intakes:["",[Validators.required]],
+      tracks:["",[Validators.required]],
+      students:["",[Validators.required]],
     });
 
     // this.getAllStudents();
@@ -63,6 +65,7 @@ export class CreateInstanceComponent implements OnInit {
 
     let studentIds:number[] = [studentId];
 
+    // @ts-ignore
     let instanceModel = new InstanceCreateModel(instanceName, keyPairName, studentIds, this.templateId, timeToLiveInMinutes);
     this.instanceService.createInstance(instanceModel).subscribe(
       (response:any)=>{
