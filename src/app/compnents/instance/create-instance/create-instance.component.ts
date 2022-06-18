@@ -58,12 +58,12 @@ export class CreateInstanceComponent implements OnInit {
     this.getAllBranches();
     this.getAllTemplates();
   }
-  submitBtn(instanceName: string, keyPairName: string, studentId: number) {
+  submitBtn(instanceName: string, keyPairName: string, studentId: number, timeToLiveInMinutes:number) {
     console.log(studentId);
 
     let studentIds:number[] = [studentId];
 
-    let instanceModel = new InstanceCreateModel(instanceName, keyPairName, studentIds, this.templateId);
+    let instanceModel = new InstanceCreateModel(instanceName, keyPairName, studentIds, this.templateId, timeToLiveInMinutes);
     this.instanceService.createInstance(instanceModel).subscribe(
       (response:any)=>{
           // console.log("success instance");

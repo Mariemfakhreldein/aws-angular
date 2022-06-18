@@ -27,6 +27,20 @@
                   </div>
                 </div>
 
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="val-timeToLiveInMinutes">Enter TimeToLive in minutes <span
+                  class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                  <input #timeToLiveInMinutes type="text" class="form-control" id="val-timeToLiveInMinutes" name="val-timeToLiveInMinutes"
+                         placeholder="Enter TimeToLive" required>
+                </div>
+              </div>
+
+
+
+
+
                 <div class="form-group row">
                   <label class="col-lg-4 col-form-label" for="branches">Select Branch <span class="text-danger">*</span>
                   </label>
@@ -126,7 +140,7 @@
                 <div class="form-group row">
                   <div class="col-lg-8 ml-auto">
                     <button type="button" id="btn-submit"
-                            (click)="submitBtn( instanceName.value, keypairName.value, +studentId.value)" class="btn">
+                            (click)="submitBtn( instanceName.value, keypairName.value, +studentId.value, +timeToLiveInMinutes)" class="btn">
                       Submit
                     </button>
                   </div>
