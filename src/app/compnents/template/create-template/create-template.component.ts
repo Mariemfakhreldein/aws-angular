@@ -40,6 +40,8 @@ export class CreateTemplateComponent implements OnInit {
 
   isSecurityGroupsSelected=true;
 
+
+
   @Output() isSuccess=false;
 
   currentItem='template';
@@ -150,7 +152,7 @@ export class CreateTemplateComponent implements OnInit {
       this.isSuccess=true;
     },(error:any)=>{
         this.isLoading=false;
-      // this.isSuccess=false;
+      this.isSuccess=false;
     }
     )
 

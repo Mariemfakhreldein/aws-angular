@@ -140,7 +140,7 @@
                 <div class="form-group row">
                   <div class="col-lg-8 ml-auto">
                     <button type="button" id="btn-submit"
-                            (click)="submitBtn( instanceName.value, keypairName.value, +studentId.value, +timeToLiveInMinutes)" class="btn">
+                            (click)="submitBtn( instanceName.value, keypairName.value, +studentId.value, +timeToLiveInMinutes.value)" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
                       Submit
                     </button>
                   </div>
@@ -151,14 +151,19 @@
         </div>
       </div>
     </div>
-    <!--  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
-    <!--    Launch demo modal-->
-    <!--  </button>-->
+<!--      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
+<!--        Launch demo modal-->
+<!--      </button>-->
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
+        <div *ngIf="!isLoading">
         <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"></app-success-popup>
         <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem"></app-failed-popup>
+        </div>
+
+          <app-loader *ngIf="isLoading"></app-loader>
+
       </div>
     </div>
 

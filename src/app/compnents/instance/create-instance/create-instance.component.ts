@@ -32,7 +32,7 @@ export class CreateInstanceComponent implements OnInit {
   trainingPrograms:TrainingProgram[]=[];
   intakes:Intake[]=[];
   tracks:Track[] = [];
-
+  isLoading=true;
   myGroup: FormGroup = new FormGroup({});
 
   constructor(private formBuilder: FormBuilder,
@@ -67,10 +67,12 @@ export class CreateInstanceComponent implements OnInit {
     this.instanceService.createInstance(instanceModel).subscribe(
       (response:any)=>{
           // console.log("success instance");
+        this.isLoading=false;
           this.isSuccess=true;
       }, (error: any)=>{
         // console.log(error);
         // console.log("fail instance");
+        this.isLoading=false;
         this.isSuccess=false;
       }
     )
