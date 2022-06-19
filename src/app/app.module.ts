@@ -23,6 +23,7 @@ import { SuccessPopupComponent } from './compnents/success-popup/success-popup.c
 import { FailedPopupComponent } from './compnents/failed-popup/failed-popup.component';
 import { EditBranchComponent } from './compnents/branch/edit-branch/edit-branch.component';
 import { LoaderComponent } from './compnents/loader/loader.component';
+import { ManageTracksComponent } from './compnents/tracks/manage-tracks/manage-tracks.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { LoaderComponent } from './compnents/loader/loader.component';
     FailedPopupComponent,
     DetailBranchComponent,
     EditBranchComponent,
-    LoaderComponent
+    LoaderComponent,
+    ManageTracksComponent
   ],
     imports: [
         BrowserModule,

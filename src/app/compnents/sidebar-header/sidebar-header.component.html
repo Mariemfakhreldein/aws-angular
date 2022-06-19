@@ -252,7 +252,14 @@
           <li><a class="nav-link" [routerLink]="['/instances']" routerLinkActive="active" >Instances</a></li>
           <li><a class="nav-link" [routerLink]="['/template']" routerLinkActive="active" >Template</a></li>
           <li><a class="nav-link" [routerLink]="['/branches']" routerLinkActive="active" >Branches</a></li>
-
+          <li>
+            <a href="#tracks" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Tracks</a>
+            <ul class="collapse list-unstyled" id="tracks">
+              <li>
+                <a class="nav-link" [routerLink]="['/tracks/manage_tracks']" routerLinkActive="active">Manage Tracks</a>
+              </li>
+            </ul>
+          </li>
       <li>
         <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Users</a>
         <ul class="collapse list-unstyled" id="userSubmenu">
@@ -274,6 +281,7 @@
           </li>
         </ul>
       </li>
+
 
         </ul>
       </li>
