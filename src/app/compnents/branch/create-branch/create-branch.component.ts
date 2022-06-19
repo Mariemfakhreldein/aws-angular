@@ -18,6 +18,7 @@ export class CreateBranchComponent implements OnInit {
 
   BranchFormGroup: FormGroup = new FormGroup({});
   branch = new BranchPostModel();
+  isSuccess=false;
   constructor(private _formBuilder:FormBuilder,
               private branchService: BranchService,
   ) { }
@@ -57,12 +58,18 @@ export class CreateBranchComponent implements OnInit {
     this.branchService.add(model).subscribe(
       (response:any)=>{
         console.log(response);
-        alert("Successfully added");
+        //alert("Successfully added");
+        this.isSuccess=true;
       },(error:any)=>{
-        console.log("fail Hello", error);
+        //console.log("fail Hello", error);
+        this.isSuccess=false;
       }
     )
   }
+
+  getIsSuccess(): boolean{
+      return this.isSuccess;
+    }
 
   // isTrainingProgramsChecked(){
   //   this.isChecked = [];

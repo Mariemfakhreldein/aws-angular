@@ -16,6 +16,7 @@ export class EditBranchComponent implements OnInit {
   branch = new BranchModel();
   branch2 = new BranchPostModel();
   id:string;
+  isSuccess=false;
 
   constructor(private _formBuilder:FormBuilder,
               private branchService: BranchService,
@@ -67,9 +68,11 @@ export class EditBranchComponent implements OnInit {
     this.branchService.update(id, model).subscribe(
       (response:any)=>{
         console.log(response);
-        alert("Successfully updated");
+        //alert("Successfully updated");
+        this.isSuccess=true;
       },(error:any)=>{
-        console.log("fail Hello", error);
+        //console.log("fail Hello", error);
+        this.isSuccess=false;
       }
     )
   }
@@ -88,4 +91,7 @@ export class EditBranchComponent implements OnInit {
 
   }
 
+  getIsSuccess(): boolean{
+        return this.isSuccess;
+      }
 }
