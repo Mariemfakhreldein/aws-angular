@@ -7,6 +7,7 @@ import {UserService} from "../../../services/user.service";
 import {TemplateService} from "../../../services/template.service";
 import {InstanceService} from "../../../services/instance.service";
 import {TrainingProgram} from "../../../models/instances/training.program.model";
+import {TrackService} from "../../../services/track.service";
 
 @Component({
   selector: 'app-manage-tracks',
@@ -19,21 +20,19 @@ export class ManageTracksComponent implements OnInit {
   branches:BranchModel[]=[];
   trainingPrograms:TrainingProgram[]=[];
   intakes:Intake[]=[];
-  //{branchname,trainingprogram,intakename,trackname}
-  trackInfo:String[]=[];
+  track:Track=new Track();
   trackName: any;
-
 
 
   constructor(private formBuilder: FormBuilder,
               private templateService: TemplateService,
-              private instanceService: InstanceService) { }
+              private trackService: TrackService) { }
 
   ngOnInit(): void {
     this.myGroup=this.formBuilder.group({
       branches:["",[Validators.required]],
       trainingPrograms:["",[Validators.required]],
-      tracks:["",[Validators.required]],
+      intakes:["",[Validators.required]],
       trackName:["",[Validators.required]],
     });
     this.getAllBranches();
@@ -41,7 +40,7 @@ export class ManageTracksComponent implements OnInit {
   }
 
   private getAllBranches() {
-    this.instanceService.getAllBranches().subscribe(
+    this.trackService.getAllBranches().subscribe(
       {
         next: (data: any) => {
 
@@ -61,7 +60,7 @@ export class ManageTracksComponent implements OnInit {
   }
 
   private getAllIntakes() {
-    this.instanceService.getIntakes().subscribe({
+    this.trackService.getIntakes().subscribe({
         next: (data: any) => {
 
           data.intakeResponsesList.forEach(e => {
@@ -79,9 +78,9 @@ export class ManageTracksComponent implements OnInit {
   onChangeBranch(branchId:any) {
 
     console.log("on change" + branchId);
-    this.trackInfo[0]=this.branches[branchId].name;
 
-    this.instanceService.getTrainingProgramsByBranch(branchId).subscribe(
+
+    this.trackService.getTrainingProgramsByBranch(branchId).subscribe(
       {
         next: (data: any) => {
 
@@ -100,14 +99,30 @@ export class ManageTracksComponent implements OnInit {
   }
 
   onChangeTrainingProgram(trainingProgramId: any) {
-    this.trackInfo[1]=this.trainingPrograms[trainingProgramId].name;
+
+    this.trackService.getIntakeByTrainingProgram(trainingProgramId).subscribe({
+        next: (data: any) => {
+
+          data.intakeResponsesList.forEach(e => {
+
+              console.log( "trainingPrograms" + e);
+
+              this.intakes.push(e);
+            }
+          )
+        }
+
+      }
+    )
   }
 
   onChangeIntake(intakeId: any) {
-    console.log("++++"  + intakeId)
 
-    this.trackInfo[2]=this.intakes[intakeId].intakeName;
+    console.log("intakeId::::"+intakeId);
 
+    this.track.intakeId=intakeId;
+
+    console.log("this.track.intakeId::::"+this.track.intakeId);
 
   }
 
@@ -115,9 +130,9 @@ export class ManageTracksComponent implements OnInit {
 
   submit() {
 
-    this.trackInfo[3]=this.trackName;
-    console.log("trackName:"+this.trackName);
-    console.log("trackName:"+this.trackInfo);
+    this.track.name=this.trackName;
+    console.log("trackName:"+this.track.intakeId);
+    console.log("trackName:"+this.track.name);
   }
 
 
