@@ -17,6 +17,9 @@ export class EditBranchComponent implements OnInit {
   branch2 = new BranchPostModel();
   id:string;
   isSuccess=false;
+  isLoading=true;
+  currentItem='branch';
+  isBranchEmpty=false;
 
   constructor(private _formBuilder:FormBuilder,
               private branchService: BranchService,
@@ -48,6 +51,7 @@ export class EditBranchComponent implements OnInit {
 
 
   submitBtn() {
+    this.isBranchEmpty=false;
     let txt = JSON.stringify(this.BranchFormGroup.value);
     let templateModel = JSON.parse(txt);
 
@@ -69,9 +73,11 @@ export class EditBranchComponent implements OnInit {
       (response:any)=>{
         console.log(response);
         //alert("Successfully updated");
+        this.isLoading=false;
         this.isSuccess=true;
       },(error:any)=>{
         //console.log("fail Hello", error);
+        this.isLoading=false;
         this.isSuccess=false;
       }
     )

@@ -19,6 +19,11 @@ export class CreateBranchComponent implements OnInit {
   BranchFormGroup: FormGroup = new FormGroup({});
   branch = new BranchPostModel();
   isSuccess=false;
+  isLoading=true;
+  currentItem='branch';
+  isBranchEmpty=false;
+
+
   constructor(private _formBuilder:FormBuilder,
               private branchService: BranchService,
   ) { }
@@ -38,7 +43,8 @@ export class CreateBranchComponent implements OnInit {
 
 
   submitBtn() {
-      let txt = JSON.stringify(this.BranchFormGroup.value);
+    this.isBranchEmpty=false;
+    let txt = JSON.stringify(this.BranchFormGroup.value);
       let templateModel = JSON.parse(txt);
 
       alert("Done: \n" + "Name: " + templateModel.name
@@ -59,9 +65,11 @@ export class CreateBranchComponent implements OnInit {
       (response:any)=>{
         console.log(response);
         //alert("Successfully added");
+        this.isLoading=false;
         this.isSuccess=true;
       },(error:any)=>{
         //console.log("fail Hello", error);
+        this.isLoading=false;
         this.isSuccess=false;
       }
     )
