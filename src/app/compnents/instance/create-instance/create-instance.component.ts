@@ -27,12 +27,13 @@ export class CreateInstanceComponent implements OnInit {
   templates: TemplateResponseModel[] = [];
   templateId=0;
   isSuccess=false;
+  isLoading=true;
   currentItem='instance';
   branches:BranchModel[]=[];
   trainingPrograms:TrainingProgram[]=[];
   intakes:Intake[]=[];
   tracks:Track[] = [];
-  isLoading=true;
+
   myGroup: FormGroup = new FormGroup({});
 
   isTemplatesEmpty=false;

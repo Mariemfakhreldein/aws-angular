@@ -22,7 +22,11 @@ export class ManageTracksComponent implements OnInit {
   intakes:Intake[]=[];
   track:Track=new Track();
   trackName: any;
-
+  // private isSuccess: boolean;
+  // private isLoading: boolean;
+  isSuccess=false;
+  isLoading=true;
+  currentItem='track';
 
   constructor(private formBuilder: FormBuilder,
               private templateService: TemplateService,
@@ -130,9 +134,26 @@ export class ManageTracksComponent implements OnInit {
 
   submit() {
 
+       // this.isSuccess=true;
+       //
+       // console.log("citemm"+this.currentItem);
     this.track.name=this.trackName;
     console.log("trackName:"+this.track.intakeId);
     console.log("trackName:"+this.track.name);
+    this.trackService.createTrack(this.track).subscribe({
+      next: (data:any) =>{
+
+        this.isLoading=false;
+        this.isSuccess=true;
+
+      },
+      error: (e) => { this.isLoading=false;this.isSuccess=false},
+      // complete: () => console.info('complete')
+    });
+  }
+
+  getIsSuccess(): boolean{
+    return this.isSuccess;
   }
 
 
