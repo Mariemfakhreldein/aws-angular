@@ -19,6 +19,8 @@ import { LogoutComponent } from './compnents/logout/logout.component';
 import { CreateBranchComponent } from './compnents/branch/create-branch/create-branch.component';
 import { ShowBranchsComponent } from './compnents/branch/show-branchs/show-branchs.component';
 import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-branch.component';
+import { NotFoundComponent } from './compnents/pages/not-found/not-found.component';
+import { NotAuthorizedComponent } from './compnents/pages/not-authorized/not-authorized.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-b
     CreateTemplateComponent,
     CreateBranchComponent,
     ShowBranchsComponent,
-    DetailBranchComponent
+    DetailBranchComponent,
+    NotFoundComponent,
+    NotAuthorizedComponent
   ],
     imports: [
         BrowserModule,
