@@ -23,11 +23,12 @@ export class ViewInstancesComponent implements OnInit {
 
   constructor(private instanceService: InstanceService , private authService: AuthService,private router: Router) { }
 
-  canCreateInstances: boolean = false
+  canCreateTerminateAssignInstance: boolean = false
+
   ngOnInit(): void {
 
     this.getInstances();
-    this.canCreateInstances = this.authService.getPrivileges().some(function(p){ return p === 'CREATE_TERMINATE_INSTANCE'});
+    this.canCreateTerminateAssignInstance = this.authService.getPrivileges().some(function(p){ return p === 'CREATE_TERMINATE_INSTANCE'});
 
   }
 

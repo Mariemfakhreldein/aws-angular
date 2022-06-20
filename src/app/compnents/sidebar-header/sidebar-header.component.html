@@ -249,8 +249,8 @@
         </a>
         <ul aria-expanded="true">
           <li ><a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home 1</a></li>
-          <li><a class="nav-link" [routerLink]="['/instances']" routerLinkActive="active" >Instances</a></li>
-          <li *ngIf="canManageTemplate"><a class="nav-link" [routerLink]="['/template']" routerLinkActive="active" >Template</a></li>
+          <li *ngIf="canStopStartViewInstances"><a class="nav-link" [routerLink]="['/instances']" routerLinkActive="active" >Instances</a></li>
+          <li *ngIf="canManageTemplates"><a class="nav-link" [routerLink]="['/template']" routerLinkActive="active" >Template</a></li>
 
       <li>
         <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Users</a>
@@ -266,7 +266,7 @@
           <li>
             <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Student</a>
             <ul class="collapse list-unstyled" id="studentSubmenu">
-              <li>
+              <li *ngIf="canManageStudents">
                 <a class="nav-link" [routerLink]="['/template']" routerLinkActive="active">Add Student</a>
               </li>
             </ul>
