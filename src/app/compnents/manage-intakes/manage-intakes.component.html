@@ -162,7 +162,8 @@
                   </thead>
 
                   <tbody>
-                  <tr *ngFor="let intake of allIntakes;let currentIndex=index" >
+                  <tr *ngFor="let intake of allIntakes |
+      paginate:{itemsPerPage:3,currentPage:page,totalItems:allIntakes.length};let currentIndex=index" >
 
                     <td >{{currentIndex+1}}</td>
                     <td> {{intake.intakeName}}</td>
