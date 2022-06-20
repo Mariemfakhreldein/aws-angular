@@ -162,12 +162,12 @@
                   </thead>
 
                   <tbody>
-                  <tr *ngFor="let intake of allIntakes;let currentIndex=index">
+                  <tr *ngFor="let intake of allIntakes;let currentIndex=index" >
 
                     <td >{{currentIndex+1}}</td>
                     <td> {{intake.intakeName}}</td>
                     <td>{{intake.intakeDescription}}</td>
-                    <td>{{getTrainingProgramById(intake.trainingProgramId)}}</td>
+                    <td></td>
                     <td><input type="button"  (click)="delete(currentIndex)" value="Delete" class="btn btn-danger"></td>
 
                   </tr>
@@ -188,6 +188,14 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div  class="col-12  text-center" >
+
+      <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+
+      </pagination-controls>
+
     </div>
   </div>
 

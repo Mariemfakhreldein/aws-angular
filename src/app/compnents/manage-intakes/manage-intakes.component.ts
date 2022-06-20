@@ -8,6 +8,7 @@ import {IntakeModel} from "../../models/intake/intake.model";
 import {IntakePostModel} from "../../models/intake/intake.post.model";
 
 
+
 @Component({
   selector: 'app-manage-intakes',
   templateUrl: './manage-intakes.component.html',
@@ -22,7 +23,10 @@ export class ManageIntakesComponent implements OnInit {
   intakeName: any;
   intakeAddress: any;
   intakePost=new IntakePostModel();
-  trainingProgramName:any;
+  page:number=1;
+  trainingProgramName:any[]=[];
+  name;
+
 
   isLoading:boolean=true;
   @Output() isSuccess=false;
@@ -68,25 +72,30 @@ export class ManageIntakesComponent implements OnInit {
 
   }
 
+  public getTrainingProgramById(trainingProgrammId:any){
+     this.intakeService.getTrainingProgrammById(trainingProgrammId).subscribe(
+      (response:any)=>{
+        this.name= response.name;
+      },(error:any)=>{
+      }
+    );
+    return this.name;
+  }
+
   getAllIntakes(){
     this.intakeService.getAllIntakes().subscribe(
       {
         next: (data: any) => {
-
-
           data.intakeResponsesList.forEach(e => {
               this.allIntakes.push(e);
+            this.trainingProgramName.push(this.getTrainingProgramById(e.trainingProgramId));
+              console.log("************"+this.trainingProgramName);
             }
           )
         }
-
-
       }
-
     );
   }
-
-
 
   onChangeBranch(branchId:any) {
     this.intakeService.getTrainingProgramsByBranch(branchId).subscribe(
@@ -104,10 +113,7 @@ export class ManageIntakesComponent implements OnInit {
 
       }
     )
-
-
   }
-
 
   onChangeTrainingProgram(trainingProgramId: any) {
 
@@ -147,16 +153,8 @@ console.log(model.trainingProgramId);
   }
 
 
- public getTrainingProgramById(trainingProgrammId:any){
-    return this.intakeService.getTrainingProgrammById(trainingProgrammId).subscribe(
-      (response:any)=>{
-       return  response.name;
 
-      },(error:any)=>{
 
-      }
-    )
-  }
 
   delete(currentIndex: any) {
 
