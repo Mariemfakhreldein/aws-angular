@@ -17,6 +17,7 @@ import {ShowBranchsComponent} from "./compnents/branch/show-branchs/show-branchs
 import {DetailBranchComponent} from "./compnents/branch/detail-branch/detail-branch.component";
 import {EditBranchComponent} from "./compnents/branch/edit-branch/edit-branch.component";
 import { ManageIntakesComponent} from "./compnents/manage-intakes/manage-intakes.component"
+import  {ShowAllIntakesComponent} from "./compnents/intakes/show-all-intakes/show-all-intakes.component";
 
 const routes: Routes = [
   {path:'home', component:HomeComponent , canActivate:[AuthGuard]},
@@ -33,7 +34,8 @@ const routes: Routes = [
   {path:'branches', component:ShowBranchsComponent},
   {path:'branch/detail/:id', component:DetailBranchComponent},
   {path:'branch/edit/:id', component:EditBranchComponent},
-  {path:'intakes',component:ManageIntakesComponent}
+  {path:'intakes',component:ManageIntakesComponent},
+  {path:'intakes/show',component:ShowAllIntakesComponent}
 
 ]
 

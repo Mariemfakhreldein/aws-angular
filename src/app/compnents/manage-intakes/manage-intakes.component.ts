@@ -32,7 +32,7 @@ export class ManageIntakesComponent implements OnInit {
   @Output() isSuccess=false;
   currentItem: string="Intake";
 
-  allIntakes:IntakeModel[]=[];
+  // allIntakes:IntakeModel[]=[];
 
 
   constructor(private formBuilder: FormBuilder,
@@ -87,9 +87,6 @@ export class ManageIntakesComponent implements OnInit {
       {
         next: (data: any) => {
           data.intakeResponsesList.forEach(e => {
-              this.allIntakes.push(e);
-            this.trainingProgramName.push(this.getTrainingProgramById(e.trainingProgramId));
-              console.log("************"+this.trainingProgramName);
             }
           )
         }
@@ -156,7 +153,5 @@ console.log(model.trainingProgramId);
 
 
 
-  delete(currentIndex: any) {
 
-  }
 }
