@@ -12,8 +12,8 @@ import {InstanceService} from "../../../services/instance.service";
 import {compareNumbers} from "@angular/compiler-cli/src/version_helpers";
 import {BranchModel} from "../../../models/branch/branch.model";
 import {TrainingProgram} from "../../../models/instances/training.program.model";
-import {Intake} from "../../../models/instances/intake.model";
 import {Track} from "../../../models/instances/track.model";
+import {Intake} from "../../../models/instances/intake.model";
 
 @Component({
   selector: 'app-create-instance',
