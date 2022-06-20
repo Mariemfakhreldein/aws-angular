@@ -11,10 +11,11 @@ export class ManageTrainingManagersGuard implements CanActivate {
   constructor(private authService:AuthService, private router:Router){}
 
   canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (!this.authService.isLogin()){
-      this.router.navigateByUrl("login")
+    let isAuthorized = this.authService.containPrivilege('MANAGE_TRAINING_MANAGERS');
+    if (!isAuthorized){
+      this.router.navigateByUrl("not-authorized")
     }
-    return this.authService.isLogin();
+    return isAuthorized;
   }
 
 }

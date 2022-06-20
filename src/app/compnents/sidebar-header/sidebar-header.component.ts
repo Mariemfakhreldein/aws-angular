@@ -24,17 +24,17 @@ export class SidebarHeaderComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.canManageTemplates = this.authService.getPrivileges().some(function(p){ return p === 'MANAGE_TEMPLATES'});
-    this.canStopStartViewInstances = this.authService.getPrivileges().some(function(p){ return p === 'START_STOP_VIEW_INSTANCE'});
-    this.canViewTemplates = this.authService.getPrivileges().some(function(p){ return p === 'VIEW_TEMPLATE'});
-    this.canManageStudents = this.authService.getPrivileges().some(function(p){ return p === 'MANAGE_STUDENTS'});
-    this.canManageInstructors = this.authService.getPrivileges().some(function(p){ return p === 'MANAGE_INSTRUCTORS'});
-    this.canManageTrainingPrograms = this.authService.getPrivileges().some(function(p){ return p === 'MANAGE_TRAINING_PROGRAMS'});
-    this.canManageIntakes = this.authService.getPrivileges().some(function(p){ return p === 'MANAGE_INTAKES'});
-    this.canManageTracks = this.authService.getPrivileges().some(function(p){ return p === 'MANAGE_TRACKS'});
-    this.canManageSupervisors = this.authService.getPrivileges().some(function(p){ return p === 'MANAGE_SUPERVISORS'});
-    this.canManageTrainingManagers = this.authService.getPrivileges().some(function(p){ return p === 'MANAGE_TRAINING_PROGRAMS'});
-    this.canManageBranches = this.authService.getPrivileges().some(function(p){ return p === 'MANAGE_BRANCHES'});
+    this.canManageTemplates = this.authService.containPrivilege('MANAGE_TEMPLATES');
+    this.canStopStartViewInstances = this.authService.containPrivilege('START_STOP_VIEW_INSTANCE');
+    this.canViewTemplates = this.authService.containPrivilege('VIEW_TEMPLATE');
+    this.canManageStudents = this.authService.containPrivilege('MANAGE_STUDENTS');
+    this.canManageInstructors = this.authService.containPrivilege('MANAGE_INSTRUCTORS');
+    this.canManageTrainingPrograms = this.authService.containPrivilege('MANAGE_TRAINING_PROGRAMS');
+    this.canManageIntakes = this.authService.containPrivilege('MANAGE_INTAKES');
+    this.canManageTracks = this.authService.containPrivilege('MANAGE_TRACKS');
+    this.canManageSupervisors = this.authService.containPrivilege('MANAGE_SUPERVISORS');
+    this.canManageTrainingManagers = this.authService.containPrivilege('MANAGE_TRAINING_MANAGERS');
+    this.canManageBranches = this.authService.containPrivilege('MANAGE_BRANCHES');
   }
 
 }
