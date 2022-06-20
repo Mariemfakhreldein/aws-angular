@@ -56,7 +56,7 @@ export class ManageIntakesComponent implements OnInit {
 
               console.log( "eeee" + e);
 
-              this.allIntakes.push(e);
+              this.branches.push(e);
             }
           )
         }
@@ -146,9 +146,11 @@ console.log(model.trainingProgramId);
     )
   }
 
-  getTrainingProgramById(trainingProgrammId:any){
+
+ public getTrainingProgramById(trainingProgrammId:any){
     return this.intakeService.getTrainingProgrammById(trainingProgrammId).subscribe(
       (response:any)=>{
+       return  response.name;
 
       },(error:any)=>{
 

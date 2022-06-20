@@ -167,7 +167,7 @@
                     <td >{{currentIndex+1}}</td>
                     <td> {{intake.intakeName}}</td>
                     <td>{{intake.intakeDescription}}</td>
-                    <td>{{intake.trainingProgramId}}</td>
+                    <td>{{getTrainingProgramById(intake.trainingProgramId)}}</td>
                     <td><input type="button"  (click)="delete(currentIndex)" value="Delete" class="btn btn-danger"></td>
 
                   </tr>
