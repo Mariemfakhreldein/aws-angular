@@ -99,6 +99,8 @@ export class CreateTemplateComponent implements OnInit {
     }
     return this.amiFlag;
   }
+
+
   getInstanceType(){
     this.templateService.getInstancesTypes().subscribe(
       (response:any)=>{
