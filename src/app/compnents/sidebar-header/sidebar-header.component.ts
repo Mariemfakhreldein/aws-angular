@@ -24,7 +24,7 @@ export class SidebarHeaderComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.canManageTemplates = this.authService.containPrivilege('MANAGE_TEMPLATES');
+    this.canManageTemplates = this.authService.containPrivilege('MANAGE_TEMPLATE');
     this.canStopStartViewInstances = this.authService.containPrivilege('START_STOP_VIEW_INSTANCE');
     this.canViewTemplates = this.authService.containPrivilege('VIEW_TEMPLATE');
     this.canManageStudents = this.authService.containPrivilege('MANAGE_STUDENTS');

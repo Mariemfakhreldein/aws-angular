@@ -10,7 +10,7 @@ export class ManageTemplatesGuard implements CanActivate {
   constructor(private authService:AuthService, private router:Router){}
 
   canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let isAuthorized = this.authService.containPrivilege('MANAGE_TEMPLATES');
+    let isAuthorized = this.authService.containPrivilege('MANAGE_TEMPLATE');
     if (!isAuthorized){
       this.router.navigateByUrl("not-authorized")
     }

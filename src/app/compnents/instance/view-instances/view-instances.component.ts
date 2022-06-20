@@ -28,7 +28,7 @@ export class ViewInstancesComponent implements OnInit {
   ngOnInit(): void {
 
     this.getInstances();
-    this.canCreateTerminateAssignInstance = this.authService.containPrivilege('CREATE_TERMINATE_INSTANCE');
+    this.canCreateTerminateAssignInstance = this.authService.containPrivilege('CREATE_TERMINATE_ASSIGN_INSTANCE');
 
   }
 

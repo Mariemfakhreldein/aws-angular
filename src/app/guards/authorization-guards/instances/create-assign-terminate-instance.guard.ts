@@ -10,7 +10,7 @@ export class CreateAssignTerminateInstanceGuard implements CanActivate {
   constructor(private authService:AuthService, private router:Router){}
 
   canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let isAuthorized = this.authService.containPrivilege('CREATE_TERMINATE_INSTANCE');
+    let isAuthorized = this.authService.containPrivilege('CREATE_TERMINATE_ASSIGN_INSTANCE');
     if (!isAuthorized){
       this.router.navigateByUrl("not-authorized")
     }
