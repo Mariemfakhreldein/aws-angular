@@ -88,7 +88,7 @@
                             [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
                     >
 
-                      <option  selected disabled class="text-secondary" >Please Select Branch</option>
+                      <option  selected disabled class="text-secondary" value="">Please Select Branch</option>
                       <option *ngFor="let branch of branches"
                               [value]="branch.id">{{branch.name}} </option>
                     </select>

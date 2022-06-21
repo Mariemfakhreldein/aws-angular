@@ -25,6 +25,8 @@ import {
 import {StartStopViewInstanceGuard} from "./guards/authorization-guards/instances/start.stop.view.instance.guard";
 import {ManageTemplatesGuard} from "./guards/authorization-guards/templates/manage-templates.guard";
 import {ManageBranchesGuard} from "./guards/authorization-guards/branches/manage-branches.guard";
+import { ManageIntakesComponent} from "./compnents/intakes/manage-intakes/manage-intakes.component"
+import  {ShowAllIntakesComponent} from "./compnents/intakes/show-all-intakes/show-all-intakes.component";
 
 const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
@@ -46,6 +48,10 @@ const routes: Routes = [
   {path:'branch/detail/:id', component:DetailBranchComponent, canActivate:[AuthGuard, ManageBranchesGuard] },
   {path:'not-found', component:NotFoundComponent},
   {path:'not-authorized', component:NotAuthorizedComponent}
+  {path:'branch/edit/:id', component:EditBranchComponent},
+  {path:'intakes/show',component:ShowAllIntakesComponent},
+  {path:'intakes',component:ManageIntakesComponent}
+
 ]
 
 @NgModule({

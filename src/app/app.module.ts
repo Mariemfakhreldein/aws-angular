@@ -26,6 +26,8 @@ import { LoaderComponent } from './compnents/loader/loader.component';
 import { ManageTracksComponent } from './compnents/tracks/manage-tracks/manage-tracks.component';
 import { NotFoundComponent } from './compnents/pages/not-found/not-found.component';
 import { NotAuthorizedComponent } from './compnents/pages/not-authorized/not-authorized.component';
+import { ManageIntakesComponent } from './compnents/intakes/manage-intakes/manage-intakes.component';
+import { ShowAllIntakesComponent } from './compnents/intakes/show-all-intakes/show-all-intakes.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,10 @@ import { NotAuthorizedComponent } from './compnents/pages/not-authorized/not-aut
     ManageTracksComponent,
     DetailBranchComponent,
     NotFoundComponent,
-    NotAuthorizedComponent
+    NotAuthorizedComponent,
+    LoaderComponent,
+    ManageIntakesComponent,
+    ShowAllIntakesComponent
   ],
     imports: [
         BrowserModule,
