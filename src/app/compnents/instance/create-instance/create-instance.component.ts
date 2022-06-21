@@ -29,6 +29,7 @@ export class CreateInstanceComponent implements OnInit {
   isSuccess=false;
   isLoading=true;
   currentItem='instance';
+  action='created';
   branches:BranchModel[]=[];
   trainingPrograms:TrainingProgram[]=[];
   intakes:Intake[]=[];

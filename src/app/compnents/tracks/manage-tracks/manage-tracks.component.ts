@@ -27,6 +27,7 @@ export class ManageTracksComponent implements OnInit {
   isSuccess=false;
   isLoading=true;
   currentItem='track';
+  action='created';
 
   constructor(private formBuilder: FormBuilder,
               private templateService: TemplateService,
@@ -40,7 +41,7 @@ export class ManageTracksComponent implements OnInit {
       trackName:["",[Validators.required]],
     });
     this.getAllBranches();
-    this.getAllIntakes();
+
   }
 
   private getAllBranches() {
@@ -55,29 +56,14 @@ export class ManageTracksComponent implements OnInit {
               this.branches.push(e);
             }
           )
-        }
+        },
+        error: (e) => {},
+        // complete: () => console.info('complete')
+      });
 
-
-      }
-
-    );
   }
 
-  private getAllIntakes() {
-    this.trackService.getIntakes().subscribe({
-        next: (data: any) => {
 
-          data.intakeResponsesList.forEach(e => {
-
-              console.log("eeee" + e);
-
-              this.intakes.push(e);
-            }
-          )
-        }
-      }
-    );
-  }
 
   onChangeBranch(branchId:any) {
 
@@ -95,10 +81,12 @@ export class ManageTracksComponent implements OnInit {
               this.trainingPrograms.push(e);
             }
           )
-        }
+        },
+        error: (e) => {},
+        // complete: () => console.info('complete')
+      });
 
-      }
-    )
+
 
   }
 
@@ -114,10 +102,11 @@ export class ManageTracksComponent implements OnInit {
               this.intakes.push(e);
             }
           )
-        }
+        },
+      error: (e) => {},
+      // complete: () => console.info('complete')
+    });
 
-      }
-    )
   }
 
   onChangeIntake(intakeId: any) {

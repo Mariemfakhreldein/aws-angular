@@ -258,9 +258,14 @@
           <li>
             <a href="#tracks" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Tracks</a>
             <ul class="collapse list-unstyled" id="tracks">
+
               <li>
-                <a class="nav-link" [routerLink]="['/tracks/manage_tracks']" routerLinkActive="active">Manage Tracks</a>
+              <a class="nav-link" [routerLink]="['/tracks/view_tracks']" routerLinkActive="active">Tracks</a>
+            </li>
+              <li>
+                <a class="nav-link" [routerLink]="['/tracks/manage_tracks']" routerLinkActive="active">Add Track</a>
               </li>
+
             </ul>
           </li>
       <li>

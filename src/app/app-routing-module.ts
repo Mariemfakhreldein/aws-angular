@@ -28,6 +28,9 @@ import {ManageBranchesGuard} from "./guards/authorization-guards/branches/manage
 import { ManageIntakesComponent} from "./compnents/intakes/manage-intakes/manage-intakes.component"
 import  {ShowAllIntakesComponent} from "./compnents/intakes/show-all-intakes/show-all-intakes.component";
 
+import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
+import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
+
 const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
   {path:'instances/createInstance',component:CreateInstanceComponent, canActivate:[AuthGuard, CreateAssignTerminateInstanceGuard] },
@@ -42,6 +45,7 @@ const routes: Routes = [
   {path:'branches', component:ShowBranchsComponent},
   {path:'branch/detail/:id', component:DetailBranchComponent},
   {path:'branch/edit/:id', component:EditBranchComponent},
+  {path:'tracks/update_track/:id', component: UpdateTrackComponent},
   {path:'tracks/manage_tracks', component:ManageTracksComponent},
   {path:'branch/create', component:CreateBranchComponent, canActivate:[AuthGuard, ManageBranchesGuard]},
   {path:'branch/show', component:ShowBranchsComponent, canActivate:[AuthGuard, ManageBranchesGuard]},
@@ -51,6 +55,8 @@ const routes: Routes = [
   {path:'branch/edit/:id', component:EditBranchComponent},
   {path:'intakes/show',component:ShowAllIntakesComponent},
   {path:'intakes',component:ManageIntakesComponent}
+
+  {path:'tracks/view_tracks', component: ViewTracksComponent},
 
 ]
 

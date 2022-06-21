@@ -28,6 +28,8 @@ import { NotFoundComponent } from './compnents/pages/not-found/not-found.compone
 import { NotAuthorizedComponent } from './compnents/pages/not-authorized/not-authorized.component';
 import { ManageIntakesComponent } from './compnents/intakes/manage-intakes/manage-intakes.component';
 import { ShowAllIntakesComponent } from './compnents/intakes/show-all-intakes/show-all-intakes.component';
+import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
+import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,10 @@ import { ShowAllIntakesComponent } from './compnents/intakes/show-all-intakes/sh
     NotAuthorizedComponent,
     LoaderComponent,
     ManageIntakesComponent,
-    ShowAllIntakesComponent
+    ShowAllIntakesComponent,
+    ManageTracksComponent,
+    ViewTracksComponent,
+    UpdateTrackComponent
   ],
     imports: [
         BrowserModule,
