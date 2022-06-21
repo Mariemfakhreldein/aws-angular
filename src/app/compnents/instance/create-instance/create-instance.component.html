@@ -212,11 +212,12 @@
                   <div class="form-group row">
                     <label class="col-lg-4 col-form-label">Select Template <span class="text-danger">*</span></label>
                     <div class="col-lg-6 card-radio-container">
-                      <div class="row" *ngFor="let template of templates">
+                      <label class="row" *ngFor="let template of templates" for="{{template.id}}">
+
                         <div class="card-radio col-lg-6">
                           <input (change)="changeTemplateId($event)" value="{{template.id}}" type="radio"
-                                 name="template-type" id="card5" required >
-                          <label class="label-class" for="card5">
+                                 name="template-type" id="{{template.id}}" required >
+                          <label class="label-class" for="{{template.id}}">
                             <h5 class="h5-class">Template {{template.id}}</h5>
                             <h2 class="h2-class">Ami Details </h2>
                             <!--                              <h2 class="h2-class px-1"> Image Name : {{template.ami.imageName}}</h2>-->
@@ -226,7 +227,7 @@
                             <h2 class="h2-class">Instance Type : {{template.instanceType}} </h2>
                           </label>
                         </div>
-                      </div>
+                      </label>
                     </div>
                     <div class="text-danger col-lg-4 align-items-end align-self-end">
                     </div>
