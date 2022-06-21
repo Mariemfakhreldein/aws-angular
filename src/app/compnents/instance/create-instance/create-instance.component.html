@@ -170,7 +170,7 @@
                 </div>
 
 
-                  <div  class="form-group row">
+                  <div  class="form-group row" *ngIf="!myGroup.controls['tracks'].errors">
                     <label class="col-lg-4 col-form-label" for="val-student">Select Student<span
                       class="text-danger">*</span> </label>
                     <div class="col-lg-6">
@@ -208,7 +208,7 @@
 
                 </div>
 
-                <div class="form-group row radio-container">
+                <div class="form-group row radio-container" *ngIf="!myGroup.controls['tracks'].errors">
                   <div class="form-group row">
                     <label class="col-lg-4 col-form-label">Select Template <span class="text-danger">*</span></label>
                     <div class="col-lg-6 card-radio-container">
@@ -230,11 +230,11 @@
                     </div>
                     <div class="text-danger col-lg-4 align-items-end align-self-end">
                     </div>
-                    <div class="text-danger  col-lg-6 align-items-end align-self-end"
-                         >
-                      <small
-                             class="form-text text-danger">required templatem</small>
-                    </div>
+<!--                    <div class="text-danger  col-lg-6 align-items-end align-self-end"-->
+<!--                         >-->
+<!--                      <small -->
+<!--                             class="form-text text-danger">required templatem</small>-->
+<!--                    </div>-->
                   </div>
 
 
@@ -242,7 +242,7 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-lg-8 ml-auto">
-                    <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid"
+                    <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid || templateId==0"
                             (click)="submitBtn(instanceName.value, keypairName.value, +timeToLiveInMinutes.value)" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
                       Submit
                     </button>

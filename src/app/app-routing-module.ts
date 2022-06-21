@@ -47,7 +47,7 @@ const routes: Routes = [
   {path:'branch/show', component:ShowBranchsComponent, canActivate:[AuthGuard, ManageBranchesGuard]},
   {path:'branch/detail/:id', component:DetailBranchComponent, canActivate:[AuthGuard, ManageBranchesGuard] },
   {path:'not-found', component:NotFoundComponent},
-  {path:'not-authorized', component:NotAuthorizedComponent}
+  {path:'not-authorized', component:NotAuthorizedComponent},
   {path:'branch/edit/:id', component:EditBranchComponent},
   {path:'intakes/show',component:ShowAllIntakesComponent},
   {path:'intakes',component:ManageIntakesComponent}
