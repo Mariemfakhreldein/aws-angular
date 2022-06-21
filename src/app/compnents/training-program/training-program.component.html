@@ -1,0 +1,80 @@
+<div *ngIf="branches.length > 0">
+
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+
+            <div class="form-validation" [formGroup]="myGroup">
+
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="branches">Select Branch...<span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+
+                  <select class="form-control" id="branches" data-live-search="true" formControlName="branches"
+                    [class.is-valid]="!myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
+                    [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched" ngModel="branchId">
+
+                    <option selected disabled class="text-secondary">Please Select Branch</option>
+                    <option *ngFor="let branch of branches" [value]="branch.id">{{branch.name}} </option>
+                  </select>
+                  <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                    *ngIf="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched">
+                    <small *ngIf="myGroup.controls['branches'].hasError('required')"
+                      class="form-text text-danger">branch required</small>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="val-name">Training Program Name <span
+                    class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                  <input type="text" class="form-control" id="val-name" name="val-name"
+                    placeholder="Enter Training Program Name.." required formControlName="trainingProgramName"
+                    [class.is-valid]="!myGroup.controls['trainingProgramName'].errors && myGroup.controls['trainingProgramName'].touched"
+                    [class.is-invalid]="myGroup.controls['trainingProgramName'].errors && myGroup.controls['trainingProgramName'].touched"
+                    [(ngModel)]="trainingProgramName">
+                  <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                    *ngIf="myGroup.controls['trainingProgramName'].errors && myGroup.controls['trainingProgramName'].touched">
+                    <small *ngIf="myGroup.controls['trainingProgramName'].hasError('required')"
+                      class="form-text text-danger">required name</small>
+                  </div>
+                </div>
+
+
+              </div>
+
+              <div class="form-group row">
+                <div class="col-lg-8 ml-auto">
+                  <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid" (click)="submit()"
+                    class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div *ngIf="!isLoading">
+        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"></app-success-popup>
+        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem"></app-failed-popup>
+      </div>
+
+      <app-loader *ngIf="isLoading"></app-loader>
+
+    </div>
+  </div>
+
+
+</div>
