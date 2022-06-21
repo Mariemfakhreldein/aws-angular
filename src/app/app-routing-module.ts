@@ -16,6 +16,7 @@ import {CreateBranchComponent} from "./compnents/branch/create-branch/create-bra
 import {ShowBranchsComponent} from "./compnents/branch/show-branchs/show-branchs.component";
 import {DetailBranchComponent} from "./compnents/branch/detail-branch/detail-branch.component";
 import {EditBranchComponent} from "./compnents/branch/edit-branch/edit-branch.component";
+import { TrainingProgramComponent } from './compnents/training-program/training-program.component';
 
 const routes: Routes = [
   {path:'home', component:HomeComponent , canActivate:[AuthGuard]},
@@ -31,12 +32,14 @@ const routes: Routes = [
   {path:'branch/create', component:CreateBranchComponent},
   {path:'branches', component:ShowBranchsComponent},
   {path:'branch/detail/:id', component:DetailBranchComponent},
-  {path:'branch/edit/:id', component:EditBranchComponent}
+  {path:'branch/edit/:id', component:EditBranchComponent},
+  {path:'training-program/create', component:TrainingProgramComponent}
+
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 
 export class AppRoutingModule { }
