@@ -86,7 +86,7 @@
 
   </div>
 
-  <div class="hexagon col-lg-8 col-12 mx-1" id="createInstance">
+  <div class="hexagon col-lg-8 col-12 mx-1" id="createInstance" *ngIf="canCreateTerminateAssignInstance">
 
     <a  [routerLink]="['/instances/createInstance']" class="text-decoration-none">
 
