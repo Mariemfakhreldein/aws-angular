@@ -92,7 +92,7 @@
                          placeholder="Enter a Track Name.." required formControlName="trackName"
                          [class.is-valid]="!myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched"
                          [class.is-invalid]="myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched"
-                  >
+                  [(ngModel)]="trackName">
                   <div class="text-danger  col-lg-6 align-items-end align-self-end"
                        *ngIf="myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched">
                     <small *ngIf="myGroup.controls['trackName'].hasError('required')"
