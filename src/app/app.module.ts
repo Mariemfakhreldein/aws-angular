@@ -24,6 +24,8 @@ import { FailedPopupComponent } from './compnents/failed-popup/failed-popup.comp
 import { EditBranchComponent } from './compnents/branch/edit-branch/edit-branch.component';
 import { LoaderComponent } from './compnents/loader/loader.component';
 import { ManageTracksComponent } from './compnents/tracks/manage-tracks/manage-tracks.component';
+import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
+import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { ManageTracksComponent } from './compnents/tracks/manage-tracks/manage-t
     DetailBranchComponent,
     EditBranchComponent,
     LoaderComponent,
-    ManageTracksComponent
+    ManageTracksComponent,
+    ViewTracksComponent,
+    UpdateTrackComponent
   ],
     imports: [
         BrowserModule,

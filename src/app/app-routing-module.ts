@@ -17,6 +17,9 @@ import {ShowBranchsComponent} from "./compnents/branch/show-branchs/show-branchs
 import {DetailBranchComponent} from "./compnents/branch/detail-branch/detail-branch.component";
 import {EditBranchComponent} from "./compnents/branch/edit-branch/edit-branch.component";
 import { ManageTracksComponent } from './compnents/tracks/manage-tracks/manage-tracks.component';
+import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
+import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
+
 const routes: Routes = [
   {path:'home', component:HomeComponent , canActivate:[AuthGuard]},
   {path:'instances/createInstance',component:CreateInstanceComponent},
@@ -32,7 +35,10 @@ const routes: Routes = [
   {path:'branches', component:ShowBranchsComponent},
   {path:'branch/detail/:id', component:DetailBranchComponent},
   {path:'branch/edit/:id', component:EditBranchComponent},
+  {path:'tracks/update_track/:id', component: UpdateTrackComponent},
   {path:'tracks/manage_tracks', component:ManageTracksComponent},
+  {path:'tracks/view_tracks', component: ViewTracksComponent},
+
 ]
 
 @NgModule({

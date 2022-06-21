@@ -10,6 +10,17 @@ export class TrackService {
 
   constructor(private api: ApiService) { }
 
+
+  getAllTracks(){
+
+    return this.api.get("/api/tracks");
+  }
+
+  getAllTrackById(trackId:any){
+
+    return this.api.get(`/api/tracks/${trackId}`);
+  }
+
   getAllBranches(){
     return this.api.get("/api/branches");
   }
@@ -30,4 +41,14 @@ export class TrackService {
   createTrack(track: Track){
     return this.api.post("/api/tracks",track );
   }
+
+  updateTrack(trackId: any,body:any){
+    return this.api.update(`/api/tracks/${trackId}`,body);
+  }
+
+  deleteTrack(trackId: any){
+    return this.api.post("/api/tracks/",trackId );
+  }
+
+
 }

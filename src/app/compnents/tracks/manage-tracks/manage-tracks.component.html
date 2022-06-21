@@ -92,7 +92,7 @@
                          placeholder="Enter a Track Name.." required formControlName="trackName"
                          [class.is-valid]="!myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched"
                          [class.is-invalid]="myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched"
-                  [(ngModel)]="trackName">
+                  >
                   <div class="text-danger  col-lg-6 align-items-end align-self-end"
                        *ngIf="myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched">
                     <small *ngIf="myGroup.controls['trackName'].hasError('required')"
@@ -121,8 +121,8 @@
        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div *ngIf="!isLoading">
-        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"></app-success-popup>
-        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem"></app-failed-popup>
+        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action"></app-success-popup>
+        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
       </div>
 
       <app-loader *ngIf="isLoading"></app-loader>

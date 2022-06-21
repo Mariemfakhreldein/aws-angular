@@ -46,7 +46,7 @@ export class CreateTemplateComponent implements OnInit {
 
   currentItem='template';
 
-
+  action='created';
   constructor(private _formBuilder:FormBuilder,
               private route:Router,
               private templateService: TemplateService,

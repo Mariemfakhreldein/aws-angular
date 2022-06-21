@@ -132,8 +132,8 @@
       <app-loader ></app-loader>
     </div>
     <div *ngIf="!isLoading">
-      <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"></app-success-popup>
-      <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem"></app-failed-popup>
+      <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action"></app-success-popup>
+      <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
     </div>
 
 
