@@ -54,7 +54,7 @@ const routes: Routes = [
   {path:'not-authorized', component:NotAuthorizedComponent},
   {path:'branch/edit/:id', component:EditBranchComponent},
   {path:'intakes/show',component:ShowAllIntakesComponent},
-  {path:'intakes',component:ManageIntakesComponent}
+  {path:'intakes',component:ManageIntakesComponent},
 
   {path:'tracks/view_tracks', component: ViewTracksComponent},
 
