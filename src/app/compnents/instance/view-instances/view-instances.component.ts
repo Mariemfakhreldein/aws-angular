@@ -3,6 +3,7 @@ import {InstanceService} from "../../../services/instance.service";
 import {InstanceModel} from "../../../models/instances/instance.models";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
+import {Subscription, timer} from "rxjs";
 
 @Component({
   selector: 'app-view-instances',
@@ -14,6 +15,11 @@ export class ViewInstancesComponent implements OnInit {
 
   instances:InstanceModel[]=[];
   instancesBackup:InstanceModel[]=[];
+
+  //count down
+  countDown: Subscription;
+  counter = 1800;
+  tick = 1000;
 
   statusArray:string[]=[];
   // statusArray:string[]=['running','stopped','running','stopped','running','stopped','running'];
@@ -30,11 +36,14 @@ export class ViewInstancesComponent implements OnInit {
     this.getInstances();
     this.canCreateTerminateAssignInstance = this.authService.containPrivilege('CREATE_TERMINATE_ASSIGN_INSTANCE');
 
+    this.countDown = timer(0, this.tick).subscribe(() => --this.counter);
+    // this.getInstanceTime(1);
+
+
   }
 
 
   getInstances(){
-    console.log("********");
     this.instanceService.getAllInstances().subscribe({
       next: (data:any) =>{
 
@@ -54,10 +63,6 @@ export class ViewInstancesComponent implements OnInit {
       error: (e) => console.error(e+"errorr"),
       complete: () => console.info('complete')
     }) ;
-
-
-
-    console.log("******kkkkkkkkkkkk**");
   }
   changeInstanceStatus(instance:InstanceModel ,currentIndex:number){
 
@@ -159,5 +164,18 @@ export class ViewInstancesComponent implements OnInit {
 
 
   }
+
+
+  // public getInstanceTime(instanceId){
+  //   this.instanceService.getInstanceById(instanceId).subscribe({
+  //     next: (data:any) =>{
+  //      console.log("timeToLiveInMinutes"+data.creationDateTime);
+  //       console.log("timeToLiveInMinutes"+data.timeToLiveInMinutes);
+  //
+  //     },
+  //     error: (e) => console.error(e+"errorr"),
+  //     complete: () => console.info('complete')
+  //   });
+  // }
 
 }
