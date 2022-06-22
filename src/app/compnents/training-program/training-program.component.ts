@@ -58,15 +58,15 @@ export class TrainingProgramComponent implements OnInit {
     this.trainingProgram.name = this.trainingProgramName.trim();
     this.trainingProgram.branchId = +this.branchId;
     console.table(this.trainingProgram);
-    // this.trainingProgramService.create(this.trainingProgram).subscribe({
-    //   next: (data:any) =>{
+    this.trainingProgramService.create(this.trainingProgram).subscribe({
+      next: (data:any) =>{
 
-    //     this.isLoading=false;
-    //     this.isSuccess=true;
+        this.isLoading=false;
+        this.isSuccess=true;
 
-    //   },
-    //   error: (e) => { this.isLoading=false;this.isSuccess=false},
-    // });
+      },
+      error: (e) => { this.isLoading=false;this.isSuccess=false},
+    });
   }
 
   getIsSuccess(): boolean {
