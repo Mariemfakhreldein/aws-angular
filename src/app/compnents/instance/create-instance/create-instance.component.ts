@@ -10,6 +10,10 @@ import {TemplateResponseModel} from "../../../models/templates/template.response
 import {InstanceCreateModel} from "../../../models/instances/instance.create.model";
 import {InstanceService} from "../../../services/instance.service";
 import {compareNumbers} from "@angular/compiler-cli/src/version_helpers";
+import {BranchModel} from "../../../models/branch/branch.model";
+import {TrainingProgram} from "../../../models/instances/training.program.model";
+import {Track} from "../../../models/instances/track.model";
+import {Intake} from "../../../models/instances/intake.model";
 
 @Component({
   selector: 'app-create-instance',
@@ -21,7 +25,24 @@ export class CreateInstanceComponent implements OnInit {
   // instanceFormGroup: FormGroup = new FormGroup({});
   students: UserModel[] = [];
   templates: TemplateResponseModel[] = [];
-  templateId: number;
+  templateId=0;
+  isSuccess=false;
+  isLoading=true;
+  currentItem='instance';
+  action='created';
+  branches:BranchModel[]=[];
+  trainingPrograms:TrainingProgram[]=[];
+  intakes:Intake[]=[];
+  tracks:Track[] = [];
+
+  myGroup: FormGroup = new FormGroup({});
+
+  isTemplatesEmpty=false;
+  isStudentsEmpty=false;
+
+  selectedItemsList: any[]=[] ;
+  isChecked: any[]=[];
+
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
@@ -30,29 +51,61 @@ export class CreateInstanceComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.instanceFormGroup=this.formBuilder.group({
-    //   instanceName:["",[Validators.required]],
-    //   instanceTemplate:["",[Validators.required]],
-    //   instanceKeyPair:["",[Validators.required]],
-    // });
+    this.myGroup=this.formBuilder.group({
+      instanceName:["",[Validators.required]],
+      keypairName:["",[Validators.required]],
+      timeToLiveInMinutes:["",[Validators.required, Validators.pattern("^[0-9]*$"),]],
+      branches:["",[Validators.required]],
+      trainingPrograms:["",[Validators.required]],
+      intakes:["",[Validators.required]],
+      tracks:["",[Validators.required]],
+      // template:["",[Validators.required]]
 
-    this.getAllStudents();
+    });
+
+    // this.getAllStudents();
+
+    this.getAllIntakes();
+    this.getAllBranches();
     this.getAllTemplates();
   }
-  submitBtn(instanceName: string, keyPairName: string, studentId: number) {
-    console.log(studentId);
+  submitBtn(instanceName: string, keyPairName: string, timeToLiveInMinutes:number) {
 
-    let studentIds:number[] = [studentId];
+    if(this.fetchSelectedItems().length == 0 ){
+      this.isStudentsEmpty=true;
 
-    let instanceModel = new InstanceCreateModel(instanceName, keyPairName, studentIds, this.templateId);
-    this.instanceService.createInstance(instanceModel).subscribe(
-      (response:any)=>{
-          console.log("success instance");
-      }, (error: any)=>{
-        console.log(error);
-        console.log("fail instance");
+    }
+    else {
+      this.isStudentsEmpty=false;
+      this.isTemplatesEmpty=false;
+      let myList=this.fetchSelectedItems();
+      let studentIdList:number[] = [];
+      for(let i=0; i<myList.length; i++){
+        studentIdList.push(myList[i].id);
+        console.log("slected studentsss "+myList[i].username);
+        console.log("slected studentsss "+myList[i].id);
+        console.log("slected studentsss "+myList[i].email);
       }
-    )
+      console.log("student id list" + studentIdList);
+      console.log("instanceName "+instanceName);
+      console.log("keyPairName "+keyPairName);
+      console.log("timeToLiveInMinutes "+timeToLiveInMinutes);
+
+      let instanceModel = new InstanceCreateModel(instanceName, keyPairName, studentIdList, this.templateId, timeToLiveInMinutes);
+      this.instanceService.createInstance(instanceModel).subscribe(
+        (response:any)=>{
+          this.isLoading=false;
+          this.isSuccess=true;
+        }, (error: any)=>{
+          this.isLoading=false;
+          this.isSuccess=false;
+        }
+      )
+    }
+
+
+
+
   }
 
   private getAllStudents(){
@@ -78,8 +131,141 @@ export class CreateInstanceComponent implements OnInit {
   }
 
   changeTemplateId(event: any){
+    console.log("eeeeeeeeeeeeeeeeevvvvvvvvvvveeeeeeeeeeennnntttttttttt"+event.target.value)
     this.templateId = event.target.value;
     console.log(event.target.value);
+    // if
+    // if()
+    // this.isTemplatesEmpty=true;
+
   }
+
+  getIsSuccess(): boolean{
+    return this.isSuccess;
+  }
+
+  onChangeBranch(branchId:any) {
+
+    console.log("on change" + branchId);
+    this.instanceService.getTrainingProgramsByBranch(branchId).subscribe(
+      {
+        next: (data: any) => {
+
+          data.trainingPrograms.forEach(e => {
+
+              console.log( "trainingPrograms" + e);
+
+              this.trainingPrograms.push(e);
+            }
+          )
+        }
+
+      }
+    )
+
+  }
+
+  private getAllBranches() {
+
+    this.instanceService.getAllBranches().subscribe(
+      {
+        next: (data: any) => {
+
+          data.branchResponsesList.forEach(e => {
+
+              console.log( "eeee" + e);
+
+              this.branches.push(e);
+            }
+          )
+        }
+
+
+      }
+
+      );
+    console.log( "bbbbbbbbranches" + this.branches);
+  }
+
+  onChangeTrainingProgram(trainingProgramId:any) {
+
+  }
+
+  onChangeIntake(intakeId: any) {
+      console.log("++++"  + intakeId)
+    this.instanceService.getTrackByIntake(intakeId).subscribe(
+      {
+        next: (data: any) => {
+          data.trackResponsesList.forEach(e => {
+
+              console.log( "trainingPrograms" + e);
+              this.isStudentChecked();
+              this.tracks.push(e);
+            }
+          )
+        }
+
+      }
+    )
+  }
+
+  onChangeTrack(trackId: any) {
+    this.instanceService.getStudentsByTrack(trackId).subscribe({
+
+      next: (data: any) => {
+
+        data.userResponsesList.forEach(e => {
+
+            console.log("eeee" + e);
+
+            this.students.push(e);
+          }
+        )
+      }
+
+    })
+  }
+
+  private getAllIntakes() {
+     this.instanceService.getIntakes().subscribe({
+       next: (data: any) => {
+
+         data.intakeResponsesList.forEach(e => {
+
+             console.log("eeee" + e);
+
+             this.intakes.push(e);
+           }
+         )
+       }
+     }
+  );
+  }
+
+  isStudentChecked(){
+    this.isChecked = [];
+    for(let i=0; i<this.students.length;i++){
+      if (this.selectedItemsList[i].username === this.students[i].username){
+        this.isChecked.push(true);
+      }else{
+        this.isChecked.push(false);
+      }
+    }
+  }
+
+
+
+  private fetchSelectedItems() {
+    this.selectedItemsList=[];
+    for (let i=0 ; i<this.isChecked.length ; i++){
+      if(this.isChecked[i] == true){
+        this.selectedItemsList.push(this.students[i]);
+      }
+    }
+    return this.selectedItemsList;
+
+
+  }
+
 
 }

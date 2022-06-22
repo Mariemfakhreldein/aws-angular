@@ -1,9 +1,9 @@
 
 export class BranchModel{
 
+  id:number;
+  address:string;
   name:string;
-  location:string;
-  trainingManager:string;
-  trainingProgram:string[];
+  branchStatus:boolean;
 
 }

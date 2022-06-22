@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
 import {TemplateService} from "../../../services/template.service";
 import {parseJson} from "@angular/cli/utilities/json-file";
-import {Observable} from "rxjs";
+import {delay, Observable} from "rxjs";
 import {TemplateModel} from "../../../models/templates/template.model";
 import {newArray} from "@angular/compiler/src/util";
 import {InstanceTypeModel} from "../../../models/templates/instanceType.model";
@@ -20,6 +20,9 @@ import {TemplateResponseModel} from "../../../models/templates/templateResponse.
   styleUrls: ['./create-template.component.css'],
 })
 export class CreateTemplateComponent implements OnInit {
+
+
+  isLoading:boolean=true;
 
   templateFormGroup: FormGroup = new FormGroup({});
   submitted: boolean=false;
@@ -37,6 +40,13 @@ export class CreateTemplateComponent implements OnInit {
 
   isSecurityGroupsSelected=true;
 
+
+
+  @Output() isSuccess=false;
+
+  currentItem='template';
+
+  action='created';
   constructor(private _formBuilder:FormBuilder,
               private route:Router,
               private templateService: TemplateService,
@@ -102,6 +112,7 @@ export class CreateTemplateComponent implements OnInit {
   getInstanceType(){
     this.templateService.getInstancesTypes().subscribe(
       (response:any)=>{
+
         console.log("success types", response.instanceTypeResponseList);
         this.instanceTypes = response.instanceTypeResponseList;
       },(error:any)=>{
@@ -122,7 +133,7 @@ export class CreateTemplateComponent implements OnInit {
       this.getAMI(templateModel.ami);
       this.model.amiId = templateModel.ami;
       this.model.subnetId = this.getSubnetIdByVpc(templateModel.subnet);
-      alert(this.model.subnetId);
+      // alert(this.model.subnetId);
       this.model.securityGroups = this.selectedItemsList.map(value => {return value.securityGroupId});
       this.model.instanceType = templateModel.instance;
 
@@ -130,15 +141,15 @@ export class CreateTemplateComponent implements OnInit {
   }
 
   submit(){
+    console.log(this.isSuccess);
     console.log("here " + this.amiFlag);
-    alert("Template Details " + "Subnet: " + this.model.subnetId + "AMI: " + this.model.amiId + "Security Groups: "+ this.model.securityGroups + "Instance Type: " + this.model.instanceType);
-
-    alert(this.model);
     this.templateService.add(this.model).subscribe(
     (response:any)=>{
-      console.log("success added");
+      this.isLoading=false;
+      this.isSuccess=true;
     },(error:any)=>{
-      console.log("fail to add", error);
+        this.isLoading=false;
+      this.isSuccess=false;
     }
     )
 
@@ -174,4 +185,11 @@ export class CreateTemplateComponent implements OnInit {
     }
     return null;
   }
+
+   getIsSuccess(): boolean{
+    return this.isSuccess;
+  }
+
 }
+
+

@@ -30,7 +30,9 @@ export class ApiService {
 
   }
 
-  delete(url:string,id:string){
+
+
+  delete(url:string,id:any){
     return this.http.delete(`${environment.baseURL}${url}${id}`, {headers:this.getHeaders()});
   }
 

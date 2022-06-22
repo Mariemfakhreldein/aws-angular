@@ -6,7 +6,19 @@
           <div class="card-body">
             <div class="form-validation">
 
+              <div class="form-group row">
 
+                <label class="col-lg-4 col-form-label" for="name">Branch Activation
+                </label>
+                <div class="col-lg-6">
+                <!-- Default checked -->
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="customSwitch1" checked
+                         formControlName="value">
+                  <label style="color: grey" class="custom-control-label" for="customSwitch1">click active/deactivate</label>
+                </div>
+              </div>
+              </div>
               <div class="form-group row">
                 <label class="col-lg-4 col-form-label" for="name">Branch Name
                 </label>
@@ -30,21 +42,21 @@
 
 
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="location">Branch Location
+                <label class="col-lg-4 col-form-label" for="location">Branch Address
                 </label>
                 <div class="col-lg-6">
                   <input type="text" class="form-control" id="location" name="name"
-                         placeholder="Enter Branch Location"
-                         [class.is-valid]="!BranchFormGroup.controls['location'].errors && BranchFormGroup.controls['location'].touched"
-                         [class.is-invalid]="BranchFormGroup.controls['location'].errors && BranchFormGroup.controls['location'].touched"
-                         formControlName="location">
+                         placeholder="Enter Branch Address"
+                         [class.is-valid]="!BranchFormGroup.controls['address'].errors && BranchFormGroup.controls['address'].touched"
+                         [class.is-invalid]="BranchFormGroup.controls['address'].errors && BranchFormGroup.controls['address'].touched"
+                         formControlName="address">
                   <div class="text-danger col-lg-6 align-items-end align-self-end"
-                       *ngIf="BranchFormGroup.controls['location'].errors && BranchFormGroup.controls['location'].touched">
-                    <small *ngIf="BranchFormGroup.controls['location'].hasError('required')"
-                           class="form-text text-danger">Branch location required</small>
-                    <small *ngIf="BranchFormGroup.controls['location'].hasError('minlength')"
+                       *ngIf="BranchFormGroup.controls['address'].errors && BranchFormGroup.controls['address'].touched">
+                    <small *ngIf="BranchFormGroup.controls['address'].hasError('required')"
+                           class="form-text text-danger">Branch Address required</small>
+                    <small *ngIf="BranchFormGroup.controls['address'].hasError('minlength')"
                            class="form-text text-danger">min length is 6 characters</small>
-                    <small *ngIf="BranchFormGroup.controls['location'].hasError('maxlength')"
+                    <small *ngIf="BranchFormGroup.controls['address'].hasError('maxlength')"
                            class="form-text text-danger">max length is 50 characters</small>
                   </div>
                 </div>
@@ -52,79 +64,80 @@
 
 
 
-              <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="trainingManager">Training Manager
-                </label>
-                <div class="col-lg-6">
-                  <select class="form-control" id="trainingManager" data-live-search="true"
-                          (ngModelChange)="onChangeSubnet($event)"
-                          [class.is-valid]="!BranchFormGroup.controls['trainingManager'].errors && BranchFormGroup.controls['trainingManager'].touched"
-                          [class.is-invalid]="BranchFormGroup.controls['trainingManager'].errors && BranchFormGroup.controls['trainingManager'].touched"
-                          formControlName="trainingManager">
-                    <option value="" selected disabled class="text-secondary">Please Select Your
-                      Training Manager</option>
-                    <option *ngFor="let manager of trainingManagers" [value]="manager">{{manager}}
-                    </option>
-                  </select>
-                  <div class="text-danger col-lg-6 align-items-end align-self-end"
-                       *ngIf="BranchFormGroup.controls['trainingManager'].errors && BranchFormGroup.controls['trainingManager'].touched">
-                    <small *ngIf="BranchFormGroup.controls['trainingManager'].hasError('required')"
-                           class="form-text text-danger">required subnet</small>
-                  </div>
-                </div>
-              </div>
+<!--              <div class="form-group row">-->
+<!--                <label class="col-lg-4 col-form-label" for="trainingManager">Training Manager-->
+<!--                </label>-->
+<!--                <div class="col-lg-6">-->
+<!--                  <select class="form-control" id="trainingManager" data-live-search="true"-->
+<!--                          (ngModelChange)="onChangeSubnet($event)"-->
+<!--                          [class.is-valid]="!BranchFormGroup.controls['trainingManager'].errors && BranchFormGroup.controls['trainingManager'].touched"-->
+<!--                          [class.is-invalid]="BranchFormGroup.controls['trainingManager'].errors && BranchFormGroup.controls['trainingManager'].touched"-->
+<!--                          formControlName="trainingManager">-->
+<!--                    <option value="" selected disabled class="text-secondary">Please Select Your-->
+<!--                      Training Manager</option>-->
+<!--                    <option *ngFor="let manager of trainingManagers" [value]="manager">{{manager}}-->
+<!--                    </option>-->
+<!--                  </select>-->
+<!--                  <div class="text-danger col-lg-6 align-items-end align-self-end"-->
+<!--                       *ngIf="BranchFormGroup.controls['trainingManager'].errors && BranchFormGroup.controls['trainingManager'].touched">-->
+<!--                    <small *ngIf="BranchFormGroup.controls['trainingManager'].hasError('required')"-->
+<!--                           class="form-text text-danger">required subnet</small>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
 
 
 
 
-              <div class="row " *ngIf="!BranchFormGroup.controls['trainingManager'].errors ">
+<!--              <div class="row " *ngIf="!BranchFormGroup.controls['trainingManager'].errors ">-->
 
-                <div class="form-group row">
-                  <label class="col-lg-4 col-form-label" for="trainingProgram">Training Programs
-                  </label>
-                  <div class="col-lg-6">
+<!--                <div class="form-group row">-->
+<!--                  <label class="col-lg-4 col-form-label" for="trainingProgram">Training Programs-->
+<!--                  </label>-->
+<!--                  <div class="col-lg-6">-->
 
-                    <div id="trainingProgram" class="form-group row radio-container border-bottom "
-                         style="border-color: #ced4da">
+<!--                    <div id="trainingProgram" class="form-group row radio-container border-bottom "-->
+<!--                         style="border-color: #ced4da">-->
 
-                      <div class="form-group row ">
+<!--                      <div class="form-group row ">-->
 
-                        <div class="card-checkbox-container w-100 ">
-                          <div class="row pr-lg-4 pr-2"
-                               *ngFor="let program of trainingPrograms;let currentIndex=index">
-                            <div class="card-checkbox  p-1  w-100 mr-5 row">
-                              <input type="checkbox" name="template-type" id="card1"
-                                     class="col-2"
-                                     [(ngModel)]="isChecked[currentIndex]"
-                                     [ngModelOptions]="{standalone: true}">
-                              <label class="label-class" for="card1">
-                                <h3 class="h5-class">Training Details:</h3>
-                                <h2 class="h2-class font-italic"><span
-                                  class="font-weight-bold "> name : </span>
-                                  {{program}} </h2>
-                                <h2 class="h2-class font-italic"> <span
-                                  class="font-weight-bold "> hours : </span>
-                                  {{program}} </h2>
-                                <h2 class="h2-class font-italic"> <span
-                                  class="font-weight-bold ">description:</span>{{program}}</h2>
-                              </label>
-                            </div>
+<!--                        <div class="card-checkbox-container w-100 ">-->
+<!--                          <div class="row pr-lg-4 pr-2"-->
+<!--                               *ngFor="let program of trainingPrograms;let currentIndex=index">-->
+<!--                            <div class="card-checkbox  p-1  w-100 mr-5 row">-->
+<!--                              <input type="checkbox" name="template-type" id="card1"-->
+<!--                                     class="col-2"-->
+<!--                                     [(ngModel)]="isChecked[currentIndex]"-->
+<!--                                     [ngModelOptions]="{standalone: true}">-->
+<!--                              <label class="label-class" for="card1">-->
+<!--                                <h3 class="h5-class">Training Details:</h3>-->
+<!--                                <h2 class="h2-class font-italic"><span-->
+<!--                                  class="font-weight-bold "> name : </span>-->
+<!--                                  {{program}} </h2>-->
+<!--                                <h2 class="h2-class font-italic"> <span-->
+<!--                                  class="font-weight-bold "> hours : </span>-->
+<!--                                  {{program}} </h2>-->
+<!--                                <h2 class="h2-class font-italic"> <span-->
+<!--                                  class="font-weight-bold ">description:</span>{{program}}</h2>-->
+<!--                              </label>-->
+<!--                            </div>-->
 
-                          </div>
+<!--                          </div>-->
 
-                        </div>
+<!--                        </div>-->
 
-                      </div>
-                    </div>
+<!--                      </div>-->
+<!--                    </div>-->
 
-                    <div class="text-danger col-lg-6 align-items-end align-self-end">
-                      <small *ngIf="isTrainingProgramsSelected==false"
-                             class="form-text text-danger">required program</small>
-                    </div>
-                  </div>
-                </div>
+<!--                    <div class="text-danger col-lg-6 align-items-end align-self-end">-->
+<!--                      <small *ngIf="isTrainingProgramsSelected==false"-->
+<!--                             class="form-text text-danger">required program</small>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
 
-              </div>
+<!--              </div>-->
+
               <div class="form-group row">
                 <div class="col-lg-8 ml-auto">
                   <button type="button" id="btn-submit" (click)="submitBtn()"

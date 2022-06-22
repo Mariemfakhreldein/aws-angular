@@ -10,6 +10,8 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ViewInstanceDetailsComponent implements OnInit {
 
+  id;
+
   result:any[]=['name','email','pass','gggg','hh'];
 
   // instance:InstanceModel=new InstanceModel();  //
@@ -23,9 +25,9 @@ export class ViewInstanceDetailsComponent implements OnInit {
     this._activatedRoute.paramMap
       .subscribe(
         parms=>{
-          let id=parms.get('id');
-          this.getInstanceDetails(id);
-          console.log(id);
+          this.id=parms.get('id');
+          this.getInstanceDetails(this.id);
+          console.log(this.id);
         }
       );
   }
@@ -40,17 +42,43 @@ export class ViewInstanceDetailsComponent implements OnInit {
     }) ;
   }
 
-  next(){
-    let currentIndex= this.instance.id;
+  isReadMore = true;
 
-
-
+  showText() {
+    this.isReadMore = !this.isReadMore;
   }
 
-  previous(){
+
+  checkValue(e: any){
+      if (e.target.checked) {
+
+        this.instanceService.startInstance(this.id).subscribe({
+          next: (data:any) =>{
+
+            console.log("instance started"+data);
+          },
+          error: (e) => console.error(e+"errorr"),
+          complete: () => console.info('complete')
+        });
 
 
+
+      } else {
+
+        this.instanceService.stopInstance(this.id).subscribe({
+          next: (data:any) =>{
+
+            console.log("instance stoped"+data);
+          },
+          error: (e) => console.error(e+"errorr"),
+          complete: () => console.info('complete')
+        });
+
+      }
   }
+
+
+
 
 
 }

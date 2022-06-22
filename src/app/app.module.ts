@@ -19,6 +19,17 @@ import { LogoutComponent } from './compnents/logout/logout.component';
 import { CreateBranchComponent } from './compnents/branch/create-branch/create-branch.component';
 import { ShowBranchsComponent } from './compnents/branch/show-branchs/show-branchs.component';
 import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-branch.component';
+import { SuccessPopupComponent } from './compnents/success-popup/success-popup.component';
+import { FailedPopupComponent } from './compnents/failed-popup/failed-popup.component';
+import { EditBranchComponent } from './compnents/branch/edit-branch/edit-branch.component';
+import { LoaderComponent } from './compnents/loader/loader.component';
+import { ManageTracksComponent } from './compnents/tracks/manage-tracks/manage-tracks.component';
+import { NotFoundComponent } from './compnents/pages/not-found/not-found.component';
+import { NotAuthorizedComponent } from './compnents/pages/not-authorized/not-authorized.component';
+import { ManageIntakesComponent } from './compnents/intakes/manage-intakes/manage-intakes.component';
+import { ShowAllIntakesComponent } from './compnents/intakes/show-all-intakes/show-all-intakes.component';
+import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
+import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
 import { CreatenewstudentComponent } from './compnents/user/student/createnewstudent/createnewstudent.component';
 
 @NgModule({
@@ -40,6 +51,22 @@ import { CreatenewstudentComponent } from './compnents/user/student/createnewstu
     CreateTemplateComponent,
     CreateBranchComponent,
     ShowBranchsComponent,
+    DetailBranchComponent,
+    SuccessPopupComponent,
+    FailedPopupComponent,
+    DetailBranchComponent,
+    EditBranchComponent,
+    LoaderComponent,
+    ManageTracksComponent,
+    DetailBranchComponent,
+    NotFoundComponent,
+    NotAuthorizedComponent,
+    LoaderComponent,
+    ManageIntakesComponent,
+    ShowAllIntakesComponent,
+    ManageTracksComponent,
+    ViewTracksComponent,
+    UpdateTrackComponent,
     DetailBranchComponent,
     CreatenewstudentComponent
   ],
