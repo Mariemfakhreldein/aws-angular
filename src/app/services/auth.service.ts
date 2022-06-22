@@ -4,57 +4,55 @@ import {LoginModel} from "../models/users/login.view.model";
 import {HttpClient} from "@angular/common/http";
 import {ApiService} from "./api.service";
 import {TokenService} from "./token.service";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService  {
+export class AuthService  implements OnInit {
 
-  isAuthenticated = false;
-  authenticationResultEvent = new EventEmitter<boolean>() ;
-  jwtObject:any;
-  headers:any;
-  jwt:any;
-
-
+  logged = new BehaviorSubject<boolean>(this.isLogin());
   constructor(private http: HttpClient, private api: ApiService, private tokenService: TokenService) {
   }
 
-  authenticate(loginModel: LoginModel) {
-    this.validateUser(loginModel).subscribe(
-      next => {
-        this.jwtObject = next;
-        this.isAuthenticated = true;
-        const encodedPayload = this.jwtObject['jwt'];
-        this.jwt = encodedPayload;
-        localStorage.setItem('token', JSON.stringify(encodedPayload));
-
-        this.authenticationResultEvent.emit(true);
-      },
-      error => {
-        this.isAuthenticated = false;
-        this.authenticationResultEvent.emit(false);
-      }
-    )
+  ngOnInit() {
+    console.log("auth service initialized")
   }
 
-  validateUser(loginModel: LoginModel): Observable<Response> {
-    console.log(loginModel);
-    return this.http.post<Response>("http://localhost:4545/api/login", loginModel);
-
+  login(model: LoginModel) {
+    return this.http.post(`${environment.baseURL}/api/login`,model);
   }
 
-
-  getPrivileges(): Array<String> {
-    let privileges = new Array<String>();
-    if (this.jwtObject == null)
-      return privileges;
-    const encodedPayload = this.jwtObject['jwt'];
-    let payload = encodedPayload.split(".")[1];
-    let decoded = atob(payload);
-    return JSON.parse(decoded).privileges;
+  logout(){
+    this.tokenService.removeToken();
   }
 
+  setToken(token: string) {
+    this.tokenService.setToken(token);
+  }
 
+  getToken(): string {
+    return this.tokenService.getToken();
+  }
+
+  isLogin(): boolean {
+    let token = this.tokenService.getToken();
+    return token != null;
+  }
+
+  changeLoggedStatus(status: boolean): void {
+    this.logged.next(status);
+  }
+
+  getPrivileges():string[]{
+    const jwtToken = this.tokenService.getToken();
+    const encodedPayLoad = jwtToken.split(".")[1];
+    const payLoad = atob(encodedPayLoad);
+    return JSON.parse(payLoad).privileges;
+  }
+
+  containPrivilege(privilege: string): boolean{
+    return this.getPrivileges().some(function(p){ return p === privilege})
+  }
 
 }

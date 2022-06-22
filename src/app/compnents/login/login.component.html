@@ -23,7 +23,7 @@
           <div class="card">
             <br/>
             <h3 style="align-self: center ; color: #B52427">Sign In</h3>
-            <div *ngIf="validUser"  class="alert alert-danger">Sorry your email or password incorrect !!</div>
+            <div *ngIf="!validUser"  class="alert alert-danger">Sorry your email or password incorrect !!</div>
             <div class="card-body py-5 px-md-5">
                 <!-- Email input -->
                 <div class="form-outline mb-4">
@@ -43,7 +43,7 @@
 <!--                </div>-->
 
                 <!-- Submit button -->
-                <button type="button" (click)="loginUser()"  class="btn btn-block mb-4"
+                <button type="button" (click)="login()"  class="btn btn-block mb-4"
                         style="background-color: #B52427; color: whitesmoke" >
                   Log in
                 </button>

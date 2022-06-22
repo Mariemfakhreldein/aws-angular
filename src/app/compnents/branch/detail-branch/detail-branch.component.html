@@ -1,0 +1,66 @@
+<!--&lt;!&ndash;<p>detail-branch works!{{branch1.name}}</p>&ndash;&gt;-->
+<!--<a href="#" class="btn btn-secondary">Go somewhere</a>-->
+
+
+<!--<p>detail-branch works!{{branch1.name}}</p>-->
+
+
+<div class="col-12 m-b-30">
+  <h4 class="d-inline">Branch Details</h4><br>
+  <div class="row m-b-30"  style="margin-top: 20px">
+    <div class="col-lg-3">
+      <div class="card border-primary">
+        <div class="card-header" style="height: 40px"></div>
+        <div class="card-body">
+
+
+          <h2 class="card-title">Branch ID:</h2><p></p><hr>
+          <!--              <p class="card-text">{{branch.name}}</p>-->
+          <!--          <p class="card-text" style="margin-left: 30px">branch 1</p>-->
+
+          <h2 class="card-title">Branch Name:</h2>
+          <!--              <p class="card-text">{{branch.location}}</p>-->
+          <p></p><hr>
+
+          <h2 class="card-title">Branch Address:</h2>
+          <!--              <p class="card-text">{{branch.trainingManager}}</p>-->
+          <p></p><hr>
+
+          <h2 class="card-title">Branch Status:</h2>
+          <!--              <li *ngFor="let program of branch.trainingProgram;let currentIndex=index" class="card-text">{{program}}</li>-->
+
+
+          <br>
+          <br>
+          <a style="color: #fff" routerLink="/branch/edit/{{branch.id}}" class="btn btn-primary"><b>Edit Branch</b></a>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="card border-secondary">
+        <div class="card-header">Branch information</div>
+        <div class="card-body">
+
+
+          <h6 class="card-text">{{branch.id}}</h6><hr>
+
+          <h6 class="card-text">{{branch.name}}</h6>
+          <p></p><hr>
+
+          <h6 class="card-text">{{branch.address}}</h6>
+          <p></p>
+          <hr>
+
+          <h6 class="card-text">{{branch.branchStatus}}</h6>
+
+          <br>
+          <a style="color: #fff" routerLink="/branches" class="btn btn-secondary"><b>Go Back To all Branches</b></a>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Col -->
+</div>
