@@ -22,7 +22,7 @@ export class CreateBranchComponent implements OnInit {
   isLoading=true;
   currentItem='branch';
   isBranchEmpty=false;
-
+  action='created';
 
   constructor(private _formBuilder:FormBuilder,
               private branchService: BranchService,
@@ -47,9 +47,9 @@ export class CreateBranchComponent implements OnInit {
     let txt = JSON.stringify(this.BranchFormGroup.value);
       let templateModel = JSON.parse(txt);
 
-      alert("Done: \n" + "Name: " + templateModel.name
-        + "\naddress: " + templateModel.address
-        + "\nstatus: " + templateModel.value);
+      // alert("Done: \n" + "Name: " + templateModel.name
+      //   + "\naddress: " + templateModel.address
+      //   + "\nstatus: " + templateModel.value);
 
     this.branch.name = templateModel.name;
     this.branch.address = templateModel.address;
