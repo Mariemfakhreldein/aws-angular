@@ -1,0 +1,122 @@
+<div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-validation" [formGroup]="myGroup">
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="branches">Select Branch <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                  <select class="form-control" id="branches" data-live-search="true"
+                          (ngModelChange)="onChangeBranch($event)" formControlName="branches"
+
+                          [class.is-valid]="!myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
+                          [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
+                  >
+                    <option value="" selected disabled class="text-secondary">Please Select Branch</option>
+                    <option *ngFor="let branch of branches"
+                            [value]="branch.id">{{branch.name}} </option>
+                  </select>
+                  <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                       *ngIf="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched">
+                    <small *ngIf="myGroup.controls['branches'].hasError('required')"
+                           class="form-text text-danger">required instance name</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row" *ngIf="!myGroup.controls['branches'].errors" >
+                <label class="col-lg-4 col-form-label" for="trainingPrograms">Select Training Program <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                  <select class="form-control" id="trainingPrograms" data-live-search="true" (ngModelChange)="onChangeTrainingProgram($event)"
+                           formControlName="trainingPrograms"
+                          [class.is-valid]="!myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched"
+                          [class.is-invalid]="myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched"
+                  >
+                    <option value="" selected disabled class="text-secondary">Please Select Training Program </option>
+                    <option *ngFor="let trainingProgram of trainingPrograms"
+                            [value]="trainingProgram.id">{{trainingProgram.name}} </option>
+                  </select>
+                  <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                       *ngIf="myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched">
+                    <small *ngIf="myGroup.controls['trainingPrograms'].hasError('required')"
+                           class="form-text text-danger">required instance name</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row" >
+                <label class="col-lg-4 col-form-label" for="val-username">Intake Name <span
+                  class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                  <input  type="text" class="form-control" id="val-username" name="val-username"
+                          placeholder="Enter a Intake Name.." required formControlName="intakeName"
+                          [class.is-valid]="!myGroup.controls['intakeName'].errors && myGroup.controls['intakeName'].touched"
+                          [class.is-invalid]="myGroup.controls['intakeName'].errors && myGroup.controls['intakeName'].touched"
+                          [(ngModel)]="intakeName">
+                  <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                       *ngIf="myGroup.controls['intakeName'].errors && myGroup.controls['intakeName'].touched">
+                    <small *ngIf="myGroup.controls['intakeName'].hasError('required')"
+                           class="form-text text-danger">required intake name</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row" >
+                <label class="col-lg-4 col-form-label" for="val-description">Intake Description <span
+                  class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                  <input  type="text" class="form-control" id="val-description" name="val-description"
+                          placeholder="Enter a Intake Description.." required formControlName="intakeDescription"
+                          [class.is-valid]="!myGroup.controls['intakeDescription'].errors && myGroup.controls['intakeDescription'].touched"
+                          [class.is-invalid]="myGroup.controls['intakeDescription'].errors && myGroup.controls['intakeDescription'].touched"
+                          [(ngModel)]="intakeDescription">
+                  <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                       *ngIf="myGroup.controls['intakeDescription'].errors && myGroup.controls['intakeDescription'].touched">
+                    <small *ngIf="myGroup.controls['intakeDescription'].errors"
+                           class="form-text text-danger">required intake Description</small>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="form-group row">
+                <div class="col-lg-8 ml-auto">
+                  <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid"
+                          (click)="submitBtn()" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div *ngIf="!isLoading">
+          <app-success-popup *ngIf="isSuccess" [item]="currentItem"></app-success-popup>
+          <app-failed-popup *ngIf="!isSuccess" [item]="currentItem"></app-failed-popup>
+        </div>
+        <app-loader *ngIf="isLoading"></app-loader>
+      </div>
+    </div>
+
+
+
+
+
+
+</div>
+
+
+

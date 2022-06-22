@@ -9,6 +9,8 @@ export class SuccessPopupComponent implements OnInit {
 
   @Input()
   item:string;
+  @Input()
+  action:string;
 
   constructor() { }
 

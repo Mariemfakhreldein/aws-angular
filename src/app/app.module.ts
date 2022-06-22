@@ -24,6 +24,13 @@ import { FailedPopupComponent } from './compnents/failed-popup/failed-popup.comp
 import { EditBranchComponent } from './compnents/branch/edit-branch/edit-branch.component';
 import { LoaderComponent } from './compnents/loader/loader.component';
 import { TrainingProgramComponent } from './compnents/training-program/training-program.component';
+import { ManageTracksComponent } from './compnents/tracks/manage-tracks/manage-tracks.component';
+import { NotFoundComponent } from './compnents/pages/not-found/not-found.component';
+import { NotAuthorizedComponent } from './compnents/pages/not-authorized/not-authorized.component';
+import { ManageIntakesComponent } from './compnents/intakes/manage-intakes/manage-intakes.component';
+import { ShowAllIntakesComponent } from './compnents/intakes/show-all-intakes/show-all-intakes.component';
+import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
+import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +58,16 @@ import { TrainingProgramComponent } from './compnents/training-program/training-
     EditBranchComponent,
     LoaderComponent,
     TrainingProgramComponent
+    ManageTracksComponent,
+    DetailBranchComponent,
+    NotFoundComponent,
+    NotAuthorizedComponent,
+    LoaderComponent,
+    ManageIntakesComponent,
+    ShowAllIntakesComponent,
+    ManageTracksComponent,
+    ViewTracksComponent,
+    UpdateTrackComponent
   ],
     imports: [
         BrowserModule,

@@ -88,7 +88,7 @@
                             [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
                     >
 
-                      <option  selected disabled class="text-secondary" >Please Select Branch</option>
+                      <option  selected disabled class="text-secondary" value="">Please Select Branch</option>
                       <option *ngFor="let branch of branches"
                               [value]="branch.id">{{branch.name}} </option>
                     </select>
@@ -170,7 +170,7 @@
                 </div>
 
 
-                  <div  class="form-group row">
+                  <div  class="form-group row" *ngIf="!myGroup.controls['tracks'].errors">
                     <label class="col-lg-4 col-form-label" for="val-student">Select Student<span
                       class="text-danger">*</span> </label>
                     <div class="col-lg-6">
@@ -208,15 +208,16 @@
 
                 </div>
 
-                <div class="form-group row radio-container">
+                <div class="form-group row radio-container" *ngIf="!myGroup.controls['tracks'].errors">
                   <div class="form-group row">
                     <label class="col-lg-4 col-form-label">Select Template <span class="text-danger">*</span></label>
                     <div class="col-lg-6 card-radio-container">
-                      <div class="row" *ngFor="let template of templates">
+                      <label class="row" *ngFor="let template of templates" for="{{template.id}}">
+
                         <div class="card-radio col-lg-6">
                           <input (change)="changeTemplateId($event)" value="{{template.id}}" type="radio"
-                                 name="template-type" id="card5" required >
-                          <label class="label-class" for="card5">
+                                 name="template-type" id="{{template.id}}" required >
+                          <label class="label-class" for="{{template.id}}">
                             <h5 class="h5-class">Template {{template.id}}</h5>
                             <h2 class="h2-class">Ami Details </h2>
                             <!--                              <h2 class="h2-class px-1"> Image Name : {{template.ami.imageName}}</h2>-->
@@ -226,15 +227,15 @@
                             <h2 class="h2-class">Instance Type : {{template.instanceType}} </h2>
                           </label>
                         </div>
-                      </div>
+                      </label>
                     </div>
                     <div class="text-danger col-lg-4 align-items-end align-self-end">
                     </div>
-                    <div class="text-danger  col-lg-6 align-items-end align-self-end"
-                         >
-                      <small
-                             class="form-text text-danger">required templatem</small>
-                    </div>
+<!--                    <div class="text-danger  col-lg-6 align-items-end align-self-end"-->
+<!--                         >-->
+<!--                      <small -->
+<!--                             class="form-text text-danger">required templatem</small>-->
+<!--                    </div>-->
                   </div>
 
 
@@ -242,7 +243,7 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-lg-8 ml-auto">
-                    <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid"
+                    <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid || templateId==0"
                             (click)="submitBtn(instanceName.value, keypairName.value, +timeToLiveInMinutes.value)" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
                       Submit
                     </button>
@@ -258,8 +259,8 @@
          aria-labelledby="exampleModalCenterTitle" aria-hidden="true" *ngIf="!isStudentsEmpty">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div *ngIf="!isLoading">
-        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"></app-success-popup>
-        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem"></app-failed-popup>
+        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action" ></app-success-popup>
+        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
         </div>
 
           <app-loader *ngIf="isLoading"></app-loader>

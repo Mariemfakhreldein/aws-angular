@@ -1,0 +1,64 @@
+<div>
+
+
+  <div class="container-fluid" *ngIf="allIntakes.length>0">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+
+
+
+
+            <div class=" m-auto pt-3">
+              <h1 class="text-center"> All Intakes</h1>
+              <div class="col-11 text-center m-auto">
+                <table class="table text-center mt-5">
+                  <thead>
+                  <td>id</td>
+                  <td>Name</td>
+                  <td>Description</td>
+                  <td>Training Program</td>
+                  <td>Action</td>
+                  </thead>
+
+                  <tbody>
+                  <tr *ngFor="let intake of allIntakes |
+      paginate:{itemsPerPage:3,currentPage:page,totalItems:allIntakes.length};let currentIndex=index" >
+
+                    <td >{{currentIndex+1}}</td>
+                    <td> {{intake.intakeName}}</td>
+                    <td>{{intake.intakeDescription}}</td>
+                    <td></td>
+                    <td><input type="button"  (click)="delete(currentIndex)" value="Delete" class="btn btn-danger"></td>
+
+                  </tr>
+                  </tbody>
+                </table>
+
+                <p class="py-5" *ngIf="allIntakes.length==0">there no intakes yet</p>
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div  class="col-12  text-center" >
+
+      <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+
+      </pagination-controls>
+
+    </div>
+  </div>
+
+</div>

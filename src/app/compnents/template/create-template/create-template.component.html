@@ -38,10 +38,10 @@
                   <div class="form-group row " >
 
                     <div class="card-checkbox-container w-100 ">
-                      <div class="row pr-lg-4 pr-2" *ngFor="let securityG of securityGroups;let currentIndex=index">
+                      <label class="row pr-lg-4 pr-2" *ngFor="let securityG of securityGroups;let currentIndex=index" for="{{securityG.securityGroupId}}">
                         <div class="card-checkbox  p-1  w-100 mr-5 row">
-                          <input type="checkbox" name="template-type" id="card1" class="col-2"  [(ngModel)]="isChecked[securityGroups.indexOf(securityG)]" [ngModelOptions]="{standalone: true}">
-                          <label class="label-class" for="card1">
+                          <input type="checkbox" name="template-type" id="{{securityG.securityGroupId}}" class="col-2"  [(ngModel)]="isChecked[securityGroups.indexOf(securityG)]" [ngModelOptions]="{standalone: true}">
+                          <label class="label-class" for="{{securityG.securityGroupId}}">
                             <h5 class="h5-class">Security Name: <span>{{securityG.name}}</span></h5>
                             <h2 class="h2-class font-italic"><span class="font-weight-bold ">  Description : </span> {{securityG.description}} </h2>
                             <h2 class="h2-class font-italic"> <span class="font-weight-bold "> VPC ID : </span> {{securityG.vpcId}} </h2>
@@ -49,7 +49,7 @@
                           </label>
                         </div>
 
-                      </div>
+                      </label>
 
 
 
@@ -109,7 +109,7 @@
 
             <div class="form-group row">
               <div class="col-lg-8 ml-auto">
-                <button type="button" id="btn-submit" (click)="submitBtn()" class="btn btn-primary col-lg-4 col-form-label" [disabled]="templateFormGroup.invalid"   [disabled]="templateFormGroup.invalid || isLoading==false"
+                <button type="button" id="btn-submit" (click)="submitBtn()" class="btn btn-primary col-lg-4 col-form-label" [disabled]="templateFormGroup.invalid"   [disabled]="templateFormGroup.invalid"
                         data-toggle="modal" data-target="#exampleModalCenter" data-toggle="modal" data-target="#exampleModalCenter">Submit</button>
 
               </div>
@@ -132,8 +132,8 @@
       <app-loader ></app-loader>
     </div>
     <div *ngIf="!isLoading">
-      <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"></app-success-popup>
-      <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem"></app-failed-popup>
+      <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action"></app-success-popup>
+      <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
     </div>
 
 

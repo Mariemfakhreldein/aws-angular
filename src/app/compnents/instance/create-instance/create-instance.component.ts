@@ -12,8 +12,8 @@ import {InstanceService} from "../../../services/instance.service";
 import {compareNumbers} from "@angular/compiler-cli/src/version_helpers";
 import {BranchModel} from "../../../models/branch/branch.model";
 import {TrainingProgram} from "../../../models/instances/training.program.model";
-import {Intake} from "../../../models/instances/intake.model";
 import {Track} from "../../../models/instances/track.model";
+import {Intake} from "../../../models/instances/intake.model";
 
 @Component({
   selector: 'app-create-instance',
@@ -27,12 +27,14 @@ export class CreateInstanceComponent implements OnInit {
   templates: TemplateResponseModel[] = [];
   templateId=0;
   isSuccess=false;
+  isLoading=true;
   currentItem='instance';
+  action='created';
   branches:BranchModel[]=[];
   trainingPrograms:TrainingProgram[]=[];
   intakes:Intake[]=[];
   tracks:Track[] = [];
-  isLoading=true;
+
   myGroup: FormGroup = new FormGroup({});
 
   isTemplatesEmpty=false;

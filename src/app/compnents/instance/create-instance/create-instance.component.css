@@ -12,9 +12,10 @@
 /**********************************************/
 .card-radio-container
 {
-  width: 450px;
-  height: 300px;
+  width: 542px;
+  height: 320px;
   overflow: scroll;
+  overflow-x: hidden;
 }
 .card-radio{
   height: 200px;

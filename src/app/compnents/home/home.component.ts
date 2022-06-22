@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   constructor(private authService: AuthService, private http: HttpClient) { }
 
   ngOnInit(): void {
-
+    const privileges = this.authService.getPrivileges();
+    privileges.forEach( p => console.log(p));
   }
 }

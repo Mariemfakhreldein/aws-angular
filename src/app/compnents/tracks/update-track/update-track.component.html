@@ -1,0 +1,81 @@
+<p>manage-tracks works!</p>
+<div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+
+            <div class="form-validation" [formGroup]="myGroup">
+
+
+
+
+
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" >Track_Id:<span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+
+                 {{track.id}}
+
+                </div>
+              </div>
+
+
+
+
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="val-username">Track Name <span
+                  class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                  <input  type="text" class="form-control" id="val-username" name="val-trackName"
+                           required formControlName="trackName"
+                          [(ngModel)]="track.name"
+
+                         >
+                  <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                       *ngIf="myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched">
+                    <small *ngIf="myGroup.controls['trackName'].hasError('required')"
+                           class="form-text text-danger">required track name</small>
+                  </div>
+                </div>
+
+
+              </div>
+
+              <div class="form-group row">
+                <div class="col-lg-8 ml-auto">
+                  <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid"
+                          (click)="updateTrack()" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                    Update
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+       aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div *ngIf="!isLoading">
+        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action"></app-success-popup>
+        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
+      </div>
+
+      <app-loader *ngIf="isLoading"></app-loader>
+
+    </div>
+  </div>
+
+
+
+
+
+
+</div>
+

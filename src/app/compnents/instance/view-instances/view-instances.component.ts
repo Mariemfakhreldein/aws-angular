@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {InstanceService} from "../../../services/instance.service";
 import {InstanceModel} from "../../../models/instances/instance.models";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-view-instances',
@@ -20,11 +21,14 @@ export class ViewInstancesComponent implements OnInit {
   page:number=1;
   status:string='Running'
 
-  constructor(private instanceService: InstanceService ,private router: Router) { }
+  constructor(private instanceService: InstanceService , private authService: AuthService,private router: Router) { }
+
+  canCreateTerminateAssignInstance: boolean = false
 
   ngOnInit(): void {
 
     this.getInstances();
+    this.canCreateTerminateAssignInstance = this.authService.containPrivilege('CREATE_TERMINATE_ASSIGN_INSTANCE');
 
   }
 

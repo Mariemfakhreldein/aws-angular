@@ -249,11 +249,26 @@
         </a>
         <ul aria-expanded="true">
           <li ><a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home 1</a></li>
-          <li><a class="nav-link" [routerLink]="['/instances']" routerLinkActive="active" >Instances</a></li>
-          <li><a class="nav-link" [routerLink]="['/template']" routerLinkActive="active" >Template</a></li>
+          <li *ngIf="canStopStartViewInstances"><a class="nav-link" [routerLink]="['/instances']" routerLinkActive="active" >Instances</a></li>
+          <li *ngIf="canManageTemplates"><a class="nav-link" [routerLink]="['/template']" routerLinkActive="active" >Template</a></li>
           <li><a class="nav-link" [routerLink]="['/branches']" routerLinkActive="active" >Branches</a></li>
           <li><a class="nav-link" [routerLink]="['/training-program/create']" routerLinkActive="active" >Training Program</a></li>
+          <li><a class="nav-link" [routerLink]="['/intakes']" routerLinkActive="active" >Intakes</a></li>
+          <li><a class="nav-link" [routerLink]="['/intakes/show']" routerLinkActive="active" >Show all Intakes</a></li>
 
+          <li>
+            <a href="#tracks" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Tracks</a>
+            <ul class="collapse list-unstyled" id="tracks">
+
+              <li>
+              <a class="nav-link" [routerLink]="['/tracks/view_tracks']" routerLinkActive="active">Tracks</a>
+            </li>
+              <li>
+                <a class="nav-link" [routerLink]="['/tracks/manage_tracks']" routerLinkActive="active">Add Track</a>
+              </li>
+
+            </ul>
+          </li>
       <li>
         <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Users</a>
         <ul class="collapse list-unstyled" id="userSubmenu">
@@ -268,7 +283,7 @@
           <li>
             <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Student</a>
             <ul class="collapse list-unstyled" id="studentSubmenu">
-              <li>
+              <li *ngIf="canManageStudents">
                 <a class="nav-link" [routerLink]="['/template']" routerLinkActive="active">Add Student</a>
               </li>
             </ul>
