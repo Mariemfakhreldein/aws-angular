@@ -10,7 +10,7 @@ export class TrainingProgramService {
   constructor(private api: ApiService) { }
 
   create(trainingProgram: TrainingProgram){
-    return this.api.post("/api/training-programs",trainingProgram );//??
+    return this.api.post("/api/trainingPrograms",trainingProgram );
   }
 
 
