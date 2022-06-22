@@ -28,6 +28,9 @@ import {ManageTemplatesGuard} from "./guards/authorization-guards/templates/mana
 import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
 import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
 import { TrainingProgramComponent } from './compnents/training-program/training-program.component';
+import { ShowAllIntakesComponent } from './compnents/intakes/show-all-intakes/show-all-intakes.component';
+import { ManageIntakesComponent } from './compnents/intakes/manage-intakes/manage-intakes.component';
+import { ManageBranchesGuard } from './guards/authorization-guards/branches/manage-branches.guard';
 
 const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
