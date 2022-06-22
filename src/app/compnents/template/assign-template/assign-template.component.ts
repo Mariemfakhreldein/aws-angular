@@ -23,11 +23,14 @@ export class AssignTemplateComponent implements OnInit {
   templates: TemplateResponseModel[] = [];
   instructors: UserModel[] = [];
 
-  isTemplatesSelected = true;
-  isInstructorsSelected = true;
+  isEmptyTemplates=false;
+  isEmptyInstructors=false;
 
-  selectedTemplates: any[] = [] ;
-  private selectedInstructors: any[] = [];
+  selectedTemplates: TemplateResponseModel[]= [] ;
+  selectedInstructors: UserModel[] = [];
+  isCheckedInstructor: any[]=[] ;
+  isCheckedTemplates: any[]=[] ;
+
 
   constructor(private formBuilder:FormBuilder,
               private route:Router,
@@ -40,13 +43,18 @@ export class AssignTemplateComponent implements OnInit {
       instructors: ["", [Validators.required]],
     });
 
+    this.getAllTemplates();
+    // this.getAllInstructors();
   }
 
   private getAllTemplates(){
     this.templateService.getAllTemplates().subscribe(
       (response:any)=>{
         console.log(response.templateResponseList)
+
         this.templates = response.templateResponseList;
+
+
       },(error:any)=>{
         console.log(error);
       }
@@ -65,17 +73,59 @@ export class AssignTemplateComponent implements OnInit {
   }
 
     submitBtn() {
-      if(this.selectedTemplates.length === 0 ){
-        this.isTemplatesSelected = false;
-      }
-      else {
-        if(this.selectedInstructors.length == 0 ) {
-          this.isInstructorsSelected = false
-        }else {
+      let myTemplatesList=this.fetchSelectedTemplates();
+      // let myInstructorList =this.fetchSelectedInstructors()
+      if(myTemplatesList.length==0)
+      {
+        this.isEmptyTemplates=true;
 
-        }
+      }else{
+        this.isEmptyTemplates=false;
+
+        console.log("templateeeeeeees"+myTemplatesList[0].ami.imageName);
+        console.log("templateeeeeeees2"+myTemplatesList[0].ami.architecture);
+        console.log("templateeeeeeees3"+myTemplatesList[0].instanceType);
+
+      }
+      // console.log("instructorss"+myInstructorList[0].id);
+      // console.log("2222222"+this.isCheckedTemplates[0]);
+
+
+
+    }
+
+
+
+   fetchSelectedInstructors() {
+    this.selectedInstructors=[];
+    for (let i=0 ; i<this.isCheckedInstructor.length ; i++){
+      if(this.isCheckedInstructor[i] == true){
+        this.selectedInstructors.push(this.instructors[i]);
       }
     }
+    return this.selectedInstructors;
+
+
+  }
+
+
+   fetchSelectedTemplates() {
+    this.selectedTemplates=[];
+    for (let i=0 ; i<this.isCheckedTemplates.length ; i++){
+      if(this.isCheckedTemplates[i] == true){
+        this.selectedTemplates.push(this.templates[i]);
+      }
+    }
+    return this.selectedTemplates;
+
+
+  }
+
+
+
+
+
+
   }
 
 

@@ -8,15 +8,15 @@
 
               <div class="row">
                 <div  class="form-group row">
-                  <label class="col-lg-4 col-form-label" for="security">Select Templates </label>
+                  <label class="col-lg-4 col-form-label" for="template">Select Templates </label>
                   <div class="col-lg-6">
-                    <div id="security"  class="form-group row radio-container border-bottom " style="border-color: #ced4da">
+                    <div id="template"  class="form-group row radio-container border-bottom " style="border-color: #ced4da">
                       <div class="form-group row " >
                         <div class="card-checkbox-container w-100 ">
                           <div class="row pr-lg-4 pr-2" *ngFor="let template of templates; let currentIndex=index">
                             <div class="card-checkbox  p-1  w-100 mr-5 row">
-                              <input type="checkbox" name="template-type" id="card1" class="col-2"  [(ngModel)]="selectedTemplates[templates.indexOf(template)]" [ngModelOptions]="{standalone: true}">
-                              <label class="label-class" for="card1">
+                              <input type="checkbox" name="template-type" id="card{{currentIndex}}" class="col-2"  [(ngModel)]="isCheckedTemplates[templates.indexOf(template)]" [ngModelOptions]="{standalone: true}" >
+                              <label class="label-class" for="card{{currentIndex}}">
                                 <h5 class="h5-class">Template Id : <span>{{template.id}}</span></h5>
                                 <h2 class="h2-class font-italic"><span class="font-weight-bold ">Image Name : </span> {{template.ami.imageName}} </h2>
                                 <h2 class="h2-class font-italic"> <span class="font-weight-bold "> VPC ID : </span> {{template.ami.architecture}} </h2>
@@ -25,11 +25,25 @@
                               </label>
                             </div>
                           </div>
+
+<!--                          <div class="row pr-lg-4 pr-2" >-->
+<!--                            <div class="card-checkbox  p-1  w-100 mr-5 row">-->
+<!--                              <input type="checkbox" name="template-type" id="card1" class="col-2"   >-->
+<!--                              <label class="label-class" for="card1">-->
+<!--                                <h5 class="h5-class">Template Id : </h5>-->
+<!--                                <h2 class="h2-class font-italic"><span class="font-weight-bold ">Image Name : </span>  </h2>-->
+<!--                                <h2 class="h2-class font-italic"> <span class="font-weight-bold "> VPC ID : </span>  </h2>-->
+<!--                                <h2 class="h2-class font-italic"> <span class="font-weight-bold "> VPC ID : </span>  </h2>-->
+<!--                                <h2 class="h2-class font-italic"> <span class="font-weight-bold "> VPC ID : </span>  </h2>-->
+<!--                              </label>-->
+<!--                            </div>-->
+<!--                          </div>-->
                         </div>
+
                       </div>
                     </div>
                     <div class="text-danger col-lg-6 align-items-end align-self-end">
-                      <small *ngIf="isTemplatesSelected==false"
+                      <small *ngIf="isEmptyTemplates"
                              class="form-text text-danger">required templates</small>
                     </div>
                   </div>
@@ -38,25 +52,82 @@
               </div>
 
 
-              <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="val-student">Select Instructors <span class="text-danger">*</span>
-                </label>
-                <div class="col-lg-6">
-                  <select #studentId class="form-control" id="val-student" required>
-                    <option  value="{{instructor.id}}" *ngFor="let instructor of instructors">{{instructor.username}}</option>
-                  </select>
-                </div>
+              <div class="row">
+                <div  class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="instructors">Select Instructors </label>
+                  <div class="col-lg-6">
+                    <div id="instructors"  class="form-group row radio-container border-bottom " style="border-color: #ced4da">
+                      <div class="form-group row " >
+                        <div class="card-checkbox2-container w-100 ">
+<!--                          <div class="row pr-lg-4 pr-2" *ngFor="let instructor of instructors; let currentIndex=index">-->
+<!--                            <div class="card-checkbox2  p-1  w-100 mr-5 row">-->
+<!--                              <input type="checkbox" name="template-type" id="cardd{{currentIndex}}" class="col-2"  [(ngModel)]="isCheckedInstructor[instructors.indexOf(instructor)]" [ngModelOptions]="{standalone: true}">-->
+<!--                              <label class="label-class" for="cardd{{currentIndex}}">-->
+<!--                                <h5 class="h5-class">Instructor id : <span>1{{instructor.id}}</span></h5>-->
+<!--                                <h2 class="h2-class font-italic"><span class="font-weight-bold ">Image Name : </span>hhhhhhh {{instructor.username}} </h2>-->
+<!--                              </label>-->
+<!--                            </div>-->
+<!--                          </div>-->
 
-                <div class="text-danger col-lg-6 align-items-end align-self-end">
-                  <small *ngIf="isInstructorsSelected==false"
-                         class="form-text text-danger">required instructors</small>
+                          <div class="row pr-lg-4 pr-2" >
+                            <div class="card-checkbox2  p-1  w-100 mr-5 row">
+                              <input type="checkbox" name="template-type" id="cardd" class="col-2"  >
+                              <label class="label-class" for="cardd">
+                                <h5 class="h5-class">Instructor id : <span></span></h5>
+                                <h2 class="h2-class font-italic"><span class="font-weight-bold ">Instructor Name : hhhh</span></h2>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="row pr-lg-4 pr-2" >
+                            <div class="card-checkbox2  p-1  w-100 mr-5 row">
+                              <input type="checkbox" name="template-type" id="cardd2" class="col-2"  >
+                              <label class="label-class" for="cardd2">
+                                <h5 class="h5-class">Instructor id : <span></span></h5>
+                                <h2 class="h2-class font-italic"><span class="font-weight-bold ">Instructor Name : hhhh</span></h2>
+                              </label>
+                            </div>
+                          </div>
+                          <div class="row pr-lg-4 pr-2" >
+                            <div class="card-checkbox2  p-1  w-100 mr-5 row">
+                              <input type="checkbox" name="template-type" id="cardd3" class="col-2"  >
+                              <label class="label-class" for="cardd3">
+                                <h5 class="h5-class">Instructor id : <span></span></h5>
+                                <h2 class="h2-class font-italic"><span class="font-weight-bold ">Instructor Name : hhhh</span></h2>
+                              </label>
+                            </div>
+                          </div>
+
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="text-danger col-lg-6 align-items-end align-self-end">
+                      <small *ngIf="isEmptyInstructors"
+                             class="form-text text-danger">required instructors</small>
+                    </div>
+                  </div>
                 </div>
 
               </div>
 
+
+
+<!--              <div class="form-group row">-->
+<!--                <label class="col-lg-4 col-form-label" for="val-student">Select Instructors <span class="text-danger">*</span>-->
+<!--                </label>-->
+<!--                <div class="col-lg-6">-->
+<!--                  <select #studentId class="form-control" id="val-student" required>-->
+<!--                    <option  value="{{instructor.id}}" *ngFor="let instructor of instructors">{{instructor.username}}</option>-->
+<!--                  </select>-->
+<!--                </div>-->
+
+<!--               -->
+
+<!--              </div>-->
+
               <div class="form-group row">
                 <div class="col-lg-8 ml-auto">
-                  <button type="button" id="btn-submit" (click)="submitBtn()"  class="btn">Submit</button>
+                  <button type="button" id="btn-submit" (click)="submitBtn()"  class="btn" [disabled]="fetchSelectedTemplates().length==0">Submit</button>
                 </div>
               </div>
             </div>
