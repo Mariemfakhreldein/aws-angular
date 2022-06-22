@@ -15,7 +15,7 @@
 
                   <select class="form-control" id="branches" data-live-search="true" formControlName="branches"
                     [class.is-valid]="!myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
-                    [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched" ngModel="branchId">
+                    [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched" [(ngModel)]="branchId">
 
                     <option selected disabled class="text-secondary">Please Select Branch</option>
                     <option *ngFor="let branch of branches" [value]="branch.id">{{branch.name}} </option>
