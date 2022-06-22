@@ -29,7 +29,9 @@
               </tr>
               </thead>
               <tbody>
-              <tr *ngFor="let branch of branches;let currentIndex=index">
+              <tr *ngFor="let branch of branches|
+              paginate:{itemsPerPage:5,currentPage:page,totalItems:branches.length};let currentIndex=index"
+                  >
                 <td><i class="icon-graph menu-icon">&nbsp;&nbsp;{{branch.id}}</i></td>
                 <td>{{branch.name}}</td>
                 <td>
@@ -62,4 +64,12 @@
       </div>
     </div>
   </div>
+</div>
+
+<div  class="col-12  text-center" >
+
+  <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+
+  </pagination-controls>
+
 </div>
