@@ -2,7 +2,7 @@
 
 <div class="bg-transparent bg-dark rounded shadow-lg p-lg-5 m-3" >
 
-  <div class=" row">
+  <div class=" row" *ngIf="instancesBackup.length>0">
     <div class="col-3">
       <div class=" row">
     <div class="status rounded-circle p-1  col-1" style="background-color: #14C38E"  ></div>
@@ -111,7 +111,7 @@
 
 </div>
 
-<div  class="col-12  text-center" >
+<div  class="col-12  text-center" *ngIf="instancesBackup.length>5">
 
   <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
 

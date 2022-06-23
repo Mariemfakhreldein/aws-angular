@@ -30,6 +30,7 @@ import { ManageIntakesComponent } from './compnents/intakes/manage-intakes/manag
 import { ShowAllIntakesComponent } from './compnents/intakes/show-all-intakes/show-all-intakes.component';
 import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
 import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
+import { InstanceTimerPipe } from './compnents/pipes/instance-timer.pipe';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { UpdateTrackComponent } from './compnents/tracks/update-track/update-tra
     ShowAllIntakesComponent,
     ManageTracksComponent,
     ViewTracksComponent,
-    UpdateTrackComponent
+    UpdateTrackComponent,
+    InstanceTimerPipe,
   ],
     imports: [
         BrowserModule,
