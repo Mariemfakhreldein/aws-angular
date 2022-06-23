@@ -32,7 +32,8 @@ import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.
 import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
 import { InstanceTimerPipe } from './compnents/pipes/instance-timer.pipe';
 import { UserSearchComponent } from './compnents/user/user-search/user-search.component';
-import { SearchFilterPipe } from './compnents/pipes/search-filter.pipe';
+import { SearchFilterPipe } from './compnents/pipes/search/search-filter.pipe';
+import { SearchFilterByEmailPipe } from './compnents/pipes/search/search-filter-by-email.pipe';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { SearchFilterPipe } from './compnents/pipes/search-filter.pipe';
     InstanceTimerPipe,
     UserSearchComponent,
     SearchFilterPipe,
+    SearchFilterByEmailPipe,
   ],
     imports: [
         BrowserModule,

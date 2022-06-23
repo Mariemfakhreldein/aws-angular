@@ -44,8 +44,6 @@ export class UserSearchComponent implements OnInit {
 
   }
 
-  onChangeSearchText(value: string) {
-  }
 
 
 }
