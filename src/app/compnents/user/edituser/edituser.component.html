@@ -1,0 +1,148 @@
+<div [formGroup]="editUserFormGroup" >
+  <div class="container-fluid" >
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-validation">
+
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="name">Name
+                </label>
+                <div class="col-lg-6">
+                  <input #inputName type="text" class="form-control" id="name" name="ami" placeholder="Enter your name"
+                         [class.is-valid]="!editUserFormGroup.controls['name'].errors"
+                         [class.is-invalid]="editUserFormGroup.controls['name'].errors && editUserFormGroup.controls['name'].touched"
+                         formControlName="name"
+                         readonly>
+                  <div class="text-danger col-lg-6 align-items-end align-self-end"
+                       *ngIf="editUserFormGroup.controls['name'].errors && editUserFormGroup.controls['name'].touched">
+                    <small *ngIf="editUserFormGroup.controls['name'].hasError('required')"
+                           class="form-text text-danger">required name</small>
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="email">Email
+                </label>
+                <div class="col-lg-6">
+                  <input type="text" id="email" name="email"
+                         class="form-control" formControlName="email"
+                         [class.is-valid]="!editUserFormGroup.controls['email'].errors"
+                         [class.is-invalid]="editUserFormGroup.controls['email'].errors && editUserFormGroup.controls['email'].touched"
+
+                         readonly>
+                  <div class="text-danger col-lg-6 align-items-end align-self-end"
+                       *ngIf="editUserFormGroup.controls['email'].errors && editUserFormGroup.controls['email'].touched">
+                    <small *ngIf="editUserFormGroup.controls['email'].hasError('required')"
+                           class="form-text text-danger">required email</small>
+                  </div>
+                </div>
+              </div>
+
+
+
+
+                <div  class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="security">Tracks </label>
+                  <div class="col-lg-6">
+
+                    <div id="security"  class="form-group row radio-container border-bottom " style="border-color: #ced4da">
+
+                      <div class="form-group row " >
+
+                        <div class="card-checkbox-container w-100 ">
+                          <label class="row pr-lg-4 pr-2" *ngFor="let track of tracks;let currentIndex=index" for="{{track.id}}">
+                            <div class="card-checkbox  p-1  w-100 mr-5 row">
+                              <input type="checkbox" name="template-type" id="{{track.id}}" class="col-2"  [(ngModel)]="isChecked[tracks.indexOf(track)]" [ngModelOptions]="{standalone: true}">
+                              <label class="label-class" for="{{track.id}}">
+                                <h5 class="h5-class">Security Name: <span>{{track.track}}</span></h5>
+                              </label>
+                            </div>
+
+                          </label>
+
+
+
+                        </div>
+
+
+
+
+                      </div>
+                    </div>
+
+
+                    <div class="text-danger col-lg-6 align-items-end align-self-end">
+                      <small *ngIf="isSecurityGroupsSelected==false"
+                             class="form-text text-danger">required Tracks</small>
+                    </div>
+                  </div>
+                </div>
+
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="role">Role
+                </label>
+                <div class="col-lg-6">
+                  <select class="form-control" id="role" [class.is-valid]="!editUserFormGroup.controls['role'].errors && editUserFormGroup.controls['role'].touched"
+                          [class.is-invalid]="editUserFormGroup.controls['role'].errors && editUserFormGroup.controls['role'].touched"
+                          formControlName="role">
+                    <option value="">Please Select Your Role</option>
+                    <option *ngFor="let role of roles"
+                            [value]="role.role">{{role.role}} </option>
+                  </select>
+                  <div class="text-danger col-lg-6 align-items-end align-self-end"
+                       *ngIf="editUserFormGroup.controls['role'].errors && editUserFormGroup.controls['role'].touched">
+                    <small *ngIf="editUserFormGroup.controls['role'].hasError('required')"
+                           class="form-text text-danger">required role</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-lg-8 ml-auto">
+                  <button type="button" id="btn-submit" (click)="submitBtn()" class="btn btn-primary col-lg-4 col-form-label" [disabled]="editUserFormGroup.invalid"   [disabled]="editUserFormGroup.invalid"
+                          data-toggle="modal" data-target="#exampleModalCenter" data-toggle="modal" data-target="#exampleModalCenter">Submit</button>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+
+
+    <div *ngIf="isLoading">
+      <app-loader ></app-loader>
+    </div>
+    <div *ngIf="!isLoading">
+      <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action"></app-success-popup>
+      <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
+    </div>
+
+
+
+  </div>
+</div>
+
+
+<!-- #/ container -->
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#security').multiselect();
+  });
+
+</script>
