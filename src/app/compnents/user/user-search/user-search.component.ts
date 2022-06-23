@@ -18,19 +18,12 @@ export class UserSearchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getAllUsers();
-    this.usersList.push(
-      new UserModel("mariam", "mariam@gmail.com", "training manager", ["hello", "hy", "kjj"]),
-      new UserModel("khattab", "khattab@gmail.com", "track supervisor", ["hello", "hy", "kjj"]),
-      new UserModel("hafsa", "hafsa@gmail.com", "training manager", ["hello", "hy", "kjj"]),
-      new UserModel("hend", "hend@gmail.com", "instructor", ["hello", "hy", "kjj"]),
-      new UserModel("sally", "sally@gmail.com", "instructor", ["hello", "hy", "kjj"]),
-      new UserModel("salma", "salma@gmail.com", "student", ["hello", "hy", "kjj"]))
-
+    this.getAllUsers();
   }
+  //track ,role
 
   getAllUsers() {
-    this.userService.getAllUsers().subscribe(
+    this.userService.getAllUserType().subscribe(
       {
         next: (data: any) => {
           data.userResponsesList.forEach(e => {

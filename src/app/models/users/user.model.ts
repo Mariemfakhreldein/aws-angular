@@ -12,11 +12,10 @@ export class UserModel {
   //   this.role = role;
   // }
 
-  constructor(name: string, email: string, role: string,privileges:[string,string,string]) {
+  constructor(name: string, email: string, role: string) {
     this.username = name;
     this.email = email;
     this.role = role;
-    this.privileges=privileges;
   }
 
   toString() {
