@@ -1,132 +1,86 @@
-<!--**********************************
-    Nav header start
-***********************************-->
-<div class="nav-header" id="nav-bar">
-  <div class="brand-logo justify-content-center">
-    <span class="brand-title">iTi</span> <span id="subtitle">AWS Configuration</span>
-    <span class="logo-compact"><img src="assets/images/iti-logo.png" alt=""></span>
-    <a href="index.html">
-      <b class="logo-abbr"><img src="assets/images/iti-logo.png" alt=""> </b>
-      <span class="logo-compact"><img src="assets/images/iti-logo.png" alt=""></span>
-      <span class="brand-title">
-<!--          <img class="imagesize" src="assets/images/iti-logo.png" alt="iti logo">-->
-
-      </span>
+<aside class="sidebar">
+  <div class="toggle">
+    <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+      <span></span>
     </a>
-
   </div>
-</div>
-<!--**********************************
-    Nav header end
-***********************************-->
+  <div class="side-inner">
 
+    <div class="profile">
+      <img src="assets/images/iti-logo.png" alt="Image" >
+      <h3 class="name">Debby Williams</h3>
+      <span class="country">Manager</span>
+    </div>
 
-<!--**********************************
-    Header start
-***********************************-->
-<div class="header">
-  <div class="header-content clearfix">
-    <div class="header-right">
-      <ul class="clearfix">
-        <li class="icons dropdown">
-          <div class="user-img c-pointer position-relative" data-toggle="dropdown">
-            <span class="activity active"></span>
-            <img src="assets/images/user/1.png" height="40" width="40" alt="">
-          </div>
-          <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
-            <div class="dropdown-content-body">
-              <ul>
+    <div class="nav-menu">
+
+      <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+        <li class="nav-item">
+          <a href="#" class="nav-link align-middle px-3 text-dark text-decoration-none">
+            <i class="fa fa-dashboard"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#submenu8" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="icon-album mr-2"></span>Instance</a>
+          <ul class="collapse nav flex-column ms-1" id="submenu8" data-bs-parent="#menu">
+            <li class="w-100">
+              <a class="px-8" > <span class="icon-plus mr-3"></span>Create Instance </a>
+            </li>
+            <li>
+              <a [routerLink]="['/instances']" routerLinkActive="active"class="px-8">
+                <span class="icon-view_array mr-3"></span>View Instance </a>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="icon-3d_rotation mr-2"></span>Template </a>
+          <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+            <li class="w-100">
+              <a href="#" class="px-8" [routerLink]="['/template']" routerLinkActive="active">
+                <span class="icon-plus mr-3"></span>Create Template </a>
+            </li>
+            <li>
+              <a href="#" class="px-8">
+                <span class="icon-view_array mr-3"></span>View Templates </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#submenu3" data-bs-toggle="collapse" class="nav-link align-middle text-dark text-decoration-none">
+            <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline">Users</span> </a>
+          <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+            <li class="w-100">
+              <a href="#staffSubmenu1" data-toggle="collapse" aria-expanded="false" class="text-dark text-decoration-none dropdown-toggle nav-link nav-text">Staff</a>
+              <ul class="collapse list-unstyled"  id="staffSubmenu1">
                 <li>
-                  <a href="app-profile.html"><i class="icon-user"></i>
-                    <span>Profile</span></a>
-                </li>
-
-                <hr class="my-2">
-                <li><a  [routerLink]="['/logout']" routerLinkActive="active" ><i class="icon-key"></i> <span>Logout</span></a>
+                  <a class="nav-link text-dark text-decoration-none" [routerLink]="['/user/createStaff']" routerLinkActive="active">Add Staff</a>
                 </li>
               </ul>
-            </div>
-          </div>
+            </li>
+            <li>
+              <a href="#studentSubmenu1" data-toggle="collapse" aria-expanded="false" class="text-dark text-decoration-none dropdown-toggle nav-link nav-text">Student</a>
+              <ul class="collapse list-unstyled" id="studentSubmenu1">
+                <li>
+                  <a class="nav-link text-dark text-decoration-none" [routerLink]="['/user/createStudent']" routerLinkActive="active">Add Student</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </li>
       </ul>
+
     </div>
   </div>
-</div>
-<!--**********************************
-    Header end ti-comment-alt
-***********************************-->
 
-
-<div class="container-fluid">
-  <div class="row flex-nowrap">
-    <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" id="side-bar">
-      <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-
-        <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-          <li class="nav-item">
-            <a href="#" class="nav-link align-middle px-0 text-dark text-decoration-none">
-              <i class="fa fa-dashboard"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="#submenu8" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-dark text-decoration-none">
-              <i class="fa fa-object-group"></i> <span class="ms-1 d-none d-sm-inline">Instance</span> </a>
-            <ul class="collapse nav flex-column ms-1" id="submenu8" data-bs-parent="#menu">
-              <li class="w-100">
-                <a class="nav-link px-0 text-dark text-decoration-none" > <span class="d-none d-sm-inline">Create</span> Instance </a>
-              </li>
-              <li>
-                <a [routerLink]="['/instances']" routerLinkActive="active"class="nav-link px-0 text-dark text-decoration-none"> <span class="d-none d-sm-inline">View</span> Instance </a>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-dark text-decoration-none">
-              <i class="fa fa-server"></i> <span class="ms-1 d-none d-sm-inline">Template</span> </a>
-            <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
-              <li class="w-100">
-                <a href="#" class="nav-link px-0 text-dark text-decoration-none" [routerLink]="['/template']" routerLinkActive="active"> <span class="d-none d-sm-inline">Create</span> Template </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link px-0 text-dark text-decoration-none"> <span class="d-none d-sm-inline">View</span> Templates </a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle text-dark text-decoration-none">
-              <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline">Users</span> </a>
-            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-              <li class="w-100">
-                <a href="#staffSubmenu1" data-toggle="collapse" aria-expanded="false" class="text-dark text-decoration-none dropdown-toggle nav-link nav-text">Staff</a>
-                <ul class="collapse list-unstyled"  id="staffSubmenu1">
-                  <li>
-                    <a class="nav-link text-dark text-decoration-none" [routerLink]="['/user/createStaff']" routerLinkActive="active">Add Staff</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="#studentSubmenu1" data-toggle="collapse" aria-expanded="false" class="text-dark text-decoration-none dropdown-toggle nav-link nav-text">Student</a>
-                <ul class="collapse list-unstyled" id="studentSubmenu1">
-                  <li>
-                    <a class="nav-link text-dark text-decoration-none" [routerLink]="['/user/createStudent']" routerLinkActive="active">Add Student</a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-    <div style="margin-left: 2%" class="col-md-9">
-            <div style="margin-left: 2%" class="content-body">
-              <div class="container-fluid">
-                <!--    <h1>Hello from body</h1>-->
-                <router-outlet></router-outlet>
-              </div>
-              <!-- #/ container -->
-            </div>
+</aside>
+<main>
+  <div class="site-section">
+    <div class="container">
+      <router-outlet></router-outlet>
     </div>
   </div>
-</div>
+</main>
