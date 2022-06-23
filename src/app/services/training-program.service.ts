@@ -17,5 +17,12 @@ export class TrainingProgramService {
     return this.api.get("/api/trainingPrograms");
   }
 
+  update(trainingProgram: TrainingProgram){
+    return this.api.update(`/api/trainingPrograms/${trainingProgram.id}`, trainingProgram);
+  }
+
+  getById(trainingProgramId: number){
+    return this.api.get(`/api/trainingPrograms/${trainingProgramId}`);
+  }
 
 }
