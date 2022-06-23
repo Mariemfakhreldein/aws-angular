@@ -32,6 +32,7 @@ import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.
 import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
 import { CreateTrainingProgramComponent } from './compnents/training-programs/create-training-program/create-training-program.component';
 import { ViewTrainingProgramsComponent } from './compnents/training-programs/view-training-programs/view-training-programs.component';
+import { UpdateTrainingProgramsComponent } from './compnents/training-programs/update-training-programs/update-training-programs.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ViewTrainingProgramsComponent } from './compnents/training-programs/vie
     ViewTracksComponent,
     UpdateTrackComponent,
     CreateTrainingProgramComponent,
-    ViewTrainingProgramsComponent
+    ViewTrainingProgramsComponent,
+    UpdateTrainingProgramsComponent
   ],
     imports: [
         BrowserModule,
