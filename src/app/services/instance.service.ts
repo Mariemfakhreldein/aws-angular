@@ -29,10 +29,6 @@ export class InstanceService {
     return this.api.get(`/api/instances/${id}`);
   }
 
-  getAllBranches(){
-    return this.api.get("/api/branches");
-  }
-
   getTrainingProgramsByBranch(branchId: any) {
     return this.api.get(`/api/branches/${branchId}/trainingPrograms`)
   }
