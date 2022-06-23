@@ -18,11 +18,11 @@ export class TemplateService {
   }
 
   getSecurityGroups(vpcId:string){
-    return this.api.get(`/api/SecurityGroup/${vpcId}`);
+    return this.api.get(`/api/securityGroups/${vpcId}`);
   }
 
   getInstancesTypes(){
-    return this.api.get("/api/instnacetype");
+    return this.api.get("/api/instanceTypes");
   }
 
   getAmi(amiModel:AmiModel){
