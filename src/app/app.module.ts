@@ -31,6 +31,8 @@ import { ShowAllIntakesComponent } from './compnents/intakes/show-all-intakes/sh
 import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
 import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
 import { InstanceTimerPipe } from './compnents/pipes/instance-timer.pipe';
+import { UserSearchComponent } from './compnents/user/user-search/user-search.component';
+import { SearchFilterPipe } from './compnents/pipes/search-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import { InstanceTimerPipe } from './compnents/pipes/instance-timer.pipe';
     ViewTracksComponent,
     UpdateTrackComponent,
     InstanceTimerPipe,
+    UserSearchComponent,
+    SearchFilterPipe,
   ],
     imports: [
         BrowserModule,

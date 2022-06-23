@@ -30,6 +30,7 @@ import  {ShowAllIntakesComponent} from "./compnents/intakes/show-all-intakes/sho
 
 import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
 import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
+import {UserSearchComponent} from "./compnents/user/user-search/user-search.component";
 
 const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'logout', component:LogoutComponent},
   {path:'user/createStaff', component:CreatenewstaffComponent, canActivate:[AuthGuard]},
+  {path:'user/search',component:UserSearchComponent},
   {path:'users', component:UserdetailsComponent},
   {path:'branch/create', component:CreateBranchComponent},
   {path:'branches', component:ShowBranchsComponent},
@@ -56,7 +58,7 @@ const routes: Routes = [
   {path:'intakes/show',component:ShowAllIntakesComponent},
   {path:'intakes',component:ManageIntakesComponent},
 
-  {path:'tracks/view_tracks', component: ViewTracksComponent},
+  {path:'tracks/view_tracks', component: ViewTracksComponent}
 
 ]
 
