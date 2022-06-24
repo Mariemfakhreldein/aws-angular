@@ -66,7 +66,7 @@ const routes: Routes = [
   {path:'intakes',component:ManageIntakesComponent},
 
   {path:'tracks/view_tracks', component: ViewTracksComponent},
-  {path:'user/edit', component: EdituserComponent},
+  {path:'user/edit/:id', component: EdituserComponent},
 
   {path:'training-programs/show', component: ViewTrainingProgramsComponent},
   {path:'training-programs/create', component: CreateTrainingProgramComponent},
