@@ -55,6 +55,7 @@ export class EditBranchComponent implements OnInit {
     let txt = JSON.stringify(this.BranchFormGroup.value);
     let templateModel = JSON.parse(txt);
 
+
     // alert("Done: \n" + "Name: " + templateModel.name
     //   + "\naddress: " + templateModel.address
     //   + "\nstatus: " + templateModel.value);
@@ -63,8 +64,13 @@ export class EditBranchComponent implements OnInit {
     this.branch2.address = templateModel.address;
     this.branch2.branchStatus = templateModel.value;
 
-    this.updateBranch(this.id, this.branch2);
-
+    if(this.branch2.equals(this.branch)){
+      this.action = 'edited. NO Modification';
+      this.isLoading=false;
+      this.isSuccess=false;
+    }else{
+      this.updateBranch(this.id, this.branch2);
+    }
 
   }
 
@@ -77,6 +83,7 @@ export class EditBranchComponent implements OnInit {
         this.isSuccess=true;
       },(error:any)=>{
         //console.log("fail Hello", error);
+        this.action = 'edited';
         this.isLoading=false;
         this.isSuccess=false;
       }
@@ -89,6 +96,10 @@ export class EditBranchComponent implements OnInit {
       (response:any)=>{
         console.log(response);
         this.branch = response;
+        this.BranchFormGroup.patchValue({
+          name: this.branch.name,
+          address: this.branch.address
+        });
         console.log(response);
       },(error:any)=>{
         console.log("fail Hello", error);

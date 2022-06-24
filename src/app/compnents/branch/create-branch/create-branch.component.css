@@ -177,3 +177,14 @@ input[type="checkbox"]:checked:after{
   font-size: 5px;
   color: #7b7b93;
 }
+
+#btn-submit{
+  background-color: #901B20;
+  color: whitesmoke;
+}
+
+#btn-submit:hover{
+  background-color: #5d1518;
+  color: whitesmoke;
+}
+

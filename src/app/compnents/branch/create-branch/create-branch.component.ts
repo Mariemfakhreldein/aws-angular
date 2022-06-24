@@ -45,7 +45,7 @@ export class CreateBranchComponent implements OnInit {
   submitBtn() {
     this.isBranchEmpty=false;
     let txt = JSON.stringify(this.BranchFormGroup.value);
-      let templateModel = JSON.parse(txt);
+    let templateModel = JSON.parse(txt);
 
       // alert("Done: \n" + "Name: " + templateModel.name
       //   + "\naddress: " + templateModel.address

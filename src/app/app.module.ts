@@ -18,7 +18,6 @@ import { UserdetailsComponent } from './compnents/user/userdetails/userdetails.c
 import { LogoutComponent } from './compnents/logout/logout.component';
 import { CreateBranchComponent } from './compnents/branch/create-branch/create-branch.component';
 import { ShowBranchsComponent } from './compnents/branch/show-branchs/show-branchs.component';
-import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-branch.component';
 import { SuccessPopupComponent } from './compnents/success-popup/success-popup.component';
 import { FailedPopupComponent } from './compnents/failed-popup/failed-popup.component';
 import { EditBranchComponent } from './compnents/branch/edit-branch/edit-branch.component';
@@ -66,14 +65,11 @@ import { CreatenewstudentComponent } from './compnents/user/student/createnewstu
     CreateTemplateComponent,
     CreateBranchComponent,
     ShowBranchsComponent,
-    DetailBranchComponent,
     SuccessPopupComponent,
     FailedPopupComponent,
-    DetailBranchComponent,
     EditBranchComponent,
     LoaderComponent,
     ManageTracksComponent,
-    DetailBranchComponent,
     NotFoundComponent,
     NotAuthorizedComponent,
     LoaderComponent,

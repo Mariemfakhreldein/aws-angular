@@ -17,13 +17,12 @@ export class ShowBranchsComponent implements OnInit {
               private branchService:BranchService) { }
 
   ngOnInit(): void {
-    //this.branches = this.branchService.getBranches();
     this.getBranches();
   }
 
-  createBranch(){
-    this.route.navigateByUrl("/branch/create");
-  }
+  // createBranch(){
+  //   this.route.navigateByUrl("/branch/create");
+  // }
 
   getBranches(){
     this.branchService.getAll().subscribe(
