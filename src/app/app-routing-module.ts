@@ -14,7 +14,6 @@ import {CreatenewstaffComponent} from "./compnents/user/staff/createnewstuff/cre
 import {UserdetailsComponent} from "./compnents/user/userdetails/userdetails.component";
 import {CreateBranchComponent} from "./compnents/branch/create-branch/create-branch.component";
 import {ShowBranchsComponent} from "./compnents/branch/show-branchs/show-branchs.component";
-import {DetailBranchComponent} from "./compnents/branch/detail-branch/detail-branch.component";
 import {EditBranchComponent} from "./compnents/branch/edit-branch/edit-branch.component";
 import { ManageTracksComponent } from './compnents/tracks/manage-tracks/manage-tracks.component';
 import {NotFoundComponent} from "./compnents/pages/not-found/not-found.component";
@@ -47,13 +46,11 @@ const routes: Routes = [
   {path:'users', component:UserdetailsComponent},
   {path:'branch/create', component:CreateBranchComponent},
   {path:'branches', component:ShowBranchsComponent},
-  {path:'branch/detail/:id', component:DetailBranchComponent},
   {path:'branch/edit/:id', component:EditBranchComponent},
   {path:'tracks/update_track/:id', component: UpdateTrackComponent},
   {path:'tracks/manage_tracks', component:ManageTracksComponent},
   {path:'branch/create', component:CreateBranchComponent, canActivate:[AuthGuard, ManageBranchesGuard]},
   {path:'branch/show', component:ShowBranchsComponent, canActivate:[AuthGuard, ManageBranchesGuard]},
-  {path:'branch/detail/:id', component:DetailBranchComponent, canActivate:[AuthGuard, ManageBranchesGuard] },
   {path:'not-found', component:NotFoundComponent},
   {path:'not-authorized', component:NotAuthorizedComponent},
   {path:'branch/edit/:id', component:EditBranchComponent},

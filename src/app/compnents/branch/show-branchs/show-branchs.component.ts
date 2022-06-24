@@ -17,7 +17,6 @@ export class ShowBranchsComponent implements OnInit {
               private branchService:BranchService) { }
 
   ngOnInit(): void {
-    //this.branches = this.branchService.getBranches();
     this.getBranches();
   }
 

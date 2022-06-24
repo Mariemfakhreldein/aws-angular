@@ -24,7 +24,7 @@
                 <th>Name</th>
                 <th>Address</th>
                 <th>Activation</th>
-                <th style="text-align: center; width: 100px">Details/Edit</th>
+                <th style="text-align: center; width: 100px">Edit</th>
 
               </tr>
               </thead>
@@ -42,12 +42,6 @@
                   <input type="checkbox" class="custom-control-input" checked>{{branch.branchStatus}}
                 </td>
                 <td>
-                <div class="card gradient-1" style="margin-top: 20px; width: 100px; text-align: center">
-<!--                  routerLink="/branch/details/{{student.ID}}-->
-                  <a style="color: #fff;" routerLink="/branch/detail/{{branch.id}}" class="nav-link">Details </a>
-
-                </div>
-
                   <div class="card gradient-1" style=" width: 100px; text-align: center">
                     <!--                  routerLink="/branch/details/{{student.ID}}-->
                     <a style="color: #fff;" routerLink="/branch/edit/{{branch.id}}" class="nav-link">Edit </a>
