@@ -22,7 +22,7 @@ export class ViewTrainingProgramsComponent implements OnInit {
     this.trainingProgramService.getAll().subscribe(
       {
         next: (data: any) => {
-          data.trackResponsesList.forEach(e => {
+          data.trainingPrograms.forEach(e => {
               this.trainingPrograms.push(e);
 
             }

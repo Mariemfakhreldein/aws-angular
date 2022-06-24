@@ -31,19 +31,24 @@ export class UpdateTrainingProgramsComponent implements OnInit {
         this.getTrainingProgramById();
       }
     );
+
     this.myGroup = this.formBuilder.group({
-      trainingProgramName: [this.trainingProgram.name, [Validators.required]],
+      trainingProgramName: ['', [Validators.required]],
     });
+
   }
 
   private getTrainingProgramById() {
+    console.log(this.trainingProgramId)
     this.trainingProgramService.getById(this.trainingProgramId).subscribe(
       {
         next: (data: any) =>
         {
-          this.trainingProgram.branchId = data.branchId;
+          console.table(data);
           this.trainingProgram.id = data.id;
           this.trainingProgram.name = data.name;
+          console.log(this.trainingProgram.name)
+          this.trainingProgramName = data.name
         }
       }
     );
@@ -53,14 +58,11 @@ export class UpdateTrainingProgramsComponent implements OnInit {
   submit() {
 
     this.trainingProgram.name = this.trainingProgramName.trim();
-    // this.trainingProgram.branchId = +this.branchId;
     console.table(this.trainingProgram);
     this.trainingProgramService.update(this.trainingProgram).subscribe({
       next: (data:any) =>{
-
         this.isLoading=false;
         this.isSuccess=true;
-
       },
       error: (e) => { this.isLoading=false;this.isSuccess=false},
     });

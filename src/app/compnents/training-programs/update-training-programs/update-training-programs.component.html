@@ -17,7 +17,7 @@
                     placeholder="Enter Training Program Name.." required formControlName="trainingProgramName"
                     [class.is-valid]="!myGroup.controls['trainingProgramName'].errors && myGroup.controls['trainingProgramName'].touched"
                     [class.is-invalid]="myGroup.controls['trainingProgramName'].errors && myGroup.controls['trainingProgramName'].touched"
-                    [(ngModel)]="trainingProgramName">
+                    [(ngModel)]="trainingProgramName" >
                   <div class="text-danger  col-lg-6 align-items-end align-self-end"
                     *ngIf="myGroup.controls['trainingProgramName'].errors && myGroup.controls['trainingProgramName'].touched">
                     <small *ngIf="myGroup.controls['trainingProgramName'].hasError('required')"
@@ -30,7 +30,7 @@
 
               <div class="form-group row">
                 <div class="col-lg-8 ml-auto">
-                  <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid" (click)="submit()"
+                  <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid || myGroup.controls['trainingProgramName'].value == trainingProgram.name" (click)="submit()"
                     class="btn" data-toggle="modal" data-target="#exampleModalCenter">
                     Submit
                   </button>

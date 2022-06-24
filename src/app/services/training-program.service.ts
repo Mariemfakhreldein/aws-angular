@@ -18,7 +18,7 @@ export class TrainingProgramService {
   }
 
   update(trainingProgram: TrainingProgram){
-    return this.api.update(`/api/trainingPrograms/${trainingProgram.id}`, trainingProgram);
+    return this.api.update(`/api/trainingPrograms/${trainingProgram.id}`, {'name':trainingProgram.name});
   }
 
   getById(trainingProgramId: number){
