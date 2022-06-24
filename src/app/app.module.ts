@@ -39,6 +39,7 @@ import {
 import {
   UpdateTrainingProgramsComponent
 } from "./compnents/training-programs/update-training-programs/update-training-programs.component";
+import { UserprofileComponent } from './compnents/user/userprofile/userprofile.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import {
     UpdateTrackComponent,
     CreateTrainingProgramComponent,
     ViewTrainingProgramsComponent,
-    UpdateTrainingProgramsComponent
+    UpdateTrainingProgramsComponent,
+    UserprofileComponent
   ],
     imports: [
         BrowserModule,
