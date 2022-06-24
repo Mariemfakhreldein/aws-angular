@@ -22,8 +22,6 @@ export class ManageIntakesComponent implements OnInit {
   intakeName: any;
   intakeDescription: any;
 
-  page: number = 1;
-
   isLoading: boolean = true;
   @Output() isSuccess = false;
   currentItem: string = "Intake";

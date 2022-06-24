@@ -152,7 +152,7 @@
                 <div class="col-lg-8 ml-auto">
                   <button type="button" id="btn-submit" (click)="submitBtn()"
                           class="btn btn-primary col-lg-4 col-form-label"
-                          [disabled]="BranchFormGroup.invalid">Submit</button>
+                          [disabled]="BranchFormGroup.invalid" data-toggle="modal" data-target="#exampleModalCenter">Submit</button>
                 </div>
               </div>
             </div>
@@ -164,6 +164,19 @@
 </div>
 <!-- #/ container -->
 
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true" *ngIf="!isBranchEmpty">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div *ngIf="!isLoading">
+      <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"></app-success-popup>
+      <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem"></app-failed-popup>
+    </div>
+
+    <app-loader *ngIf="isLoading"></app-loader>
+
+  </div>
+</div>
 
 <script type="text/javascript">
   $(document).ready(function () {

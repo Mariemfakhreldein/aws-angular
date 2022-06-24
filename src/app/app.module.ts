@@ -31,6 +31,21 @@ import { ShowAllIntakesComponent } from './compnents/intakes/show-all-intakes/sh
 import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
 import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
 import { EdituserComponent } from './compnents/user/edituser/edituser.component';
+import {
+  CreateTrainingProgramComponent
+} from "./compnents/training-programs/create-training-program/create-training-program.component";
+import {
+  ViewTrainingProgramsComponent
+} from "./compnents/training-programs/view-training-programs/view-training-programs.component";
+import {
+  UpdateTrainingProgramsComponent
+} from "./compnents/training-programs/update-training-programs/update-training-programs.component";
+import { InstanceTimerPipe } from './compnents/pipes/instance-timer.pipe';
+import { UserSearchComponent } from './compnents/user/user-search/user-search.component';
+import { SearchFilterPipe } from './compnents/pipes/search/search-filter.pipe';
+import { SearchFilterByEmailPipe } from './compnents/pipes/search/search-filter-by-email.pipe';
+import { EditIntakeComponent } from './compnents/intakes/edit-intake/edit-intake.component';
+
 
 @NgModule({
   declarations: [
@@ -67,7 +82,17 @@ import { EdituserComponent } from './compnents/user/edituser/edituser.component'
     ManageTracksComponent,
     ViewTracksComponent,
     UpdateTrackComponent,
-    EdituserComponent
+    EdituserComponent,
+    UpdateTrackComponent,
+    CreateTrainingProgramComponent,
+    ViewTrainingProgramsComponent,
+    UpdateTrainingProgramsComponent,
+    UpdateTrackComponent,
+    InstanceTimerPipe,
+    UserSearchComponent,
+    SearchFilterPipe,
+    SearchFilterByEmailPipe,
+    EditIntakeComponent
   ],
     imports: [
         BrowserModule,

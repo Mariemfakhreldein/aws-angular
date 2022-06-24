@@ -20,6 +20,10 @@ export class UserService {
     return this.api.get("/api/students");
   }
 
+  getAllUserType(){
+    return this.api.get("/api/users");
+  }
+
   getStudentRoles(): UserRolesModel[]{
     this.userRoles.push(new UserRolesModel(1, "hafsa1"));
     this.userRoles.push(new UserRolesModel(2, "hafsa2"));

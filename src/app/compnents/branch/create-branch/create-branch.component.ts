@@ -18,6 +18,12 @@ export class CreateBranchComponent implements OnInit {
 
   BranchFormGroup: FormGroup = new FormGroup({});
   branch = new BranchPostModel();
+  isSuccess=false;
+  isLoading=true;
+  currentItem='branch';
+  isBranchEmpty=false;
+  action='created';
+
   constructor(private _formBuilder:FormBuilder,
               private branchService: BranchService,
   ) { }
@@ -37,12 +43,13 @@ export class CreateBranchComponent implements OnInit {
 
 
   submitBtn() {
-      let txt = JSON.stringify(this.BranchFormGroup.value);
+    this.isBranchEmpty=false;
+    let txt = JSON.stringify(this.BranchFormGroup.value);
       let templateModel = JSON.parse(txt);
 
-      alert("Done: \n" + "Name: " + templateModel.name
-        + "\naddress: " + templateModel.address
-        + "\nstatus: " + templateModel.value);
+      // alert("Done: \n" + "Name: " + templateModel.name
+      //   + "\naddress: " + templateModel.address
+      //   + "\nstatus: " + templateModel.value);
 
     this.branch.name = templateModel.name;
     this.branch.address = templateModel.address;
@@ -57,12 +64,20 @@ export class CreateBranchComponent implements OnInit {
     this.branchService.add(model).subscribe(
       (response:any)=>{
         console.log(response);
-        alert("Successfully added");
+        //alert("Successfully added");
+        this.isLoading=false;
+        this.isSuccess=true;
       },(error:any)=>{
-        console.log("fail Hello", error);
+        //console.log("fail Hello", error);
+        this.isLoading=false;
+        this.isSuccess=false;
       }
     )
   }
+
+  getIsSuccess(): boolean{
+      return this.isSuccess;
+    }
 
   // isTrainingProgramsChecked(){
   //   this.isChecked = [];

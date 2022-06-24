@@ -31,6 +31,12 @@ import  {ShowAllIntakesComponent} from "./compnents/intakes/show-all-intakes/sho
 import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
 import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
 import {EdituserComponent} from "./compnents/user/edituser/edituser.component";
+import {UserSearchComponent} from "./compnents/user/user-search/user-search.component";
+import {EditIntakeComponent} from "./compnents/intakes/edit-intake/edit-intake.component";
+
+import { ViewTrainingProgramsComponent } from './compnents/training-programs/view-training-programs/view-training-programs.component';
+import { CreateTrainingProgramComponent } from './compnents/training-programs/create-training-program/create-training-program.component';
+import { UpdateTrainingProgramsComponent } from './compnents/training-programs/update-training-programs/update-training-programs.component';
 
 const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
@@ -41,6 +47,7 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'logout', component:LogoutComponent},
   {path:'user/createStaff', component:CreatenewstaffComponent, canActivate:[AuthGuard]},
+  {path:'user/search',component:UserSearchComponent},
   {path:'users', component:UserdetailsComponent},
   {path:'branch/create', component:CreateBranchComponent},
   {path:'branches', component:ShowBranchsComponent},
@@ -54,17 +61,22 @@ const routes: Routes = [
   {path:'not-found', component:NotFoundComponent},
   {path:'not-authorized', component:NotAuthorizedComponent},
   {path:'branch/edit/:id', component:EditBranchComponent},
+  {path:'intakes/edit/:id',component:EditIntakeComponent},
   {path:'intakes/show',component:ShowAllIntakesComponent},
   {path:'intakes',component:ManageIntakesComponent},
 
   {path:'tracks/view_tracks', component: ViewTracksComponent},
   {path:'user/edit', component: EdituserComponent},
 
+  {path:'training-programs/show', component: ViewTrainingProgramsComponent},
+  {path:'training-programs/create', component: CreateTrainingProgramComponent},
+  {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent}
+
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 
 export class AppRoutingModule { }

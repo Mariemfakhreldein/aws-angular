@@ -8,6 +8,7 @@ import {TemplateService} from "../../../services/template.service";
 import {InstanceService} from "../../../services/instance.service";
 import {TrainingProgram} from "../../../models/instances/training.program.model";
 import {TrackService} from "../../../services/track.service";
+import {distinctUntilChanged} from "rxjs";
 
 @Component({
   selector: 'app-manage-tracks',
@@ -28,18 +29,34 @@ export class ManageTracksComponent implements OnInit {
   isLoading=true;
   currentItem='track';
   action='created';
+  selectedTrainingProgram: any;
+
+
 
   constructor(private formBuilder: FormBuilder,
               private templateService: TemplateService,
               private trackService: TrackService) { }
 
   ngOnInit(): void {
+
     this.myGroup=this.formBuilder.group({
       branches:["",[Validators.required]],
       trainingPrograms:["",[Validators.required]],
       intakes:["",[Validators.required]],
       trackName:["",[Validators.required]],
     });
+
+
+
+    this.myGroup.get('branches').valueChanges.subscribe((value)=>{
+      this.myGroup.get('trainingPrograms').setValue(null);
+
+    })
+    this.myGroup.get('trainingPrograms').valueChanges.subscribe((value)=>{
+      this.myGroup.get('intakes').setValue(null);
+
+    })
+
     this.getAllBranches();
 
   }
@@ -67,6 +84,11 @@ export class ManageTracksComponent implements OnInit {
 
   onChangeBranch(branchId:any) {
 
+    this.trainingPrograms = [];
+
+    this.selectedTrainingProgram=null;
+    console.log("$$$$$$$$$$$"+this.trainingPrograms.length);
+
     console.log("on change" + branchId);
 
 
@@ -81,6 +103,7 @@ export class ManageTracksComponent implements OnInit {
               this.trainingPrograms.push(e);
             }
           )
+
         },
         error: (e) => {},
         // complete: () => console.info('complete')
@@ -88,12 +111,19 @@ export class ManageTracksComponent implements OnInit {
 
 
 
+
+
+
   }
 
-  onChangeTrainingProgram(trainingProgramId: any) {
+  onChangeTrainingProgram() {
 
-    this.trackService.getIntakeByTrainingProgram(trainingProgramId).subscribe({
-        next: (data: any) => {
+
+
+    this.intakes = [];
+    this.trackService.getIntakeByTrainingProgram(this.selectedTrainingProgram).subscribe({
+
+      next: (data: any) => {
 
           data.intakeResponsesList.forEach(e => {
 
@@ -144,6 +174,9 @@ export class ManageTracksComponent implements OnInit {
   getIsSuccess(): boolean{
     return this.isSuccess;
   }
+
+
+
 
 
 }

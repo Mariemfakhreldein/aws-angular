@@ -14,6 +14,7 @@ import {BranchModel} from "../../../models/branch/branch.model";
 import {TrainingProgram} from "../../../models/instances/training.program.model";
 import {Track} from "../../../models/instances/track.model";
 import {Intake} from "../../../models/instances/intake.model";
+import {BranchService} from "../../../services/branch.service";
 
 @Component({
   selector: 'app-create-instance',
@@ -47,7 +48,8 @@ export class CreateInstanceComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private templateService: TemplateService,
-              private instanceService: InstanceService) {
+              private instanceService: InstanceService,
+              private branchService: BranchService) {
   }
 
   ngOnInit(): void {
@@ -131,13 +133,8 @@ export class CreateInstanceComponent implements OnInit {
   }
 
   changeTemplateId(event: any){
-    console.log("eeeeeeeeeeeeeeeeevvvvvvvvvvveeeeeeeeeeennnntttttttttt"+event.target.value)
     this.templateId = event.target.value;
     console.log(event.target.value);
-    // if
-    // if()
-    // this.isTemplatesEmpty=true;
-
   }
 
   getIsSuccess(): boolean{
@@ -167,7 +164,7 @@ export class CreateInstanceComponent implements OnInit {
 
   private getAllBranches() {
 
-    this.instanceService.getAllBranches().subscribe(
+    this.branchService.getAll().subscribe(
       {
         next: (data: any) => {
 
