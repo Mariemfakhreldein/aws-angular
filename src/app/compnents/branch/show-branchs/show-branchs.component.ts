@@ -11,6 +11,7 @@ import {BranchModel} from "../../../models/branch/branch.model";
 export class ShowBranchsComponent implements OnInit {
 
   branches:BranchModel[];
+  page:number=1;
 
   constructor(private route:Router,
               private branchService:BranchService) { }

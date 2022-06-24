@@ -16,7 +16,11 @@ export class EditBranchComponent implements OnInit {
   branch = new BranchModel();
   branch2 = new BranchPostModel();
   id:string;
-
+  isSuccess=false;
+  isLoading=true;
+  currentItem='branch';
+  isBranchEmpty=false;
+  action='edited';
   constructor(private _formBuilder:FormBuilder,
               private branchService: BranchService,
               private _activatedRoute: ActivatedRoute,
@@ -33,7 +37,7 @@ export class EditBranchComponent implements OnInit {
       .subscribe(
         parms => {
           this.id = parms.get('id');
-          alert(this.id)
+          // alert(this.id)
           this.getBranchDetails(this.id);
 
         }
@@ -47,12 +51,13 @@ export class EditBranchComponent implements OnInit {
 
 
   submitBtn() {
+    this.isBranchEmpty=false;
     let txt = JSON.stringify(this.BranchFormGroup.value);
     let templateModel = JSON.parse(txt);
 
-    alert("Done: \n" + "Name: " + templateModel.name
-      + "\naddress: " + templateModel.address
-      + "\nstatus: " + templateModel.value);
+    // alert("Done: \n" + "Name: " + templateModel.name
+    //   + "\naddress: " + templateModel.address
+    //   + "\nstatus: " + templateModel.value);
 
     this.branch2.name = templateModel.name;
     this.branch2.address = templateModel.address;
@@ -67,15 +72,19 @@ export class EditBranchComponent implements OnInit {
     this.branchService.update(id, model).subscribe(
       (response:any)=>{
         console.log(response);
-        alert("Successfully updated");
+        //alert("Successfully updated");
+        this.isLoading=false;
+        this.isSuccess=true;
       },(error:any)=>{
-        console.log("fail Hello", error);
+        //console.log("fail Hello", error);
+        this.isLoading=false;
+        this.isSuccess=false;
       }
     )
   }
 
   getBranchDetails(id:string){
-    alert("here" + this.id)
+    // alert("here" + this.id)
     this.branchService.getBranch(id).subscribe(
       (response:any)=>{
         console.log(response);
@@ -88,4 +97,7 @@ export class EditBranchComponent implements OnInit {
 
   }
 
+  getIsSuccess(): boolean{
+        return this.isSuccess;
+      }
 }
