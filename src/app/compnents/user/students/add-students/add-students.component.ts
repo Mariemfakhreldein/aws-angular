@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit, Output, ViewChild} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Patterns} from "../../../../patterns/patterns";
 import {BranchModel} from "../../../../models/branch/branch.model";
 import {TrainingProgram} from "../../../../models/instances/training.program.model";
@@ -9,8 +9,12 @@ import {BranchService} from "../../../../services/branch.service";
 import {IntakeService} from "../../../../services/intake.service";
 import {TrackService} from "../../../../services/track.service";
 import {UserModel} from "../../../../models/users/user.model";
-import {TokenService} from "../../../../services/token.service";
-import {AuthService} from "../../../../services/auth.service";
+import {NgxCsvParser, NgxCSVParserError} from "ngx-csv-parser";
+
+import {UserService} from "../../../../services/user.service";
+import {StudentModel} from "../../../../models/users/student.model";
+import {StudentRequestModel} from "../../../../models/users/student.request.model";
+
 
 @Component({
   selector: 'app-add-students',
@@ -24,22 +28,33 @@ export class AddStudentsComponent implements OnInit {
   intakes: Intake[] = [];
   tracks: Track[] = [];
 
-  students: UserModel[] = [];
+  students: StudentModel[] = [];
+  studentsFromFile: StudentModel[] = [];
+
   lines = []; //for headings
   linesR = []; // for rows
   trackId: number;
   page = 1;
+
+  csvRecords: any;
+  header: boolean = false;
+  isParsedWell = true;
+  errorMessage = "";
+  successMessage = "Students added successfully";
+  failedMessage = "";
+
+  @Output() isSuccess = false;
 
   addStudents = new FormGroup({});
   constructor(private formBuilder: FormBuilder,
               private branchService: BranchService,
               private intakeService: IntakeService,
               private trackService: TrackService,
-              private authService: AuthService) { }
+              private ngxCsvParser: NgxCsvParser,
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.reactiveStaffForm();
-    this.authService.getPrivileges().forEach(p=>console.log(p));
     this.getAllBranches();
   }
 
@@ -111,45 +126,80 @@ export class AddStudentsComponent implements OnInit {
     this.trackId = trackId;
   }
 
+  @ViewChild('usernameInput') usernameInput;
+  @ViewChild('emailInput') emailInput;
+
+  add() {
+    let student = new StudentModel();
+    student.username = this.addStudents.value.userName;
+    student.email = this.addStudents.value.email;
+    student.trackId = this.trackId;
+    this.usernameInput.nativeElement.value='';
+    this.emailInput.nativeElement.value='';
+    this.students.push(student);
+  }
+
   submit(){
+    this.userService.addStudents(new StudentRequestModel(this.students)).subscribe({
+      next: (response: any) => {},
+      error: (e) => {
+        if(e.status == 201){
+          this.fileImportInput.nativeElement.value='';
+          this.isSuccess = true;
+        }else if(e.status == 406){
+          this.failedMessage = "Duplicate email";
+          this.fileImportInput.nativeElement.value='';
+          this.isSuccess = false;
+        }else{
+          this.failedMessage = "ٍSomething goes wrong email";
+          this.isSuccess = false;
+        }
+        this.students = [];
+      },
+    });
   }
 
 
-  delete(studentId: number) {
-    this.students.splice(studentId);
+  delete(index: number) {
+    this.students.splice(index,1);
   }
 
-  changeListener(files: FileList){
-    console.log(files);
-    // if(files && files.target.files.length > 0) {
-    //   let file : File = files.item(0);
-    //   console.log(file.name);
-    //   console.log(file.size);
-    //   console.log(file.type);
-    //
-    //   //File reader method
-    //   let reader: FileReader = new FileReader();
-    //   reader.readAsText(file);
-    //   reader.onload = (e) => {
-    //     let csv: any = reader.result;
-    //     let allTextLines = [];
-    //     allTextLines = csv.split(/\r|\n|\r/);
-    //
-    //     let fileLength = allTextLines.length;
-    //     let rows = [];
-    //     for(let i = 1; i < fileLength; i++){
-    //       console.log(allTextLines[i].split(','));
-    //       rows.push(allTextLines[i].split(','));
-    //     }
-    //   //   for (let j = 0; j < arrl; j++) {
-    //   //
-    //   //     tarrR.push(rows[j]);
-    //   //
-    //   //   }
-    //   //   //Push rows to array variable
-    //   //   this.linesR.push(tarrR);
-    //   // }
-    //   }
-    // }
+  @ViewChild('fileImportInput') fileImportInput: any;
+
+  fileChangeListener($event: any): void {
+    const files = $event.srcElement.files;
+    this.header = (this.header as unknown as string) === 'true' || this.header === true;
+
+    this.ngxCsvParser.parse(files[0], { header: this.header, delimiter: ',' })
+      .pipe().subscribe({
+      next: (result: Array<UserModel>): void => {
+        try {
+          for (let i = 0; i < result.length; i++) {
+            let student = new StudentModel();
+            student.username = result[i][0];
+            student.email = result[i][1];
+            student.trackId = this.trackId;
+            if (student.username == undefined || student.email == undefined) {
+              throw new NgxCsvParser();
+            }
+            this.studentsFromFile.push(student);
+          }
+          this.errorMessage = "";
+          this.csvRecords = result;
+          this.studentsFromFile.forEach(s => this.students.push(s));
+          this.studentsFromFile = [];
+        }
+        catch (error : any){
+          this.studentsFromFile = [];
+          this.errorMessage = "File isn't well formatted";
+          this.fileImportInput.nativeElement.value='';
+        }},
+
+      error: (error: NgxCSVParserError): void => {
+        this.errorMessage = "File isn't well formatted";
+        this.studentsFromFile = [];
+      }
+    }
+    );
   }
 }

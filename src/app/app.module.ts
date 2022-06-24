@@ -31,6 +31,7 @@ import { ShowAllIntakesComponent } from './compnents/intakes/show-all-intakes/sh
 import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
 import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
 import { AddStudentsComponent } from './compnents/user/students/add-students/add-students.component';
+import {NgxCsvParserModule} from "ngx-csv-parser";
 
 @NgModule({
   declarations: [
@@ -75,7 +76,8 @@ import { AddStudentsComponent } from './compnents/user/students/add-students/add
         FormsModule,
         HttpClientModule,
         NgxPaginationModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgxCsvParserModule
     ],
   exports:[
 

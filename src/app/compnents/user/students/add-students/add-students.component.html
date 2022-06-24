@@ -27,7 +27,7 @@
         </div>
 
         <!--        Training programs   -->
-        <div class="form-group row" *ngIf="!addStudents.controls['branches'].errors && trainingPrograms" >
+        <div class="form-group row" *ngIf="!addStudents.controls['branches'].errors" >
           <label class="col-lg-4 col-form-label" for="trainingPrograms">Select Training Program <span class="text-danger">*</span>
           </label>
           <div class="col-lg-6">
@@ -48,7 +48,7 @@
         </div>
 
         <!--    Intakes    -->
-        <div class="form-group row" *ngIf="!addStudents.controls['trainingPrograms'].errors && intakes">
+        <div class="form-group row" *ngIf="!addStudents.controls['trainingPrograms'].errors">
           <label class="col-lg-4 col-form-label" for="intakes">Select Intake <span
             class="text-danger">*</span>
           </label>
@@ -70,7 +70,7 @@
         </div>
 
         <!--   Tracks    -->
-        <div class="form-group row" *ngIf="!addStudents.controls['intakes'].errors && tracks">
+        <div class="form-group row" *ngIf="!addStudents.controls['intakes'].errors">
           <label class="col-lg-4 col-form-label" for="intakes">Select Track <span
             class="text-danger">*</span>
           </label>
@@ -95,7 +95,7 @@
           <div class="form-group row">
             <label class="col-lg-4 col-form-label" for="intakes">Enter Username </label>
             <div class="col-lg-6">
-              <input [class.is-invalid]="addStudents.controls['userName'].errors && addStudents.controls['userName'].touched"
+              <input #usernameInput [class.is-invalid]="addStudents.controls['userName'].errors && addStudents.controls['userName'].touched"
                      [class.is-valid]="!addStudents.controls['userName'].errors"
                      formControlName="userName" type="text" class="form-control" placeholder="username">
               <div *ngIf="addStudents.controls['userName'].errors && addStudents.controls['userName'].touched">
@@ -109,7 +109,7 @@
           <div class="form-group row">
             <label class="col-lg-4 col-form-label" for="intakes">Enter Email </label>
             <div class="col-lg-6">
-              <input [class.is-invalid]="addStudents.controls['email'].errors && addStudents.controls['email'].touched"
+              <input #emailInput [class.is-invalid]="addStudents.controls['email'].errors && addStudents.controls['email'].touched"
                      [class.is-valid]="!addStudents.controls['email'].errors"
                      formControlName="email" type="text" class="form-control" placeholder="email">
               <div *ngIf="addStudents.controls['email'].errors && addStudents.controls['email'].touched">
@@ -120,9 +120,11 @@
           </div>
         </div>
 
-
-        <button type="button" [disabled]="addStudents.invalid"  class="btn btn-outline-success">Add</button>
-        <input class="form-control mb-5" type="file" class="upload" (change) = "changeListener($event.target.files)">
+        <div *ngIf="!addStudents.controls['tracks'].errors">
+          <button class="btn btn-submit" type="button" [disabled]="addStudents.invalid"  (click)="add()">Add</button>
+          <input #fileImportInput class="form-control" type="file" id="formFile" class="upload" (change) = "fileChangeListener($event)">
+        </div>
+          <small class="text-danger">{{errorMessage}}</small>
       </div>
     </div>
   </div>
@@ -142,15 +144,14 @@
                     <td>Delete</td>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let student of students | paginate:{itemsPerPage:10,currentPage:page,totalItems:tracks.length};let currentIndex=index" >
+                    <tr *ngFor="let student of students | paginate:{itemsPerPage:10,currentPage:page,totalItems:students.length};let currentIndex=index" >
                       <td> {{student.username}}</td>
                       <td> {{student.email}}</td>
                       <td> <input type="button" (click)="delete(currentIndex)" value="Delete" class="btn btn-danger"> </td>
                     </tr>
                   </tbody>
                 </table>
-
-<!--                <p class="py-5" *ngIf="tracks.length==0">there is no tracks </p>-->
+                <button type="button"   class="btn btn-submit" data-toggle="modal" data-target="#exampleModalCenter" (click)="submit()">submit</button>
               </div>
             </div>
           </div>
@@ -158,10 +159,22 @@
       </div>
     </div>
 
+
     <div  class="col-12  text-center" >
       <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
       </pagination-controls>
     </div>
   </div>
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+       aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div>
+        <app-success-popup *ngIf="isSuccess" [item]="successMessage"></app-success-popup>
+        <app-failed-popup *ngIf="!isSuccess" [item]="failedMessage"></app-failed-popup>
+      </div>
+    </div>
+  </div>
+
 </div>
 
