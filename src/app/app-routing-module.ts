@@ -15,6 +15,7 @@ import {UserdetailsComponent} from "./compnents/user/userdetails/userdetails.com
 import {CreateBranchComponent} from "./compnents/branch/create-branch/create-branch.component";
 import {ShowBranchsComponent} from "./compnents/branch/show-branchs/show-branchs.component";
 import {DetailBranchComponent} from "./compnents/branch/detail-branch/detail-branch.component";
+import {CreatenewstudentComponent} from "./compnents/user/student/createnewstudent/createnewstudent.component";
 import {EditBranchComponent} from "./compnents/branch/edit-branch/edit-branch.component";
 import { ManageTracksComponent } from './compnents/tracks/manage-tracks/manage-tracks.component';
 import {NotFoundComponent} from "./compnents/pages/not-found/not-found.component";
@@ -63,13 +64,15 @@ const routes: Routes = [
   {path:'intakes/edit/:id',component:EditIntakeComponent},
   {path:'intakes/show',component:ShowAllIntakesComponent},
   {path:'intakes',component:ManageIntakesComponent},
-
   {path:'tracks/view_tracks', component: ViewTracksComponent},
 
   {path:'training-programs/show', component: ViewTrainingProgramsComponent},
   {path:'training-programs/create', component: CreateTrainingProgramComponent},
-  {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent}
+  {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent},
 
+  {path:'branch/show', component:ShowBranchsComponent},
+  {path:'branch/detail/:id', component:DetailBranchComponent},
+  {path:'user/createStudent',component:CreatenewstudentComponent}
 ]
 
 @NgModule({

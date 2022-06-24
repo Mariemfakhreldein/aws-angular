@@ -2,6 +2,50 @@
 /*    DEMO STYLE*/
 /**!*/
 
+#nav-bar{
+  background-color: #5d1518;
+}
+
+#side-bar{
+  position: relative;
+  background-color: rgb(229, 229, 229);
+}
+
+.nav-link{
+  width: 100%;
+  font-family:"Roboto", sans-serif;
+  /*font-weight: 500;*/
+  font-size: 18px;
+}
+.nav-link:active{
+  color: #5d1518;
+}
+.imagesize{
+  max-width: 35px;
+  max-height: 40px;
+}
+.brand-title{
+  margin-left:1% ;
+  font-size: 45px;
+  color: white;
+  font-weight: 900;
+}
+#subtitle{
+  color: ghostwhite;
+  font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 /*@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";*/
 /*body {*/
 /*  font-family: 'Poppins', sans-serif;*/

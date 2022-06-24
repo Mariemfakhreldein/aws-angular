@@ -1,336 +1,144 @@
-<!--**********************************
-            Header start
-        ***********************************-->
-<div class="header">
-  <div class="header-content clearfix">
-
-    <div class="nav-control">
-      <div class="hamburger">
-        <span class="toggle-icon" href="#sideBarMenu" data-toggle="collapse" aria-expanded="false"><i class="icon-menu"></i></span>
-      </div>
-    </div>
-    <div class="header-left">
-      <div class="input-group icons">
-        <div class="input-group-prepend">
-                    <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i
-                      class="mdi mdi-magnify"></i></span>
-        </div>
-        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
-        <div class="drop-down animated flipInX d-md-none">
-          <form action="#">
-            <input type="text" class="form-control" placeholder="Search">
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="header-right">
-      <ul class="clearfix">
-        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-          <i class="mdi mdi-email-outline"></i>
-          <span class="badge badge-pill gradient-1">3</span>
-        </a>
-          <div class="drop-down animated fadeIn dropdown-menu">
-            <div class="dropdown-content-heading d-flex justify-content-between">
-              <span class="">3 New Messages</span>
-              <a href="javascript:void(0)" class="d-inline-block">
-                <span class="badge badge-pill gradient-1">3</span>
-              </a>
-            </div>
-          </div>
-        </li>
-        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
-          <i class="mdi mdi-bell-outline"></i>
-          <span class="badge badge-pill gradient-2">3</span>
-        </a>
-          <div class="drop-down animated fadeIn dropdown-menu dropdown-notfication">
-            <div class="dropdown-content-heading d-flex justify-content-between">
-              <span class="">2 New Notifications</span>
-              <a href="javascript:void(0)" class="d-inline-block">
-                <span class="badge badge-pill gradient-2">5</span>
-              </a>
-            </div>
-            <div class="dropdown-content-body">
-              <ul>
-                <li>
-                  <a href="javascript:void(0)">
-                                        <span class="mr-3 avatar-icon bg-success-lighten-2"><i
-                                          class="icon-present"></i></span>
-                    <div class="notification-content">
-                      <h6 class="notification-heading">Events near you</h6>
-                      <span class="notification-text">Within next 5 days</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)">
-                                        <span class="mr-3 avatar-icon bg-danger-lighten-2"><i
-                                          class="icon-present"></i></span>
-                    <div class="notification-content">
-                      <h6 class="notification-heading">Event Started</h6>
-                      <span class="notification-text">One hour ago</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)">
-                                        <span class="mr-3 avatar-icon bg-success-lighten-2"><i
-                                          class="icon-present"></i></span>
-                    <div class="notification-content">
-                      <h6 class="notification-heading">Event Ended Successfully</h6>
-                      <span class="notification-text">One hour ago</span>
-                    </div>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)">
-                                        <span class="mr-3 avatar-icon bg-danger-lighten-2"><i
-                                          class="icon-present"></i></span>
-                    <div class="notification-content">
-                      <h6 class="notification-heading">Events to Join</h6>
-                      <span class="notification-text">After two days</span>
-                    </div>
-                  </a>
-                </li>
-              </ul>
-
-            </div>
-          </div>
-        </li>
-        <li class="icons dropdown d-none d-md-flex">
-          <a href="javascript:void(0)" class="log-user" data-toggle="dropdown">
-            <span>English</span> <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
-          </a>
-          <div class="drop-down dropdown-language animated fadeIn  dropdown-menu">
-            <div class="dropdown-content-body">
-              <ul>
-                <li><a href="javascript:void(0)">English</a></li>
-                <li><a href="javascript:void(0)">Dutch</a></li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="icons dropdown">
-          <div class="user-img c-pointer position-relative" data-toggle="dropdown">
-            <span class="activity active"></span>
-            <img src="assets/images/user/1.png" height="40" width="40" alt="">
-          </div>
-          <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
-            <div class="dropdown-content-body">
-              <ul>
-                <li>
-                  <a href="app-profile.html"><i class="icon-user"></i>
-                    <span>Profile</span></a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)">
-                    <i class="icon-envelope-open"></i> <span>Inbox</span>
-                    <div class="badge gradient-3 badge-pill gradient-1">3</div>
-                  </a>
-                </li>
-
-                <hr class="my-2">
-                <li>
-                  <a href="page-lock.html"><i class="icon-lock"></i> <span>Lock
-                                            Screen</span></a>
-                </li>
-                <li><a [routerLink]="['/logout']"><i class="icon-key"></i> <span>Logout</span></a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div >
-<!--**********************************
-            Header end ti-comment-alt
-***********************************-->
-
-
-
-<!--**********************************
-    Nav header start
-***********************************-->
-<div class="nav-header">
-  <div class="brand-logo">
-    <a href="../../../index.html">
-      <b class="logo-abbr"><img src="assets/images/logo.png" alt=""> </b>
-      <span class="logo-compact"><img src="assets/images/logo-compact.png" alt=""></span>
-      <span class="brand-title">
-          <img src="assets/images/logo-text.png" alt="">
-      </span>
+<aside class="sidebar">
+  <div class="toggle">
+    <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+      <span></span>
     </a>
   </div>
-</div>
-<!--**********************************
-    Nav header end
-***********************************-->
+  <div class="side-inner">
 
-<div  class="nk-sidebar">
-  <div class="nk-nav-scroll">
-<!--    <ul class="list-unstyled components collapse" id="sideBarMenu">-->
-<!--      <a class="has-arrow" aria-expanded="false">-->
-<!--        <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>-->
-<!--      </a>-->
-<!--      <li>-->
-<!--        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Pages</a>-->
-<!--        <ul class="collapse list-unstyled" id="pageSubmenu">-->
-<!--          <li>-->
-<!--            <a class="nav-link" href="#">Page 1</a>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <a class="nav-link" href="#">Page 2</a>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <a class="nav-link" href="#">Page 3</a>-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--      </li>-->
-<!--      <li>-->
-<!--        <a href="#instancesList" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text has-arrow">Instances</a>-->
-<!--        <ul id="instancesList" class="collapse list-unstyled">-->
-<!--          <li>-->
-<!--            <a class="nav-link" [routerLink]="['/instances']" routerLinkActive="active">View Instance</a>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <a class="nav-link" [routerLink]="['/instances/createInstance']" routerLinkActive="active">Create Instance</a>-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--      </li>-->
-<!--      <li>-->
-<!--        <a href="#templatesList"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text has-arrow" >Template</a>-->
-<!--        <ul id="templatesList" class="collapse list-unstyled">-->
-<!--          <li>-->
-<!--            <a class="nav-link" >View Templates</a>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <a class="nav-link" [routerLink]="['/template']" routerLinkActive="active">Create Templates</a>-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--      </li>-->
-<!--      <li>-->
-<!--        <a href="#usersList"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text has-arrow">User</a>-->
-<!--        <ul id="usersList" class="collapse list-unstyled">-->
-<!--          <li>-->
-<!--            <a href="#staffList" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text has-arrow" >Staff</a>-->
-<!--            <ul id="staffList" class="collapse list-unstyled">-->
-<!--              <li>-->
-<!--                <a class="nav-link" [routerLink]="['/users']" routerLinkActive="active">View Staff</a>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <a class="nav-link" [routerLink]="['/user/createUser']" routerLinkActive="active">Add New Staff</a>-->
-<!--              </li>-->
-<!--            </ul>-->
-<!--          </li>-->
-<!--          <li>-->
-<!--            <a href="#studentList"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text has-arrow">Students</a>-->
-<!--            <ul id="studentList" class="collapse list-unstyled">-->
-<!--              <li>-->
-<!--                <a class="nav-link" [routerLink]="['/template']" routerLinkActive="active">View Students</a>-->
-<!--              </li>-->
-<!--              <li>-->
-<!--                <a class="nav-link" [routerLink]="['/user/createUser']" routerLinkActive="active">Add New Student</a>-->
-<!--              </li>-->
-<!--            </ul>-->
-<!--          </li>-->
-<!--        </ul>-->
-<!--      </li>-->
-<!--    </ul>-->
+    <div class="profile">
+      <img src="assets/images/iti-logo.png" alt="Image" >
+      <h3 class="name">Debby Williams</h3>
+      <span class="country">Manager</span>
+      <br/>
+      <a href="#"  style="color: #901b20" class="country">
+        <i class="fa fa-user"></i> Update Profile
+      </a>
+    </div>
 
-<!-- ****************************-->
-<!--    oldnav-->
-<!--&lt;!&ndash; *****************************   &ndash;&gt;-->
-    <ul id="menu">
-      <li class="nav-label">Dashboard</li>
-      <li>
-        <a class="has-arrow" aria-expanded="false">
-          <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
-        </a>
-        <ul aria-expanded="true">
-          <li ><a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home 1</a></li>
-          <li *ngIf="canStopStartViewInstances"><a class="nav-link" [routerLink]="['/instances']" routerLinkActive="active" >Instances</a></li>
-          <li *ngIf="canManageTemplates"><a class="nav-link" [routerLink]="['/template']" routerLinkActive="active" >Template</a></li>
-          <li><a class="nav-link" [routerLink]="['/branches']" routerLinkActive="active" >Branches</a></li>
-          <li><a class="nav-link" [routerLink]="['/intakes']" routerLinkActive="active" >Intakes</a></li>
-          <li><a class="nav-link" [routerLink]="['/intakes/show']" routerLinkActive="active" >Show all Intakes</a></li>
+    <div class="nav-menu">
 
-          <li>
-            <a href="#tracks" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Tracks</a>
-            <ul class="collapse list-unstyled" id="tracks">
-
-              <li>
-              <a class="nav-link" [routerLink]="['/tracks/view_tracks']" routerLinkActive="active">Tracks</a>
+      <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+        <li class="nav-item">
+          <a href="#" class="nav-link align-middle px-3 text-dark text-decoration-none">
+            <i class="fa fa-dashboard"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+          </a>
+        </li>
+        <li *ngIf="canStopStartViewInstances">
+          <a href="#submenu8" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="icon-album mr-2"></span>Instance</a>
+          <ul class="collapse nav flex-column ms-1" id="submenu8" data-bs-parent="#menu">
+            <li class="w-100">
+              <a class="px-8" > <span class="icon-plus mr-3"></span>Create Instance </a>
             </li>
-              <li>
-                <a class="nav-link" [routerLink]="['/tracks/manage_tracks']" routerLinkActive="active">Add Track</a>
-              </li>
-
-            </ul>
-          </li>
-
-          <li>
-            <a href="#trainingPrograms" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Training Programs</a>
-            <ul class="collapse list-unstyled" id="trainingPrograms">
-
-              <li>
-              <a class="nav-link" [routerLink]="['/training-programs/show']" routerLinkActive="active">Training Programs</a>
+            <li>
+              <a [routerLink]="['/instances']" routerLinkActive="active"class="px-8">
+                <span class="icon-view_array mr-3"></span>View Instance </a>
             </li>
-              <li>
-                <a class="nav-link" [routerLink]="['/training-programs/create']" routerLinkActive="active">Add Training Program</a>
-              </li>
+          </ul>
+        </li>
+        <li *ngIf="canManageTemplates">
+          <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="fa fa-terminal mr-2"></span>Template </a>
+          <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+            <li class="w-100">
+              <a href="#" class="px-8" [routerLink]="['/template']" routerLinkActive="active">
+                <span class="icon-plus mr-3"></span>Create Template </a>
+            </li>
+            <li>
+              <a href="#" class="px-8">
+                <span class="icon-view_array mr-3"></span>View Templates </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <i class="fa fa-user mr-2"></i> Users </a>
+          <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+            <li class="w-100">
+              <a href="#staffSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Staff</a>
+              <ul class="collapse list-unstyled"  id="staffSubmenu1">
+                <li class="px-2">
+                  <a [routerLink]="['/user/createStaff']" routerLinkActive="active">Add Staff</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#studentSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
+              <ul class="collapse list-unstyled" id="studentSubmenu1">
+                <li class="px-2">
+                  <a [routerLink]="['/user/createStudent']" routerLinkActive="active">Add Student</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" class="nav-link align-middle px-3 text-dark text-decoration-none" [routerLink]="['/branches']" routerLinkActive="active">
+            <i class="fa fa-building"></i> <span class="ms-1 d-none d-sm-inline">Branches</span>
+          </a>
+        </li>
+        <li>
+          <a href="#submenu7" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="icon-picture_in_picture mr-2"></span>Intakes</a>
+          <ul class="collapse nav flex-column ms-1" id="submenu7" data-bs-parent="#menu">
+            <li class="w-100">
+              <a class="px-8" [routerLink]="['/intakes']" routerLinkActive="active">
+                <span class="icon-plus mr-3"></span>Create Intake
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/intakes/show']" routerLinkActive="active" class="px-8">
+                <span class="icon-view_array mr-3"></span>Show All Intakes
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="fa fa-podcast mr-2"></span>Tracks</a>
+          <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+            <li class="w-100">
+              <a class="px-8" [routerLink]="['/tracks/manage_tracks']" routerLinkActive="active">
+                <span class="icon-plus mr-3"></span>Create Track
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/tracks/view_tracks']" routerLinkActive="active" class="px-8">
+                <span class="icon-view_array mr-3"></span>View Tracks
+              </a>
+            </li>
+          </ul>
+        </li>
 
-            </ul>
-          </li>
-      <li>
-        <a href="#userSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Users</a>
-        <ul class="collapse list-unstyled" id="userSubmenu">
-          <li>
-            <a href="#staffSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Staff</a>
-            <ul class="collapse list-unstyled" id="staffSubmenu">
-              <li>
-                <a class="nav-link" [routerLink]="['/user/createStaff']" routerLinkActive="active">Add Staff</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a lass="nav-link"  [routerLink]="['/user/search']" > Search</a>
-          </li>
-          <li>
-            <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Student</a>
-            <ul class="collapse list-unstyled" id="studentSubmenu">
-              <li *ngIf="canManageStudents">
-                <a class="nav-link" [routerLink]="['/template']" routerLinkActive="active">Add Student</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
+        <li>
+          <a href="#submenu9" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="fa fa-book mr-2"></span>Training Programs</a>
+          <ul class="collapse nav flex-column ms-1" id="submenu9" data-bs-parent="#menu">
+            <li class="w-100">
+              <a class="px-8" [routerLink]="['/training-programs/create']" routerLinkActive="active">
+                <span class="icon-plus mr-3"></span>Create Training Programs
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/training-programs/show']" routerLinkActive="active" class="px-8">
+                <span class="icon-view_array mr-3"></span>View Training Programs
+              </a>
+            </li>
+          </ul>
+        </li>
 
-        </ul>
-      </li>
-    </ul>
-<!--      </li>-->
-<!--    </ul>-->
+
+      </ul>
+
+    </div>
   </div>
-</div>
 
-
-
-
-<!--**********************************
-    Content body start
-***********************************-->
-
-
-<div class="content-body bg-light">
-
-  <div class="container-fluid">
-<!--    <h1>Hello from body</h1>-->
-    <router-outlet></router-outlet>
+</aside>
+<main>
+  <div class="site-section">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-  <!-- #/ container -->
-</div>
-<!--**********************************
-    Content body end
-***********************************-->
+</main>

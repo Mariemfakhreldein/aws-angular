@@ -45,6 +45,7 @@ import { SearchFilterPipe } from './compnents/pipes/search/search-filter.pipe';
 import { SearchFilterByEmailPipe } from './compnents/pipes/search/search-filter-by-email.pipe';
 import { EditIntakeComponent } from './compnents/intakes/edit-intake/edit-intake.component';
 
+import { CreatenewstudentComponent } from './compnents/user/student/createnewstudent/createnewstudent.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,19 @@ import { EditIntakeComponent } from './compnents/intakes/edit-intake/edit-intake
     UserSearchComponent,
     SearchFilterPipe,
     SearchFilterByEmailPipe,
-    EditIntakeComponent
+    EditIntakeComponent,
+    UpdateTrackComponent,
+    // CreateTrainingProgramComponent,
+    // ViewTrainingProgramsComponent,
+    // UpdateTrainingProgramsComponent,
+    UpdateTrackComponent,
+    // InstanceTimerPipe,
+    // UserSearchComponent,
+    // SearchFilterPipe,
+    // SearchFilterByEmailPipe,
+    // EditIntakeComponent,
+    DetailBranchComponent,
+    CreatenewstudentComponent
   ],
     imports: [
         BrowserModule,
