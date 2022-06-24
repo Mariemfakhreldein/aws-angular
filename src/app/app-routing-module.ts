@@ -30,6 +30,7 @@ import  {ShowAllIntakesComponent} from "./compnents/intakes/show-all-intakes/sho
 
 import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
 import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
+import {AddStudentsComponent} from "./compnents/user/students/add-students/add-students.component";
 
 const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
@@ -57,7 +58,7 @@ const routes: Routes = [
   {path:'intakes',component:ManageIntakesComponent},
 
   {path:'tracks/view_tracks', component: ViewTracksComponent},
-
+  {path:'user/addStudent', component:AddStudentsComponent, canActivate:[AuthGuard]},
 ]
 
 @NgModule({

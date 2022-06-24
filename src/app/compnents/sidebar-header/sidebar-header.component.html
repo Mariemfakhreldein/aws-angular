@@ -282,8 +282,8 @@
           <li>
             <a href="#studentSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Student</a>
             <ul class="collapse list-unstyled" id="studentSubmenu">
-              <li *ngIf="canManageStudents">
-                <a class="nav-link" [routerLink]="['/template']" routerLinkActive="active">Add Student</a>
+              <li>
+                <a class="nav-link" [routerLink]="['/user/addStudent']" routerLinkActive="active">Add Student</a>
               </li>
             </ul>
           </li>

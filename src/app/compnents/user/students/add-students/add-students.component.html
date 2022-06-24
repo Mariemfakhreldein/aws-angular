@@ -1,0 +1,167 @@
+<div >
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Adding New Staff Form</h4>
+      <div class="basic-form" [formGroup]="addStudents">
+
+        <!--        Branches          -->
+        <div class="form-group row">
+          <label class="col-lg-4 col-form-label" for="branches">Select Branch
+            <span class="text-danger">*</span>
+          </label>
+          <div class="col-lg-6">
+            <select class="form-control" id="branches" data-live-search="true"
+                    (ngModelChange)="onChangeBranch($event)" formControlName="branches"
+                    [class.is-valid]="!addStudents.controls['branches'].errors && addStudents.controls['branches'].touched"
+                    [class.is-invalid]="addStudents.controls['branches'].errors && addStudents.controls['branches'].touched">
+              <option  selected disabled class="text-secondary" >Please Select Branch</option>
+              <option *ngFor="let branch of branches"
+                      [value]="branch.id">{{branch.name}} </option>
+            </select>
+            <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                 *ngIf="addStudents.controls['branches'].errors && addStudents.controls['branches'].touched">
+              <small *ngIf="addStudents.controls['branches'].hasError('required')"
+                     class="form-text text-danger">required branch</small>
+            </div>
+          </div>
+        </div>
+
+        <!--        Training programs   -->
+        <div class="form-group row" *ngIf="!addStudents.controls['branches'].errors && trainingPrograms" >
+          <label class="col-lg-4 col-form-label" for="trainingPrograms">Select Training Program <span class="text-danger">*</span>
+          </label>
+          <div class="col-lg-6">
+            <select class="form-control" id="trainingPrograms" data-live-search="true"
+                    (ngModelChange)="onChangeTrainingProgram($event)" formControlName="trainingPrograms"
+                    [class.is-valid]="!addStudents.controls['trainingPrograms'].errors && addStudents.controls['trainingPrograms'].touched"
+                    [class.is-invalid]="addStudents.controls['trainingPrograms'].errors && addStudents.controls['trainingPrograms'].touched">
+              <option value="" selected disabled class="text-secondary">Please Select Training Program</option>
+              <option *ngFor="let trainingProgram of trainingPrograms"
+                      [value]="trainingProgram.id">{{trainingProgram.name}} </option>
+            </select>
+            <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                 *ngIf="addStudents.controls['trainingPrograms'].errors && addStudents.controls['trainingPrograms'].touched">
+              <small *ngIf="addStudents.controls['trainingPrograms'].hasError('required')"
+                     class="form-text text-danger">required training program</small>
+            </div>
+          </div>
+        </div>
+
+        <!--    Intakes    -->
+        <div class="form-group row" *ngIf="!addStudents.controls['trainingPrograms'].errors && intakes">
+          <label class="col-lg-4 col-form-label" for="intakes">Select Intake <span
+            class="text-danger">*</span>
+          </label>
+          <div class="col-lg-6">
+            <select class="form-control" id="intakes" data-live-search="true"
+                    (ngModelChange)="onChangeIntake($event)" formControlName="intakes"
+                    [class.is-valid]="!addStudents.controls['intakes'].errors && addStudents.controls['intakes'].touched"
+                    [class.is-invalid]="addStudents.controls['intakes'].errors && addStudents.controls['intakes'].touched">
+              <option value="" selected disabled class="text-secondary">Please Select Intake</option>
+              <option *ngFor="let intake of intakes"
+                      [value]="intake.id">{{intake.intakeName}} </option>
+            </select>
+            <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                 *ngIf="addStudents.controls['intakes'].errors && addStudents.controls['intakes'].touched">
+              <small *ngIf="addStudents.controls['intakes'].hasError('required')"
+                     class="form-text text-danger">required intake</small>
+            </div>
+          </div>
+        </div>
+
+        <!--   Tracks    -->
+        <div class="form-group row" *ngIf="!addStudents.controls['intakes'].errors && tracks">
+          <label class="col-lg-4 col-form-label" for="intakes">Select Track <span
+            class="text-danger">*</span>
+          </label>
+          <div class="col-lg-6">
+            <select class="form-control" id="tracks" data-live-search="true"
+                    (ngModelChange)="onChangeTrack($event)" formControlName="tracks"
+                    [class.is-valid]="!addStudents.controls['tracks'].errors && addStudents.controls['tracks'].touched"
+                    [class.is-invalid]="addStudents.controls['tracks'].errors && addStudents.controls['tracks'].touched">
+              <option value="" selected disabled class="text-secondary">Please Select Track</option>
+              <option *ngFor="let track of tracks"
+                      [value]="track.id">{{track.name}} </option>
+            </select>
+            <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                 *ngIf="addStudents.controls['tracks'].errors && addStudents.controls['tracks'].touched">
+              <small *ngIf="addStudents.controls['tracks'].hasError('required')"
+                     class="form-text text-danger">required track</small>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!addStudents.controls['tracks'].errors">
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label" for="intakes">Enter Username </label>
+            <div class="col-lg-6">
+              <input [class.is-invalid]="addStudents.controls['userName'].errors && addStudents.controls['userName'].touched"
+                     [class.is-valid]="!addStudents.controls['userName'].errors"
+                     formControlName="userName" type="text" class="form-control" placeholder="username">
+              <div *ngIf="addStudents.controls['userName'].errors && addStudents.controls['userName'].touched">
+                <small *ngIf="addStudents.controls['userName'].hasError('required')" class="text-danger" > required username</small>
+                <small *ngIf="addStudents.controls['userName'].hasError('minlength')" class="text-danger"> username should be at least 3 characters</small>
+                <small *ngIf="addStudents.controls['userName'].hasError('maxlength')" class="text-danger"> lastname should be at most 15 characters</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label" for="intakes">Enter Email </label>
+            <div class="col-lg-6">
+              <input [class.is-invalid]="addStudents.controls['email'].errors && addStudents.controls['email'].touched"
+                     [class.is-valid]="!addStudents.controls['email'].errors"
+                     formControlName="email" type="text" class="form-control" placeholder="email">
+              <div *ngIf="addStudents.controls['email'].errors && addStudents.controls['email'].touched">
+                <small *ngIf="addStudents.controls['email'].hasError('required')" class="text-danger" > required email</small>
+                <small *ngIf="addStudents.controls['email'].hasError('pattern')" class="text-danger"> email doesn't match the pattern</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <button type="button" [disabled]="addStudents.invalid"  class="btn btn-outline-success">Add</button>
+        <input class="form-control mb-5" type="file" class="upload" (change) = "changeListener($event.target.files)">
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid" *ngIf="students.length > 0" >
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class=" m-auto pt-3">
+              <h1 class="text-center"> Students</h1>
+              <div class="col-11 text-center m-auto">
+                <table class="table text-center mt-5">
+                  <thead>
+                    <td>Username</td>
+                    <td>Email</td>
+                    <td>Delete</td>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let student of students | paginate:{itemsPerPage:10,currentPage:page,totalItems:tracks.length};let currentIndex=index" >
+                      <td> {{student.username}}</td>
+                      <td> {{student.email}}</td>
+                      <td> <input type="button" (click)="delete(currentIndex)" value="Delete" class="btn btn-danger"> </td>
+                    </tr>
+                  </tbody>
+                </table>
+
+<!--                <p class="py-5" *ngIf="tracks.length==0">there is no tracks </p>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div  class="col-12  text-center" >
+      <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+      </pagination-controls>
+    </div>
+  </div>
+</div>
+

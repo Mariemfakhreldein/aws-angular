@@ -38,6 +38,10 @@ export class TrackService {
 
   }
 
+  getTrackByIntake(intakeId: any){
+    return this.api.get(`/api/intakes/${intakeId}/tracks`)
+  }
+
   createTrack(track: Track){
     return this.api.post("/api/tracks",track );
   }
