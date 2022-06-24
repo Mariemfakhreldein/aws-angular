@@ -169,8 +169,8 @@
      aria-labelledby="exampleModalCenterTitle" aria-hidden="true" *ngIf="!isBranchEmpty">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div *ngIf="!isLoading">
-      <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"></app-success-popup>
-      <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem"></app-failed-popup>
+      <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action" ></app-success-popup>
+      <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action" ></app-failed-popup>
     </div>
 
     <app-loader *ngIf="isLoading"></app-loader>

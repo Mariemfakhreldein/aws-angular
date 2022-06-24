@@ -55,6 +55,7 @@ export class EditBranchComponent implements OnInit {
     let txt = JSON.stringify(this.BranchFormGroup.value);
     let templateModel = JSON.parse(txt);
 
+
     // alert("Done: \n" + "Name: " + templateModel.name
     //   + "\naddress: " + templateModel.address
     //   + "\nstatus: " + templateModel.value);
