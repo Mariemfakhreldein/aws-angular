@@ -6,9 +6,9 @@
     </div>
     <div class="search col-lg-4 col-10 rounded bg-white justify-content-around mt-lg-0 mt-3">
     <i class="fa fa-search text-muted col-lg-1 col-1 "></i>
-    <input class="border-0 col-10  col-lg-11 py-2 " placeholder="Search ..." type="text" #search [ngModel]="searchValue">
+    <input class="border-0 col-10  col-lg-11 py-2 " placeholder="Search by name or email..." type="text" #search [ngModel]="searchValue">
     </div>
-    <div class="col-lg-10 mt-3 justify-content-lg-end justify-content-around text-end row">
+    <!--<div class="col-lg-10 mt-3 justify-content-lg-end justify-content-around text-end row">
    <div class="col-lg-5 col-10 row text-center">
      <div class="col-6">
        <input id="name" type="checkbox"  class="form-check-input" checked #byName>
@@ -19,7 +19,7 @@
        <label for="email" class="ml-2">By Email</label>
      </div>
    </div>
-    </div>
+    </div>-->
   </div>
 
 
@@ -33,7 +33,7 @@
     <p class="edit col-1 col-lg-1 text-info mb-0 text-muted font-weight-bold">Edit</p>
   </div>
 
-    <div *ngIf="byName.checked ">
+    <div>
       <div  *ngFor="let user of usersList | searchFilter:search.value " class="my-1">
         <button  class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
           <p  class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted" >{{user.username}}</p>
