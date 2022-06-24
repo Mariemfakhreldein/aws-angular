@@ -184,3 +184,15 @@ input[type="checkbox"]:checked:after{
   align-items: center;
   height: 400px;
 }
+
+
+#btn-submit{
+  background-color: #901B20;
+  color: whitesmoke;
+}
+
+#btn-submit:hover{
+  background-color: #5d1518;
+  color: whitesmoke;
+}
+
