@@ -27,6 +27,7 @@ export class UserSearchComponent implements OnInit {
     this.userService.getAllUserType().subscribe(
       {
         next: (data: any) => {
+          console.log("****************"+data.userResponsesList);
           data.userResponsesList.forEach(e => {
               this.usersList.push(e);
             }

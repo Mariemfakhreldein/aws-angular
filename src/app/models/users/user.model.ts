@@ -4,7 +4,7 @@ export class UserModel {
   username: string;
   email: string;
   role: string;
-  privileges: [string,string,string];
+  tracks:any;
 
   // constructor(name: string, email: string, role: string) {
   //   this.username = name;

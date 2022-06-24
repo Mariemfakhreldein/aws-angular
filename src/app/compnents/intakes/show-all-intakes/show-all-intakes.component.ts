@@ -32,8 +32,7 @@ export class ShowAllIntakesComponent implements OnInit {
     );
   }
 
-  delete(currentIndex: any) {
+  edit(currentIndex: number) {
 
   }
-
 }

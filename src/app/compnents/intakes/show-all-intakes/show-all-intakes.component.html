@@ -29,8 +29,8 @@
                     <td >{{currentIndex+1}}</td>
                     <td> {{intake.intakeName}}</td>
                     <td>{{intake.intakeDescription}}</td>
-                    <td></td>
-                    <td><input type="button"  (click)="delete(currentIndex)" value="Delete" class="btn btn-danger"></td>
+                    <td>{{intake.trainingProgram}}</td>
+                    <td><input type="button" routerLink="/intakes/edit/{{currentIndex+1}}" (click)="edit(currentIndex)" value="Edit" class="btn btn-primary"></td>
 
                   </tr>
                   </tbody>
