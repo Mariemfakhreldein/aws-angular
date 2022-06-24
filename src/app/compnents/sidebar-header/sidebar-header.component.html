@@ -251,9 +251,27 @@
           <li ><a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home 1</a></li>
           <li *ngIf="canStopStartViewInstances"><a class="nav-link" [routerLink]="['/instances']" routerLinkActive="active" >Instances</a></li>
           <li *ngIf="canManageTemplates"><a class="nav-link" [routerLink]="['/template']" routerLinkActive="active" >Template</a></li>
-          <li><a class="nav-link" [routerLink]="['/branches']" routerLinkActive="active" >Branches</a></li>
+<!--          <li><a class="nav-link" [routerLink]="['/branches']" routerLinkActive="active" >Branches</a></li>-->
+
+          <li>
+            <a href="#branches" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Branches</a>
+            <ul class="collapse list-unstyled" id="branches">
+
+              <li>
+                <a class="nav-link" [routerLink]="['/branches']" routerLinkActive="active">Branches</a>
+              </li>
+              <li>
+                <a class="nav-link" [routerLink]="['/branch/create']" routerLinkActive="active">Add Branch</a>
+              </li>
+
+            </ul>
+          </li>
+
           <li><a class="nav-link" [routerLink]="['/intakes']" routerLinkActive="active" >Intakes</a></li>
           <li><a class="nav-link" [routerLink]="['/intakes/show']" routerLinkActive="active" >Show all Intakes</a></li>
+
+
+
 
           <li>
             <a href="#tracks" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link nav-text">Tracks</a>
