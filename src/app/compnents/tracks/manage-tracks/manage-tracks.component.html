@@ -22,9 +22,10 @@
 
                           [class.is-valid]="!myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
                           [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
+
                   >
 
-                    <option  selected disabled class="text-secondary" >Please Select Branch</option>
+                    <option  selected disabled class="text-muted" value="" ><span style="color: rgba(161,161,161,0.74)">Please Select Branch</span></option>
                     <option *ngFor="let branch of branches"
                             [value]="branch.id">{{branch.name}} </option>
                   </select>
@@ -42,13 +43,14 @@
                 </label>
                 <div class="col-lg-6">
                   <select class="form-control" id="trainingPrograms" data-live-search="true"
-                          (ngModelChange)="onChangeTrainingProgram($event)" formControlName="trainingPrograms" [(ngModel)]='trainingPrograms[0].id'
-                          [class.is-valid]="trainingPrograms.length!=0 &&(!myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched)"
-                          [class.is-invalid]="(myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched)"
+                          (change)="onChangeTrainingProgram()" formControlName="trainingPrograms"
+                          [class.is-valid]="!myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched"
+                          [class.is-invalid]="myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched"
+                          [(ngModel)]="selectedTrainingProgram"
                   >
 
-<!--                    <option value]="trainingPrograms[0].id" selected disabled class="text-secondary">Please Select Branch</option>-->
-                    <option *ngFor="let trainingProgram of trainingPrograms"
+<!--                    <option value="trainingPrograms[0].id" selected disabled class="text-secondary">Please Select Branch</option>-->
+                    <option *ngFor="let trainingProgram of trainingPrograms "
                             [value]="trainingProgram.id"  >{{trainingProgram.name}} </option>
                   </select>
                   <div class="text-danger  col-lg-6 align-items-end align-self-end"
@@ -64,10 +66,11 @@
                   class="text-danger">*</span>
                 </label>
                 <div class="col-lg-6">
-                  <select class="form-control" id="intakes" data-live-search="true"  [(ngModel)]='intakes[0].id'
+                  <select class="form-control" id="intakes" data-live-search="true"
                           (ngModelChange)="onChangeIntake($event)" formControlName="intakes"
                           [class.is-valid]="!myGroup.controls['intakes'].errors && myGroup.controls['intakes'].touched"
                           [class.is-invalid]="myGroup.controls['intakes'].errors && myGroup.controls['intakes'].touched"
+
                   >
 
 <!--                    <option value="" selected disabled class="text-secondary">Please Select Intake</option>-->
