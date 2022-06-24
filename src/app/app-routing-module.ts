@@ -31,6 +31,10 @@ import  {ShowAllIntakesComponent} from "./components/intakes/show-all-intakes/sh
 import { ViewTracksComponent } from './components/tracks/view-tracks/view-tracks.component';
 import { UpdateTrackComponent } from './components/tracks/update-track/update-track.component';
 
+import { ViewTrainingProgramsComponent } from './compnents/training-programs/view-training-programs/view-training-programs.component';
+import { CreateTrainingProgramComponent } from './compnents/training-programs/create-training-program/create-training-program.component';
+import { UpdateTrainingProgramsComponent } from './compnents/training-programs/update-training-programs/update-training-programs.component';
+
 const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
   {path:'instances/createInstance',component:CreateInstanceComponent, canActivate:[AuthGuard, CreateAssignTerminateInstanceGuard] },
@@ -58,11 +62,15 @@ const routes: Routes = [
 
   {path:'tracks/view_tracks', component: ViewTracksComponent},
 
+  {path:'training-programs/show', component: ViewTrainingProgramsComponent},
+  {path:'training-programs/create', component: CreateTrainingProgramComponent},
+  {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent}
+
 ]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+exports: [RouterModule]
 })
 
 export class AppRoutingModule { }

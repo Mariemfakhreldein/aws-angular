@@ -65,7 +65,10 @@ import { UpdateTrackComponent } from './components/tracks/update-track/update-tr
     ShowAllIntakesComponent,
     ManageTracksComponent,
     ViewTracksComponent,
-    UpdateTrackComponent
+    UpdateTrackComponent,
+    CreateTrainingProgramComponent,
+    ViewTrainingProgramsComponent,
+    UpdateTrainingProgramsComponent
   ],
     imports: [
         BrowserModule,
