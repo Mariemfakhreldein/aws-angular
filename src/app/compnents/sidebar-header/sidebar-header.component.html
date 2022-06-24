@@ -11,7 +11,7 @@
       <h3 class="name">Debby Williams</h3>
       <span class="country">Manager</span>
       <br/>
-      <a href="#"  style="color: #901b20" class="country">
+      <a [routerLink]="['/user/profile']" routerLinkActive="active" style="color: #901b20" class="country">
         <i class="fa fa-user"></i> Update Profile
       </a>
     </div>
@@ -32,7 +32,7 @@
               <a class="px-8" > <span class="icon-plus mr-3"></span>Create Instance </a>
             </li>
             <li>
-              <a [routerLink]="['/instances']" routerLinkActive="active"class="px-8">
+              <a [routerLink]="['/instances']" routerLinkActive="active" class="px-8">
                 <span class="icon-view_array mr-3"></span>View Instance </a>
             </li>
           </ul>
