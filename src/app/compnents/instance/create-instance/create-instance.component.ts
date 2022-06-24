@@ -43,6 +43,7 @@ export class CreateInstanceComponent implements OnInit {
 
   selectedItemsList: any[]=[] ;
   isChecked: any[]=[];
+  selectedTrack: any;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -70,6 +71,23 @@ export class CreateInstanceComponent implements OnInit {
     this.getAllIntakes();
     this.getAllBranches();
     this.getAllTemplates();
+
+
+    this.myGroup.get('branches').valueChanges.subscribe((value)=>{
+      this.myGroup.get('trainingPrograms').setValue(null);
+
+    });
+
+    this.myGroup.get('trainingPrograms').valueChanges.subscribe((value)=>{
+      this.myGroup.get('intakes').setValue(null);
+
+    });
+
+    this.myGroup.get('intakes').valueChanges.subscribe((value)=>{
+      this.myGroup.get('tracks').setValue(null);
+
+    });
+
   }
   submitBtn(instanceName: string, keyPairName: string, timeToLiveInMinutes:number) {
 
@@ -143,6 +161,8 @@ export class CreateInstanceComponent implements OnInit {
 
   onChangeBranch(branchId:any) {
 
+    this.trainingPrograms=[];
+
     console.log("on change" + branchId);
     this.instanceService.getTrainingProgramsByBranch(branchId).subscribe(
       {
@@ -190,6 +210,8 @@ export class CreateInstanceComponent implements OnInit {
 
   onChangeIntake(intakeId: any) {
       console.log("++++"  + intakeId)
+
+    this.tracks=[];
     this.instanceService.getTrackByIntake(intakeId).subscribe(
       {
         next: (data: any) => {
@@ -206,21 +228,28 @@ export class CreateInstanceComponent implements OnInit {
     )
   }
 
-  onChangeTrack(trackId: any) {
-    this.instanceService.getStudentsByTrack(trackId).subscribe({
+  onChangeTrack(trackId:any) {
 
-      next: (data: any) => {
+    this.students=[];
+    if(trackId != undefined){
 
-        data.userResponsesList.forEach(e => {
+      this.instanceService.getStudentsByTrack(trackId).subscribe({
 
-            console.log("eeee" + e);
+        next: (data: any) => {
 
-            this.students.push(e);
-          }
-        )
-      }
+          data.userResponsesList.forEach(e => {
 
-    })
+              console.log("eeee" + e);
+
+              this.students.push(e);
+            }
+          )
+        }
+
+      });
+
+    }
+
   }
 
   private getAllIntakes() {

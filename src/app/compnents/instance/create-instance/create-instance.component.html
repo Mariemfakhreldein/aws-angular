@@ -101,7 +101,7 @@
                   </div>
                 </div>
 
-                <div class="form-group row" *ngIf="!myGroup.controls['branches'].errors" >
+                <div class="form-group row" *ngIf="!myGroup.controls['branches'].errors && trainingPrograms.length > 0" >
                   <label class="col-lg-4 col-form-label" for="trainingPrograms">Select Training Program <span class="text-danger">*</span>
                   </label>
                   <div class="col-lg-6">
@@ -109,6 +109,8 @@
                             (ngModelChange)="onChangeTrainingProgram($event)" formControlName="trainingPrograms"
                             [class.is-valid]="!myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched"
                             [class.is-invalid]="myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched"
+
+
                     >
 
                       <option value="" selected disabled class="text-secondary">Please Select Branch</option>
@@ -123,7 +125,7 @@
                   </div>
                 </div>
 
-                <div class="form-group row" *ngIf="!myGroup.controls['trainingPrograms'].errors">
+                <div class="form-group row" *ngIf="!myGroup.controls['trainingPrograms'].errors && intakes.length > 0">
                   <label class="col-lg-4 col-form-label" for="intakes">Select Intake <span
                     class="text-danger">*</span>
                   </label>
@@ -146,7 +148,7 @@
                   </div>
                 </div>
 
-                <div class="form-group row" *ngIf="!myGroup.controls['intakes'].errors">
+                <div class="form-group row" *ngIf="!myGroup.controls['intakes'].errors && tracks.length > 0" >
                   <label class="col-lg-4 col-form-label" for="tracks">Select Track <span class="text-danger">*</span>
                   </label>
                   <div class="col-lg-6">
@@ -155,6 +157,8 @@
 
                             [class.is-valid]="!myGroup.controls['tracks'].errors && myGroup.controls['tracks'].touched"
                             [class.is-invalid]="myGroup.controls['tracks'].errors && myGroup.controls['tracks'].touched"
+
+
                     >
 
                       <option value="" selected disabled class="text-secondary">Please Select Track</option>
@@ -170,7 +174,7 @@
                 </div>
 
 
-                  <div  class="form-group row" *ngIf="!myGroup.controls['tracks'].errors">
+                  <div  class="form-group row" *ngIf="!myGroup.controls['tracks'].errors ">
                     <label class="col-lg-4 col-form-label" for="val-student">Select Student<span
                       class="text-danger">*</span> </label>
                     <div class="col-lg-6">

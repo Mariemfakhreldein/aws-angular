@@ -19,14 +19,17 @@ export class UpdateTrackComponent implements OnInit {
   isLoading=true;
   currentItem='track';
   action='updated';
-
+  trackName:any=true;
   constructor(private formBuilder: FormBuilder,private _activatedRoute:ActivatedRoute,private trackService: TrackService ) { }
 
   ngOnInit(): void {
 
-  this.myGroup=this.formBuilder.group({
-      trackName:["",[Validators.required]],
+
+    this.myGroup=this.formBuilder.group({
+      trackName:[this.trackName ,[Validators.required]],
     });
+
+
 
     this._activatedRoute.paramMap
       .subscribe(
@@ -34,8 +37,12 @@ export class UpdateTrackComponent implements OnInit {
           this.id=parms.get('id');
           this.getTrack(this.id);
           console.log(this.id);
+
+
         }
       );
+
+
 
 
   }
@@ -49,12 +56,14 @@ export class UpdateTrackComponent implements OnInit {
         next: (data: any) => {
           console.log(data);
           this.track =data;
+          this.trackName=data.name;
         } });
 
 
   }
 
   updateTrack(){
+    this.track.name=this.trackName;
     this.trackService.updateTrack(this.track.id,this.track).subscribe(
       {
         next: (data: any) => {
