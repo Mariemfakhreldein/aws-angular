@@ -64,7 +64,7 @@ const routes: Routes = [
   {path:'intakes/show',component:ShowAllIntakesComponent},
   {path:'intakes',component:ManageIntakesComponent},
 
-  {path:'tracks/view_tracks', component: ViewTracksComponent}
+  {path:'tracks/view_tracks', component: ViewTracksComponent},
 
   {path:'training-programs/show', component: ViewTrainingProgramsComponent},
   {path:'training-programs/create', component: CreateTrainingProgramComponent},

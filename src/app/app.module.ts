@@ -83,7 +83,7 @@ import { EditIntakeComponent } from './compnents/intakes/edit-intake/edit-intake
     UpdateTrackComponent,
     CreateTrainingProgramComponent,
     ViewTrainingProgramsComponent,
-    UpdateTrainingProgramsComponent
+    UpdateTrainingProgramsComponent,
     UpdateTrackComponent,
     InstanceTimerPipe,
     UserSearchComponent,
