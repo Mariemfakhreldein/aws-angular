@@ -67,13 +67,15 @@ export class ManageTracksComponent implements OnInit {
 
   onChangeBranch(branchId:any) {
 
+    this.trainingPrograms = [];
+
     console.log("on change" + branchId);
 
 
     this.trackService.getTrainingProgramsByBranch(branchId).subscribe(
       {
         next: (data: any) => {
-
+          // this.trainingPrograms=[];
           data.trainingPrograms.forEach(e => {
 
               console.log( "trainingPrograms" + e);
@@ -81,6 +83,7 @@ export class ManageTracksComponent implements OnInit {
               this.trainingPrograms.push(e);
             }
           )
+
         },
         error: (e) => {},
         // complete: () => console.info('complete')
@@ -92,9 +95,13 @@ export class ManageTracksComponent implements OnInit {
 
   onChangeTrainingProgram(trainingProgramId: any) {
 
-    this.trackService.getIntakeByTrainingProgram(trainingProgramId).subscribe({
-        next: (data: any) => {
 
+
+    this.intakes = [];
+    this.trackService.getIntakeByTrainingProgram(trainingProgramId).subscribe({
+
+      next: (data: any) => {
+        // this.intakes=[];
           data.intakeResponsesList.forEach(e => {
 
               console.log( "trainingPrograms" + e);
