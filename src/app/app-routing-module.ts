@@ -1,35 +1,35 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import {HomeComponent} from "./components/home/home.component";
-import {LoginComponent} from "./components/login/login.component";
+import {HomeComponent} from "./compnents/home/home.component";
+import {LoginComponent} from "./compnents/login/login.component";
 import {AuthGuard} from "./guards/auth.guard";
 
-import { ViewInstancesComponent } from './components/instance/view-instances/view-instances.component';
-import { CreateInstanceComponent } from './components/instance/create-instance/create-instance.component';
-import { ViewInstanceDetailsComponent } from './components/instance/view-instance-details/view-instance-details.component';
-import {LogoutComponent} from "./components/logout/logout.component";
-import {CreateTemplateComponent} from "./components/template/create-template/create-template.component";
-import {CreatenewstaffComponent} from "./components/user/staff/createnewstuff/createnewstaff.component";
-import {UserdetailsComponent} from "./components/user/userdetails/userdetails.component";
-import {CreateBranchComponent} from "./components/branch/create-branch/create-branch.component";
-import {ShowBranchsComponent} from "./components/branch/show-branchs/show-branchs.component";
-import {DetailBranchComponent} from "./components/branch/detail-branch/detail-branch.component";
-import {EditBranchComponent} from "./components/branch/edit-branch/edit-branch.component";
-import { ManageTracksComponent } from './components/tracks/manage-tracks/manage-tracks.component';
-import {NotFoundComponent} from "./components/pages/not-found/not-found.component";
-import {NotAuthorizedComponent} from "./components/pages/not-authorized/not-authorized.component";
+import { ViewInstancesComponent } from './compnents/instance/view-instances/view-instances.component';
+import { CreateInstanceComponent } from './compnents/instance/create-instance/create-instance.component';
+import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance-details/view-instance-details.component';
+import {LogoutComponent} from "./compnents/logout/logout.component";
+import {CreateTemplateComponent} from "./compnents/template/create-template/create-template.component";
+import {CreatenewstaffComponent} from "./compnents/user/staff/createnewstuff/createnewstaff.component";
+import {UserdetailsComponent} from "./compnents/user/userdetails/userdetails.component";
+import {CreateBranchComponent} from "./compnents/branch/create-branch/create-branch.component";
+import {ShowBranchsComponent} from "./compnents/branch/show-branchs/show-branchs.component";
+import {DetailBranchComponent} from "./compnents/branch/detail-branch/detail-branch.component";
+import {EditBranchComponent} from "./compnents/branch/edit-branch/edit-branch.component";
+import { ManageTracksComponent } from './compnents/tracks/manage-tracks/manage-tracks.component';
+import {NotFoundComponent} from "./compnents/pages/not-found/not-found.component";
+import {NotAuthorizedComponent} from "./compnents/pages/not-authorized/not-authorized.component";
 import {
   CreateAssignTerminateInstanceGuard
 } from "./guards/authorization-guards/instances/create-assign-terminate-instance.guard";
 import {StartStopViewInstanceGuard} from "./guards/authorization-guards/instances/start.stop.view.instance.guard";
 import {ManageTemplatesGuard} from "./guards/authorization-guards/templates/manage-templates.guard";
 import {ManageBranchesGuard} from "./guards/authorization-guards/branches/manage-branches.guard";
-import { ManageIntakesComponent} from "./components/intakes/manage-intakes/manage-intakes.component"
-import  {ShowAllIntakesComponent} from "./components/intakes/show-all-intakes/show-all-intakes.component";
+import { ManageIntakesComponent} from "./compnents/intakes/manage-intakes/manage-intakes.component"
+import  {ShowAllIntakesComponent} from "./compnents/intakes/show-all-intakes/show-all-intakes.component";
 
-import { ViewTracksComponent } from './components/tracks/view-tracks/view-tracks.component';
-import { UpdateTrackComponent } from './components/tracks/update-track/update-track.component';
+import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
+import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
 
 import { ViewTrainingProgramsComponent } from './compnents/training-programs/view-training-programs/view-training-programs.component';
 import { CreateTrainingProgramComponent } from './compnents/training-programs/create-training-program/create-training-program.component';
