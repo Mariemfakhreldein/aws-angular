@@ -30,6 +30,15 @@ import { ManageIntakesComponent } from './components/intakes/manage-intakes/mana
 import { ShowAllIntakesComponent } from './components/intakes/show-all-intakes/show-all-intakes.component';
 import { ViewTracksComponent } from './components/tracks/view-tracks/view-tracks.component';
 import { UpdateTrackComponent } from './components/tracks/update-track/update-track.component';
+import {
+  CreateTrainingProgramComponent
+} from "./components/training-programs/create-training-program/create-training-program.component";
+import {
+  ViewTrainingProgramsComponent
+} from "./components/training-programs/view-training-programs/view-training-programs.component";
+import {
+  UpdateTrainingProgramsComponent
+} from "./components/training-programs/update-training-programs/update-training-programs.component";
 
 @NgModule({
   declarations: [
