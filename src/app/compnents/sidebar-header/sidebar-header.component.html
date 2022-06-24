@@ -10,6 +10,10 @@
       <img src="assets/images/iti-logo.png" alt="Image" >
       <h3 class="name">Debby Williams</h3>
       <span class="country">Manager</span>
+      <br/>
+      <a href="#"  style="color: #901b20" class="country">
+        <i class="fa fa-user"></i> Update Profile
+      </a>
     </div>
 
     <div class="nav-menu">
@@ -20,8 +24,7 @@
             <i class="fa fa-dashboard"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
           </a>
         </li>
-
-        <li>
+        <li *ngIf="canStopStartViewInstances">
           <a href="#submenu8" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <span class="icon-album mr-2"></span>Instance</a>
           <ul class="collapse nav flex-column ms-1" id="submenu8" data-bs-parent="#menu">
@@ -34,10 +37,9 @@
             </li>
           </ul>
         </li>
-
-        <li>
+        <li *ngIf="canManageTemplates">
           <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
-            <span class="icon-3d_rotation mr-2"></span>Template </a>
+            <span class="fa fa-terminal mr-2"></span>Template </a>
           <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
             <li class="w-100">
               <a href="#" class="px-8" [routerLink]="['/template']" routerLinkActive="active">
@@ -50,27 +52,83 @@
           </ul>
         </li>
         <li>
-          <a href="#submenu3" data-bs-toggle="collapse" class="nav-link align-middle text-dark text-decoration-none">
-            <i class="fa fa-user"></i> <span class="ms-1 d-none d-sm-inline">Users</span> </a>
+          <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <i class="fa fa-user mr-2"></i> Users </a>
           <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
             <li class="w-100">
-              <a href="#staffSubmenu1" data-toggle="collapse" aria-expanded="false" class="text-dark text-decoration-none dropdown-toggle nav-link nav-text">Staff</a>
+              <a href="#staffSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Staff</a>
               <ul class="collapse list-unstyled"  id="staffSubmenu1">
-                <li>
-                  <a class="nav-link text-dark text-decoration-none" [routerLink]="['/user/createStaff']" routerLinkActive="active">Add Staff</a>
+                <li class="px-2">
+                  <a [routerLink]="['/user/createStaff']" routerLinkActive="active">Add Staff</a>
                 </li>
               </ul>
             </li>
             <li>
-              <a href="#studentSubmenu1" data-toggle="collapse" aria-expanded="false" class="text-dark text-decoration-none dropdown-toggle nav-link nav-text">Student</a>
+              <a href="#studentSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
               <ul class="collapse list-unstyled" id="studentSubmenu1">
-                <li>
-                  <a class="nav-link text-dark text-decoration-none" [routerLink]="['/user/createStudent']" routerLinkActive="active">Add Student</a>
+                <li class="px-2">
+                  <a [routerLink]="['/user/createStudent']" routerLinkActive="active">Add Student</a>
                 </li>
               </ul>
             </li>
           </ul>
         </li>
+        <li>
+          <a href="#" class="nav-link align-middle px-3 text-dark text-decoration-none" [routerLink]="['/branches']" routerLinkActive="active">
+            <i class="fa fa-building"></i> <span class="ms-1 d-none d-sm-inline">Branches</span>
+          </a>
+        </li>
+        <li>
+          <a href="#submenu7" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="icon-picture_in_picture mr-2"></span>Intakes</a>
+          <ul class="collapse nav flex-column ms-1" id="submenu7" data-bs-parent="#menu">
+            <li class="w-100">
+              <a class="px-8" [routerLink]="['/intakes']" routerLinkActive="active">
+                <span class="icon-plus mr-3"></span>Create Intake
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/intakes/show']" routerLinkActive="active" class="px-8">
+                <span class="icon-view_array mr-3"></span>Show All Intakes
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="fa fa-podcast mr-2"></span>Tracks</a>
+          <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+            <li class="w-100">
+              <a class="px-8" [routerLink]="['/tracks/manage_tracks']" routerLinkActive="active">
+                <span class="icon-plus mr-3"></span>Create Track
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/tracks/view_tracks']" routerLinkActive="active" class="px-8">
+                <span class="icon-view_array mr-3"></span>View Tracks
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#submenu9" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="fa fa-book mr-2"></span>Training Programs</a>
+          <ul class="collapse nav flex-column ms-1" id="submenu9" data-bs-parent="#menu">
+            <li class="w-100">
+              <a class="px-8" [routerLink]="['/training-programs/create']" routerLinkActive="active">
+                <span class="icon-plus mr-3"></span>Create Training Programs
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/training-programs/show']" routerLinkActive="active" class="px-8">
+                <span class="icon-view_array mr-3"></span>View Training Programs
+              </a>
+            </li>
+          </ul>
+        </li>
+
+
       </ul>
 
     </div>
