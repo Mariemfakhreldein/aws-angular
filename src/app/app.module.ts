@@ -39,6 +39,12 @@ import {
 import {
   UpdateTrainingProgramsComponent
 } from "./compnents/training-programs/update-training-programs/update-training-programs.component";
+import { InstanceTimerPipe } from './compnents/pipes/instance-timer.pipe';
+import { UserSearchComponent } from './compnents/user/user-search/user-search.component';
+import { SearchFilterPipe } from './compnents/pipes/search/search-filter.pipe';
+import { SearchFilterByEmailPipe } from './compnents/pipes/search/search-filter-by-email.pipe';
+import { EditIntakeComponent } from './compnents/intakes/edit-intake/edit-intake.component';
+
 
 @NgModule({
   declarations: [
@@ -78,6 +84,12 @@ import {
     CreateTrainingProgramComponent,
     ViewTrainingProgramsComponent,
     UpdateTrainingProgramsComponent
+    UpdateTrackComponent,
+    InstanceTimerPipe,
+    UserSearchComponent,
+    SearchFilterPipe,
+    SearchFilterByEmailPipe,
+    EditIntakeComponent
   ],
     imports: [
         BrowserModule,

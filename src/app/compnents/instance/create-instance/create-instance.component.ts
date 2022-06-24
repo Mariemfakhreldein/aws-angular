@@ -133,13 +133,8 @@ export class CreateInstanceComponent implements OnInit {
   }
 
   changeTemplateId(event: any){
-    console.log("eeeeeeeeeeeeeeeeevvvvvvvvvvveeeeeeeeeeennnntttttttttt"+event.target.value)
     this.templateId = event.target.value;
     console.log(event.target.value);
-    // if
-    // if()
-    // this.isTemplatesEmpty=true;
-
   }
 
   getIsSuccess(): boolean{
