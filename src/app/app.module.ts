@@ -97,7 +97,6 @@ import { CreatenewstudentComponent } from './compnents/user/student/createnewstu
     // SearchFilterPipe,
     // SearchFilterByEmailPipe,
     // EditIntakeComponent,
-    DetailBranchComponent,
     CreatenewstudentComponent
   ],
     imports: [
