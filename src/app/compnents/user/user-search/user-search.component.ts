@@ -21,6 +21,7 @@ export class UserSearchComponent implements OnInit {
     this.getAllUsers();
   }
   //track ,role
+  page: number=1;
 
   getAllUsers() {
     this.userService.getAllUserType().subscribe(

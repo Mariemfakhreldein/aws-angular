@@ -1,12 +1,12 @@
 <div class="container bg-light">
   <div class="row mb-lg-5 mb-2 mt-2 justify-content-around">
     <div class="col-lg-4 col-12 row justify-content-around ">
-      <img class="col-lg-2 col-2" src="assets/images/user/users.png">
-      <h2 class="col-lg-10 col-10 mb-0 pt-2">All Users</h2>
+      <img class="col-lg-2 col-2 mt-1" src="assets/images/user/users.png">
+      <h2 class="col-lg-10 col-10 mb-0 pt-3">All Users</h2>
     </div>
     <div class="search col-lg-4 col-10 rounded bg-white justify-content-around mt-lg-0 mt-3">
     <i class="fa fa-search text-muted col-lg-1 col-1 "></i>
-    <input class="border-0 col-10  col-lg-11 py-2 " placeholder="Search by name or email..." type="text" #search [ngModel]="searchValue">
+    <input class="border-0 col-10  col-lg-10 py-2 " placeholder="Search by name or email..." type="text" #search [ngModel]="searchValue">
     </div>
     <!--<div class="col-lg-10 mt-3 justify-content-lg-end justify-content-around text-end row">
    <div class="col-lg-5 col-10 row text-center">
@@ -34,7 +34,8 @@
   </div>
 
     <div>
-      <div  *ngFor="let user of usersList | searchFilter:search.value " class="my-1">
+      <div  *ngFor="let user of usersList | searchFilter:search.value |
+      paginate:{itemsPerPage:8,currentPage:page,totalItems:usersList.length}" class="my-1">
         <button  class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
           <p  class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted" >{{user.username}}</p>
           <p  class="col-12 col-lg-3 m-auto align-items-lg-start" >{{user.email}}</p>
@@ -47,4 +48,14 @@
 
 
 </div>
+
+  <div  class="col-12  text-center" *ngIf="usersList.length>7">
+
+    <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+
+    </pagination-controls>
+
+  </div>
 </div>
+
+
