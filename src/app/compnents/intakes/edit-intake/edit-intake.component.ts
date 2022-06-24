@@ -19,6 +19,7 @@ export class EditIntakeComponent implements OnInit {
   @Output() isSuccess = false;
   currentItem: string = "Intake";
 
+
   intake=new IntakeModel();
 
 
@@ -48,6 +49,10 @@ export class EditIntakeComponent implements OnInit {
         }
       );
 
+    this.intakeName=this.intake.intakeName;
+    this.intakeDescription=this.intake.intakeDescription;
+    this.trainingPrograms=this.intake.trainingProgram;
+
     this.myGroup = this.formBuilder.group({
       trainingPrograms: [this.intake.trainingProgram],
       intakeName: [this.intake.intakeName, [Validators.required]],
@@ -57,12 +62,14 @@ export class EditIntakeComponent implements OnInit {
 
 
   submitBtn() {
-    this.intakePut.id=this.id;
-    this.intakePut.intakeName = this.intakeName;
-    this.intakePut.intakeDescription = this.intakeDescription;
-    this.intakePut.trainingProgramId=1;
-    this.updateIntake(this.intakePut);
-  }
+
+      this.intakePut.id = this.id;
+      this.intakePut.intakeName = this.intakeName;
+      this.intakePut.intakeDescription = this.intakeDescription;
+      this.intakePut.trainingProgramId = 1;
+      this.updateIntake(this.intakePut);
+    }
+
 
   updateIntake(model: IntakePutModel) {
     this.intakeService.updateIntake(model).subscribe(
