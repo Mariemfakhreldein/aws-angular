@@ -42,7 +42,7 @@ export class CreateRoleComponent implements OnInit {
   }
 
   showAllPrivileges() {
-    this.privilegeService.getAllPrivileges().subscribe(
+    this.privilegeService.getAll().subscribe(
       {
         next: (data: any) => {
           data.privileges.forEach(e => {

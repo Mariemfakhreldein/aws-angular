@@ -8,9 +8,7 @@ export class PrivilegesService {
 
   constructor(private api: ApiService) { }
 
-  getAllPrivileges(){
+  getAll(){
     return this.api.get("/api/privileges");
   }
-
-
 }
