@@ -9,30 +9,31 @@
 
 
 
-
             <div class=" m-auto pt-3">
               <h1 class="text-center"> All Instance Logs</h1>
               <div class="col-11 text-center m-auto">
                 <table class="table text-center mt-5">
                   <thead>
-                  <td>id</td>
-                  <!-- <td>Name</td>
-                  <td>Description</td>
-                  <td>Training Program</td>
-                  <td>Action</td> -->
+                    <td>id</td>
+                    <td>Instance Name</td>
+                    <td>Action</td>
+                    <td>Action Maker Name</td>
+                    <td>Date Time</td>
                   </thead>
 
                   <tbody>
-                  <tr *ngFor="let intake of allInsatanceLogs |
-      paginate:{itemsPerPage:3,currentPage:page,totalItems:allInsatanceLogs.length};let currentIndex=index" >
+                    <tr *ngFor="let instanceLog of allInsatanceLogs |
+      paginate:{itemsPerPage:3,currentPage:page,totalItems:allInsatanceLogs.length};let currentIndex=index">
 
-                    <td >{{currentIndex+1}}</td>
-                    <!-- <td> {{intake.intakeName}}</td>
-                    <td>{{intake.intakeDescription}}</td>
+                      <td>{{currentIndex+1}}</td>
+                      <td> {{instanceLog.instance.name}}</td>
+                      <td> {{instanceLog.action}}</td>
+                      <td> {{instanceLog.actionMaker.username}}</td>
+                      <td> {{instanceLog.dateTime}}</td>
                     <td></td>
-                    <td><input type="button"  (click)="delete(currentIndex)" value="Delete" class="btn btn-danger"></td> -->
+                    <!-- <td><input type="button"  (click)="delete(currentIndex)" value="Delete" class="btn btn-danger"></td> -->
 
-                  </tr>
+                    </tr>
                   </tbody>
                 </table>
 
@@ -41,20 +42,14 @@
             </div>
 
 
-
-
-
-
-
-
           </div>
         </div>
       </div>
     </div>
 
-    <div  class="col-12  text-center" >
+    <div class="col-12  text-center">
 
-      <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+      <pagination-controls (pageChange)="page=$event" style="bottom: 100px;left: 50vw">
 
       </pagination-controls>
 
