@@ -85,7 +85,7 @@ export class ManageIntakesComponent implements OnInit {
   }
 
   CreateIntake(model: IntakePostModel) {
-    this.intakeService.createIntake(model).subscribe(
+    this.intakeService.create(model).subscribe(
       (response: any) => {
         this.isLoading = false;
         this.isSuccess = true;

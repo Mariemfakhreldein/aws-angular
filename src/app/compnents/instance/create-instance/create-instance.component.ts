@@ -259,7 +259,7 @@ export class CreateInstanceComponent implements OnInit {
   }
 
   private getAllIntakes() {
-     this.intakeService.getAllIntakes().subscribe({
+     this.intakeService.getAll().subscribe({
        next: (data: any) => {
 
          data.intakeResponsesList.forEach(e => {

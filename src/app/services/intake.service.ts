@@ -14,27 +14,24 @@ export class IntakeService {
   constructor(private api: ApiService) { }
 
 
-  getAllIntakes(){
+  getAll(){
     return this.api.get("/api/intakes")
   }
 
-  createIntake(intakeModel: IntakePostModel){
+  create(intakeModel: IntakePostModel){
     return this.api.post("/api/intakes", intakeModel );
   }
 
-
-
-  getIntakeById(intakeId:any){
+  getById(intakeId:any){
     return this.api.get(`/api/intakes/${intakeId}`)
   }
 
-  updateIntake(intakeModel: IntakePutModel){
+  update(intakeModel: IntakePutModel){
     return this.api.update(`/api/intakes/${intakeModel.id}`,intakeModel);
   }
 
   getIntakeByTrainingProgram(trainingProgramId:any) {
     return this.api.get(`/api/trainingPrograms/${trainingProgramId}/intakes`)
-
   }
 
 }
