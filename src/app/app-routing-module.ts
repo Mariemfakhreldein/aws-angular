@@ -34,6 +34,7 @@ import { UpdateTrackComponent } from './compnents/tracks/update-track/update-tra
 import { ViewTrainingProgramsComponent } from './compnents/training-programs/view-training-programs/view-training-programs.component';
 import { CreateTrainingProgramComponent } from './compnents/training-programs/create-training-program/create-training-program.component';
 import { UpdateTrainingProgramsComponent } from './compnents/training-programs/update-training-programs/update-training-programs.component';
+import { ViewInstancesLogsComponent } from './compnents/instance-logs/view-instances-logs/view-instances-logs.component';
 
 const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
@@ -64,7 +65,9 @@ const routes: Routes = [
 
   {path:'training-programs/show', component: ViewTrainingProgramsComponent},
   {path:'training-programs/create', component: CreateTrainingProgramComponent},
-  {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent}
+  {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent},
+
+  {path:'instances-logs/view', component: ViewInstancesLogsComponent}
 
 ]
 
