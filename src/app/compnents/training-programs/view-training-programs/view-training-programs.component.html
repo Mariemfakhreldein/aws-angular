@@ -1,59 +1,46 @@
 <div>
-
-
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-
-            <div class=" m-auto pt-3">
-              <h1 class="text-center"> All Training Programs</h1>
-              <div class="col-11 text-center m-auto">
-                <table class="table text-center mt-5">
-                  <thead>
-                    <td>id</td>
-                    <td>Name</td>
-
-                     <td>Update</td>
-                  </thead>
-
-                  <tbody>
-                    <tr *ngFor="let trainingProgram of trainingPrograms |
-      paginate:{itemsPerPage:10,currentPage:page,totalItems:trainingPrograms.length};let currentIndex=index">
-
-                      <td>{{currentIndex+1}}</td>
-                      <td> {{trainingProgram.name}}</td>
-
-
-                       <td>
-                      <a  routerLink="/training-programs/edit/{{trainingProgram.id}}" class="text-decoration-none">
-                      <input type="button"   value="Update" class="btn btn-danger">
-                      </a>
-                    </td>
-
-                    </tr>
-                  </tbody>
-                </table>
-
-                <p class="py-5" *ngIf="trainingPrograms.length==0">there is no Training Programs </p>
-              </div>
-            </div>
-
-
-
-          </div>
-        </div>
+  <div class="container bg-light">
+    <div class="row mb-lg-5 mb-2 mt-2 justify-content-around">
+      <div class="col-lg-4 col-12 row justify-content-around ">
+        <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/showPrograms.png">
+        <h2 class="col-lg-10 col-10 mb-0 pt-3">All Training Programs</h2>
+      </div>
+      <div class="search col-lg-4 col-10 rounded bg-white justify-content-around mt-lg-0 mt-3">
+        <i class="fa fa-search text-muted col-lg-1 col-1 "></i>
+        <input class="border-0 col-10  col-lg-10 py-2 " placeholder="Search by name ..." type="text" #search [ngModel]="searchValue">
       </div>
     </div>
 
-    <div class="col-12  text-center">
 
-      <pagination-controls (pageChange)="page=$event" style="bottom: 100px;left: 50vw">
+
+    <div class="row">
+      <div  class="row  border-0 justify-content-lg-start justify-content-around my-2 rounded bg-transparent p-1 py-3 col-lg-10 mx-lg-auto text-center">
+        <p  class="col-6  m-lg-auto align-items-lg-start text-muted font-weight-bold text-lg-center text-start " >Name</p>
+        <p class="edit col-6 text-info mb-0 text-muted font-weight-bold">Edit</p>
+      </div>
+
+      <div  *ngIf="trainingPrograms.length>0" >
+        <div *ngFor="let trainingProgram of trainingPrograms | trainingProgramSearchByName:search.value |
+      paginate:{itemsPerPage:8,currentPage:page,totalItems:trainingPrograms.length};let currentIndex=index" class="my-1">
+          <button routerLink="/training-programs/edit/{{trainingProgram.id}}"  class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+            <p  class="col-6  m-auto align-items-lg-start font-weight-bold text-muted" >{{(trainingProgram.name.length>20)? (trainingProgram.name | slice:0:15)+'..':(trainingProgram.name)}}</p>
+            <p routerLink="/training-programs/edit/{{trainingProgram.id}}" class="edit col-6 text-info mb-0"><i class="fa fa-edit" style="--bs-table-hover-bg: #red"></i></p>
+          </button>
+        </div>
+      </div>
+      <p class="py-5 text-muted text-center font-weight-bold" *ngIf="trainingPrograms.length==0">there no tracks yet</p>
+
+
+
+    </div>
+
+    <div  class="col-12 mt-3 text-center" *ngIf="trainingPrograms.length>7">
+
+      <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
 
       </pagination-controls>
 
     </div>
   </div>
-
 </div>
+
