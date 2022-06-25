@@ -1,5 +1,4 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {IntakeModel} from "../../../../models/intake/intake.model";
 import {TrainingProgram} from "../../../../models/instances/training.program.model";
 
 @Pipe({
