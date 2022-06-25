@@ -21,7 +21,7 @@
 
       <div  *ngIf="tracks.length>0" >
         <div *ngFor="let track of tracks |trackSearchByName:search.value|
-      paginate:{itemsPerPage:6,currentPage:page,totalItems:tracks.length};let currentIndex=index" class="my-1">
+      paginate:{itemsPerPage:8,currentPage:page,totalItems:tracks.length};let currentIndex=index" class="my-1">
           <button routerLink="/tracks/update_track/{{track.id}}"  class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
             <p  class="col-6  m-auto align-items-lg-start font-weight-bold text-muted" >{{(track.name.length>20)? (track.name | slice:0:15)+'..':(track.name)}}</p>
             <p routerLink="/tracks/update_track/{{track.id}}" class="edit col-6 text-info mb-0"><i class="fa fa-edit" style="--bs-table-hover-bg: #red"></i></p>
@@ -34,7 +34,7 @@
 
     </div>
 
-    <div  class="col-12 mt-3 text-center" *ngIf="tracks.length>6">
+    <div  class="col-12 mt-3 text-center" *ngIf="tracks.length>7">
 
       <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
 
@@ -42,6 +42,8 @@
 
     </div>
   </div>
+</div>
+
 
 
 
