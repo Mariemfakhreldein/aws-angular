@@ -14,12 +14,12 @@ export class UserdetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.userList.push(
-      new UserModel("mariam", "mariam@gmail.com", "training manager"),
-      new UserModel("khattab", "khattab@gmail.com", "track supervisor"),
-      new UserModel("hafsa", "hafsa@gmail.com", "training manager"),
-      new UserModel("hend", "hend@gmail.com", "instructor"),
-      new UserModel("sally", "sally@gmail.com", "instructor"),
-      new UserModel("salma", "salma@gmail.com", "student"),
+      // new UserModel("mariam", "mariam@gmail.com", "training manager"),
+      // new UserModel("khattab", "khattab@gmail.com", "track supervisor"),
+      // new UserModel("hafsa", "hafsa@gmail.com", "training manager"),
+      // new UserModel("hend", "hend@gmail.com", "instructor"),
+      // new UserModel("sally", "sally@gmail.com", "instructor"),
+      // new UserModel("salma", "salma@gmail.com", "student"),
     )
 
   }

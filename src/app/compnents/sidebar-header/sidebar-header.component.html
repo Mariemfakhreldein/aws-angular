@@ -67,17 +67,31 @@
               <a href="#studentSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
               <ul class="collapse list-unstyled" id="studentSubmenu1">
                 <li class="px-2">
-                  <a [routerLink]="['/user/createStudent']" routerLinkActive="active">Add Student</a>
+                  <a [routerLink]="['/user/addStudent']" routerLinkActive="active">Add Student</a>
                 </li>
               </ul>
             </li>
           </ul>
         </li>
+
         <li>
-          <a href="#" class="nav-link align-middle px-3 text-dark text-decoration-none" [routerLink]="['/branches']" routerLinkActive="active">
-            <i class="fa fa-building"></i> <span class="ms-1 d-none d-sm-inline">Branches</span>
-          </a>
+          <a href="#submenu6" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="icon-picture_in_picture mr-2"></span>Branches</a>
+          <ul class="collapse nav flex-column ms-1" id="submenu6" data-bs-parent="#menu">
+            <li class="w-100">
+              <a class="px-8" [routerLink]="['/branch/create']" routerLinkActive="active">
+                <span class="icon-plus mr-3"></span>Create Branch
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/branch/show']" routerLinkActive="active" class="px-8">
+                <span class="icon-view_array mr-3"></span>Show All Branches
+              </a>
+            </li>
+          </ul>
         </li>
+
+
         <li>
           <a href="#submenu7" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <span class="icon-picture_in_picture mr-2"></span>Intakes</a>
@@ -94,6 +108,7 @@
             </li>
           </ul>
         </li>
+
         <li>
           <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <span class="fa fa-podcast mr-2"></span>Tracks</a>
@@ -110,7 +125,6 @@
             </li>
           </ul>
         </li>
-
         <li>
           <a href="#submenu9" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <span class="fa fa-book mr-2"></span>Training Programs</a>
@@ -127,10 +141,7 @@
             </li>
           </ul>
         </li>
-
-
       </ul>
-
     </div>
   </div>
 
