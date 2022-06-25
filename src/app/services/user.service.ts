@@ -46,4 +46,8 @@ export class UserService {
     this.userTracks.push(new UserTracksModel(5, "hafsa5"));
     return this.userTracks;
   }
+
+  getStudentsByTrack(trackId) {
+    return this.api.get(`/api/tracks/${trackId}/students`)
+  }
 }

@@ -15,6 +15,9 @@ import {TrainingProgram} from "../../../models/instances/training.program.model"
 import {Track} from "../../../models/instances/track.model";
 import {Intake} from "../../../models/instances/intake.model";
 import {BranchService} from "../../../services/branch.service";
+import {TrainingProgramService} from "../../../services/training-program.service";
+import {TrackService} from "../../../services/track.service";
+import {IntakeService} from "../../../services/intake.service";
 
 @Component({
   selector: 'app-create-instance',
@@ -50,7 +53,10 @@ export class CreateInstanceComponent implements OnInit {
               private userService: UserService,
               private templateService: TemplateService,
               private instanceService: InstanceService,
-              private branchService: BranchService) {
+              private branchService: BranchService,
+              private trainingProgramService: TrainingProgramService,
+              private trackService: TrackService,
+              private intakeService: IntakeService) {
   }
 
   ngOnInit(): void {
@@ -164,7 +170,7 @@ export class CreateInstanceComponent implements OnInit {
     this.trainingPrograms=[];
 
     console.log("on change" + branchId);
-    this.instanceService.getTrainingProgramsByBranch(branchId).subscribe(
+    this.trainingProgramService.getTrainingProgramsByBranch(branchId).subscribe(
       {
         next: (data: any) => {
 
@@ -212,7 +218,7 @@ export class CreateInstanceComponent implements OnInit {
       console.log("++++"  + intakeId)
 
     this.tracks=[];
-    this.instanceService.getTrackByIntake(intakeId).subscribe(
+    this.trackService.getTrackByIntake(intakeId).subscribe(
       {
         next: (data: any) => {
           data.trackResponsesList.forEach(e => {
@@ -233,7 +239,7 @@ export class CreateInstanceComponent implements OnInit {
     this.students=[];
     if(trackId != undefined){
 
-      this.instanceService.getStudentsByTrack(trackId).subscribe({
+      this.userService.getStudentsByTrack(trackId).subscribe({
 
         next: (data: any) => {
 
@@ -253,7 +259,7 @@ export class CreateInstanceComponent implements OnInit {
   }
 
   private getAllIntakes() {
-     this.instanceService.getIntakes().subscribe({
+     this.intakeService.getAllIntakes().subscribe({
        next: (data: any) => {
 
          data.intakeResponsesList.forEach(e => {

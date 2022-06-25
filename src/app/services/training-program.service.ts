@@ -25,4 +25,8 @@ export class TrainingProgramService {
     return this.api.get(`/api/trainingPrograms/${trainingProgramId}`);
   }
 
+  getTrainingProgramsByBranch(branchId: any) {
+    return this.api.get(`/api/branches/${branchId}/trainingPrograms`)
+  }
+
 }
