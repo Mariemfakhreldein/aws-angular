@@ -2,58 +2,44 @@
 
 
   <div class="container-fluid" *ngIf="allInsatanceLogs.length>0">
-    <div class="row justify-content-center">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
 
 
+    <div class="row">
+      <div
+        class="row  border-0 justify-content-center my-2 rounded bg-transparent p-1 py-3 col-lg-10 mx-lg-auto text-center">
+        <p class="col-2 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold">id</p>
+        <p class="col-1 col-lg-3 m-auto align-items-lg-start text-muted font-weight-bold">Instance Name</p>
+        <p class="col-1 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold">Action</p>
+        <p class="col-2 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold ">Action Maker Name</p>
+        <p class="col-2 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold ">Date Time</p>
+      </div>
 
-            <div class=" m-auto pt-3">
-              <h1 class="text-center"> All Instance Logs</h1>
-              <div class="col-11 text-center m-auto">
-                <table class="table text-center mt-5">
-                  <thead>
-                    <td>id</td>
-                    <td>Instance Name</td>
-                    <td>Action</td>
-                    <td>Action Maker Name</td>
-                    <td>Date Time</td>
-                  </thead>
-
-                  <tbody>
-                    <tr *ngFor="let instanceLog of allInsatanceLogs |
-      paginate:{itemsPerPage:3,currentPage:page,totalItems:allInsatanceLogs.length};let currentIndex=index">
-
-                      <td>{{currentIndex+1}}</td>
-                      <td> {{instanceLog.instance.name}}</td>
-                      <td> {{instanceLog.action}}</td>
-                      <td> {{instanceLog.actionMaker.username}}</td>
-                      <td> {{instanceLog.dateTime}}</td>
-                    <td></td>
-                    <!-- <td><input type="button"  (click)="delete(currentIndex)" value="Delete" class="btn btn-danger"></td> -->
-
-                    </tr>
-                  </tbody>
-                </table>
-
-                <p class="py-5" *ngIf="allInsatanceLogs.length==0">there no instance logs</p>
-              </div>
-            </div>
-
-
-          </div>
+      <div>
+        <div *ngFor="let instanceLog of allInsatanceLogs |
+        paginate:{itemsPerPage:3,currentPage:page,totalItems:allInsatanceLogs.length};let currentIndex=index" class="my-1">
+          <button
+            class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+            <p class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted">{{currentIndex+1}}</p>
+            <p class="col-12 col-lg-3 m-auto align-items-lg-start">{{instanceLog.instance.name}}</p>
+            <p class="col-12 col-lg-2 m-auto align-items-lg-start">{{instanceLog.action}}</p>
+            <p class="col-11 col-lg-2 m-auto align-items-lg-start">{{instanceLog.actionMaker.username}}</p>
+            <p class="col-11 col-lg-2 m-auto align-items-lg-start">{{instanceLog.dateTime}}</p>
+          </button>
         </div>
       </div>
+
+
     </div>
 
-    <div class="col-12  text-center">
+    <div class="col-12 mt-3 text-center">
 
       <pagination-controls (pageChange)="page=$event" style="bottom: 100px;left: 50vw">
 
       </pagination-controls>
 
     </div>
+
   </div>
 
 </div>
+
