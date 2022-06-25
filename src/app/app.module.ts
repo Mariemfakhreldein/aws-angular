@@ -49,6 +49,7 @@ import { CreatenewstudentComponent } from './compnents/user/student/createnewstu
 import { UserprofileComponent } from './compnents/user/userprofile/userprofile.component';
 import { AddStudentsComponent } from './compnents/user/students/add-students/add-students.component';
 import {NgxCsvParserModule} from "ngx-csv-parser";
+import { ViewInstancesLogsComponent } from './compnents/instance-logs/view-instances-logs/view-instances-logs.component';
 
 @NgModule({
   declarations: [
@@ -106,7 +107,9 @@ import {NgxCsvParserModule} from "ngx-csv-parser";
     CreatenewstudentComponent,
     UserprofileComponent,
     UpdateTrackComponent,
-    AddStudentsComponent
+    AddStudentsComponent,
+    UpdateTrainingProgramsComponent,
+    ViewInstancesLogsComponent
   ],
     imports: [
         BrowserModule,
