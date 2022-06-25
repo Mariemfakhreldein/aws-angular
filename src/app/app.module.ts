@@ -48,6 +48,7 @@ import { CreatenewstudentComponent } from './compnents/user/student/createnewstu
 import { UserprofileComponent } from './compnents/user/userprofile/userprofile.component';
 import { CreateRoleComponent } from './compnents/roles/create-role/create-role.component';
 import { ShowAllRolesComponent } from './compnents/roles/show-all-roles/show-all-roles.component';
+import { RoleSearchByNamePipe } from './compnents/pipes/search/roles/role-search-by-name.pipe';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { ShowAllRolesComponent } from './compnents/roles/show-all-roles/show-all
     CreatenewstudentComponent,
     UserprofileComponent,
     CreateRoleComponent,
-    ShowAllRolesComponent
+    ShowAllRolesComponent,
+    RoleSearchByNamePipe
   ],
     imports: [
         BrowserModule,

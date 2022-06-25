@@ -1,0 +1,41 @@
+<div class="container bg-light">
+  <div class="row mb-lg-5 mb-2 mt-2 justify-content-around">
+    <div class="col-lg-4 col-12 row justify-content-around ">
+      <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/showallroles.png">
+      <h2 class="col-lg-10 col-10 mb-0 pt-3">All Roles</h2>
+    </div>
+    <div class="search col-lg-4 col-10 rounded bg-white justify-content-around mt-lg-0 mt-3">
+      <i class="fa fa-search text-muted col-lg-1 col-1 "></i>
+      <input class="border-0 col-10  col-lg-10 py-2 " placeholder="Search by name ..." type="text" #search [ngModel]="searchValue">
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div  class="row  border-0 justify-content-center my-2 rounded bg-transparent p-1 py-3 col-lg-10 mx-lg-auto text-center">
+      <p  class="col-4 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold" >Role Name</p>
+      <p  class="col-4 col-lg-9 m-auto align-items-lg-start text-muted font-weight-bold text-start" >Privileges</p>
+    </div>
+
+    <div>
+      <div  *ngFor="let role of allRoles | roleSearchByName:search.value |
+      paginate:{itemsPerPage:8,currentPage:page,totalItems:allRoles.length}" class="my-1">
+        <button style="white-space: pre-wrap; " (click)="showText()"  class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+          <p  class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted text-center " >{{(role.name.length>20)? (role.name | slice:0:20)+'..':(role.name)}}</p>
+          <p [ngClass]="{'limitTextHeight': isReadMore}" style="white-space: break-spaces ;overflow: hidden" class=" col-12 col-lg-9 m-auto text-start align-items-lg-start w-75" >{{ (role.privileges.toString().split(',').join('   ') )}}</p>
+        </button>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div  class="col-12 mt-5 text-center" *ngIf="allRoles.length>7">
+
+    <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+
+    </pagination-controls>
+
+  </div>
+</div>
