@@ -37,6 +37,7 @@ import { ViewTrainingProgramsComponent } from './compnents/training-programs/vie
 import { CreateTrainingProgramComponent } from './compnents/training-programs/create-training-program/create-training-program.component';
 import { UpdateTrainingProgramsComponent } from './compnents/training-programs/update-training-programs/update-training-programs.component';
 import {AddStudentsComponent} from "./compnents/user/students/add-students/add-students.component";
+import {UserprofileComponent} from "./compnents/user/userprofile/userprofile.component";
 
 const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
@@ -69,6 +70,9 @@ const routes: Routes = [
   {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent},
 
   {path:'branch/show', component:ShowBranchsComponent},
+  {path:'user/createStudent',component:CreatenewstudentComponent},
+  {path:'user/profile',component:UserprofileComponent},
+
   // {path:'user/createStudent',component:CreatenewstudentComponent},
   {path:'user/addStudent', component:AddStudentsComponent, canActivate:[AuthGuard]},
 ]
