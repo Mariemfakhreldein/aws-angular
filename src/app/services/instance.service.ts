@@ -13,7 +13,7 @@ export class InstanceService {
     return this.api.post("/api/instances", instanceCreateModel );
   }
 
-  getAllInstances(){
+  getAll(){
      return this.api.get("/api/instances");
   }
 
@@ -25,7 +25,7 @@ export class InstanceService {
     return this.api.post(`/api/instances/stop/${id}`,null);
   }
 
-  getInstanceById(id:any){
+  getById(id:any){
     return this.api.get(`/api/instances/${id}`);
   }
 
