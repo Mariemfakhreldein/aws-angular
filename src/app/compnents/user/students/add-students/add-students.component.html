@@ -27,7 +27,7 @@
         </div>
 
         <!--        Training programs   -->
-        <div class="form-group row" *ngIf="!addStudents.controls['branches'].errors" >
+        <div class="form-group row" *ngIf="!addStudents.controls['branches'].errors && trainingPrograms.length > 0" >
           <label class="col-lg-4 col-form-label" for="trainingPrograms">Select Training Program <span class="text-danger">*</span>
           </label>
           <div class="col-lg-6">
@@ -48,7 +48,7 @@
         </div>
 
         <!--    Intakes    -->
-        <div class="form-group row" *ngIf="!addStudents.controls['trainingPrograms'].errors">
+        <div class="form-group row" *ngIf="!addStudents.controls['trainingPrograms'].errors &&intakes.length>0">
           <label class="col-lg-4 col-form-label" for="intakes">Select Intake <span
             class="text-danger">*</span>
           </label>
@@ -70,7 +70,7 @@
         </div>
 
         <!--   Tracks    -->
-        <div class="form-group row" *ngIf="!addStudents.controls['intakes'].errors">
+        <div class="form-group row" *ngIf="!addStudents.controls['intakes'].errors && tracks.length>0">
           <label class="col-lg-4 col-form-label" for="intakes">Select Track <span
             class="text-danger">*</span>
           </label>
