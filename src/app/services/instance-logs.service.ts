@@ -8,7 +8,10 @@ export class InstanceLogsService {
 
   constructor(private api: ApiService) { }
 
-  getAllInstancesLogs(pageNo:number, pageSize:number){
-    return this.api.get(`/api/instancelogs?pn=${pageNo}&ps=${pageSize}`);
+  getAllInstancesLogs(pageNo?:number, pageSize?:number){
+    if (pageNo && pageSize) {
+      return this.api.get(`/api/instancelogs?pn=${pageNo}&ps=${pageSize}`);
+    }
+    return this.api.get(`/api/instancelogs`);
   }
 }
