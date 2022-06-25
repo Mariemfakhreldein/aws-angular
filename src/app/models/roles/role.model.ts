@@ -4,7 +4,12 @@ export class RoleModel{
 
   id:any;
   name:string;
-  privileges:PrivilegeModel[];
+  privileges:any[];
+  constructor(name: string, privilegeIds: number[]){
+    this.name=name;
+    this.privileges=privilegeIds;
+  }
+
 
 
 }
