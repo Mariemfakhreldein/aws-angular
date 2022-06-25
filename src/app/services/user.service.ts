@@ -12,7 +12,12 @@ export class UserService {
     return this.api.get("/api/users/students");
   }
 
+  getAllInstructors() {
+    return this.api.get("/api/staff/instructors");
+  }
+
   getAllUsers() {
     return this.api.get("/api/users/students");
   }
+
 }

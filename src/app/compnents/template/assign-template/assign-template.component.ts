@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {TemplateResponseModel} from "../../../models/templates/template.response.model";
 import {TemplateService} from "../../../services/template.service";
 import {UserModel} from "../../../models/users/user.model";
 import {UserService} from "../../../services/user.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SubnetModel} from "../../../models/templates/subnet.model";
-import {SecurityGroupsModel} from "../../../models/templates/securityGroups.model";
-import {InstanceTypeModel} from "../../../models/templates/instanceType.model";
-import {TemplateModel} from "../../../models/templates/template.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AmiModel} from "../../../models/templates/ami.model";
+import {TemplateResponseModel} from "../../../models/templates/templateResponse.model";
+import {AssignTemplateModel} from "../../../models/templates/assign.template.model";
 
 @Component({
   selector: 'app-assign-template',
@@ -19,17 +15,20 @@ import {AmiModel} from "../../../models/templates/ami.model";
 export class AssignTemplateComponent implements OnInit {
 
   assignTemplateFormGroup: FormGroup = new FormGroup({});
-  submitted: boolean=false;
+  submitted: boolean = false;
   templates: TemplateResponseModel[] = [];
   instructors: UserModel[] = [];
 
-  isEmptyTemplates=false;
-  isEmptyInstructors=false;
+  isEmptyTemplates = false;
+  isEmptyInstructors = false;
 
   selectedTemplates: TemplateResponseModel[]= [] ;
   selectedInstructors: UserModel[] = [];
+
   isCheckedInstructor: any[]=[] ;
   isCheckedTemplates: any[]=[] ;
+
+  assignTemplateRequest: AssignTemplateModel;
 
 
   constructor(private formBuilder:FormBuilder,
@@ -42,19 +41,15 @@ export class AssignTemplateComponent implements OnInit {
       templates: ["", [Validators.required]],
       instructors: ["", [Validators.required]],
     });
-
     this.getAllTemplates();
-    // this.getAllInstructors();
+    this.getAllInstructors();
   }
 
   private getAllTemplates(){
     this.templateService.getAllTemplates().subscribe(
       (response:any)=>{
         console.log(response.templateResponseList)
-
         this.templates = response.templateResponseList;
-
-
       },(error:any)=>{
         console.log(error);
       }
@@ -62,10 +57,10 @@ export class AssignTemplateComponent implements OnInit {
   }
 
   private getAllInstructors(){
-    this.userService.getAllUsers().subscribe(
+    this.userService.getAllInstructors().subscribe(
       (response:any)=>{
-        console.log(response.userResponsesList)
-        this.instructors = response.userResponsesList;
+        console.log(response)
+        this.instructors = response;
       },(error:any)=>{
         console.log(error);
       }
@@ -73,30 +68,39 @@ export class AssignTemplateComponent implements OnInit {
   }
 
     submitBtn() {
-      let myTemplatesList=this.fetchSelectedTemplates();
-      // let myInstructorList =this.fetchSelectedInstructors()
-      if(myTemplatesList.length==0)
-      {
-        this.isEmptyTemplates=true;
+      let myTemplatesList = this.fetchSelectedTemplates();
+      let myInstructorList = this.fetchSelectedInstructors()
 
-      }else{
-        this.isEmptyTemplates=false;
-
-        console.log("templateeeeeeees"+myTemplatesList[0].ami.imageName);
-        console.log("templateeeeeeees2"+myTemplatesList[0].ami.architecture);
-        console.log("templateeeeeeees3"+myTemplatesList[0].instanceType);
-
+      if(myTemplatesList.length == 0) {this.isEmptyTemplates = true; }
+      else{
+        let templatesIds: any = [];
+        myTemplatesList.forEach( template => templatesIds.push(template.id));
+        this.assignTemplateRequest.templateConfigurationIds = templatesIds;
       }
-      // console.log("instructorss"+myInstructorList[0].id);
-      // console.log("2222222"+this.isCheckedTemplates[0]);
 
+      if(myInstructorList.length == 0) {this.isEmptyInstructors = true; }
+      else{
+        let instructorsIds: any = [];
+        myInstructorList.forEach( instructor => instructorsIds.push(instructor.id));
+        this.assignTemplateRequest.instructorIds = instructorsIds;
+      }
 
+      if(myInstructorList.length >0 && myTemplatesList.length > 0){
+        console.log(this.assignTemplateRequest);
+        this.templateService.assignTemplateToInstructors(this.assignTemplateRequest).subscribe(
+          (response:any)=>{
+            console.log("success");
+          },
+          (error: any)=>{
+            console.log("fail");
+            console.log(error);
+          }
+        )
+      }
 
     }
 
-
-
-   fetchSelectedInstructors() {
+    fetchSelectedInstructors() {
     this.selectedInstructors=[];
     for (let i=0 ; i<this.isCheckedInstructor.length ; i++){
       if(this.isCheckedInstructor[i] == true){
@@ -104,35 +108,17 @@ export class AssignTemplateComponent implements OnInit {
       }
     }
     return this.selectedInstructors;
-
-
   }
-
 
    fetchSelectedTemplates() {
-    this.selectedTemplates=[];
-    for (let i=0 ; i<this.isCheckedTemplates.length ; i++){
-      if(this.isCheckedTemplates[i] == true){
-        this.selectedTemplates.push(this.templates[i]);
+      this.selectedTemplates=[];
+      for (let i=0 ; i<this.isCheckedTemplates.length ; i++){
+        if(this.isCheckedTemplates[i] == true){
+          this.selectedTemplates.push(this.templates[i]);
+        }
       }
+      return this.selectedTemplates;
     }
-    return this.selectedTemplates;
 
 
-  }
-
-
-
-
-
-
-  }
-
-
-  //
-  // changeTemplateId(event: any){
-  //   this.templateId = event.target.value;
-  //   console.log(event.target.value);
-  // }
-
-
+}
