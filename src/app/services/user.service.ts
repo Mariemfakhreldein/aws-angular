@@ -17,25 +17,12 @@ export class UserService {
     return this.api.get("/api/students");
   }
 
-  getAllUsers() {
-    return this.api.get("/api/students");
-  }
-
   getAllUserType(){
     return this.api.get("/api/users");
   }
 
   addStudents(students: any){
     return this.api.post("/api/students",students);
-  }
-
-  getStudentRoles(): UserRolesModel[]{
-    this.userRoles.push(new UserRolesModel(1, "hafsa1"));
-    this.userRoles.push(new UserRolesModel(2, "hafsa2"));
-    this.userRoles.push(new UserRolesModel(3, "hafsa3"));
-    this.userRoles.push(new UserRolesModel(4, "hafsa4"));
-    this.userRoles.push(new UserRolesModel(5, "hafsa5"));
-    return this.userRoles;
   }
 
   getStudentTracks(): UserTracksModel[]{
