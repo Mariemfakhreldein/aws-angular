@@ -23,7 +23,7 @@
       paginate:{itemsPerPage:8,currentPage:page,totalItems:allRoles.length}" class="my-1">
         <button style="white-space: pre-wrap; " (click)="showText()"  class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
           <p  class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted text-center " >{{(role.name.length>20)? (role.name | slice:0:20)+'..':(role.name)}}</p>
-          <p [ngClass]="{'limitTextHeight': isReadMore}" style="white-space: break-spaces ;overflow: hidden" class=" col-12 col-lg-9 m-auto text-start align-items-lg-start w-75" >{{ (role.privileges.toString().split(',').join('   ') )}}</p>
+          <p [ngClass]="{'limitTextHeight': isReadMore}" style="white-space: break-spaces ;overflow: hidden ;"  class=" col-12 col-lg-9 m-auto text-start align-items-lg-start w-75 font-weight-light font-italic text-muted" >{{ (role.privileges.toString().split(',').join('   ') )}}</p>
         </button>
       </div>
     </div>

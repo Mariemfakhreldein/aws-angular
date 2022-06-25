@@ -172,3 +172,13 @@ input[type="checkbox"]:checked:after{
   color: #7b7b93;
 }
 
+/*.btnColor{*/
+/*  !*color:#E94560 !important;*!*/
+/*  !*background-color: #E94560 !important;*!*/
+/*  font-weight: bold;*/
+/*}*/
+.limitTextHeight {
+  height: 45px !important;
+  overflow: hidden !important;
+  white-space: nowrap;
+}

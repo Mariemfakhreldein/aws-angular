@@ -22,16 +22,17 @@ export class CreateRoleComponent implements OnInit {
   action: any;
 
   myGroup: FormGroup = new FormGroup({});
-  privileges: PrivilegeModel[]=[];
-  isChecked: any[]=[];
-  selectedItemsList: any[]=[] ;
+  privileges: PrivilegeModel[] = [];
+  isChecked: any[] = [];
+  selectedItemsList: any[] = [];
   isPrivilegesEmpty: any;
 
 
   constructor(private formBuilder: FormBuilder,
               private roleService: RolesService,
-              private privilegeService:PrivilegesService,
-              ) { }
+              private privilegeService: PrivilegesService,
+  ) {
+  }
 
   ngOnInit(): void {
     this.myGroup = this.formBuilder.group({
@@ -40,13 +41,13 @@ export class CreateRoleComponent implements OnInit {
     this.showAllPrivileges();
   }
 
-  showAllPrivileges(){
+  showAllPrivileges() {
     this.privilegeService.getAllPrivileges().subscribe(
       {
         next: (data: any) => {
           data.privileges.forEach(e => {
               this.privileges.push(e);
-              console.log("********"+this.privileges)
+              console.log("********" + this.privileges)
             }
           )
         }
@@ -57,21 +58,21 @@ export class CreateRoleComponent implements OnInit {
 
   }
 
-  isPrivilegeChecked(){
+  isPrivilegeChecked() {
     this.isChecked = [];
-    for(let i=0; i<this.privileges.length;i++){
-      if (this.selectedItemsList[i].name === this.privileges[i].name){
+    for (let i = 0; i < this.privileges.length; i++) {
+      if (this.selectedItemsList[i].name === this.privileges[i].name) {
         this.isChecked.push(true);
-      }else{
+      } else {
         this.isChecked.push(false);
       }
     }
   }
 
   private fetchSelectedItems() {
-    this.selectedItemsList=[];
-    for (let i=0 ; i<this.isChecked.length ; i++){
-      if(this.isChecked[i] == true){
+    this.selectedItemsList = [];
+    for (let i = 0; i < this.isChecked.length; i++) {
+      if (this.isChecked[i] == true) {
         this.selectedItemsList.push(this.privileges[i]);
       }
     }
@@ -81,27 +82,33 @@ export class CreateRoleComponent implements OnInit {
   }
 
   submitBtn(roleName) {
-    if(this.fetchSelectedItems().length == 0 ){
-      this.isPrivilegesEmpty=true;
-    }
-    else {
-      this.isPrivilegesEmpty=false;
-      let myList=this.fetchSelectedItems();
-      let privilegeIdList:number[] = [];
-      for(let i=0; i<myList.length; i++){
+    if (this.fetchSelectedItems().length == 0) {
+      this.isPrivilegesEmpty = true;
+    } else {
+      this.isPrivilegesEmpty = false;
+      let myList = this.fetchSelectedItems();
+      let privilegeIdList: number[] = [];
+      for (let i = 0; i < myList.length; i++) {
         privilegeIdList.push(myList[i].id);
       }
 
       let roleModel = new RoleModel(roleName, privilegeIdList);
       this.roleService.createRole(roleModel).subscribe(
-        (response:any)=>{
-          this.isLoading=false;
-          this.isSuccess=true;
-        }, (error: any)=>{
-          this.isLoading=false;
-          this.isSuccess=false;
+        (response: any) => {
+          this.isLoading = false;
+          this.isSuccess = true;
+        }, (error: any) => {
+          this.isLoading = false;
+          this.isSuccess = false;
         }
       )
 
+    }
   }
-}}
+
+  isReadMore = true;
+
+  showText() {
+    this.isReadMore = !this.isReadMore;
+  }
+}
