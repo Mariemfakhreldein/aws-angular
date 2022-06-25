@@ -6,11 +6,11 @@ import {AuthService} from "../../../services/auth.service";
 @Injectable({
   providedIn: 'root'
 })
-export class ViewTemplateGuard implements CanActivate {
+export class ManageIntakesGuard implements CanActivate {
   constructor(private authService:AuthService, private router:Router){}
 
   canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let isAuthorized = this.authService.containPrivilege('VIEW_TEMPLATES');
+    let isAuthorized = this.authService.containPrivilege('VIEW_INTAKES');
     if (!isAuthorized){
       this.router.navigateByUrl("not-authorized")
     }
