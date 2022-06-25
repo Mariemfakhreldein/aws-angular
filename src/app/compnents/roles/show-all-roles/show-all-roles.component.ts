@@ -21,7 +21,7 @@ export class ShowAllRolesComponent implements OnInit {
   }
 
   getAllRoles(){
-    this.roleService.getAllRoles().subscribe(
+    this.roleService.getAll().subscribe(
       {
         next: (data: any) => {
           data.roles.forEach(e => {

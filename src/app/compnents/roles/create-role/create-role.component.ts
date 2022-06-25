@@ -93,7 +93,7 @@ export class CreateRoleComponent implements OnInit {
       }
 
       let roleModel = new RoleModel(roleName, privilegeIdList);
-      this.roleService.createRole(roleModel).subscribe(
+      this.roleService.create(roleModel).subscribe(
         (response: any) => {
           this.isLoading = false;
           this.isSuccess = true;
