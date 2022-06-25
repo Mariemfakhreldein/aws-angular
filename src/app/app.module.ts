@@ -46,6 +46,8 @@ import { EditIntakeComponent } from './compnents/intakes/edit-intake/edit-intake
 
 import { CreatenewstudentComponent } from './compnents/user/student/createnewstudent/createnewstudent.component';
 import { UserprofileComponent } from './compnents/user/userprofile/userprofile.component';
+import { CreateRoleComponent } from './compnents/roles/create-role/create-role.component';
+import { ShowAllRolesComponent } from './compnents/roles/show-all-roles/show-all-roles.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +101,9 @@ import { UserprofileComponent } from './compnents/user/userprofile/userprofile.c
     // SearchFilterByEmailPipe,
     // EditIntakeComponent,
     CreatenewstudentComponent,
-    UserprofileComponent
+    UserprofileComponent,
+    CreateRoleComponent,
+    ShowAllRolesComponent
   ],
     imports: [
         BrowserModule,
