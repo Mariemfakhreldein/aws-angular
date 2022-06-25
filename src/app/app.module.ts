@@ -46,6 +46,8 @@ import { EditIntakeComponent } from './compnents/intakes/edit-intake/edit-intake
 
 import { CreatenewstudentComponent } from './compnents/user/student/createnewstudent/createnewstudent.component';
 import { UserprofileComponent } from './compnents/user/userprofile/userprofile.component';
+import { AddStudentsComponent } from './compnents/user/students/add-students/add-students.component';
+import {NgxCsvParserModule} from "ngx-csv-parser";
 
 @NgModule({
   declarations: [
@@ -99,7 +101,9 @@ import { UserprofileComponent } from './compnents/user/userprofile/userprofile.c
     // SearchFilterByEmailPipe,
     // EditIntakeComponent,
     CreatenewstudentComponent,
-    UserprofileComponent
+    UserprofileComponent,
+    UpdateTrackComponent,
+    AddStudentsComponent
   ],
     imports: [
         BrowserModule,
@@ -107,7 +111,8 @@ import { UserprofileComponent } from './compnents/user/userprofile/userprofile.c
         FormsModule,
         HttpClientModule,
         NgxPaginationModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgxCsvParserModule
     ],
   exports:[
 

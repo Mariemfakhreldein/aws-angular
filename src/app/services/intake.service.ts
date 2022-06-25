@@ -39,5 +39,10 @@ export class IntakeService {
     return this.api.update(`/api/intakes/${intakeModel.id}`,intakeModel);
   }
 
+  getIntakeByTrainingProgram(trainingProgramId:any) {
+    return this.api.get(`/api/trainingPrograms/${trainingProgramId}/intakes`)
+
+  }
+
 
 }
