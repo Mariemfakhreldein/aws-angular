@@ -69,7 +69,7 @@ const routes: Routes = [
   {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent},
 
   {path:'branch/show', component:ShowBranchsComponent},
-  {path:'user/createStudent',component:CreatenewstudentComponent},
+  // {path:'user/createStudent',component:CreatenewstudentComponent},
   {path:'user/addStudent', component:AddStudentsComponent, canActivate:[AuthGuard]},
 ]
 
