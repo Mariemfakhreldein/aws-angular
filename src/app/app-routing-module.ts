@@ -47,7 +47,7 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'logout', component:LogoutComponent},
   {path:'user/createStaff', component:CreatenewstaffComponent, canActivate:[AuthGuard]},
-  {path:'user/search',component:UserSearchComponent},
+  {path:'user/staff/search',component:UserSearchComponent},
   {path:'users', component:UserdetailsComponent},
   {path:'branch/create', component:CreateBranchComponent},
   {path:'branches', component:ShowBranchsComponent},
