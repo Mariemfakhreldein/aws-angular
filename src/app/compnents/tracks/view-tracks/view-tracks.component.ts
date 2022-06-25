@@ -20,7 +20,7 @@ export class ViewTracksComponent implements OnInit {
   }
 
   getAllTracks(){
-    this.trackService.getAllTracks().subscribe(
+    this.trackService.getAll().subscribe(
       {
         next: (data: any) => {
           data.trackResponsesList.forEach(e => {
@@ -41,7 +41,7 @@ export class ViewTracksComponent implements OnInit {
 
   delete(trackId: any) {
 
-    this.trackService.deleteTrack(trackId).subscribe(
+    this.trackService.delete(trackId).subscribe(
       {
         next: (data: any) => {
 

@@ -9,6 +9,9 @@ import {InstanceService} from "../../../services/instance.service";
 import {TrainingProgram} from "../../../models/instances/training.program.model";
 import {TrackService} from "../../../services/track.service";
 import {distinctUntilChanged} from "rxjs";
+import {BranchService} from "../../../services/branch.service";
+import {TrainingProgramService} from "../../../services/training-program.service";
+import {IntakeService} from "../../../services/intake.service";
 
 @Component({
   selector: 'app-manage-tracks',
@@ -35,7 +38,10 @@ export class ManageTracksComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private templateService: TemplateService,
-              private trackService: TrackService) { }
+              private trackService: TrackService,
+              private branchService: BranchService,
+              private trainingProgramService: TrainingProgramService,
+              private intakeService: IntakeService) { }
 
   ngOnInit(): void {
 
@@ -62,7 +68,7 @@ export class ManageTracksComponent implements OnInit {
   }
 
   private getAllBranches() {
-    this.trackService.getAllBranches().subscribe(
+    this.branchService.getAll().subscribe(
       {
         next: (data: any) => {
 
@@ -92,7 +98,7 @@ export class ManageTracksComponent implements OnInit {
     console.log("on change" + branchId);
 
 
-    this.trackService.getTrainingProgramsByBranch(branchId).subscribe(
+    this.trainingProgramService.getTrainingProgramsByBranch(branchId).subscribe(
       {
         next: (data: any) => {
 
@@ -121,7 +127,7 @@ export class ManageTracksComponent implements OnInit {
 
 
     this.intakes = [];
-    this.trackService.getIntakeByTrainingProgram(this.selectedTrainingProgram).subscribe({
+    this.intakeService.getIntakeByTrainingProgram(this.selectedTrainingProgram).subscribe({
 
       next: (data: any) => {
 
@@ -159,7 +165,7 @@ export class ManageTracksComponent implements OnInit {
     this.track.name=this.trackName;
     console.log("trackName:"+this.track.intakeId);
     console.log("trackName:"+this.track.name);
-    this.trackService.createTrack(this.track).subscribe({
+    this.trackService.create(this.track).subscribe({
       next: (data:any) =>{
 
         this.isLoading=false;

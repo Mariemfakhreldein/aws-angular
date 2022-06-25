@@ -14,6 +14,7 @@ import {NgxCsvParser, NgxCSVParserError} from "ngx-csv-parser";
 import {UserService} from "../../../../services/user.service";
 import {StudentModel} from "../../../../models/users/student.model";
 import {StudentRequestModel} from "../../../../models/users/student.request.model";
+import {TrainingProgramService} from "../../../../services/training-program.service";
 
 
 @Component({
@@ -51,7 +52,8 @@ export class AddStudentsComponent implements OnInit {
               private intakeService: IntakeService,
               private trackService: TrackService,
               private ngxCsvParser: NgxCsvParser,
-              private userService: UserService) { }
+              private userService: UserService,
+              private trainingProgramService: TrainingProgramService) { }
 
   ngOnInit(): void {
     this.reactiveStaffForm();
@@ -87,7 +89,7 @@ export class AddStudentsComponent implements OnInit {
   }
 
   getTrainingProgramsByBranch(branchId: number){
-    this.trackService.getTrainingProgramsByBranch(branchId).subscribe(
+    this.trainingProgramService.getTrainingProgramsByBranch(branchId).subscribe(
       {
         next: (data: any) => {
           this.trainingPrograms = data.trainingPrograms;
