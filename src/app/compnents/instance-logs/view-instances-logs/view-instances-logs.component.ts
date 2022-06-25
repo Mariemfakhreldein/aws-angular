@@ -10,7 +10,7 @@ import { InstanceLogsService } from 'src/app/services/instance-logs.service';
 export class ViewInstancesLogsComponent implements OnInit {
 
   allInsatanceLogs: InstanceLogsModel[] = [];
-  page = 1;
+  page:number = 0;
   constructor(private instanceLogsService: InstanceLogsService,) { }
 
   ngOnInit(): void {
@@ -19,7 +19,8 @@ export class ViewInstancesLogsComponent implements OnInit {
   }
 
   getAllInstancesLogs() {
-    this.instanceLogsService.getAllInstancesLogs().subscribe(
+    this.page++;
+    this.instanceLogsService.getAllInstancesLogs(this.page,30).subscribe(
       {
         next: (data: any) => {
           if (data.statusCode == 200) {
@@ -33,6 +34,7 @@ export class ViewInstancesLogsComponent implements OnInit {
       }
     );
   }
+
 
 
 }
