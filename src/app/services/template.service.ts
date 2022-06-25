@@ -43,6 +43,6 @@ export class TemplateService {
   }
 
   getAllTemplates() {
-    return this.api.get("/api/template");
+    return this.api.get("/api/templates");
   }
 }

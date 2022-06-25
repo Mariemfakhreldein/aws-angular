@@ -15,6 +15,7 @@ import {TrainingProgram} from "../../../models/instances/training.program.model"
 import {Track} from "../../../models/instances/track.model";
 import {Intake} from "../../../models/instances/intake.model";
 import {BranchService} from "../../../services/branch.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-create-instance',
@@ -50,7 +51,8 @@ export class CreateInstanceComponent implements OnInit {
               private userService: UserService,
               private templateService: TemplateService,
               private instanceService: InstanceService,
-              private branchService: BranchService) {
+              private branchService: BranchService,
+              private authService:AuthService) {
   }
 
   ngOnInit(): void {
@@ -64,6 +66,10 @@ export class CreateInstanceComponent implements OnInit {
       tracks:["",[Validators.required]],
       // template:["",[Validators.required]]
 
+    });
+
+    this.authService.getPrivileges().forEach(e=>{
+      console.log("hhh"+e);
     });
 
     // this.getAllStudents();
@@ -128,7 +134,7 @@ export class CreateInstanceComponent implements OnInit {
 
   }
 
-  private getAllStudents(){
+   getAllStudents(){
     this.userService.getAllStudents().subscribe(
       (response:any)=>{
         console.log(response.userResponsesList)
@@ -139,10 +145,10 @@ export class CreateInstanceComponent implements OnInit {
     )
   }
 
-  private getAllTemplates(){
+   getAllTemplates(){
     this.templateService.getAllTemplates().subscribe(
       (response:any)=>{
-        console.log(response.templateResponseList)
+        console.log("llllll"+response.templateResponseList)
         this.templates = response.templateResponseList;
       },(error:any)=>{
         console.log(error);
@@ -182,7 +188,7 @@ export class CreateInstanceComponent implements OnInit {
 
   }
 
-  private getAllBranches() {
+   getAllBranches() {
 
     this.branchService.getAll().subscribe(
       {
@@ -252,7 +258,7 @@ export class CreateInstanceComponent implements OnInit {
 
   }
 
-  private getAllIntakes() {
+   getAllIntakes() {
      this.instanceService.getIntakes().subscribe({
        next: (data: any) => {
 

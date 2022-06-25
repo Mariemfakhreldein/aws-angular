@@ -10,7 +10,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: './update-track.component.html',
   styleUrls: ['./update-track.component.css']
 })
-export class UpdateTrackComponent implements OnInit {
+export class UpdateTrackComponent implements OnInit ,AfterViewInit{
 
   myGroup: FormGroup = new FormGroup({});
   track:Track=new Track();
@@ -20,16 +20,16 @@ export class UpdateTrackComponent implements OnInit {
   currentItem='track';
   action='updated';
   trackName:any=true;
+
   constructor(private formBuilder: FormBuilder,private _activatedRoute:ActivatedRoute,private trackService: TrackService ) { }
 
-  ngOnInit(): void {
 
+
+  ngOnInit(): void {
 
     this.myGroup=this.formBuilder.group({
       trackName:[this.trackName ,[Validators.required]],
     });
-
-
 
     this._activatedRoute.paramMap
       .subscribe(
@@ -38,16 +38,18 @@ export class UpdateTrackComponent implements OnInit {
           this.getTrack(this.id);
           console.log(this.id);
 
-
         }
       );
 
-
-
-
   }
 
-
+  ngAfterViewInit(): void {
+    this.myGroup
+      .get('trackName').valueChanges
+      .subscribe((value) => {
+        this.trackName=value;
+      });
+  }
 
   private getTrack(trackId: any) {
     console.log(trackId);
@@ -57,6 +59,7 @@ export class UpdateTrackComponent implements OnInit {
           console.log(data);
           this.track =data;
           this.trackName=data.name;
+          this.myGroup.get('trackName').setValue(this.trackName);
         } });
 
 
