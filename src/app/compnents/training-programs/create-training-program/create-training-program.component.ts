@@ -18,7 +18,8 @@ export class CreateTrainingProgramComponent implements OnInit {
   branchId: string;
   isSuccess = false;
   isLoading = true;
-  currentItem = 'trainingProgram';
+  currentItem = 'Training Program';
+  action='Created';
 
   constructor(private formBuilder: FormBuilder,
     private trainingProgramService: TrainingProgramService,
