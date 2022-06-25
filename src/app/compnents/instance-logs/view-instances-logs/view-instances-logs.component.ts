@@ -9,25 +9,26 @@ import { InstanceLogsService } from 'src/app/services/instance-logs.service';
 })
 export class ViewInstancesLogsComponent implements OnInit {
 
-  allInsatanceLogs:InstanceLogsModel[]=[];
-  page=1;
+  allInsatanceLogs: InstanceLogsModel[] = [];
+  page = 1;
   constructor(private instanceLogsService: InstanceLogsService,) { }
 
   ngOnInit(): void {
 
-    this.getAllIntakes();
+    this.getAllInstancesLogs();
   }
 
-  getAllIntakes(){
-    this.instanceLogsService.getAllInstancesLogs(1,30).subscribe(//??
+  getAllInstancesLogs() {
+    this.instanceLogsService.getAllInstancesLogs().subscribe(
       {
         next: (data: any) => {
-          console.log(data);
-          // data.intakeResponsesList.forEach(e => {
-          //     this.allInsatanceLogs.push(e);
-
-          //   }
-          // )
+          if (data.statusCode == 200) {
+            console.log(data);
+            data.message.forEach(e => {
+              this.allInsatanceLogs.push(e);
+            }
+            )
+          }
         }
       }
     );
