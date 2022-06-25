@@ -10,7 +10,7 @@ export class ManageInstructorsGuard implements CanActivate {
   constructor(private authService:AuthService, private router:Router){}
 
   canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let isAuthorized = this.authService.containPrivilege('MANAGE_INSTRUCTORS');
+    let isAuthorized = this.authService.containPrivilege('VIEW_USER');
     if (!isAuthorized){
       this.router.navigateByUrl("not-authorized")
     }

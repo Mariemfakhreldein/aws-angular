@@ -6,12 +6,11 @@ import {AuthService} from "../../../services/auth.service";
 @Injectable({
   providedIn: 'root'
 })
-export class ManageTrainingManagersGuard implements CanActivate {
-
+export class ManageInstructorsGuard implements CanActivate {
   constructor(private authService:AuthService, private router:Router){}
 
   canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let isAuthorized = this.authService.containPrivilege('MANAGE_TRAINING_MANAGERS');
+    let isAuthorized = this.authService.containPrivilege('VIEW_INSTRUCTORS');
     if (!isAuthorized){
       this.router.navigateByUrl("not-authorized")
     }
