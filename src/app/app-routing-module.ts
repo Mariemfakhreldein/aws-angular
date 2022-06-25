@@ -10,7 +10,6 @@ import { CreateInstanceComponent } from './compnents/instance/create-instance/cr
 import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance-details/view-instance-details.component';
 import {LogoutComponent} from "./compnents/logout/logout.component";
 import {CreateTemplateComponent} from "./compnents/template/create-template/create-template.component";
-import {CreatenewstaffComponent} from "./compnents/user/staff/createnewstuff/createnewstaff.component";
 import {UserdetailsComponent} from "./compnents/user/userdetails/userdetails.component";
 import {CreateBranchComponent} from "./compnents/branch/create-branch/create-branch.component";
 import {ShowBranchsComponent} from "./compnents/branch/show-branchs/show-branchs.component";
@@ -39,7 +38,7 @@ import { CreateTrainingProgramComponent } from './compnents/training-programs/cr
 import { UpdateTrainingProgramsComponent } from './compnents/training-programs/update-training-programs/update-training-programs.component';
 import {AddStudentsComponent} from "./compnents/user/students/add-students/add-students.component";
 import {UserprofileComponent} from "./compnents/user/userprofile/userprofile.component";
-
+import { AddStaffComponent } from './compnents/user/staff/add-staff/add-staff.component';
 const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
   {path:'instances/createInstance',component:CreateInstanceComponent, canActivate:[AuthGuard, CreateAssignTerminateInstanceGuard] },
@@ -48,7 +47,7 @@ const routes: Routes = [
   {path:'template',component:CreateTemplateComponent, canActivate:[AuthGuard, ManageTemplatesGuard]},
   {path:'login', component:LoginComponent},
   {path:'logout', component:LogoutComponent},
-  {path:'user/createStaff', component:CreatenewstaffComponent, canActivate:[AuthGuard]},
+  {path:'user/staff/addStaff', component:AddStaffComponent, canActivate:[AuthGuard]},
   {path:'user/staff/search',component:UserSearchComponent},
   {path:'users', component:UserdetailsComponent},
   {path:'branch/create', component:CreateBranchComponent},

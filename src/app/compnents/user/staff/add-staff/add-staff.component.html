@@ -1,0 +1,93 @@
+<div >
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Adding New Staff Form</h4>
+      <div class="basic-form" [formGroup]="addStaff">
+
+        <div >
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label" >Enter Username </label>
+            <div class="col-lg-6">
+              <input #usernameInput [class.is-invalid]="addStaff.controls['userName'].errors && addStaff.controls['userName'].touched"
+                     [class.is-valid]="!addStaff.controls['userName'].errors"
+                     formControlName="userName" type="text" class="form-control" placeholder="username">
+              <div *ngIf="addStaff.controls['userName'].errors && addStaff.controls['userName'].touched">
+                <small *ngIf="addStaff.controls['userName'].hasError('required')" class="text-danger" > required username</small>
+                <small *ngIf="addStaff.controls['userName'].hasError('minlength')" class="text-danger"> username should be at least 3 characters</small>
+                <small *ngIf="addStaff.controls['userName'].hasError('maxlength')" class="text-danger"> lastname should be at most 15 characters</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-lg-4 col-form-label" >Enter Email </label>
+            <div class="col-lg-6">
+              <input #emailInput [class.is-invalid]="addStaff.controls['email'].errors && addStaff.controls['email'].touched"
+                     [class.is-valid]="!addStaff.controls['email'].errors"
+                     formControlName="email" type="text" class="form-control" placeholder="email">
+              <div *ngIf="addStaff.controls['email'].errors && addStaff.controls['email'].touched">
+                <small *ngIf="addStaff.controls['email'].hasError('required')" class="text-danger" > required email</small>
+                <small *ngIf="addStaff.controls['email'].hasError('pattern')" class="text-danger"> email doesn't match the pattern</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div >
+          <button class="btn btn-submit" type="button" [disabled]="addStaff.invalid"  (click)="add()">Add</button>
+          <input #fileImportInput class="form-control" type="file" id="formFile" class="upload" (change) = "fileChangeListener($event)">
+        </div>
+        <small class="text-danger">{{errorMessage}}</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid" *ngIf="staffList.length > 0" >
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class=" m-auto pt-3">
+              <h1 class="text-center"> Students</h1>
+              <div class="col-11 text-center m-auto">
+                <table class="table text-center mt-5">
+                  <thead>
+                  <td>Username</td>
+                  <td>Email</td>
+                  <td>Delete</td>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let staff of staffList | paginate:{itemsPerPage:10,currentPage:page,totalItems:staffList.length};let currentIndex=index" >
+                    <td> {{staff.username}}</td>
+                    <td> {{staff.email}}</td>
+                    <td> <input type="button" (click)="delete(currentIndex)" value="Delete" class="btn btn-danger"> </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <button type="button"   class="btn btn-submit" data-toggle="modal" data-target="#exampleModalCenter" (click)="submit()">submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div  class="col-12  text-center" >
+      <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+      </pagination-controls>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+       aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div>
+        <app-success-popup *ngIf="isSuccess" [item]="item" [action]="action"></app-success-popup>
+        <app-failed-popup *ngIf="!isSuccess" [item]="item" [action]="action"></app-failed-popup>
+      </div>
+    </div>
+  </div>
+
+</div>
+
