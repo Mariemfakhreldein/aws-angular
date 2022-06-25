@@ -16,22 +16,23 @@
 
       <div>
         <div *ngFor="let instanceLog of allInsatanceLogs |
-        paginate:{itemsPerPage:3,currentPage:page,totalItems:allInsatanceLogs.length};let currentIndex=index" class="my-1">
-          <button
+        paginate:{itemsPerPage:4, currentPage:page, totalItems:allInsatanceLogs.length};let currentIndex=index" class="my-1">
+        <button
             class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-            <p class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted">{{currentIndex+1}}</p>
+            <p class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted">{{instanceLog.id}}</p>
             <p class="col-12 col-lg-3 m-auto align-items-lg-start">{{instanceLog.instance.name}}</p>
             <p class="col-12 col-lg-2 m-auto align-items-lg-start">{{instanceLog.action}}</p>
             <p class="col-11 col-lg-2 m-auto align-items-lg-start">{{instanceLog.actionMaker.username}}</p>
             <p class="col-11 col-lg-2 m-auto align-items-lg-start">{{instanceLog.dateTime}}</p>
           </button>
+          <div *ngIf="instanceLog.id == allInsatanceLogs[allInsatanceLogs.length-1].id" class="btn btn-primary" (click)="getAllInstancesLogs()">More...</div>
         </div>
       </div>
 
 
     </div>
 
-    <div class="col-12 mt-3 text-center">
+    <div class="col-12 mt-3 text-center" *ngIf="allInsatanceLogs.length > 4">
 
       <pagination-controls (pageChange)="page=$event" style="bottom: 100px;left: 50vw">
 
