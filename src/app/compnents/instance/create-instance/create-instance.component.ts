@@ -146,7 +146,7 @@ export class CreateInstanceComponent implements OnInit {
   }
 
   private getAllTemplates(){
-    this.templateService.getAllTemplates().subscribe(
+    this.templateService.getAll().subscribe(
       (response:any)=>{
         console.log(response.templateResponseList)
         this.templates = response.templateResponseList;

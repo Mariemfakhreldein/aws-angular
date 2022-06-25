@@ -10,7 +10,6 @@ import {AmiModel} from "../models/templates/ami.model";
 })
 export class TemplateService {
 
-  securityGroups:Array<string> = [];
   constructor(private api: ApiService) { }
 
   getSubnet() {
@@ -29,20 +28,11 @@ export class TemplateService {
     return this.api.post("/api/ami", amiModel);
   }
 
-  add(templateModel: TemplateModel){
+  create(templateModel: TemplateModel){
     return this.api.post("/api/template", templateModel);
   }
 
-  getAllSecurityGroups(): string[]{
-    this.securityGroups.push("sg-02e6e76892b7e1581");
-    this.securityGroups.push("sg-02e6e76892b7e1582"); // dummy
-    this.securityGroups.push("sg-02e6e76892b7e1583"); //dummy
-    this.securityGroups.push("sg-02e6e76892b7e1584"); //dummy
-    this.securityGroups.push("sg-02e6e76892b7e1585"); //dummy
-    return this.securityGroups;
-  }
-
-  getAllTemplates() {
+  getAll() {
     return this.api.get("/api/template");
   }
 }
