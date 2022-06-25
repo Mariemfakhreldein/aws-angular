@@ -6,6 +6,8 @@ import {IntakeService} from "../../../services/intake.service";
 import {BranchPostModel} from "../../../models/branch/branch.post.model";
 import {IntakeModel} from "../../../models/intake/intake.model";
 import {IntakePostModel} from "../../../models/intake/intake.post.model";
+import {BranchService} from "../../../services/branch.service";
+import {TrainingProgramService} from "../../../services/training-program.service";
 
 @Component({
   selector: 'app-manage-intakes',
@@ -27,7 +29,9 @@ export class ManageIntakesComponent implements OnInit {
   currentItem: string = "Intake";
 
   constructor(private formBuilder: FormBuilder,
-              private intakeService: IntakeService,) {}
+              private intakeService: IntakeService,
+              private branchService: BranchService,
+              private trainingProgramService: TrainingProgramService) {}
 
   ngOnInit(): void {
     this.myGroup = this.formBuilder.group({
@@ -40,7 +44,7 @@ export class ManageIntakesComponent implements OnInit {
   }
 
   private getAllBranches() {
-    this.intakeService.getAllBranches().subscribe(
+    this.branchService.getAll().subscribe(
       {
         next: (data: any) => {
           data.branchResponsesList.forEach(e => {
@@ -56,7 +60,7 @@ export class ManageIntakesComponent implements OnInit {
   }
 
   onChangeBranch(branchId: any) {
-    this.intakeService.getTrainingProgramsByBranch(branchId).subscribe(
+    this.trainingProgramService.getTrainingProgramsByBranch(branchId).subscribe(
       {
         next: (data: any) => {
           data.trainingPrograms.forEach(e => {

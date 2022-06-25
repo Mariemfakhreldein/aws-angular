@@ -61,7 +61,7 @@ export class CreateBranchComponent implements OnInit {
   }
 
   postBranch(model:BranchPostModel){
-    this.branchService.add(model).subscribe(
+    this.branchService.create(model).subscribe(
       (response:any)=>{
         console.log(response);
         //alert("Successfully added");
