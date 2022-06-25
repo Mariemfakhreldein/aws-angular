@@ -144,14 +144,30 @@
             </li>
           </ul>
         </li>
+        <li>
+          <a href="#submenu10" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="fa fa-book mr-2"></span>Roles</a>
+          <ul class="collapse nav flex-column ms-1" id="submenu10" data-bs-parent="#menu">
+            <li class="w-100">
+              <a class="px-8" [routerLink]="['/roles/create']" routerLinkActive="active">
+                <span class="icon-plus mr-3"></span>Create Role
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/roles/show-all']" routerLinkActive="active" class="px-8">
+                <span class="icon-view_array mr-3"></span>View All Roles
+              </a>
+            </li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
 
 </aside>
 <main>
-  <div class="site-section">
-    <div class="container">
+  <div class="site-section bg-light pt-lg-4 h-100">
+    <div class="container ">
       <router-outlet></router-outlet>
     </div>
   </div>

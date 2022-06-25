@@ -29,7 +29,7 @@ export class ManageTracksComponent implements OnInit {
   isLoading=true;
   currentItem='track';
   action='created';
-  selectedTrainingProgram: any;
+  selectedTrainingProgram: any="";
 
 
 

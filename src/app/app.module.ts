@@ -50,6 +50,11 @@ import { UserprofileComponent } from './compnents/user/userprofile/userprofile.c
 import { AddStudentsComponent } from './compnents/user/students/add-students/add-students.component';
 import {NgxCsvParserModule} from "ngx-csv-parser";
 import { ViewInstancesLogsComponent } from './compnents/instance-logs/view-instances-logs/view-instances-logs.component';
+import { CreateRoleComponent } from './compnents/roles/create-role/create-role.component';
+import { ShowAllRolesComponent } from './compnents/roles/show-all-roles/show-all-roles.component';
+import { RoleSearchByNamePipe } from './compnents/pipes/search/roles/role-search-by-name.pipe';
+import { IntakeSearchByNamePipe } from './compnents/pipes/search/intakes/intake-search-by-name.pipe';
+import { TrackSearchByNamePipe } from './compnents/pipes/search/tracks/track-search-by-name.pipe';
 
 @NgModule({
   declarations: [
@@ -109,7 +114,13 @@ import { ViewInstancesLogsComponent } from './compnents/instance-logs/view-insta
     UpdateTrackComponent,
     AddStudentsComponent,
     UpdateTrainingProgramsComponent,
-    ViewInstancesLogsComponent
+    ViewInstancesLogsComponent,
+    UserprofileComponent,
+    CreateRoleComponent,
+    ShowAllRolesComponent,
+    RoleSearchByNamePipe,
+    IntakeSearchByNamePipe,
+    TrackSearchByNamePipe
   ],
     imports: [
         BrowserModule,

@@ -1,64 +1,52 @@
 <div>
-
-
-  <div class="container-fluid" *ngIf="allIntakes.length>0">
-    <div class="row justify-content-center">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-
-
-
-
-            <div class=" m-auto pt-3">
-              <h1 class="text-center"> All Intakes</h1>
-              <div class="col-11 text-center m-auto">
-                <table class="table text-center mt-5">
-                  <thead>
-                  <td>id</td>
-                  <td>Name</td>
-                  <td>Description</td>
-                  <td>Training Program</td>
-                  <td>Action</td>
-                  </thead>
-
-                  <tbody>
-                  <tr *ngFor="let intake of allIntakes |
-      paginate:{itemsPerPage:3,currentPage:page,totalItems:allIntakes.length};let currentIndex=index" >
-
-                    <td >{{currentIndex+1}}</td>
-                    <td> {{intake.intakeName}}</td>
-                    <td>{{intake.intakeDescription}}</td>
-                    <td>{{intake.trainingProgram}}</td>
-                    <td><input type="button" routerLink="/intakes/edit/{{currentIndex+1}}" (click)="edit(currentIndex)" value="Edit" class="btn btn-primary"></td>
-
-                  </tr>
-                  </tbody>
-                </table>
-
-                <p class="py-5" *ngIf="allIntakes.length==0">there no intakes yet</p>
-              </div>
-            </div>
-
-
-
-
-
-
-
-
-          </div>
-        </div>
-      </div>
+<div class="container bg-light">
+  <div class="row mb-lg-5 mb-2 mt-2 justify-content-around">
+    <div class="col-lg-4 col-12 row justify-content-around ">
+      <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/showallintake.png">
+      <h2 class="col-lg-10 col-10 mb-0 pt-3">All Intakes</h2>
     </div>
-
-    <div  class="col-12  text-center" >
-
-      <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
-
-      </pagination-controls>
-
+    <div class="search col-lg-4 col-10 rounded bg-white justify-content-around mt-lg-0 mt-3">
+      <i class="fa fa-search text-muted col-lg-1 col-1 "></i>
+      <input class="border-0 col-10  col-lg-10 py-2 " placeholder="Search by name ..." type="text" #search [ngModel]="searchValue">
     </div>
   </div>
 
+
+
+  <div class="row">
+    <div  class="row  border-0 justify-content-start my-2 rounded bg-transparent p-1 py-3 col-lg-10 mx-lg-auto text-center">
+      <p  class="col-1 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold" >Name</p>
+      <p  class="col-1 col-lg-3 m-auto align-items-lg-start text-muted font-weight-bold " >Description</p>
+      <p  class="col-4  col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold " >Training Program</p>
+      <p class="edit col-1 col-lg-1 text-info mb-0 text-muted font-weight-bold">Edit</p>
+    </div>
+
+    <div  *ngIf="allIntakes.length>0" >
+      <div *ngFor="let intake of allIntakes | intakeSearchByName:search.value |
+      paginate:{itemsPerPage:3,currentPage:page,totalItems:allIntakes.length};let currentIndex=index" class="my-1">
+        <button routerLink="/intakes/edit/{{currentIndex+1}}"  class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+          <p  class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted" >{{(intake.intakeName.length>20)? (intake.intakeName | slice:0:15)+'..':(intake.intakeName)}}</p>
+          <p  class="col-12 col-lg-3 m-auto align-items-lg-start" >{{(intake.intakeDescription.length>30)? (intake.intakeDescription | slice:0:30)+'..':(intake.intakeDescription)}}</p>
+          <p  class="col-12 col-lg-2 m-auto align-items-lg-start" >{{intake.trainingProgram}}</p>
+          <p routerLink="/intakes/edit/{{currentIndex+1}}" class="edit col-1 col-lg-1 text-info mb-0"><i class="fa fa-edit" style="--bs-table-hover-bg: #red"></i></p>
+        </button>
+      </div>
+    </div>
+    <p class="py-5 text-muted text-center font-weight-bold" *ngIf="allIntakes.length==0">there no intakes yet</p>
+
+
+
+  </div>
+
+  <div  class="col-12 mt-3 text-center" *ngIf="allIntakes.length>7">
+
+    <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+
+    </pagination-controls>
+
+  </div>
 </div>
+
+
+
+

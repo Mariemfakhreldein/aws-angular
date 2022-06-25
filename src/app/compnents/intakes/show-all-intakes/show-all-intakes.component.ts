@@ -11,6 +11,7 @@ export class ShowAllIntakesComponent implements OnInit {
 
   allIntakes:IntakeModel[]=[];
   page=1;
+  searchValue: any;
   constructor(private intakeService: IntakeService,) { }
 
   ngOnInit(): void {
@@ -31,6 +32,7 @@ export class ShowAllIntakesComponent implements OnInit {
       }
     );
   }
+
 
   edit(currentIndex: number) {
 

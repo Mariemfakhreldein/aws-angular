@@ -40,6 +40,8 @@ import { UpdateTrainingProgramsComponent } from './compnents/training-programs/u
 import {AddStudentsComponent} from "./compnents/user/students/add-students/add-students.component";
 import {UserprofileComponent} from "./compnents/user/userprofile/userprofile.component";
 import { ViewInstancesLogsComponent } from './compnents/instance-logs/view-instances-logs/view-instances-logs.component';
+import {CreateRoleComponent} from "./compnents/roles/create-role/create-role.component";
+import {ShowAllRolesComponent} from "./compnents/roles/show-all-roles/show-all-roles.component";
 
 const routes: Routes = [
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
@@ -76,6 +78,9 @@ const routes: Routes = [
   {path:'instances-logs/view', component: ViewInstancesLogsComponent},
 
   {path:'branch/show', component:ShowBranchsComponent},
+  {path:'user/createStudent',component:CreatenewstudentComponent},
+  {path:'roles/create',component:CreateRoleComponent},
+  {path:'roles/show-all',component:ShowAllRolesComponent},
   {path:'user/createStudent',component:CreatenewstudentComponent},
   {path:'user/profile',component:UserprofileComponent},
 

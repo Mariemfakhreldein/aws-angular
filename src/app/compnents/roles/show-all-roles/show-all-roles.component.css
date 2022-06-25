@@ -24,3 +24,8 @@ h2{
 
 }
 
+.limitTextHeight {
+  height: 45px !important;
+  overflow: hidden !important;
+  white-space: nowrap;
+}

@@ -10,6 +10,7 @@ import {TrackService} from "../../../services/track.service";
 export class ViewTracksComponent implements OnInit {
   tracks: Track[]=[];
   page=1;
+  searchValue: any;
 
   constructor(private trackService:TrackService) { }
 
