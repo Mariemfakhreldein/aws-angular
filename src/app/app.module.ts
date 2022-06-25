@@ -29,6 +29,7 @@ import { ManageIntakesComponent } from './compnents/intakes/manage-intakes/manag
 import { ShowAllIntakesComponent } from './compnents/intakes/show-all-intakes/show-all-intakes.component';
 import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
 import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
+import { EdituserComponent } from './compnents/user/edituser/edituser.component';
 import {
   CreateTrainingProgramComponent
 } from "./compnents/training-programs/create-training-program/create-training-program.component";
@@ -80,6 +81,8 @@ import {NgxCsvParserModule} from "ngx-csv-parser";
     ShowAllIntakesComponent,
     ManageTracksComponent,
     ViewTracksComponent,
+    UpdateTrackComponent,
+    EdituserComponent,
     UpdateTrackComponent,
     CreateTrainingProgramComponent,
     ViewTrainingProgramsComponent,

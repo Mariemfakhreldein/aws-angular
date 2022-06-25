@@ -30,6 +30,7 @@ import  {ShowAllIntakesComponent} from "./compnents/intakes/show-all-intakes/sho
 
 import { ViewTracksComponent } from './compnents/tracks/view-tracks/view-tracks.component';
 import { UpdateTrackComponent } from './compnents/tracks/update-track/update-track.component';
+import {EdituserComponent} from "./compnents/user/edituser/edituser.component";
 import {UserSearchComponent} from "./compnents/user/user-search/user-search.component";
 import {EditIntakeComponent} from "./compnents/intakes/edit-intake/edit-intake.component";
 
@@ -64,6 +65,7 @@ const routes: Routes = [
   {path:'intakes/show',component:ShowAllIntakesComponent},
   {path:'intakes',component:ManageIntakesComponent},
   {path:'tracks/view_tracks', component: ViewTracksComponent},
+  {path:'user/edit/:id', component: EdituserComponent},
 
   {path:'training-programs/show', component: ViewTrainingProgramsComponent},
   {path:'training-programs/create', component: CreateTrainingProgramComponent},
