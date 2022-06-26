@@ -16,7 +16,7 @@
               <div class="mt-3">
                 <h4 class="text-muted font-weight-bold">{{user.username}}</h4>
                 <p class="text-secondary mb-1">{{user.role}}</p>
-                <p class="text-muted font-size-sm">{{user.tracks}}</p>
+                <p *ngFor="let track of user.tracks" class="text-muted font-size-sm">{{(track.trackName)}}</p>
               </div>
             </div>
           </div>
@@ -65,15 +65,31 @@
                 <h6 class="mb-0 text-muted font-weight-bold my-auto">Old Password</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input type="text" class="form-control" placeholder="Enter your old password">
+                <input type="text" class="form-control" placeholder="Enter your old password" [(ngModel)]="oldPassword">
               </div>
             </div>
+<!--            <div class="form-group">-->
+<!--              <label>Password</label>-->
+<!--              <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />-->
+<!--              <div *ngIf="submitted && f.password.errors" class="invalid-feedback">-->
+<!--                <div *ngIf="f.password.errors.required">Password is required</div>-->
+<!--                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="form-group">-->
+<!--              <label>Confirm Password</label>-->
+<!--              <input type="password" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />-->
+<!--              <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">-->
+<!--                <div *ngIf="f.confirmPassword.errors.required">Confirm Password is required</div>-->
+<!--                <div *ngIf="f.confirmPassword.errors.mustMatch">Password and confirm not match</div>-->
+<!--              </div>-->
+<!--            </div>-->
             <div class="row mb-3">
               <div class="col-sm-3">
                 <h6 class="mb-0 text-muted font-weight-bold my-auto" >New Password</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input type="text" class="form-control" placeholder="Enter new password">
+                <input type="text" class="form-control" placeholder="Enter new password" [(ngModel)]="newPassword">
               </div>
             </div>
             <div class="row mb-3">
@@ -87,7 +103,7 @@
             <div class="row">
               <div class="col-sm-3"></div>
               <div class="col-sm-9 text-secondary">
-                <input type="button" class="btn btn-danger font-weight-bold px-4" value="Save Changes">
+                <input (click)="updatePassword()" data-toggle="modal" data-target="#exampleModalCenter" type="button" class="btn btn-danger font-weight-bold px-4" value="Save Changes">
               </div>
             </div>
           </div>
@@ -97,4 +113,15 @@
 
   </div>
 </div>
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+       aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div >
+        <app-success-popup *ngIf="isSuccess" [item]="currentItem"></app-success-popup>
+        <app-failed-popup *ngIf="!isSuccess" [item]="errorItem"></app-failed-popup>
+      </div>
+    </div>
+  </div>
+
 </div>
