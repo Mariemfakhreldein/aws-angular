@@ -1,4 +1,4 @@
 export class PasswordModel{
-  oldPassword:any;
-  newPassword:any;
+  oldPassword: string;
+  newPassword: string;
 }
