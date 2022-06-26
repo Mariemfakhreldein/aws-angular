@@ -24,9 +24,9 @@
       paginate:{itemsPerPage:8,currentPage:page,totalItems:branches.length};let currentIndex=index" class="my-1">
           <button routerLink="/branch/edit/{{branch.id}}"   class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
             <p  class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted" >{{(branch.name.length>20)? (branch.name | slice:0:15)+'..':(branch.name)}}</p>
-            <p  class="col-12 col-lg-3 m-auto align-items-lg-start" >{{(branch.address.length>30)? (branch.address | slice:0:30)+'..':(branch.address)}}</p>
-            <p class="col-12 col-lg-2 m-auto align-items-lg-start">
-              <input type="checkbox" class="custom-control-input" checked>{{branch.branchStatus}}
+            <p  class="col-12 col-lg-3 m-auto align-items-lg-start text-muted " >{{(branch.address.length>30)? (branch.address | slice:0:30)+'..':(branch.address)}}</p>
+            <p class="col-12 col-lg-2 m-auto align-items-lg-start text-muted ">
+              <input type="checkbox" class="custom-control-input text-muted " checked>{{branch.branchStatus}}
             </p>
             <p routerLink="/branch/edit/{{branch.id}}" class="edit col-1 col-lg-1 text-info mb-0"><i class="fa fa-edit" style="--bs-table-hover-bg: #red"></i></p>
           </button>
