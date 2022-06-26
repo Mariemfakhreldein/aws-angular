@@ -1,3 +1,95 @@
-<!--<app-sidebar-header></app-sidebar-header>-->
-<h1 class="h1 color-dpink mx-5">Welcome HOME!!</h1>
+<div class="container">
 
+    <div class="row" *ngIf="canViewStatistics">
+      <div class="col-lg-4 col-sm-6">
+        <div class="card gradient-4">
+          <div class="card-body">
+            <h3 class="card-title text-white">Number Of Instances</h3>
+            <div class="d-inline-block">
+              <h2 class="text-white">{{statisticModel.numberOfInstance}}</h2>
+            </div>
+            <span class="float-right display-5 opacity-5"><i class="fa fa-server"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <div class="card gradient-4">
+          <div class="card-body">
+            <h3 class="card-title text-white">Number Of Branches</h3>
+            <div class="d-inline-block">
+              <h2 class="text-white">{{statisticModel.numberOfBranches}}</h2>
+            </div>
+            <span class="float-right display-5 opacity-5"><i class="fa fa-building"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6">
+        <div class="card gradient-4">
+          <div class="card-body">
+            <h3 class="card-title text-white">Number Of Users</h3>
+            <div class="d-inline-block">
+              <h2 class="text-white">{{statisticModel.numberOfUsers}}</h2>
+            </div>
+            <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+          </div>
+        </div>
+      </div>
+    </div >
+
+  <div class="row" *ngIf="canViewStatistics">
+    <div class="col-xl-4 col-lg-6 col-sm-6 col-xxl-6">
+
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Intakes Name</h4>
+          <div id="intakes">
+            <div class="media border-bottom-1 pt-3 pb-3" *ngFor="let intake of statisticModel.nameOfIntakes">
+              <img width="35" src="assets/images/iti-logo.png" class="mr-3 rounded-circle">
+              <div class="media-body">
+                <h5>{{intake}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-6 col-sm-6 col-xxl-6">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Training Programs</h4>
+          <div id="branches">
+            <div class="media border-bottom-1 pt-3 pb-3" *ngFor="let TrainingProgram of statisticModel.nameOfTrainingPrograms">
+              <img width="35" src="assets/images/iti-logo.png" class="mr-3 rounded-circle">
+              <div class="media-body">
+                <h5>{{TrainingProgram}}</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-lg-6 col-sm-6 col-xxl-6">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Animating a Donut with Svg.animate</h4>
+            <div id="apexcharts-doughnut"></div>
+            <google-chart [data]="pieChart" ></google-chart>
+            <button (click)="getData()"></button>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="!canViewStatistics">
+    <div class="col-xl-12 col-lg-12 col-sm-12 col-xxl-12">
+
+      <div class="card">
+        <div class="card-body">
+          <img src="assets/images/ITI-building.svg"/>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  </div>

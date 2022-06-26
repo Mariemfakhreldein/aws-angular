@@ -20,7 +20,7 @@
 
       <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
         <li class="nav-item">
-          <a href="#" class="nav-link align-middle px-3 text-dark text-decoration-none">
+          <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link align-middle px-3 text-dark text-decoration-none">
             <i class="fa fa-dashboard"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
           </a>
         </li>
@@ -168,6 +168,11 @@
               </a>
             </li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/logout']" routerLinkActive="active" class="nav-link align-middle px-3 text-dark text-decoration-none">
+            <i class="fa fa-lock"></i> <span class="ms-1 d-none d-sm-inline">Logout</span>
+          </a>
         </li>
       </ul>
     </div>

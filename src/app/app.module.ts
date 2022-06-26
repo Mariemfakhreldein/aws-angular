@@ -64,6 +64,7 @@ import { BranchSearchByNamePipe } from './compnents/pipes/search/branches/branch
 import { StudentSearchByNamePipe } from './compnents/pipes/search/students/student-search-by-name.pipe';
 import { StaffSearchByNamePipe } from './compnents/pipes/search/staff/staff-search-by-name.pipe';
 import { CreateMyinstanceComponent } from './compnents/instance/create-myinstance/create-myinstance.component';
+import {Ng2GoogleChartsModule}  from 'ng2-google-charts';
 
 @NgModule({
   declarations: [
@@ -149,6 +150,8 @@ import { CreateMyinstanceComponent } from './compnents/instance/create-myinstanc
         FormsModule,
         HttpClientModule,
         NgxPaginationModule,
+        ReactiveFormsModule,
+        Ng2GoogleChartsModule,
         ReactiveFormsModule,
         NgxCsvParserModule
     ],
