@@ -11,6 +11,8 @@ import {TemplateResponseModel} from "../../../models/templates/template.response
 export class ViewTemplatesComponent implements OnInit {
 
   templates: TemplateResponseModel[] = [];
+  searchValue: any;
+  page: number=1;
   constructor(private templateService: TemplateService) { }
 
   ngOnInit(): void {

@@ -1,50 +1,59 @@
-<!--<div id="preloader">-->
-<!--  <div class="loader">-->
-<!--    <svg class="circular" viewBox="25 25 50 50">-->
-<!--      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />-->
-<!--    </svg>-->
-<!--  </div>-->
-<!--</div>-->
-
-<div class="col-lg-12">
-  <div class="card">
-    <div class="card-body">
-      <!--      <h4 class="card-title">Bordered Table</h4>-->
-      <div class="table-responsive">
-        <table class="table table-bordered verticle-middle">
-          <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Image ID</th>
-            <th scope="col">Architecture</th>
-            <th scope="col">Image Name</th>
-            <th scope="col">Subnet ID</th>
-            <th scope="col">Instance Type</th>
-          </tr>
-          </thead>
-          <tbody>
-          <tr style="padding-top: 200px;" *ngFor="let template of templates">
-            <td style="padding: 15px 5px;">{{template.id}}</td>
-            <td>{{template.ami.amiId}}</td>
-            <td>{{template.ami.architecture}}</td>
-            <td>{{template.ami.imageName}}</td>
-            <td>{{template.subnetId}}</td>
-            <td>{{template.instanceType}}</td>
-            <td>
-              <span >
-                <a href="#" data-toggle="tooltip" data-placement="top" title="Edit">
-                  <i class="fa fa-pencil color-muted m-r-5" style="margin: 0px 15px;"></i>
-                </a>
-                <a href="#" data-toggle="tooltip" data-placement="top" title="Close">
-                  <i class="fa fa-close color-danger"></i>
-                </a>
-              </span>
-            </td>
-          </tr>
-
-          </tbody>
-        </table>
-      </div>
+<div class="container bg-light">
+  <div class="row mb-lg-5 mb-2 mt-2 justify-content-around">
+    <div class="col-lg-4 col-12 row justify-content-around ">
+      <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/template.png">
+      <h2 class="col-lg-10 col-10 mb-0 pt-3">All Templates</h2>
+    </div>
+    <div class="search col-lg-4 col-10 rounded bg-white justify-content-around mt-lg-0 mt-3">
+      <i class="fa fa-search text-muted col-lg-1 col-1 "></i>
+      <input class="border-0 col-10  col-lg-10 py-2 " placeholder="Search by name or email..." type="text" #search [ngModel]="searchValue">
     </div>
   </div>
+
+
+
+  <div class="row">
+    <div  class="row  border-0 justify-content-center my-2 rounded bg-transparent p-1 py-3 col-lg-10 mx-lg-auto text-center">
+      <p  class="col-2 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold" >Image ID</p>
+      <p  class="col-1 col-lg-3 m-auto align-items-lg-start text-muted font-weight-bold" >Architecture</p>
+      <p  class="col-1 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold" >Image Name</p>
+      <p  class="col-2 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold " >Subnet ID</p>
+      <p class="edit col-1 col-lg-1 text-info mb-0 text-muted font-weight-bold">Instance Type</p>
+    </div>
+
+    <div>
+      <div  *ngFor="let template of templates |
+      paginate:{itemsPerPage:8,currentPage:page,totalItems:templates.length}" class="my-1">
+        <button  class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+          <p  class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted" >{{(template.ami.amiId)}}</p>
+          <p  class="col-12 col-lg-3 m-auto align-items-lg-start" >{{template.ami.architecture}}</p>
+          <p  class="col-12 col-lg-2 m-auto align-items-lg-start" >{{template.ami.imageName}}</p>
+          <p  class="col-11 col-lg-2 m-auto align-items-lg-start" >{{template.subnetId}}</p>
+          <p  class="edit col-1 col-lg-1 text-info mb-0">{{template.instanceType}}</p>
+        </button>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div  class="col-12 mt-3 text-center" *ngIf="templates.length>7">
+
+    <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+
+    </pagination-controls>
+
+  </div>
 </div>
+
+
+<!--<td>-->
+<!--              <span >-->
+<!--                <a href="#" data-toggle="tooltip" data-placement="top" title="Edit">-->
+<!--                  <i class="fa fa-pencil color-muted m-r-5" style="margin: 0px 15px;"></i>-->
+<!--                </a>-->
+<!--                <a href="#" data-toggle="tooltip" data-placement="top" title="Close">-->
+<!--                  <i class="fa fa-close color-danger"></i>-->
+<!--                </a>-->
+<!--              </span>-->
+<!--</td>-->
