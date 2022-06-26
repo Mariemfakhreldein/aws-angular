@@ -11,7 +11,7 @@ import {Subscription, timer} from "rxjs";
   styleUrls: ['./view-instances.component.css']
 })
 export class ViewInstancesComponent implements OnInit {
-
+  clicked:boolean = false;
 
   instances:InstanceModel[]=[];
   instancesBackup:InstanceModel[]=[];
@@ -47,6 +47,7 @@ export class ViewInstancesComponent implements OnInit {
     this.instanceService.getAllInstances().subscribe({
       next: (data:any) =>{
 
+        this.clicked = false;
         this.instances = [];
         this.statusArray=[];
         this.instancesBackup=[];
@@ -71,6 +72,7 @@ export class ViewInstancesComponent implements OnInit {
 
   changeInstanceStatus(instance:InstanceModel ,currentIndex:number){
 
+    this.clicked = true;
     if( instance.state==='running'){
 
       this.instanceService.stopInstance(instance.instanceId).subscribe({
@@ -180,5 +182,6 @@ export class ViewInstancesComponent implements OnInit {
   //     complete: () => console.info('complete')
   //   });
   // }
+
 
 }
