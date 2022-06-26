@@ -1,9 +1,13 @@
+//creation time on seconds + time to live in seconds - current time in seconds
+
 import { Component, OnInit } from '@angular/core';
 import {InstanceService} from "../../../services/instance.service";
 import {InstanceModel} from "../../../models/instances/instance.models";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../services/auth.service";
 import {Subscription, timer} from "rxjs";
+import {InstanceDateModel} from "../../../models/instances/instance.date.model";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-view-instances',
@@ -16,6 +20,8 @@ export class ViewInstancesComponent implements OnInit {
   instances:InstanceModel[]=[];
   instancesBackup:InstanceModel[]=[];
 
+  instanceTime:InstanceDateModel[]=[];
+
   //count down
   countDown: Subscription;
   counter = 1800;
@@ -27,6 +33,7 @@ export class ViewInstancesComponent implements OnInit {
   page:number=1;
   status:string='Running'
 
+  pipe = new DatePipe("en");
   constructor(private instanceService: InstanceService , private authService: AuthService,private router: Router) { }
 
   canCreateTerminateAssignInstance: boolean = false
@@ -38,7 +45,13 @@ export class ViewInstancesComponent implements OnInit {
 
     this.countDown = timer(0, this.tick).subscribe(() => --this.counter);
     // this.getInstanceTime(1);
+    console.log("********************************"+this.instanceTime)
 
+    console.log("---------------------------------------------------------------------")
+    console.log(this.pipe.transform(Date.now(),'dd/mm/yy hh:mm:ss') + "++ current time ");
+    console.log(this.pipe.transform(Date.now(),'dd/mm/yy hh:mm:ss'))
+    console.log(new Date('2022-06-26 15:00:32.967527').getTime());
+    console.log((Date.now() - new Date('2022-06-26 15:00:32.967527').getTime() )/1000/60);
 
   }
 
@@ -54,6 +67,8 @@ export class ViewInstancesComponent implements OnInit {
           this.instances.push(e);
           this.statusArray.push(e.state);
           this.instancesBackup.push(e);
+          this.instanceTime.push(e.creationDateTime,e.timeToLiveInMinutes)
+
 
         })
 
@@ -148,12 +163,6 @@ export class ViewInstancesComponent implements OnInit {
 
   }
 
-
-
-
-
-
-
   getBackUpInstances(){
 
     let i = 0;
@@ -166,16 +175,13 @@ export class ViewInstancesComponent implements OnInit {
   }
 
 
-  // public getInstanceTime(instanceId){
-  //   this.instanceService.getInstanceById(instanceId).subscribe({
-  //     next: (data:any) =>{
-  //      console.log("timeToLiveInMinutes"+data.creationDateTime);
-  //       console.log("timeToLiveInMinutes"+data.timeToLiveInMinutes);
-  //
-  //     },
-  //     error: (e) => console.error(e+"errorr"),
-  //     complete: () => console.info('complete')
-  //   });
-  // }
+  public getTimer(){
+
+    let counter;
+    for (const i of this.instanceTime) {
+     console.log("*%%%%%*%*%*"+i);
+
+    }
+  }
 
 }

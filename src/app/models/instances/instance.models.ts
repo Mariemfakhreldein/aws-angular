@@ -13,9 +13,10 @@ export class InstanceModel {
   instanceType:string;
   subnetId:string;
   vpcId:string;
+  creationDateTime:any;
   // decryptedPassword:string;
   // username:string;
-  creationDateTime:string;
+
   // platform:string;
   // creator:string; /////////////////////////edit
   // instanceUsers:[]; //////////////////////edit
