@@ -62,37 +62,37 @@ export class SidebarHeaderComponent implements OnInit {
     this.canManageProfile = this.authService.containPrivilege("MANAGE_PROFILE")
 
     this.canManageStudents = this.authService.containPrivilege('MANAGE_STUDENTS');
-    this.canViewStudents = this.authService.containPrivilege("VIEW_STUDENTS")
+    // this.canViewStudents = this.authService.containPrivilege("VIEW_STUDENTS")
 
     this.canManageStaff = this.authService.containPrivilege("MANAGE_STAFF");
-    this.canViewStaff = this.authService.containPrivilege("VIEW_STAFF")
+    // this.canViewStaff = this.authService.containPrivilege("VIEW_STAFF")
 
     this.canViewInstructor = this.authService.containPrivilege("VIEW_INSTRUCTOR");
-    this.canViewUser = this.authService.containPrivilege("VIEW_INSTRUCTOR");
+    // this.canViewUser = this.authService.containPrivilege("VIEW_INSTRUCTOR");
 
     this.canManageRoles = this.authService.containPrivilege("MANAGE_ROLES");
-    this.canViewRoles = this.authService.containPrivilege("VIEW_ROLES");
+    // this.canViewRoles = this.authService.containPrivilege("VIEW_ROLES");
 
-    this.canViewPrivileges = this.authService.containPrivilege("VIEW_PRIVILEGES");
+    // this.canViewPrivileges = this.authService.containPrivilege("VIEW_PRIVILEGES");
 
     this.canManageTemplates = this.authService.containPrivilege('MANAGE_TEMPLATES');
-    this.canViewTemplates = this.authService.containPrivilege('VIEW_TEMPLATES');
+    // this.canViewTemplates = this.authService.containPrivilege('VIEW_TEMPLATES');
 
     this.canViewInstanceLogs = this.authService.containPrivilege("VIEW_INSTANCE_LOGS");
 
     this.canViewStatistics = this.authService.containPrivilege("VIEW_STATISTICS");
 
     this.canManageTrainingPrograms = this.authService.containPrivilege('MANAGE_TRAINING_PROGRAMS');
-    this.canViewTrainingPrograms = this.authService.containPrivilege("VIEW_TRAINING_PROGRAMS");
+    // this.canViewTrainingPrograms = this.authService.containPrivilege("VIEW_TRAINING_PROGRAMS");
 
     this.canManageIntakes = this.authService.containPrivilege('MANAGE_INTAKES');
-    this.canViewIntakes = this.authService.containPrivilege("VIEW_INTAKES");
+    // this.canViewIntakes = this.authService.containPrivilege("VIEW_INTAKES");
 
     this.canManageTracks = this.authService.containPrivilege('MANAGE_TRACKS');
-    this.canViewTracks = this.authService.containPrivilege("VIEW_TRACKS");
+    // this.canViewTracks = this.authService.containPrivilege("VIEW_TRACKS");
 
     this.canManageBranches = this.authService.containPrivilege('MANAGE_BRANCHES');
-    this.canViewBranches = this.authService.containPrivilege("VIEW_BRANCHES");
+    // this.canViewBranches = this.authService.containPrivilege("VIEW_BRANCHES");
   }
 
   getUserNameAndRole(){
