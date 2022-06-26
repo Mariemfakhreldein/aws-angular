@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {TemplateService} from "../../../services/template.service";
 import {UserModel} from "../../../models/users/user.model";
 import {UserService} from "../../../services/user.service";
@@ -30,6 +30,10 @@ export class AssignTemplateComponent implements OnInit {
   isCheckedTemplates: any[]=[] ;
 
   assignTemplateRequest = new AssignTemplateModel();
+
+  item='template';
+  action='assigned';
+  @Output() isSuccess = false;
 
   constructor(private formBuilder:FormBuilder,
               private route:Router,
@@ -83,10 +87,23 @@ export class AssignTemplateComponent implements OnInit {
         this.templateService.assignTemplateToInstructors(this.assignTemplateRequest).subscribe(
           (response:any)=>{
             console.log("success");
+            this.isSuccess = true;
+            this.isCheckedInstructor = [];
+            this.isCheckedTemplates = [];
+            this.selectedInstructors = [];
+            this.selectedTemplates = [];
           },
           (error: any)=>{
+            if(error.status ==500){
+              this.item = "template already"
+            }
             console.log("fail");
             console.log(error);
+            this.isSuccess = false;
+            this.isCheckedInstructor = [];
+            this.isCheckedTemplates = [];
+            this.selectedInstructors = [];
+            this.selectedTemplates = [];
           }
         )
       }

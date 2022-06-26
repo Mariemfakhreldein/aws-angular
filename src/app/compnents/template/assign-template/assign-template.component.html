@@ -67,7 +67,7 @@
 
               <div class="form-group row">
                 <div class="col-lg-8 ml-auto">
-                  <button type="button" id="btn-submit" (click)="submitBtn()"  class="btn" [disabled]="fetchSelectedTemplates().length==0">Submit</button>
+                  <button type="button" id="btn-submit" (click)="submitBtn()"  class="btn" [disabled]="fetchSelectedTemplates().length==0 || fetchSelectedInstructors().length==0"  data-toggle="modal" data-target="#exampleModalCenter">Submit</button>
                 </div>
               </div>
             </div>
@@ -78,6 +78,15 @@
   </div>
 </div>
 <!-- #/ container -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div>
+    <app-success-popup *ngIf="isSuccess" [item]="item" [action]="action"></app-success-popup>
+    <app-failed-popup *ngIf="!isSuccess" [item]="item" [action]="action"></app-failed-popup>
+  </div>
+</div>
+</div>
 
 
 <script type="text/javascript">
