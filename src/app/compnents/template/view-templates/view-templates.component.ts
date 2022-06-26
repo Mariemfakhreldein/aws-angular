@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TemplateService} from "../../../services/template.service";
-import {TemplateResponseModel} from "../../../models/templates/template.response.model";
+import {TemplateResponseModel} from "../../../models/templates/templateResponse.model";
+
 
 
 @Component({

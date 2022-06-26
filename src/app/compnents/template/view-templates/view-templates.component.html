@@ -1,12 +1,8 @@
 <div class="container bg-light">
-  <div class="row mb-lg-5 mb-2 mt-2 justify-content-around">
-    <div class="col-lg-4 col-12 row justify-content-around ">
+  <div class="row mb-lg-5 mb-2 mt-2 justify-content-center">
+    <div class="col-lg-4 col-12 row justify-content-center ">
       <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/template.png">
-      <h2 class="col-lg-10 col-10 mb-0 pt-3">All Templates</h2>
-    </div>
-    <div class="search col-lg-4 col-10 rounded bg-white justify-content-around mt-lg-0 mt-3">
-      <i class="fa fa-search text-muted col-lg-1 col-1 "></i>
-      <input class="border-0 col-10  col-lg-10 py-2 " placeholder="Search by name or email..." type="text" #search [ngModel]="searchValue">
+      <h2 class="col-lg-6 col-10 mb-0 pt-3  pl-0">All Templates</h2>
     </div>
   </div>
 
@@ -15,21 +11,17 @@
   <div class="row">
     <div  class="row  border-0 justify-content-center my-2 rounded bg-transparent p-1 py-3 col-lg-10 mx-lg-auto text-center">
       <p  class="col-2 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold" >Image ID</p>
-      <p  class="col-1 col-lg-3 m-auto align-items-lg-start text-muted font-weight-bold" >Architecture</p>
-      <p  class="col-1 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold" >Image Name</p>
-      <p  class="col-2 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold " >Subnet ID</p>
-      <p class="edit col-1 col-lg-1 text-info mb-0 text-muted font-weight-bold">Instance Type</p>
+      <p  class="col-1 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold" >Instance type</p>
+      <p  class="col-1 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold" >Subnet Id</p>
     </div>
 
     <div>
       <div  *ngFor="let template of templates |
       paginate:{itemsPerPage:8,currentPage:page,totalItems:templates.length}" class="my-1">
         <button  class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-          <p  class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted" >{{(template.ami.amiId)}}</p>
-          <p  class="col-12 col-lg-3 m-auto align-items-lg-start" >{{template.ami.architecture}}</p>
-          <p  class="col-12 col-lg-2 m-auto align-items-lg-start" >{{template.ami.imageName}}</p>
-          <p  class="col-11 col-lg-2 m-auto align-items-lg-start" >{{template.subnetId}}</p>
-          <p  class="edit col-1 col-lg-1 text-info mb-0">{{template.instanceType}}</p>
+          <p  class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted" >{{template.amiId}}</p>
+          <p  class="col-12 col-lg-2 m-auto align-items-lg-start" >{{template.instanceType}}</p>
+          <p  class="col-12 col-lg-2 m-auto align-items-lg-start" >{{template.subnetId}}</p>
         </button>
       </div>
     </div>
@@ -47,13 +39,3 @@
 </div>
 
 
-<!--<td>-->
-<!--              <span >-->
-<!--                <a href="#" data-toggle="tooltip" data-placement="top" title="Edit">-->
-<!--                  <i class="fa fa-pencil color-muted m-r-5" style="margin: 0px 15px;"></i>-->
-<!--                </a>-->
-<!--                <a href="#" data-toggle="tooltip" data-placement="top" title="Close">-->
-<!--                  <i class="fa fa-close color-danger"></i>-->
-<!--                </a>-->
-<!--              </span>-->
-<!--</td>-->
