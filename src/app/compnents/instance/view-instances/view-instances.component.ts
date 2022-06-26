@@ -68,8 +68,8 @@ export class ViewInstancesComponent implements OnInit {
       complete: () => console.info('complete')
     }) ;
   }
-  changeInstanceStatus(instance:InstanceModel ,currentIndex:number){
 
+  changeInstanceStatus(instance:InstanceModel ,currentIndex:number){
 
     if( instance.state==='running'){
 
