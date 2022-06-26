@@ -133,7 +133,7 @@ aside {
         top: 0;
         bottom: 0;
         width: 0px;
-        background-color: #ff7315;
+        background-color: #5d1216;
         opacity: 0;
         visibility: hidden;
         -webkit-transition: .3s opacity ease, .3s visibility ease, .3s width ease;
