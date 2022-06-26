@@ -26,6 +26,8 @@ export class ManageIntakesComponent implements OnInit {
   @Output() isSuccess = false;
   currentItem: string = "Intake";
 
+  action="Created";
+
   constructor(private formBuilder: FormBuilder,
               private intakeService: IntakeService,) {}
 
