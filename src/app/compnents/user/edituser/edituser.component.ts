@@ -53,7 +53,7 @@ export class EdituserComponent implements OnInit {
       email:["student@gmail.com",[Validators.required]],
       role:["",[Validators.required]],
     });
-    alert("here");
+    // alert("here");
     this.getRoles("1");
     this.getTracks("1");
   }
