@@ -33,6 +33,10 @@ export class UserService {
     return this.api.post("/api/students",students);
   }
 
+  addStaff(staffList: any){
+    return this.api.post("/api/staff",staffList);
+  }
+
   getStudentRoles(): UserRolesModel[]{
     this.userRoles.push(new UserRolesModel(1, "hafsa1"));
     this.userRoles.push(new UserRolesModel(2, "hafsa2"));
@@ -50,5 +54,4 @@ export class UserService {
     this.userTracks.push(new UserTracksModel(5, "hafsa5"));
     return this.userTracks;
   }
-
 }
