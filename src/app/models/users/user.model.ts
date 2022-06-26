@@ -1,10 +1,10 @@
-
 export class UserModel {
 
   id: number;
-    username: string;
-    email: string;
-    role: string;
+  username: string;
+  email: string;
+  role: string;
+  tracks: any[];
 
 
   // constructor(name: string, email: string, role: string){
@@ -13,7 +13,7 @@ export class UserModel {
   //     this.role = role;
   //   }
 
-    toString(){
-    console.log(this.username+this.email+this.role);
-    }
+  toString() {
+    console.log(this.username + this.email + this.role);
+  }
 }
