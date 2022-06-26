@@ -19,6 +19,7 @@ export class CreateTrainingProgramComponent implements OnInit {
   isSuccess = false;
   isLoading = true;
   currentItem = 'trainingProgram';
+  action="Created";
 
   constructor(private formBuilder: FormBuilder,
     private trainingProgramService: TrainingProgramService,
