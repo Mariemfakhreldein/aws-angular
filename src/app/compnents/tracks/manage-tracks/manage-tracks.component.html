@@ -1,10 +1,16 @@
-<p>manage-tracks works!</p>
+
 <div>
+  <div class="container-fluid justify-content-center mx-auto">
+    <div class="col-lg-4 col-12 mb-3 row justify-content-center mb-3 mb-lg-5 mx-auto">
+      <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/showtrack.png">
+      <h2 class="col-lg-6 col-5 mb-0 pt-2 text-start px-0 text-muted font-italic">Add Track</h2>
+    </div>
+
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-lg-12">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body rounded shadow ">
 
             <div class="form-validation" [formGroup]="myGroup">
 
@@ -13,7 +19,7 @@
 
 
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="branches">Select Branch <span class="text-danger">*</span>
+                <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="branches">Select Branch
                 </label>
                 <div class="col-lg-6">
 
@@ -25,7 +31,7 @@
 
                   >
 
-                    <option  selected disabled class="text-muted" value="" ><span style="color: rgba(161,161,161,0.74)">Please Select Branch</span></option>
+                    <option value="" selected disabled class="text-secondary">Please Select Branch</option>
                     <option *ngFor="let branch of branches"
                             [value]="branch.id">{{branch.name}} </option>
                   </select>
@@ -39,7 +45,7 @@
               </div>
 
               <div class="form-group row" *ngIf="!myGroup.controls['branches'].errors && trainingPrograms.length > 0" >
-                <label class="col-lg-4 col-form-label" for="trainingPrograms">Select Training Program <span class="text-danger">*</span>
+                <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="trainingPrograms">Select Training Program
                 </label>
                 <div class="col-lg-6">
                   <select class="form-control" id="trainingPrograms" data-live-search="true"
@@ -48,8 +54,7 @@
                           [class.is-invalid]="myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched"
                           [(ngModel)]="selectedTrainingProgram"
                   >
-
-<!--                    <option value="trainingPrograms[0].id" selected disabled class="text-secondary">Please Select Branch</option>-->
+                    <option value="" selected disabled class="text-secondary">Please Select Training Program </option>
                     <option *ngFor="let trainingProgram of trainingPrograms "
                             [value]="trainingProgram.id"  >{{trainingProgram.name}} </option>
                   </select>
@@ -62,8 +67,7 @@
               </div>
 
               <div class="form-group row" *ngIf="!myGroup.controls['trainingPrograms'].errors && intakes.length > 0">
-                <label class="col-lg-4 col-form-label" for="intakes">Select Intake <span
-                  class="text-danger">*</span>
+                <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="intakes">Select Intake
                 </label>
                 <div class="col-lg-6">
                   <select class="form-control" id="intakes" data-live-search="true"
@@ -72,8 +76,7 @@
                           [class.is-invalid]="myGroup.controls['intakes'].errors && myGroup.controls['intakes'].touched"
 
                   >
-
-<!--                    <option value="" selected disabled class="text-secondary">Please Select Intake</option>-->
+                    <option value="" selected disabled class="text-secondary">Please Select Intake </option>
 
                     <option *ngFor="let intake of intakes"
                             [value]="intake.id">{{intake.intakeName}} </option>
@@ -88,8 +91,7 @@
               </div>
 
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="val-username">Track Name <span
-                  class="text-danger">*</span>
+                <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="val-username">Track Name
                 </label>
                 <div class="col-lg-6">
                   <input  type="text" class="form-control" id="val-username" name="val-username"
@@ -108,10 +110,10 @@
               </div>
 
               <div class="form-group row">
-                <div class="col-lg-8 ml-auto">
+                <div class="col-lg-8 mx-auto text-center">
                   <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid"
-                          (click)="submit()" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
-                    Submit
+                          (click)="submit()" class="btn font-weight-bold " data-toggle="modal" data-target="#exampleModalCenter">
+                    Add
                   </button>
                 </div>
               </div>

@@ -10,7 +10,6 @@ import { CreateInstanceComponent } from './compnents/instance/create-instance/cr
 import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance-details/view-instance-details.component';
 import {LogoutComponent} from "./compnents/logout/logout.component";
 import {CreateTemplateComponent} from "./compnents/template/create-template/create-template.component";
-import {CreatenewstaffComponent} from "./compnents/user/staff/createnewstuff/createnewstaff.component";
 import {UserdetailsComponent} from "./compnents/user/userdetails/userdetails.component";
 import {CreateBranchComponent} from "./compnents/branch/create-branch/create-branch.component";
 import {ShowBranchsComponent} from "./compnents/branch/show-branchs/show-branchs.component";
@@ -39,8 +38,24 @@ import { CreateTrainingProgramComponent } from './compnents/training-programs/cr
 import { UpdateTrainingProgramsComponent } from './compnents/training-programs/update-training-programs/update-training-programs.component';
 import {AddStudentsComponent} from "./compnents/user/students/add-students/add-students.component";
 import {UserprofileComponent} from "./compnents/user/userprofile/userprofile.component";
+import { ViewInstancesLogsComponent } from './compnents/instance-logs/view-instances-logs/view-instances-logs.component';
+import {CreateRoleComponent} from "./compnents/roles/create-role/create-role.component";
+import {ShowAllRolesComponent} from "./compnents/roles/show-all-roles/show-all-roles.component";
+import {ViewTemplatesComponent} from "./compnents/template/view-templates/view-templates.component";
+import {AssignTemplateComponent} from "./compnents/template/assign-template/assign-template.component";
 
+import { AddStaffComponent } from './compnents/user/staff/add-staff/add-staff.component';
+import {CreateMyinstanceComponent} from "./compnents/instance/create-myinstance/create-myinstance.component";
 const routes: Routes = [
+  {path:'home', component:HomeComponent , canActivate:[AuthGuard]},
+  {path:'instances/createInstance',component:CreateInstanceComponent},
+  {path:'instances/createMyInstance',component:CreateMyinstanceComponent },
+  {path:'instances/:id',component:ViewInstanceDetailsComponent},
+  {path:'instances',component:ViewInstancesComponent},
+  {path:'template',component:CreateTemplateComponent},
+  {path:'templates/view',component:ViewTemplatesComponent},
+  {path:'templates/assign',component:AssignTemplateComponent},
+  {path:'login', component:LoginComponent},
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
   {path:'instances/createInstance',component:CreateInstanceComponent, canActivate:[AuthGuard, CreateAssignTerminateInstanceGuard] },
   {path:'instances/:id',component:ViewInstanceDetailsComponent, canActivate:[AuthGuard, StartStopViewInstanceGuard]},
@@ -48,7 +63,7 @@ const routes: Routes = [
   {path:'template',component:CreateTemplateComponent, canActivate:[AuthGuard, ManageTemplatesGuard]},
   {path:'login', component:LoginComponent},
   {path:'logout', component:LogoutComponent},
-  {path:'user/createStaff', component:CreatenewstaffComponent, canActivate:[AuthGuard]},
+  {path:'user/staff/addStaff', component:AddStaffComponent, canActivate:[AuthGuard]},
   {path:'user/staff/search',component:UserSearchComponent},
   {path:'users', component:UserdetailsComponent},
   {path:'branch/create', component:CreateBranchComponent},
@@ -70,8 +85,14 @@ const routes: Routes = [
   {path:'training-programs/show', component: ViewTrainingProgramsComponent},
   {path:'training-programs/create', component: CreateTrainingProgramComponent},
   {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent},
+  {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent},
+
+  {path:'instances-logs/view', component: ViewInstancesLogsComponent},
 
   {path:'branch/show', component:ShowBranchsComponent},
+  {path:'user/createStudent',component:CreatenewstudentComponent},
+  {path:'roles/create',component:CreateRoleComponent},
+  {path:'roles/show-all',component:ShowAllRolesComponent},
   {path:'user/createStudent',component:CreatenewstudentComponent},
   {path:'user/profile',component:UserprofileComponent},
 

@@ -10,7 +10,7 @@ export class ManageBranchesGuard implements CanActivate {
   constructor(private authService:AuthService, private router:Router){}
 
   canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let isAuthorized = this.authService.containPrivilege('MANAGE_TRAINING_PROGRAMS');
+    let isAuthorized = this.authService.containPrivilege('MANAGE_BRANCHES');
     if (!isAuthorized){
       this.router.navigateByUrl("not-authorized")
     }

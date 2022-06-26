@@ -51,6 +51,14 @@ export class AuthService  implements OnInit {
     return JSON.parse(payLoad).privileges;
   }
 
+  getUserId():number{
+    const jwtToken = this.tokenService.getToken();
+    const encodedPayLoad = jwtToken.split(".")[1];
+    const payLoad = atob(encodedPayLoad);
+    return JSON.parse(payLoad).id;
+  }
+
+
   containPrivilege(privilege: string): boolean{
     return this.getPrivileges().some(function(p){ return p === privilege})
   }

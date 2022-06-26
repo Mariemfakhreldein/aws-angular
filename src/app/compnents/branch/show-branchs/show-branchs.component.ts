@@ -23,6 +23,7 @@ export class ShowBranchsComponent implements OnInit {
   // createBranch(){
   //   this.route.navigateByUrl("/branch/create");
   // }
+  searchValue: any;
 
   getBranches(){
     this.branchService.getAll().subscribe(

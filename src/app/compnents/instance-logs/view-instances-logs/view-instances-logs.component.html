@@ -1,0 +1,52 @@
+<div>
+
+
+  <div class="container-fluid" *ngIf="allInsatanceLogs.length>0; else elseTemplate">
+
+
+    <div class="row">
+      <div
+        class="row  border-0 justify-content-center my-2 rounded bg-transparent p-1 py-3 col-lg-10 mx-lg-auto text-center">
+        <p class="col-2 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold">id</p>
+        <p class="col-1 col-lg-3 m-auto align-items-lg-start text-muted font-weight-bold">Instance Name</p>
+        <p class="col-1 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold">Action</p>
+        <p class="col-2 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold ">Action Maker Name</p>
+        <p class="col-2 col-lg-2 m-auto align-items-lg-start text-muted font-weight-bold ">Date Time</p>
+      </div>
+
+      <div>
+        <div *ngFor="let instanceLog of allInsatanceLogs |
+        paginate:{itemsPerPage:4, currentPage:page, totalItems:allInsatanceLogs.length};let currentIndex=index"
+          class="my-1">
+          <button
+            class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+            <p class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted">{{instanceLog.id}}</p>
+            <p class="col-12 col-lg-3 m-auto align-items-lg-start text-muted ">{{instanceLog.instance.name}}</p>
+            <p class="col-12 col-lg-2 m-auto align-items-lg-start text-muted ">{{instanceLog.action}}</p>
+            <p class="col-11 col-lg-2 m-auto align-items-lg-start text-muted ">{{instanceLog.actionMaker.username}}</p>
+            <p class="col-11 col-lg-2 m-auto align-items-lg-start text-muted ">{{instanceLog.dateTime}}</p>
+          </button>
+          <div *ngIf="instanceLog.id == allInsatanceLogs[allInsatanceLogs.length-1].id" class="btn btn-primary"
+            (click)="getAllInstancesLogs()">More...</div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <div class="col-12 mt-3 text-center" *ngIf="allInsatanceLogs.length > 4">
+
+      <pagination-controls (pageChange)="page=$event" style="bottom: 100px;left: 50vw">
+
+      </pagination-controls>
+
+    </div>
+
+  </div>
+
+  <ng-template #elseTemplate>
+    There is no Logs yet
+  </ng-template>
+
+
+</div>

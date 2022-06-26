@@ -2,7 +2,6 @@ import {Component, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BranchModel} from "../../../models/branch/branch.model";
 import {TrainingProgram} from "../../../models/instances/training.program.model";
-import {IntakePostModel} from "../../../models/intake/intake.post.model";
 import {IntakeService} from "../../../services/intake.service";
 import {ActivatedRoute} from "@angular/router";
 import {IntakeModel} from "../../../models/intake/intake.model";
@@ -19,9 +18,8 @@ export class EditIntakeComponent implements OnInit {
   @Output() isSuccess = false;
   currentItem: string = "Intake";
 
-
   intake=new IntakeModel();
-
+  action="Updated"
 
   myGroup: FormGroup = new FormGroup({});
   branches: BranchModel[] = [];
@@ -31,10 +29,6 @@ export class EditIntakeComponent implements OnInit {
   intakeName: any;
   intakeDescription: any;
   id:any;
-
-
-
-
 
   constructor(private formBuilder: FormBuilder,
               private intakeService: IntakeService,
@@ -49,15 +43,11 @@ export class EditIntakeComponent implements OnInit {
         }
       );
 
-    this.intakeName=this.intake.intakeName;
-    this.intakeDescription=this.intake.intakeDescription;
-    this.trainingPrograms=this.intake.trainingProgram;
+    // this.intakeName=this.intake.intakeName;
+    // this.intakeDescription=this.intake.intakeDescription;
+    // this.trainingPrograms=this.intake.trainingProgram;
 
-    this.myGroup = this.formBuilder.group({
-      trainingPrograms: [this.intake.trainingProgram],
-      intakeName: [this.intake.intakeName, [Validators.required]],
-      intakeDescription: [this.intake.intakeDescription, [Validators.required]]
-    });
+
   }
 
 
@@ -68,11 +58,12 @@ export class EditIntakeComponent implements OnInit {
       this.intakePut.intakeDescription = this.intakeDescription;
       this.intakePut.trainingProgramId = 1;
       this.updateIntake(this.intakePut);
+
     }
 
 
   updateIntake(model: IntakePutModel) {
-    this.intakeService.updateIntake(model).subscribe(
+    this.intakeService.update(model).subscribe(
       (response: any) => {
         this.isLoading = false;
         this.isSuccess = true;
@@ -84,12 +75,24 @@ export class EditIntakeComponent implements OnInit {
   }
 
   private getIntakeDetails(id: string) {
-    this.intakeService.getIntakeById(id).subscribe({
+    this.intakeService.getById(id).subscribe({
       next: (data: any) => {
-        this.intake=data;
+        this.intake.id=data.id;
+        this.intake.intakeName = data.intakeName;
+        this.intake.intakeDescription = data.intakeDescription;
+        this.intake.trainingProgram = data.trainingProgram;
+        this.intakeName = this.intake.intakeName;
+        this.intakeDescription = this.intake.intakeDescription
         console.log(data);
         console.log("222222"+this.intake);
+
+        this.myGroup = this.formBuilder.group({
+          trainingPrograms: [this.intake.trainingProgram],
+          intakeName: [this.intake.intakeName, [Validators.required]],
+          intakeDescription: [this.intake.intakeDescription, [Validators.required]]
+        });
       }
     })
   }
+
 }

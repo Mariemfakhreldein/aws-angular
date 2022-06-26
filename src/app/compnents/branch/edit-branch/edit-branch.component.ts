@@ -92,7 +92,7 @@ export class EditBranchComponent implements OnInit {
 
   getBranchDetails(id:string){
     // alert("here" + this.id)
-    this.branchService.getBranch(id).subscribe(
+    this.branchService.getById(id).subscribe(
       (response:any)=>{
         console.log(response);
         this.branch = response;

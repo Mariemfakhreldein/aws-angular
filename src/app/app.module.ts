@@ -49,6 +49,22 @@ import { CreatenewstudentComponent } from './compnents/user/student/createnewstu
 import { UserprofileComponent } from './compnents/user/userprofile/userprofile.component';
 import { AddStudentsComponent } from './compnents/user/students/add-students/add-students.component';
 import {NgxCsvParserModule} from "ngx-csv-parser";
+import { ViewInstancesLogsComponent } from './compnents/instance-logs/view-instances-logs/view-instances-logs.component';
+import { CreateRoleComponent } from './compnents/roles/create-role/create-role.component';
+import { ShowAllRolesComponent } from './compnents/roles/show-all-roles/show-all-roles.component';
+import { RoleSearchByNamePipe } from './compnents/pipes/search/roles/role-search-by-name.pipe';
+import { IntakeSearchByNamePipe } from './compnents/pipes/search/intakes/intake-search-by-name.pipe';
+import { TrackSearchByNamePipe } from './compnents/pipes/search/tracks/track-search-by-name.pipe';
+// import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-branch.component';
+import { ViewTemplatesComponent } from './compnents/template/view-templates/view-templates.component';
+import { AssignTemplateComponent } from './compnents/template/assign-template/assign-template.component';
+import { AddStaffComponent } from './compnents/user/staff/add-staff/add-staff.component';
+import { TrainingProgramSearchByNamePipe } from './compnents/pipes/search/training-programs/training-program-search-by-name.pipe';
+import { BranchSearchByNamePipe } from './compnents/pipes/search/branches/branch-search-by-name.pipe';
+import { StudentSearchByNamePipe } from './compnents/pipes/search/students/student-search-by-name.pipe';
+import { StaffSearchByNamePipe } from './compnents/pipes/search/staff/staff-search-by-name.pipe';
+import { CreateMyinstanceComponent } from './compnents/instance/create-myinstance/create-myinstance.component';
+import {Ng2GoogleChartsModule}  from 'ng2-google-charts';
 
 @NgModule({
   declarations: [
@@ -106,7 +122,27 @@ import {NgxCsvParserModule} from "ngx-csv-parser";
     CreatenewstudentComponent,
     UserprofileComponent,
     UpdateTrackComponent,
-    AddStudentsComponent
+    AddStudentsComponent,
+    UpdateTrainingProgramsComponent,
+    ViewInstancesLogsComponent,
+    UserprofileComponent,
+    CreateRoleComponent,
+    ShowAllRolesComponent,
+    RoleSearchByNamePipe,
+    IntakeSearchByNamePipe,
+    TrackSearchByNamePipe,
+    // DetailBranchComponent,
+    ViewTemplatesComponent,
+    AssignTemplateComponent,
+    AddStudentsComponent,
+    AddStaffComponent,
+    TrackSearchByNamePipe,
+    TrainingProgramSearchByNamePipe,
+    BranchSearchByNamePipe,
+    StudentSearchByNamePipe,
+    StaffSearchByNamePipe,
+    StudentSearchByNamePipe,
+    CreateMyinstanceComponent
   ],
     imports: [
         BrowserModule,
@@ -114,6 +150,8 @@ import {NgxCsvParserModule} from "ngx-csv-parser";
         FormsModule,
         HttpClientModule,
         NgxPaginationModule,
+        ReactiveFormsModule,
+        Ng2GoogleChartsModule,
         ReactiveFormsModule,
         NgxCsvParserModule
     ],

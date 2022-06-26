@@ -44,7 +44,7 @@ export class ViewInstancesComponent implements OnInit {
 
 
   getInstances(){
-    this.instanceService.getAllInstances().subscribe({
+    this.instanceService.getAll().subscribe({
       next: (data:any) =>{
 
         data.listOfInstance.forEach(e => {

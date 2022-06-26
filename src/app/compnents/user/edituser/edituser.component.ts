@@ -26,8 +26,9 @@ import {UserTrackModel} from "../../../models/tracks/user.tracks.model";
 export class EdituserComponent implements OnInit {
 
   isLoading:boolean=true;
-  id: string;
+
   editUserFormGroup: FormGroup = new FormGroup({});
+  submitted: boolean=false;
 
   roles:UserRolesModel[];
   tracks:UserTrackModel[];
@@ -48,9 +49,8 @@ export class EdituserComponent implements OnInit {
   @Output() isSuccess=false;
 
   currentItem='template';
+
   action='created';
-
-
   constructor(private _formBuilder:FormBuilder,
               private route:Router,
               private userService: UserService,
@@ -89,13 +89,23 @@ export class EdituserComponent implements OnInit {
           role:this.editUserModel.role
         });
 
-      },(error:any)=>{
-        console.log("fail Hello", error);
-      }
-    )
-
   }
 
+  getTracks(id:string){
+      this.tracks = this.userService.getStudentTracks();
+      //   .getAmi(amiModel).subscribe(
+      //   (response:any)=>{
+      //     this.amiFlag = response.success;
+      //     if(this.amiFlag){
+      //       this.submit();
+      //     }else{
+      //       alert("enter a valid ami please  ");
+      //     }
+      //   },(error:any)=>{
+      //     console.log("fail ami", error);
+      //   }
+      // )
+  }
 
   submitBtn() {
     if (this.fetchSelectedItems().length === 0) {

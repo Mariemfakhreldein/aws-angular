@@ -6,6 +6,10 @@ import {IntakeService} from "../../../services/intake.service";
 import {BranchPostModel} from "../../../models/branch/branch.post.model";
 import {IntakeModel} from "../../../models/intake/intake.model";
 import {IntakePostModel} from "../../../models/intake/intake.post.model";
+import {BranchService} from "../../../services/branch.service";
+import {TrainingProgramService} from "../../../services/training-program.service";
+import {Track} from "../../../models/instances/track.model";
+import {TrackService} from "../../../services/track.service";
 
 @Component({
   selector: 'app-manage-intakes',
@@ -26,8 +30,13 @@ export class ManageIntakesComponent implements OnInit {
   @Output() isSuccess = false;
   currentItem: string = "Intake";
 
+  action="Created";
+
   constructor(private formBuilder: FormBuilder,
-              private intakeService: IntakeService,) {}
+              private intakeService: IntakeService,
+              private branchService:BranchService,
+              private trainingProgramService:TrainingProgramService,
+              private trackService:TrackService) {}
 
   ngOnInit(): void {
     this.myGroup = this.formBuilder.group({
@@ -37,10 +46,18 @@ export class ManageIntakesComponent implements OnInit {
       intakeDescription: ["", [Validators.required]]
     });
     this.getAllBranches();
+
+    this.myGroup.get('branches').valueChanges.subscribe((value)=>{
+      this.myGroup.get('trainingPrograms').setValue(null);
+
+    })
+
+
+
   }
 
   private getAllBranches() {
-    this.intakeService.getAllBranches().subscribe(
+    this.branchService.getAll().subscribe(
       {
         next: (data: any) => {
           data.branchResponsesList.forEach(e => {
@@ -56,17 +73,23 @@ export class ManageIntakesComponent implements OnInit {
   }
 
   onChangeBranch(branchId: any) {
-    this.intakeService.getTrainingProgramsByBranch(branchId).subscribe(
-      {
-        next: (data: any) => {
-          data.trainingPrograms.forEach(e => {
-              this.trainingPrograms.push(e);
-            }
-          )
-        }
 
-      }
-    )
+
+    this.trainingPrograms=[];
+    if(branchId !=null){
+      this.trainingProgramService.getTrainingProgramsByBranch(branchId).subscribe(
+        {
+          next: (data: any) => {
+            data.trainingPrograms.forEach(e => {
+                this.trainingPrograms.push(e);
+              }
+            )
+          }
+
+        }
+      );
+    }
+
   }
 
   onChangeTrainingProgram(trainingProgramId: any) {
@@ -81,7 +104,7 @@ export class ManageIntakesComponent implements OnInit {
   }
 
   CreateIntake(model: IntakePostModel) {
-    this.intakeService.createIntake(model).subscribe(
+    this.intakeService.create(model).subscribe(
       (response: any) => {
         this.isLoading = false;
         this.isSuccess = true;

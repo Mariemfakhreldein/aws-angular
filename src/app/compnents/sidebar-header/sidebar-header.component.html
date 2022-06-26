@@ -20,7 +20,7 @@
 
       <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
         <li class="nav-item">
-          <a href="#" class="nav-link align-middle px-3 text-dark text-decoration-none">
+          <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link align-middle px-3 text-dark text-decoration-none">
             <i class="fa fa-dashboard"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
           </a>
         </li>
@@ -33,9 +33,13 @@
               <a [routerLink]="['/instances']" routerLinkActive="active" class="px-8">
                 <span class="icon-view_array mr-3"></span>View Instance </a>
             </li>
+            <li>
+              <a [routerLink]="['/instances/createMyInstance']" routerLinkActive="active" class="px-8">
+                <span class="icon-view_array mr-3"></span>Create my Instance </a>
+            </li>
           </ul>
         </li>
-        <li *ngIf="canManageTemplates">
+        <li>
           <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <span class="fa fa-terminal mr-2"></span>Template </a>
           <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
@@ -43,10 +47,15 @@
               <a href="#" class="px-8" [routerLink]="['/template']" routerLinkActive="active">
                 <span class="icon-plus mr-3"></span>Create Template </a>
             </li>
-            <!--<li>
-              <a href="#" class="px-8">
+            <li>
+              <a href="#" class="px-8" [routerLink]="['/templates/assign']">
+                <span class="icon-view_array mr-3"></span>Assign Templates </a>
+            </li>
+
+            <li>
+              <a href="#" class="px-8" [routerLink]="['/templates/view']">
                 <span class="icon-view_array mr-3"></span>View Templates </a>
-            </li>-->
+            </li>
           </ul>
         </li>
         <li>
@@ -57,7 +66,7 @@
               <a href="#staffSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Staff</a>
               <ul class="collapse list-unstyled"  id="staffSubmenu1">
                 <li class="px-2">
-                  <a [routerLink]="['/user/createStaff']" routerLinkActive="active">Add Staff</a>
+                  <a [routerLink]="['/user/staff/addStaff']" routerLinkActive="active">Add Staff</a>
                 </li>
 
                 <li class="px-2">
@@ -144,14 +153,35 @@
             </li>
           </ul>
         </li>
+        <li>
+          <a href="#submenu10" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
+            <span class="fa fa-book mr-2"></span>Roles</a>
+          <ul class="collapse nav flex-column ms-1" id="submenu10" data-bs-parent="#menu">
+            <li class="w-100">
+              <a class="px-8" [routerLink]="['/roles/create']" routerLinkActive="active">
+                <span class="icon-plus mr-3"></span>Create Role
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['/roles/show-all']" routerLinkActive="active" class="px-8">
+                <span class="icon-view_array mr-3"></span>View All Roles
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/logout']" routerLinkActive="active" class="nav-link align-middle px-3 text-dark text-decoration-none">
+            <i class="fa fa-lock"></i> <span class="ms-1 d-none d-sm-inline">Logout</span>
+          </a>
+        </li>
       </ul>
     </div>
   </div>
 
 </aside>
 <main>
-  <div class="site-section">
-    <div class="container">
+  <div class="site-section bg-light pt-lg-4 h-100">
+    <div class="container ">
       <router-outlet></router-outlet>
     </div>
   </div>

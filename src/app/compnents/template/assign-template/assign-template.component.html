@@ -1,0 +1,99 @@
+<div [formGroup]="assignTemplateFormGroup">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-validation">
+
+              <div class="row">
+                <div  class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="template">Select Templates </label>
+                  <div class="col-lg-6">
+                    <div id="template"  class="form-group row radio-container border-bottom " style="border-color: #ced4da">
+                      <div class="form-group row " >
+                        <div class="card-checkbox-container w-100 ">
+                          <div class="row pr-lg-4 pr-2" *ngFor="let template of templates; let currentIndex=index">
+                            <div class="card-checkbox  p-1  w-100 mr-5 row">
+                              <input type="checkbox" name="template-type" id="card{{currentIndex}}" class="col-2"  [(ngModel)]="isCheckedTemplates[templates.indexOf(template)]" [ngModelOptions]="{standalone: true}" >
+                              <label class="label-class" for="card{{currentIndex}}">
+                                <h5 class="h5-class">Template Id : <span>{{template.id}}</span></h5>
+                                <h2 class="h2-class font-italic"><span class="font-weight-bold ">Image id : </span> {{template.amiId}} </h2>
+                                <h2 class="h2-class font-italic"> <span class="font-weight-bold ">Instance Type : </span> {{template.instanceType}} </h2>
+                                <h2 class="h2-class font-italic"> <span class="font-weight-bold ">Subnet Id :</span> {{template.subnetId}} </h2>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="text-danger col-lg-6 align-items-end align-self-end">
+                      <small *ngIf="isEmptyTemplates"
+                             class="form-text text-danger">required templates</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div  class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="instructors">Select Instructors </label>
+                  <div class="col-lg-6">
+                    <div id="instructors"  class="form-group row radio-container border-bottom " style="border-color: #ced4da">
+                      <div class="form-group row" >
+                        <div class="card-checkbox2-container w-100 ">
+                          <div class="row pr-lg-4 pr-2" *ngFor="let instructor of instructors; let currentIndex=index" >
+                            <div class="card-checkbox2  p-1  w-100 mr-5 row">
+                              <input type="checkbox" name="template-type" id="cardd{{currentIndex}}" class="col-2"  [(ngModel)]="isCheckedInstructor[instructors.indexOf(instructor)]" [ngModelOptions]="{standalone: true}">
+                              <label class="label-class" for="cardd{{currentIndex}}">
+                                <h5 class="h5-class">Instructor id : <span>{{instructor.id}}</span></h5>
+                                <h2 class="h2-class font-italic"><span class="font-weight-bold ">Instructor Name : {{instructor.username}}</span></h2>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div class="text-danger col-lg-6 align-items-end align-self-end">
+                      <small *ngIf="isEmptyInstructors"
+                             class="form-text text-danger">required instructors</small>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="form-group row">
+                <div class="col-lg-8 ml-auto">
+                  <button type="button" id="btn-submit" (click)="submitBtn()"  class="btn" [disabled]="fetchSelectedTemplates().length==0 || fetchSelectedInstructors().length==0"  data-toggle="modal" data-target="#exampleModalCenter">Submit</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- #/ container -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div>
+    <app-success-popup *ngIf="isSuccess" [item]="item" [action]="action"></app-success-popup>
+    <app-failed-popup *ngIf="!isSuccess" [item]="item" [action]="action"></app-failed-popup>
+  </div>
+</div>
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example-includeSelectAllOption').multiselect({
+      includeSelectAllOption: true
+    });
+  });
+</script>
+

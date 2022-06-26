@@ -15,10 +15,11 @@ export class CreateTrainingProgramComponent implements OnInit {
   branches: BranchModel[] = [];
   trainingProgram: TrainingProgram = new TrainingProgram();
   trainingProgramName: string;
-  branchId: string;
+  branchId: string="";
   isSuccess = false;
   isLoading = true;
   currentItem = 'trainingProgram';
+  action="Created";
 
   constructor(private formBuilder: FormBuilder,
     private trainingProgramService: TrainingProgramService,

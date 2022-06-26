@@ -109,6 +109,8 @@ export class CreateTemplateComponent implements OnInit {
     }
     return this.amiFlag;
   }
+
+
   getInstanceType(){
     this.templateService.getInstancesTypes().subscribe(
       (response:any)=>{
@@ -130,20 +132,20 @@ export class CreateTemplateComponent implements OnInit {
       let txt = JSON.stringify(this.templateFormGroup.value);
       let templateModel = JSON.parse(txt);
 
-      this.getAMI(templateModel.ami);
+      // this.getAMI(templateModel.ami);
       this.model.amiId = templateModel.ami;
       this.model.subnetId = this.getSubnetIdByVpc(templateModel.subnet);
       // alert(this.model.subnetId);
       this.model.securityGroups = this.selectedItemsList.map(value => {return value.securityGroupId});
       this.model.instanceType = templateModel.instance;
-
+      this.submit();
     }
   }
 
   submit(){
     console.log(this.isSuccess);
     console.log("here " + this.amiFlag);
-    this.templateService.add(this.model).subscribe(
+    this.templateService.create(this.model).subscribe(
     (response:any)=>{
       this.isLoading=false;
       this.isSuccess=true;
@@ -177,6 +179,8 @@ export class CreateTemplateComponent implements OnInit {
     }
    return this.selectedItemsList;
   }
+
+
   getSubnetIdByVpc(vpc:string): string{
     for (let i of this.subnets){
      if(i.vpcId === vpc){

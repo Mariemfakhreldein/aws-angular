@@ -15,6 +15,12 @@ import {TrainingProgram} from "../../../models/instances/training.program.model"
 import {Track} from "../../../models/instances/track.model";
 import {Intake} from "../../../models/instances/intake.model";
 import {BranchService} from "../../../services/branch.service";
+import {AuthService} from "../../../services/auth.service";
+import {SecurityGroupsModel} from "../../../models/templates/securityGroups.model";
+import {SecurityGroupInfoModel} from "../../../models/templates/securityGroupInfo.model";
+import {TrainingProgramService} from "../../../services/training-program.service";
+import {IntakeService} from "../../../services/intake.service";
+import {TrackService} from "../../../services/track.service";
 
 @Component({
   selector: 'app-create-instance',
@@ -44,13 +50,18 @@ export class CreateInstanceComponent implements OnInit {
   selectedItemsList: any[]=[] ;
   isChecked: any[]=[];
   selectedTrack: any;
-
+  securityGroupInfoModel:SecurityGroupInfoModel[]=[];
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private templateService: TemplateService,
               private instanceService: InstanceService,
-              private branchService: BranchService) {
+              private branchService: BranchService,
+              private authService:AuthService,
+              private trainingProgramService: TrainingProgramService,
+              private intakeService:IntakeService,
+              private trackService: TrackService,
+              ) {
   }
 
   ngOnInit(): void {
@@ -66,9 +77,13 @@ export class CreateInstanceComponent implements OnInit {
 
     });
 
+    // this.authService.getPrivileges().forEach(e=>{
+    //   console.log("hhh"+e);
+    // });
+
     // this.getAllStudents();
 
-    this.getAllIntakes();
+    // this.getAllIntakes();
     this.getAllBranches();
     this.getAllTemplates();
 
@@ -128,7 +143,7 @@ export class CreateInstanceComponent implements OnInit {
 
   }
 
-  private getAllStudents(){
+   getAllStudents(){
     this.userService.getAllStudents().subscribe(
       (response:any)=>{
         console.log(response.userResponsesList)
@@ -139,50 +154,33 @@ export class CreateInstanceComponent implements OnInit {
     )
   }
 
-  private getAllTemplates(){
+   getAllTemplates(){
+     let i=0;
+
     this.templateService.getAllTemplates().subscribe(
       (response:any)=>{
-        console.log(response.templateResponseList)
+        console.log("llllll"+response.templateResponseList)
         this.templates = response.templateResponseList;
+        this.templates.forEach(e=>{
+
+          this.securityGroupInfoModel[i]=new SecurityGroupInfoModel();
+          // this.securityGroupInfoModel[i].securityGroupsNames.push("hhhhh");
+          e.securityGroups.forEach(s=>{
+
+            this.securityGroupInfoModel[i].securityGroupsNames.push(s.name);
+            this.securityGroupInfoModel[i].securityGroupsVpcIds.push(s.vpcId);
+
+          });
+          i++;
+
+        })
       },(error:any)=>{
         console.log(error);
       }
     )
   }
 
-  changeTemplateId(event: any){
-    this.templateId = event.target.value;
-    console.log(event.target.value);
-  }
-
-  getIsSuccess(): boolean{
-    return this.isSuccess;
-  }
-
-  onChangeBranch(branchId:any) {
-
-    this.trainingPrograms=[];
-
-    console.log("on change" + branchId);
-    this.instanceService.getTrainingProgramsByBranch(branchId).subscribe(
-      {
-        next: (data: any) => {
-
-          data.trainingPrograms.forEach(e => {
-
-              console.log( "trainingPrograms" + e);
-
-              this.trainingPrograms.push(e);
-            }
-          )
-        }
-
-      }
-    )
-
-  }
-
-  private getAllBranches() {
+  getAllBranches() {
 
     this.branchService.getAll().subscribe(
       {
@@ -200,11 +198,64 @@ export class CreateInstanceComponent implements OnInit {
 
       }
 
-      );
+    );
     console.log( "bbbbbbbbranches" + this.branches);
   }
 
+  changeTemplateId(event: any){
+    this.templateId = event.target.value;
+    console.log(event.target.value);
+  }
+
+  getIsSuccess(): boolean{
+    return this.isSuccess;
+  }
+
+  onChangeBranch(branchId:any) {
+
+    this.trainingPrograms=[];
+
+    console.log("on change" + branchId);
+    this.trainingProgramService.getTrainingProgramsByBranch(branchId).subscribe(
+      {
+        next: (data: any) => {
+
+          data.trainingPrograms.forEach(e => {
+
+              console.log( "trainingPrograms" + e);
+
+              this.trainingPrograms.push(e);
+            }
+          )
+        }
+
+      }
+    )
+
+  }
+
   onChangeTrainingProgram(trainingProgramId:any) {
+    console.log("tID"+trainingProgramId);
+
+    this.intakes=[];
+    if(trainingProgramId!=undefined){
+      this.intakeService.getIntakeByTrainingProgram(trainingProgramId).subscribe(
+        {
+          next: (data: any) => {
+            data.intakeResponsesList.forEach(e => {
+
+                console.log( "intakesssssss" + e.intakeName);
+
+                this.intakes.push(e);
+              }
+            )
+          }
+
+        }
+      );
+    }
+
+
 
   }
 
@@ -212,20 +263,24 @@ export class CreateInstanceComponent implements OnInit {
       console.log("++++"  + intakeId)
 
     this.tracks=[];
-    this.instanceService.getTrackByIntake(intakeId).subscribe(
-      {
-        next: (data: any) => {
-          data.trackResponsesList.forEach(e => {
+    if(intakeId!=undefined){
 
-              console.log( "trainingPrograms" + e);
-              this.isStudentChecked();
-              this.tracks.push(e);
-            }
-          )
+      this.trackService.getTrackByIntake(intakeId).subscribe(
+        {
+          next: (data: any) => {
+            data.trackResponsesList.forEach(e => {
+
+                console.log( "tracksssss" + e.name);
+                this.isStudentChecked();
+                this.tracks.push(e);
+              }
+            )
+          }
+
         }
+      );
+    }
 
-      }
-    )
   }
 
   onChangeTrack(trackId:any) {
@@ -233,7 +288,7 @@ export class CreateInstanceComponent implements OnInit {
     this.students=[];
     if(trackId != undefined){
 
-      this.instanceService.getStudentsByTrack(trackId).subscribe({
+      this.userService.getStudentsByTrack(trackId).subscribe({
 
         next: (data: any) => {
 
@@ -252,21 +307,21 @@ export class CreateInstanceComponent implements OnInit {
 
   }
 
-  private getAllIntakes() {
-     this.instanceService.getIntakes().subscribe({
-       next: (data: any) => {
-
-         data.intakeResponsesList.forEach(e => {
-
-             console.log("eeee" + e);
-
-             this.intakes.push(e);
-           }
-         )
-       }
-     }
-  );
-  }
+  //  getAllIntakes() {
+  //    this.instanceService.getIntakes().subscribe({
+  //      next: (data: any) => {
+  //
+  //        data.intakeResponsesList.forEach(e => {
+  //
+  //            console.log("eeee" + e);
+  //
+  //            this.intakes.push(e);
+  //          }
+  //        )
+  //      }
+  //    }
+  // );
+  // }
 
   isStudentChecked(){
     this.isChecked = [];

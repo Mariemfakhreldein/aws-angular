@@ -1,15 +1,21 @@
 <div *ngIf="branches.length > 0">
 
+  <div class="container-fluid justify-content-center mx-auto mb-0 mb-lg-4">
+    <div class="col-lg-6 col-12 mb-3 row justify-content-center mb-3 mb-lg-5 mx-auto">
+      <img class="col-lg-2 col-4 mt-1 p-4 pt-3" src="assets/images/usedImages/createTrainingProgram.png">
+      <h2 class="col-lg-9 col-8 mb-0 pt-2 text-start px-0 text-muted font-italic pt-4">Create Training Program</h2>
+    </div>
+
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-lg-12">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body shadow rounded">
 
             <div class="form-validation" [formGroup]="myGroup">
 
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="branches">Select Branch...<span class="text-danger">*</span>
+                <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="branches">Select Branch
                 </label>
                 <div class="col-lg-6">
 
@@ -18,7 +24,7 @@
                     [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
                     [(ngModel)]="branchId">
 
-                    <option selected disabled class="text-secondary">Please Select Branch</option>
+                    <option selected disabled value="" class="text-secondary" >Please Select Branch</option>
                     <option *ngFor="let branch of branches" [value]="branch.id">{{branch.name}} </option>
                   </select>
                   <div class="text-danger  col-lg-6 align-items-end align-self-end"
@@ -31,8 +37,7 @@
               </div>
 
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="val-name">Training Program Name <span
-                    class="text-danger">*</span>
+                <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="val-name">Training Program Name
                 </label>
                 <div class="col-lg-6">
                   <input type="text" class="form-control" id="val-name" name="val-name"
@@ -50,11 +55,11 @@
 
               </div>
 
-              <div class="form-group row">
-                <div class="col-lg-8 ml-auto">
+              <div class="form-group row mt-2">
+                <div class="col-lg-8 ml-auto mx-auto text-center">
                   <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid" (click)="submit()"
-                    class="btn" data-toggle="modal" data-target="#exampleModalCenter">
-                    Submit
+                    class="btn font-weight-bold btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                    Add
                   </button>
                 </div>
               </div>
@@ -68,8 +73,8 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div *ngIf="!isLoading">
-        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"></app-success-popup>
-        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem"></app-failed-popup>
+        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"  [action]="action"></app-success-popup>
+        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
       </div>
 
       <app-loader *ngIf="isLoading"></app-loader>

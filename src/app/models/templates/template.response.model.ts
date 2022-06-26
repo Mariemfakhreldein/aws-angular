@@ -1,4 +1,5 @@
 import {AmiModel} from "./ami.model";
+import {SecurityGroupsModel} from "./securityGroups.model";
 
 export class TemplateResponseModel{
 
@@ -6,6 +7,8 @@ export class TemplateResponseModel{
   ami: AmiModel;
   subnetId: string;
   instanceType: string;
-  securityGroups: Array<number> ;
+  securityGroups: SecurityGroupsModel[];
+
+
 
 }

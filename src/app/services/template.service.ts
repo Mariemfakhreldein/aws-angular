@@ -4,6 +4,7 @@ import {InstanceCreateModel} from "../models/instances/instance.create.model";
 import {Observable} from "rxjs";
 import {TemplateModel} from "../models/templates/template.model";
 import {AmiModel} from "../models/templates/ami.model";
+import {AssignTemplateModel} from "../models/templates/assign.template.model";
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,12 @@ export class TemplateService {
     return this.api.post("/api/ami", amiModel);
   }
 
-  add(templateModel: TemplateModel){
-    return this.api.post("/api/template", templateModel);
+  create(templateModel: TemplateModel){
+    return this.api.post("/api/templates", templateModel);
+  }
+
+  assignTemplateToInstructors(assignTemplate: AssignTemplateModel){
+    return this.api.update("/api/templates",assignTemplate);
   }
 
   getAllSecurityGroups(): string[]{
@@ -43,6 +48,6 @@ export class TemplateService {
   }
 
   getAllTemplates() {
-    return this.api.get("/api/template");
+    return this.api.get("/api/templates");
   }
 }

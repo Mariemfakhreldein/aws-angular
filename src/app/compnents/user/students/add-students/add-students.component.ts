@@ -14,6 +14,7 @@ import {NgxCsvParser, NgxCSVParserError} from "ngx-csv-parser";
 import {UserService} from "../../../../services/user.service";
 import {StudentModel} from "../../../../models/users/student.model";
 import {StudentRequestModel} from "../../../../models/users/student.request.model";
+import {TrainingProgramService} from "../../../../services/training-program.service";
 
 
 @Component({
@@ -51,11 +52,15 @@ export class AddStudentsComponent implements OnInit {
               private intakeService: IntakeService,
               private trackService: TrackService,
               private ngxCsvParser: NgxCsvParser,
-              private userService: UserService) { }
+              private userService: UserService,
+              private trainingProgramService:TrainingProgramService) { }
 
   ngOnInit(): void {
     this.reactiveStaffForm();
     this.getAllBranches();
+
+
+
   }
 
   reactiveStaffForm() :void
@@ -68,6 +73,26 @@ export class AddStudentsComponent implements OnInit {
       userName: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       email: ['',[Validators.required, Validators.pattern(Patterns.Email)]],
     });
+
+    this.addStudents.get('branches').valueChanges.subscribe((value)=>{
+      this.addStudents.get('trainingPrograms').setValue(null);
+
+    });
+
+    this.addStudents.get('trainingPrograms').valueChanges.subscribe((value)=>{
+      this.addStudents.get('intakes').setValue(null);
+
+    });
+
+    this.addStudents.get('intakes').valueChanges.subscribe((value)=>{
+      this.addStudents.get('tracks').setValue(null);
+
+    });
+
+
+
+
+
   }
 
 
@@ -82,12 +107,14 @@ export class AddStudentsComponent implements OnInit {
   }
 
   onChangeBranch(branchId: number) {
-    this.tracks = [];
+    // this.tracks = [];
     this.getTrainingProgramsByBranch(branchId);
   }
 
   getTrainingProgramsByBranch(branchId: number){
-    this.trackService.getTrainingProgramsByBranch(branchId).subscribe(
+
+    this.trainingPrograms=[];
+    this.trainingProgramService.getTrainingProgramsByBranch(branchId).subscribe(
       {
         next: (data: any) => {
           this.trainingPrograms = data.trainingPrograms;
@@ -101,12 +128,19 @@ export class AddStudentsComponent implements OnInit {
   }
 
   getIntakesByTrainingProgram(trainingProgramId: number){
-    this.intakeService.getIntakeByTrainingProgram(trainingProgramId).subscribe({
-      next: (data: any) => {
-        this.intakes = data.intakeResponsesList;
-      },
-      error: (e) => {},
-    });
+    this.intakes=[];
+    if(trainingProgramId !=null){
+
+      this.intakeService.getIntakeByTrainingProgram(trainingProgramId).subscribe({
+        next: (data: any) => {
+          this.intakes = data.intakeResponsesList;
+        },
+        error: (e) => {},
+      });
+
+    }
+
+
   }
 
   onChangeIntake(intakeId: number) {
@@ -114,12 +148,16 @@ export class AddStudentsComponent implements OnInit {
   }
 
   getTracksByIntake(intakeId: number){
-    this.trackService.getTrackByIntake(intakeId).subscribe({
-      next: (data: any) => {
-        this.tracks = data.trackResponsesList;
-      },
-      error: (e) => {},
-    });
+    this.tracks=[];
+    if(intakeId !=null){
+      this.trackService.getTrackByIntake(intakeId).subscribe({
+        next: (data: any) => {
+          this.tracks = data.trackResponsesList;
+        },
+        error: (e) => {},
+      });
+    }
+
   }
 
   onChangeTrack(trackId: number) {
@@ -165,6 +203,7 @@ export class AddStudentsComponent implements OnInit {
   }
 
   @ViewChild('fileImportInput') fileImportInput: any;
+  searchValue: any;
 
   fileChangeListener($event: any): void {
     const files = $event.srcElement.files;

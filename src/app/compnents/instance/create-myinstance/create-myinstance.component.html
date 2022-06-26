@@ -1,0 +1,124 @@
+<div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+
+            <div class="form-validation" [formGroup]="myGroup">
+
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="val-username">Instance Name <span
+                  class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                  <input #instanceName type="text" class="form-control" id="val-username" name="val-username"
+                         placeholder="Enter a Instance Name.." required formControlName="instanceName"
+                         [class.is-valid]="!myGroup.controls['instanceName'].errors && myGroup.controls['instanceName'].touched"
+                         [class.is-invalid]="myGroup.controls['instanceName'].errors && myGroup.controls['instanceName'].touched">
+                  <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                       *ngIf="myGroup.controls['instanceName'].errors && myGroup.controls['instanceName'].touched">
+                    <small *ngIf="myGroup.controls['instanceName'].hasError('required')"
+                           class="form-text text-danger">required instance name</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="val-username">Key Pair Name <span
+                  class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                  <input #keypairName type="text" class="form-control" id="val-keyPairName" name="val-keyPairName"
+                         placeholder="Enter a Key Pair Name.." required formControlName="keypairName"
+                         [class.is-valid]="!myGroup.controls['keypairName'].errors && myGroup.controls['keypairName'].touched"
+                         [class.is-invalid]="myGroup.controls['keypairName'].errors && myGroup.controls['keypairName'].touched">
+                  <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                       *ngIf="myGroup.controls['keypairName'].errors && myGroup.controls['keypairName'].touched">
+                    <small *ngIf="myGroup.controls['keypairName'].hasError('required')"
+                           class="form-text text-danger"> required keypair Name</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="val-timeToLiveInMinutes">Enter TimeToLive in minutes <span
+                  class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                  <input #timeToLiveInMinutes type="text" class="form-control" id="val-timeToLiveInMinutes" name="val-timeToLiveInMinutes"
+                         placeholder="Enter TimeToLive" required formControlName="timeToLiveInMinutes"
+                         [class.is-valid]="!myGroup.controls['timeToLiveInMinutes'].errors && myGroup.controls['timeToLiveInMinutes'].touched"
+                         [class.is-invalid]="myGroup.controls['timeToLiveInMinutes'].errors && myGroup.controls['timeToLiveInMinutes'].touched">
+                  <div class="text-danger  col-lg-6 align-items-end align-self-end"
+                       *ngIf="myGroup.controls['timeToLiveInMinutes'].errors && myGroup.controls['timeToLiveInMinutes'].touched">
+                    <small *ngIf="myGroup.controls['timeToLiveInMinutes'].hasError('required')"
+                           class="form-text text-danger">Required Time ToLive InMinutes</small>
+                    <small *ngIf="myGroup.controls['timeToLiveInMinutes'].errors?.['pattern'] "
+                           class="form-text text-danger">Only number allowed</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row radio-container">
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label">Select Template <span class="text-danger">*</span></label>
+                  <div class="col-lg-6 card-radio-container">
+                    <label class="row" *ngFor="let template of templates; let index = index" for="{{template.id}}">
+
+                      <div class="card-radio col-lg-6">
+                        <input (change)="changeTemplateId($event)" value="{{template.id}}" type="radio"
+                               name="template-type" id="{{template.id}}" required >
+                        <label class="label-class" for="{{template.id}}">
+                          <h5 class="h5-class">Template {{template.id}}</h5>
+                          <h2 class="h2-class">Subnet ID : {{template.subnetId}} </h2>
+                          <h2 class="h2-class">Instance Type : {{template.instanceType}} </h2>
+                        </label>
+                      </div>
+                    </label>
+                  </div>
+                  <div class="text-danger col-lg-4 align-items-end align-self-end">
+                </div>
+
+              </div>
+              <div class="form-group row">
+                <div class="col-lg-8 ml-auto">
+                  <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid || templateId==0"
+                          (click)="submitBtn(instanceName.value, keypairName.value, +timeToLiveInMinutes.value)" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+       aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div *ngIf="!isLoading">
+        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action" ></app-success-popup>
+        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
+      </div>
+
+      <app-loader *ngIf="isLoading"></app-loader>
+
+    </div>
+  </div>
+
+
+  <!-- #/ container -->
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#example-includeSelectAllOption').multiselect({
+        includeSelectAllOption: true
+      });
+    });
+  </script>
+</div>
+<!--<h1>Salmaaaaaaaaaa</h1>-->
+</div>

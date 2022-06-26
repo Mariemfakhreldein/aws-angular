@@ -1,19 +1,16 @@
+import {TrackModel} from "../track/track.model";
 
 export class UserModel {
 
   id: number;
-    username: string;
-    email: string;
-    role: string;
+  username: string;
+  email: string;
+  role: string;
+  tracks: TrackModel[];
 
 
-  // constructor(name: string, email: string, role: string){
-  //     this.username = name;
-  //     this.email = email;
-  //     this.role = role;
-  //   }
 
-    toString(){
-    console.log(this.username+this.email+this.role);
-    }
+  toString() {
+    console.log(this.username + this.email + this.role);
+  }
 }
