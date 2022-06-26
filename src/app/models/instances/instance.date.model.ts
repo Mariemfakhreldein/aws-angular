@@ -1,5 +1,5 @@
 export class InstanceDateModel{
 
-  creationDate:any;
-  timeToLive:any
+  creationDate:Date;
+  timeToLive:Date;
 }
