@@ -46,6 +46,7 @@ import { EditIntakeComponent } from './compnents/intakes/edit-intake/edit-intake
 
 import { CreatenewstudentComponent } from './compnents/user/student/createnewstudent/createnewstudent.component';
 import { UserprofileComponent } from './compnents/user/userprofile/userprofile.component';
+import {Ng2GoogleChartsModule}  from 'ng2-google-charts';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { UserprofileComponent } from './compnents/user/userprofile/userprofile.c
         FormsModule,
         HttpClientModule,
         NgxPaginationModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        Ng2GoogleChartsModule
     ],
   exports:[
 
