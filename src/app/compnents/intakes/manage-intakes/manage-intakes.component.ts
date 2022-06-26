@@ -37,6 +37,14 @@ export class ManageIntakesComponent implements OnInit {
       intakeDescription: ["", [Validators.required]]
     });
     this.getAllBranches();
+
+    this.myGroup.get('branches').valueChanges.subscribe((value)=>{
+      this.myGroup.get('trainingPrograms').setValue(null);
+
+    })
+
+
+
   }
 
   private getAllBranches() {
@@ -56,17 +64,23 @@ export class ManageIntakesComponent implements OnInit {
   }
 
   onChangeBranch(branchId: any) {
-    this.intakeService.getTrainingProgramsByBranch(branchId).subscribe(
-      {
-        next: (data: any) => {
-          data.trainingPrograms.forEach(e => {
-              this.trainingPrograms.push(e);
-            }
-          )
-        }
 
-      }
-    )
+
+    this.trainingPrograms=[];
+    if(branchId !=null){
+      this.intakeService.getTrainingProgramsByBranch(branchId).subscribe(
+        {
+          next: (data: any) => {
+            data.trainingPrograms.forEach(e => {
+                this.trainingPrograms.push(e);
+              }
+            )
+          }
+
+        }
+      );
+    }
+
   }
 
   onChangeTrainingProgram(trainingProgramId: any) {
