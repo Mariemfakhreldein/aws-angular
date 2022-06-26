@@ -1,9 +1,4 @@
 import {Component, OnInit, Output, ViewChild} from '@angular/core';
-import {BranchModel} from "../../../../models/branch/branch.model";
-import {TrainingProgram} from "../../../../models/instances/training.program.model";
-import {Intake} from "../../../../models/instances/intake.model";
-import {Track} from "../../../../models/instances/track.model";
-import {StudentModel} from "../../../../models/users/student.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {BranchService} from "../../../../services/branch.service";
 import {IntakeService} from "../../../../services/intake.service";
@@ -14,6 +9,7 @@ import {Patterns} from "../../../../patterns/patterns";
 import {StudentRequestModel} from "../../../../models/users/student.request.model";
 import {UserModel} from "../../../../models/users/user.model";
 import {StaffModel} from "../../../../models/users/staff.model";
+import {StaffRequestModel} from "../../../../models/users/staff.request.model";
 
 @Component({
   selector: 'app-add-staff',
@@ -75,7 +71,7 @@ export class AddStaffComponent implements OnInit {
   }
 
   submit(){
-    this.userService.addStaff(this.staffList).subscribe({
+    this.userService.addStaff(new StaffRequestModel(this.staffList)).subscribe({
       next: (response: any) => {},
       error: (e) => {
         if(e.status == 201){
