@@ -1,15 +1,15 @@
 
 export class UserRolesModel {
 
-  id: number;
-  role: string;
+  name: string;
+  privileges: number[];
 
-  constructor(id:number, role: string){
-    this.role = role;
-    this.id = id;
+  constructor(name:string, privileges: number[]){
+    this.privileges = privileges;
+    this.name = name;
   }
 
   toString(){
-    console.log(this.role + this.id);
+    console.log(this.privileges + this.name);
   }
 }
