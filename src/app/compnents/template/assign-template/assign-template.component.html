@@ -45,7 +45,7 @@
                         <div class="card-checkbox2-container w-100 ">
                           <div class="row pr-lg-4 pr-2" *ngFor="let instructor of instructors; let currentIndex=index" >
                             <div class="card-checkbox2  p-1  w-100 mr-5 row">
-                              <input type="checkbox" name="template-type" id="cardd{{currentIndex}}" class="col-2"  >
+                              <input type="checkbox" name="template-type" id="cardd{{currentIndex}}" class="col-2"  [(ngModel)]="isCheckedInstructor[instructors.indexOf(instructor)]" [ngModelOptions]="{standalone: true}">
                               <label class="label-class" for="cardd{{currentIndex}}">
                                 <h5 class="h5-class">Instructor id : <span>{{instructor.id}}</span></h5>
                                 <h2 class="h2-class font-italic"><span class="font-weight-bold ">Instructor Name : {{instructor.username}}</span></h2>

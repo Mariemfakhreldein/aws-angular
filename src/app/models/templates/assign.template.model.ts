@@ -1,6 +1,6 @@
 export class AssignTemplateModel{
 
-  instructorIds: number[] ;
-  templateConfigurationIds: number[] ;
+  instructorIds: any[]  = [] ;
+  templateConfigurationIds: any[] = [] ;
 
 }

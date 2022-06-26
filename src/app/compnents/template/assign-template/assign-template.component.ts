@@ -6,6 +6,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TemplateResponseModel} from "../../../models/templates/templateResponse.model";
 import {AssignTemplateModel} from "../../../models/templates/assign.template.model";
+import {AssignModel} from "../../../models/templates/assign.model";
 
 @Component({
   selector: 'app-assign-template',
@@ -28,8 +29,7 @@ export class AssignTemplateComponent implements OnInit {
   isCheckedInstructor: any[]=[] ;
   isCheckedTemplates: any[]=[] ;
 
-  assignTemplateRequest: AssignTemplateModel;
-
+  assignTemplateRequest = new AssignTemplateModel();
 
   constructor(private formBuilder:FormBuilder,
               private route:Router,
@@ -72,17 +72,10 @@ export class AssignTemplateComponent implements OnInit {
       let myInstructorList = this.fetchSelectedInstructors()
 
       if(myTemplatesList.length == 0) {this.isEmptyTemplates = true; }
-      else{
-        let templatesIds: any = [];
-        myTemplatesList.forEach( template => templatesIds.push(template.id));
-        this.assignTemplateRequest.templateConfigurationIds = templatesIds;
-      }
+      else{myTemplatesList.forEach( template => this.assignTemplateRequest.templateConfigurationIds.push(template.id));}
 
       if(myInstructorList.length == 0) {this.isEmptyInstructors = true; }
-      else{
-        let instructorsIds: any = [];
-        myInstructorList.forEach( instructor => instructorsIds.push(instructor.id));
-        this.assignTemplateRequest.instructorIds = instructorsIds;
+      else{ myInstructorList.forEach( instructor => this.assignTemplateRequest.instructorIds.push(instructor.id));
       }
 
       if(myInstructorList.length >0 && myTemplatesList.length > 0){
