@@ -5,4 +5,8 @@ export class IntakeModel{
   intakeDescription:string;
   trainingProgram:any;
 
+  public equals(model:IntakeModel):boolean{
+    return (this.intakeName === model.intakeName && this.intakeDescription === model.intakeDescription && this.trainingProgram?.id === model.trainingProgram?.id);
+  }
+
 }

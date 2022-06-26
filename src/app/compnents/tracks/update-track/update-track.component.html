@@ -32,7 +32,7 @@
 
               <div class="form-group row">
                 <div class="col-lg-8 ml-auto text-center mx-auto">
-                  <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid"
+                  <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid || track.name===myGroup.controls['trackName'].value"
                           (click)="updateTrack()" class="btn font-weight-bold btn-dange" data-toggle="modal" data-target="#exampleModalCenter">
                     Update Track
                   </button>
