@@ -42,7 +42,7 @@ import {UserprofileComponent} from "./compnents/user/userprofile/userprofile.com
 import { ViewInstancesLogsComponent } from './compnents/instance-logs/view-instances-logs/view-instances-logs.component';
 import {CreateRoleComponent} from "./compnents/roles/create-role/create-role.component";
 import {ShowAllRolesComponent} from "./compnents/roles/show-all-roles/show-all-roles.component";
-import {DetailBranchComponent} from "./compnents/branch/detail-branch/detail-branch.component";
+// import {DetailBranchComponent} from "./compnents/branch/detail-branch/detail-branch.component";
 import {ViewTemplatesComponent} from "./compnents/template/view-templates/view-templates.component";
 import {AssignTemplateComponent} from "./compnents/template/assign-template/assign-template.component";
 
@@ -52,8 +52,8 @@ const routes: Routes = [
   {path:'instances/:id',component:ViewInstanceDetailsComponent},
   {path:'instances',component:ViewInstancesComponent},
   {path:'template',component:CreateTemplateComponent},
-  {path:'viewTemplates',component:ViewTemplatesComponent},
-  {path:'assignTemplates',component:AssignTemplateComponent},
+  {path:'templates/view',component:ViewTemplatesComponent},
+  {path:'templates/assign',component:AssignTemplateComponent},
   {path:'login', component:LoginComponent},
   {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
   {path:'instances/createInstance',component:CreateInstanceComponent, canActivate:[AuthGuard, CreateAssignTerminateInstanceGuard] },

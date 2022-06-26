@@ -55,7 +55,7 @@ import { ShowAllRolesComponent } from './compnents/roles/show-all-roles/show-all
 import { RoleSearchByNamePipe } from './compnents/pipes/search/roles/role-search-by-name.pipe';
 import { IntakeSearchByNamePipe } from './compnents/pipes/search/intakes/intake-search-by-name.pipe';
 import { TrackSearchByNamePipe } from './compnents/pipes/search/tracks/track-search-by-name.pipe';
-import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-branch.component';
+// import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-branch.component';
 import { ViewTemplatesComponent } from './compnents/template/view-templates/view-templates.component';
 import { AssignTemplateComponent } from './compnents/template/assign-template/assign-template.component';
 
@@ -124,7 +124,7 @@ import { AssignTemplateComponent } from './compnents/template/assign-template/as
     RoleSearchByNamePipe,
     IntakeSearchByNamePipe,
     TrackSearchByNamePipe,
-    DetailBranchComponent,
+    // DetailBranchComponent,
     ViewTemplatesComponent,
     AssignTemplateComponent
   ],
