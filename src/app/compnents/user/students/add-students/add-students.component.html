@@ -124,7 +124,7 @@
         </div>
 
         <div class="mt-4 text-center mx-auto ">
-          <button class="btn btn-submit btn-danger mr-2 mb-2" type="button" [disabled]="addStudents.invalid"  (click)="add()">Add Student</button>
+          <button class="btn btn-submit btn-danger mr-2 mb-2" type="button" [disabled]="addStudents.invalid"  (click)="add()">Add</button>
           <input #fileImportInput class="form-control btn-light btn b-0 text-muted" type="file" id="formFile" class="upload" (change) = "fileChangeListener($event)">
         </div>
           <small class="text-danger">{{errorMessage}}</small>
