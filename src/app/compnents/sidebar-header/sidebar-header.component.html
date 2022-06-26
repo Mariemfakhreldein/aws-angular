@@ -8,11 +8,11 @@
 
     <div class="profile">
       <img src="assets/images/iti-logo.png" alt="Image" >
-      <h3 class="name">Debby Williams</h3>
-      <span class="country">Manager</span>
+      <h3 class="name">{{user.username}}</h3>
+      <span class="country">{{user.role}}</span>
       <br/>
       <a [routerLink]="['/user/profile']" routerLinkActive="active" style="color: #901b20" class="country">
-        <i class="fa fa-user"></i> Update Profile
+        <i class="fa fa-user" *ngIf="canManageProfile"></i> Update Profile
       </a>
     </div>
 
@@ -20,26 +20,40 @@
 
       <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
         <li class="nav-item">
-          <a [routerLink]="['/home']" routerLinkActive="active" class="nav-link align-middle px-3 text-dark text-decoration-none">
-            <i class="fa fa-dashboard"></i> <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+          <a *ngIf="canViewStatistics" [routerLink]="['/home']" routerLinkActive="active" class="nav-link align-middle px-3 text-dark text-decoration-none">
+            <i class="fa fa-dashboard"></i>
+            <span class="ms-1 d-none d-sm-inline">Dashboard</span>
+          </a>
+
+          <a *ngIf="!canViewStatistics" [routerLink]="['/home']" routerLinkActive="active" class="nav-link align-middle px-3 text-dark text-decoration-none">
+            <i class="fa fa-dashboard"></i>
+            <span class="ms-1 d-none d-sm-inline">Home</span>
           </a>
         </li>
-        <li *ngIf="canStopStartViewInstances">
+
+        <li *ngIf="canViewInstanceLogs || canStopStartViewInstances || canCreateTerminateAssignInstance">
           <a href="#submenu8" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <span class="icon-album mr-2"></span>Instance</a>
           <ul class="collapse nav flex-column ms-1" id="submenu8" data-bs-parent="#menu">
 
-            <li>
+            <li *ngIf="canStopStartViewInstances">
               <a [routerLink]="['/instances']" routerLinkActive="active" class="px-8">
-                <span class="icon-view_array mr-3"></span>View Instance </a>
+                <span class="icon-view_array mr-3" ></span>View Instance </a>
             </li>
-            <li>
+            <li *ngIf="canCreateTerminateAssignInstance">
               <a [routerLink]="['/instances/createMyInstance']" routerLinkActive="active" class="px-8">
-                <span class="icon-view_array mr-3"></span>Create my Instance </a>
+                <span class="icon-view_array mr-3" ></span>Create my Instance </a>
             </li>
+
+            <li *ngIf="canViewInstanceLogs">
+              <a [routerLink]="['/instances-logs/view']" routerLinkActive="active" class="px-8">
+                <span class="icon-view_array mr-3" ></span>Instance Logs </a>
+            </li>
+
           </ul>
         </li>
-        <li>
+
+        <li *ngIf="canManageTemplates">
           <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <span class="fa fa-terminal mr-2"></span>Template </a>
           <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
@@ -58,24 +72,25 @@
             </li>
           </ul>
         </li>
-        <li>
+
+        <li *ngIf="canManageStudents || canManageStaff">
           <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <i class="fa fa-user mr-2"></i> Users </a>
           <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
-            <li class="w-100">
+            <li class="w-100" *ngIf="canManageStaff">
               <a href="#staffSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Staff</a>
               <ul class="collapse list-unstyled"  id="staffSubmenu1">
-                <li class="px-2">
+                <li class="px-2" >
                   <a [routerLink]="['/user/staff/addStaff']" routerLinkActive="active">Add Staff</a>
                 </li>
 
                 <li class="px-2">
                   <a [routerLink]="['/user/staff/search']" routerLinkActive="active">Manage Staff</a>
                 </li>
-
               </ul>
             </li>
-            <li>
+
+            <li *ngIf="canManageStudents">
               <a href="#studentSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Student</a>
               <ul class="collapse list-unstyled" id="studentSubmenu1">
                 <li class="px-2">
@@ -86,7 +101,7 @@
           </ul>
         </li>
 
-        <li>
+        <li *ngIf="canManageBranches">
           <a href="#submenu6" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <span class="icon-picture_in_picture mr-2"></span>Branches</a>
           <ul class="collapse nav flex-column ms-1" id="submenu6" data-bs-parent="#menu">
@@ -104,7 +119,7 @@
         </li>
 
 
-        <li>
+        <li *ngIf="canManageIntakes">
           <a href="#submenu7" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <span class="icon-picture_in_picture mr-2"></span>Intakes</a>
           <ul class="collapse nav flex-column ms-1" id="submenu7" data-bs-parent="#menu">
@@ -121,7 +136,7 @@
           </ul>
         </li>
 
-        <li>
+        <li *ngIf="canManageTracks">
           <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <span class="fa fa-podcast mr-2"></span>Tracks</a>
           <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
@@ -137,7 +152,8 @@
             </li>
           </ul>
         </li>
-        <li>
+
+        <li *ngIf="canManageTrainingPrograms">
           <a href="#submenu9" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <span class="fa fa-book mr-2"></span>Training Programs</a>
           <ul class="collapse nav flex-column ms-1" id="submenu9" data-bs-parent="#menu">
@@ -153,7 +169,8 @@
             </li>
           </ul>
         </li>
-        <li>
+
+        <li *ngIf="canManageRoles">
           <a href="#submenu10" data-bs-toggle="collapse" class="nav-link px-3 align-middle text-dark text-decoration-none">
             <span class="fa fa-book mr-2"></span>Roles</a>
           <ul class="collapse nav flex-column ms-1" id="submenu10" data-bs-parent="#menu">
@@ -169,6 +186,7 @@
             </li>
           </ul>
         </li>
+
         <li class="nav-item">
           <a [routerLink]="['/logout']" routerLinkActive="active" class="nav-link align-middle px-3 text-dark text-decoration-none">
             <i class="fa fa-lock"></i> <span class="ms-1 d-none d-sm-inline">Logout</span>

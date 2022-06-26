@@ -48,6 +48,7 @@ import { AddStaffComponent } from './compnents/user/staff/add-staff/add-staff.co
 import {CreateMyinstanceComponent} from "./compnents/instance/create-myinstance/create-myinstance.component";
 const routes: Routes = [
   {path:'home', component:HomeComponent , canActivate:[AuthGuard]},
+  // {path:'dashboard', component:HomeComponent , canActivate:[AuthGuard]},
   {path:'instances/createInstance',component:CreateInstanceComponent},
   {path:'instances/createMyInstance',component:CreateMyinstanceComponent },
   {path:'instances/:id',component:ViewInstanceDetailsComponent},

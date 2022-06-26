@@ -8,8 +8,6 @@ export class UserModel {
   role: string;
   tracks: TrackModel[];
 
-
-
   toString() {
     console.log(this.username + this.email + this.role);
   }
