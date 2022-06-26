@@ -24,7 +24,7 @@
                     [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
                     [(ngModel)]="branchId">
 
-                    <option selected disabled class="text-secondary" value="Please Select Branch ">Please Select Branch</option>
+                    <option selected disabled value="" class="text-secondary" >Please Select Branch</option>
                     <option *ngFor="let branch of branches" [value]="branch.id">{{branch.name}} </option>
                   </select>
                   <div class="text-danger  col-lg-6 align-items-end align-self-end"
@@ -59,7 +59,7 @@
                 <div class="col-lg-8 ml-auto mx-auto text-center">
                   <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid" (click)="submit()"
                     class="btn font-weight-bold btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
-                    Add Training Program
+                    Add
                   </button>
                 </div>
               </div>
@@ -73,8 +73,8 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div *ngIf="!isLoading">
-        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"></app-success-popup>
-        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem"></app-failed-popup>
+        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"  [action]="action"></app-success-popup>
+        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
       </div>
 
       <app-loader *ngIf="isLoading"></app-loader>

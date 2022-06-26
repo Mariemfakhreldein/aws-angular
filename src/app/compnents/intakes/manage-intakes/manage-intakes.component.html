@@ -96,7 +96,7 @@
                 <div class="col-lg-8 mx-auto text-center mt-2">
                   <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid"
                           (click)="submitBtn()" class="btn  font-weight-bold" data-toggle="modal" data-target="#exampleModalCenter">
-                    Add Intake
+                    Add
                   </button>
                 </div>
               </div>
@@ -111,8 +111,8 @@
          aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div *ngIf="!isLoading">
-          <app-success-popup *ngIf="isSuccess" [item]="currentItem"></app-success-popup>
-          <app-failed-popup *ngIf="!isSuccess" [item]="currentItem"></app-failed-popup>
+          <app-success-popup *ngIf="isSuccess" [item]="currentItem" [action]="action"></app-success-popup>
+          <app-failed-popup *ngIf="!isSuccess" [item]="currentItem" [action]="action"></app-failed-popup>
         </div>
         <app-loader *ngIf="isLoading"></app-loader>
       </div>

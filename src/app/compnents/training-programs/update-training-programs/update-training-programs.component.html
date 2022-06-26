@@ -37,7 +37,7 @@
                 <div class="col-lg-8 ml-auto mx-auto text-center">
                   <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid || myGroup.controls['trainingProgramName'].value == trainingProgram.name" (click)="submit()"
                     class="btn font-weight-bold btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
-                    Edit Training Program
+                    Edit
                   </button>
                 </div>
               </div>
@@ -51,8 +51,8 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div *ngIf="!isLoading">
-        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"></app-success-popup>
-        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem"></app-failed-popup>
+        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action"></app-success-popup>
+        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
       </div>
 
       <app-loader *ngIf="isLoading"></app-loader>

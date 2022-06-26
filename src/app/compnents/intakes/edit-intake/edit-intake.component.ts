@@ -19,6 +19,7 @@ export class EditIntakeComponent implements OnInit {
   currentItem: string = "Intake";
 
   intake=new IntakeModel();
+  action="Updated"
 
   myGroup: FormGroup = new FormGroup({});
   branches: BranchModel[] = [];

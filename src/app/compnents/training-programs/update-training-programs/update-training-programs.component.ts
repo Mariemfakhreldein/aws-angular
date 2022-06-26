@@ -18,6 +18,7 @@ export class UpdateTrainingProgramsComponent implements OnInit {
   currentItem = 'trainingProgram';
   trainingProgramId:number;
 
+  action="Updated"
   constructor(private formBuilder: FormBuilder,
     private trainingProgramService: TrainingProgramService,
     private _activatedRoute: ActivatedRoute

@@ -19,7 +19,7 @@
                     (ngModelChange)="onChangeBranch($event)" formControlName="branches"
                     [class.is-valid]="!addStudents.controls['branches'].errors && addStudents.controls['branches'].touched"
                     [class.is-invalid]="addStudents.controls['branches'].errors && addStudents.controls['branches'].touched">
-              <option  selected disabled class="text-secondary" >Please Select Branch</option>
+              <option  selected disabled value="" class="text-secondary" >Please Select Branch</option>
               <option *ngFor="let branch of branches"
                       [value]="branch.id">{{branch.name}} </option>
             </select>
@@ -124,7 +124,7 @@
         </div>
 
         <div class="mt-4 text-center mx-auto ">
-          <button class="btn btn-submit btn-danger mr-2 mb-2" type="button" [disabled]="addStudents.invalid"  (click)="add()">Add Student</button>
+          <button class="btn btn-submit btn-danger mr-2 mb-2" type="button" [disabled]="addStudents.invalid"  (click)="add()">Add</button>
           <input #fileImportInput class="form-control btn-light btn b-0 text-muted" type="file" id="formFile" class="upload" (change) = "fileChangeListener($event)">
         </div>
           <small class="text-danger">{{errorMessage}}</small>

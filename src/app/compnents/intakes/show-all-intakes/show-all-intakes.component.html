@@ -26,8 +26,8 @@
       paginate:{itemsPerPage:8,currentPage:page,totalItems:allIntakes.length};let currentIndex=index" class="my-1">
         <button routerLink="/intakes/edit/{{currentIndex+1}}"  class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
           <p  class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted" >{{(intake.intakeName.length>20)? (intake.intakeName | slice:0:15)+'..':(intake.intakeName)}}</p>
-          <p  class="col-12 col-lg-3 m-auto align-items-lg-start" >{{(intake.intakeDescription.length>30)? (intake.intakeDescription | slice:0:30)+'..':(intake.intakeDescription)}}</p>
-          <p  class="col-12 col-lg-2 m-auto align-items-lg-start" >{{intake.trainingProgram}}</p>
+          <p  class="col-12 col-lg-3 m-auto align-items-lg-start text-muted " >{{(intake.intakeDescription.length>30)? (intake.intakeDescription | slice:0:30)+'..':(intake.intakeDescription)}}</p>
+          <p  class="col-12 col-lg-2 m-auto align-items-lg-start text-muted " >{{intake.trainingProgram}}</p>
           <p routerLink="/intakes/edit/{{currentIndex+1}}" class="edit col-1 col-lg-1 text-info mb-0"><i class="fa fa-edit" style="--bs-table-hover-bg: #red"></i></p>
         </button>
       </div>
