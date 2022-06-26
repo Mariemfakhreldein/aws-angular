@@ -57,6 +57,7 @@ import { IntakeSearchByNamePipe } from './compnents/pipes/search/intakes/intake-
 import { TrackSearchByNamePipe } from './compnents/pipes/search/tracks/track-search-by-name.pipe';
 import { TrainingProgramSearchByNamePipe } from './compnents/pipes/search/training-programs/training-program-search-by-name.pipe';
 import { BranchSearchByNamePipe } from './compnents/pipes/search/branches/branch-search-by-name.pipe';
+import { StudentSearchByNamePipe } from './compnents/pipes/search/students/student-search-by-name.pipe';
 
 @NgModule({
   declarations: [
@@ -124,7 +125,8 @@ import { BranchSearchByNamePipe } from './compnents/pipes/search/branches/branch
     IntakeSearchByNamePipe,
     TrackSearchByNamePipe,
     TrainingProgramSearchByNamePipe,
-    BranchSearchByNamePipe
+    BranchSearchByNamePipe,
+    StudentSearchByNamePipe
   ],
     imports: [
         BrowserModule,

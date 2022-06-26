@@ -165,6 +165,7 @@ export class AddStudentsComponent implements OnInit {
   }
 
   @ViewChild('fileImportInput') fileImportInput: any;
+  searchValue: any;
 
   fileChangeListener($event: any): void {
     const files = $event.srcElement.files;
