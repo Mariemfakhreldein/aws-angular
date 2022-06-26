@@ -41,14 +41,15 @@ import {UserprofileComponent} from "./compnents/user/userprofile/userprofile.com
 import { ViewInstancesLogsComponent } from './compnents/instance-logs/view-instances-logs/view-instances-logs.component';
 import {CreateRoleComponent} from "./compnents/roles/create-role/create-role.component";
 import {ShowAllRolesComponent} from "./compnents/roles/show-all-roles/show-all-roles.component";
-// import {DetailBranchComponent} from "./compnents/branch/detail-branch/detail-branch.component";
 import {ViewTemplatesComponent} from "./compnents/template/view-templates/view-templates.component";
 import {AssignTemplateComponent} from "./compnents/template/assign-template/assign-template.component";
 
 import { AddStaffComponent } from './compnents/user/staff/add-staff/add-staff.component';
+import {CreateMyinstanceComponent} from "./compnents/instance/create-myinstance/create-myinstance.component";
 const routes: Routes = [
   {path:'home', component:HomeComponent , canActivate:[AuthGuard]},
   {path:'instances/createInstance',component:CreateInstanceComponent},
+  {path:'instances/createMyInstance',component:CreateMyinstanceComponent },
   {path:'instances/:id',component:ViewInstanceDetailsComponent},
   {path:'instances',component:ViewInstancesComponent},
   {path:'template',component:CreateTemplateComponent},
