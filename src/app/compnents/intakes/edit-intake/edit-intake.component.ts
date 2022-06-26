@@ -21,6 +21,7 @@ export class EditIntakeComponent implements OnInit {
 
 
   intake=new IntakeModel();
+  action="Updated"
 
 
   myGroup: FormGroup = new FormGroup({});
