@@ -20,11 +20,11 @@ export class ViewInstancesComponent implements OnInit {
   instances:InstanceModel[]=[];
   instancesBackup:InstanceModel[]=[];
 
-  instanceTime:InstanceDateModel[]=[];
+  instanceTime:InstanceDateModel[]=new Array<InstanceDateModel>();
 
   //count down
   countDown: Subscription;
-  counter = 1800;
+  counter = (Date.now() - new Date('2022-06-26 15:00:32.967527').getTime() )/1000/60;
   tick = 1000;
 
   statusArray:string[]=[];
@@ -45,7 +45,7 @@ export class ViewInstancesComponent implements OnInit {
 
     this.countDown = timer(0, this.tick).subscribe(() => --this.counter);
     // this.getInstanceTime(1);
-    console.log("********************************"+this.instanceTime)
+    // console.log("********************************"+this.instanceTime)
 
     console.log("---------------------------------------------------------------------")
     console.log(this.pipe.transform(Date.now(),'dd/mm/yy hh:mm:ss') + "++ current time ");
@@ -67,9 +67,10 @@ export class ViewInstancesComponent implements OnInit {
           this.instances.push(e);
           this.statusArray.push(e.state);
           this.instancesBackup.push(e);
-          this.instanceTime.push(e.creationDateTime,e.timeToLiveInMinutes)
 
+          this.instanceTime.push(e.creationDateTime,e.timeToLiveInMinutes);
 
+          console.log("********************************"+this.instanceTime)
         })
 
         console.log(this.statusArray);
