@@ -26,9 +26,9 @@
       paginate:{itemsPerPage:8,currentPage:page,totalItems:usersList.length}" class="my-1">
         <button  class="row tableRow border-0 justify-content-start text-start text-lg-center justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
           <p  class="col-12 col-lg-2  m-auto align-items-lg-start font-weight-bold text-muted" >{{(user.username.length>15)? (user.username | slice:0:15)+'..':(user.username)}}</p>
-          <p  class="col-12 col-lg-3 m-auto align-items-lg-start" >{{(user.email.length>30)? (user.email | slice:0:30)+'..':(user.email)}}</p>
-          <p  class="col-12 col-lg-2 m-auto align-items-lg-start" >{{user.role}}</p>
-          <p  class="col-11 col-lg-2 m-auto align-items-lg-start" >{{user.tracks}}</p>
+          <p  class="col-12 col-lg-3 m-auto align-items-lg-start text-muted " >{{(user.email.length>30)? (user.email | slice:0:30)+'..':(user.email)}}</p>
+          <p  class="col-12 col-lg-2 m-auto align-items-lg-start text-muted " >{{user.role}}</p>
+          <p  class="col-11 col-lg-2 m-auto align-items-lg-start text-muted " >{{user.tracks}}</p>
           <p routerLink="/user/edit/{{user.id}}" class="edit col-1 col-lg-1 text-info mb-0"><i class="fa fa-edit" style="--bs-table-hover-bg: #red"></i></p>
         </button>
       </div>
