@@ -89,21 +89,22 @@
                 <h6 class="mb-0 text-muted font-weight-bold my-auto" >New Password</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input type="text" class="form-control" placeholder="Enter new password" [(ngModel)]="newPassword">
+                <input [disabled]="oldPassword==''" type="password" class="form-control" placeholder="Enter new password" [(ngModel)]="newPassword">
               </div>
             </div>
             <div class="row mb-3">
               <div class="col-sm-3">
-                <h6 class="mb-0 text-muted font-weight-bold my-auto">Rewrite Password</h6>
+                <h6 class="mb-0 text-muted font-weight-bold my-auto">Confirm Password</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input type="text" class="form-control" placeholder="Confirm new password" >
+                <input [disabled]="newPassword==''" (change)="checkPassword()" type="password" class="form-control" placeholder="Confirm new password" [(ngModel)]="confirmPassword" >
+                <small *ngIf="!isEqual && confirmPassword!=''" class="text-danger mt-3">There is no match</small>
               </div>
             </div>
             <div class="row">
               <div class="col-sm-3"></div>
               <div class="col-sm-9 text-secondary">
-                <input (click)="updatePassword()" data-toggle="modal" data-target="#exampleModalCenter" type="button" class="btn btn-danger font-weight-bold px-4" value="Save Changes">
+                <input [disabled]="!isEqual" (click)="updatePassword()" data-toggle="modal" data-target="#exampleModalCenter" type="button" class="btn btn-danger font-weight-bold px-4" value="Save Changes">
               </div>
             </div>
           </div>
