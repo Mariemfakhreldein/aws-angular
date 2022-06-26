@@ -63,7 +63,7 @@ export class EditIntakeComponent implements OnInit {
 
 
   updateIntake(model: IntakePutModel) {
-    this.intakeService.updateIntake(model).subscribe(
+    this.intakeService.update(model).subscribe(
       (response: any) => {
         this.isLoading = false;
         this.isSuccess = true;
@@ -75,7 +75,7 @@ export class EditIntakeComponent implements OnInit {
   }
 
   private getIntakeDetails(id: string) {
-    this.intakeService.getIntakeById(id).subscribe({
+    this.intakeService.getById(id).subscribe({
       next: (data: any) => {
         this.intake.id=data.id;
         this.intake.intakeName = data.intakeName;

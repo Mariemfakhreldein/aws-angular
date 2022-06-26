@@ -30,7 +30,7 @@ export class TemplateService {
     return this.api.post("/api/ami", amiModel);
   }
 
-  add(templateModel: TemplateModel){
+  create(templateModel: TemplateModel){
     return this.api.post("/api/templates", templateModel);
   }
 

@@ -10,7 +10,7 @@ export class ViewTemplateGuard implements CanActivate {
   constructor(private authService:AuthService, private router:Router){}
 
   canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    let isAuthorized = this.authService.containPrivilege('VIEW_TEMPLATE');
+    let isAuthorized = this.authService.containPrivilege('VIEW_TEMPLATES');
     if (!isAuthorized){
       this.router.navigateByUrl("not-authorized")
     }

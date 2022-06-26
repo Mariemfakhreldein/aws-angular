@@ -33,7 +33,7 @@ export class ViewInstanceDetailsComponent implements OnInit {
   }
 
   private getInstanceDetails(id: string) {
-    this.instanceService.getInstanceById(id).subscribe({
+    this.instanceService.getById(id).subscribe({
       next: (response:any) =>{
         this.instance=response;
       },

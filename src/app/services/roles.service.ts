@@ -11,17 +11,16 @@ export class RolesService {
 
   constructor(private api: ApiService) { }
 
-  getAllRoles(){
+  getAll(){
     return this.api.get("/api/roles");
   }
-  createRole(roleModel: RoleModel){
+  create(roleModel: RoleModel){
     return this.api.post("/api/roles", roleModel );
   }
-  getRoleById(roleId:any){
+  getById(roleId:any){
     return this.api.get(`api/roles/${roleId}`)
   }
-  updateRole(roleModel: RoleModel){
+  update(roleModel: RoleModel){
     return this.api.update(`/api/roles/${roleModel.id}`,roleModel);
   }
-
 }

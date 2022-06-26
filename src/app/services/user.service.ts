@@ -67,4 +67,8 @@ export class UserService {
   updatePassword(password:PasswordModel){
     return this.api.update(`/api/users`,password);
   }
+
+  getStudentsByTrack(trackId) {
+    return this.api.get('/api/tracks/${trackId}/students');
+  }
 }
