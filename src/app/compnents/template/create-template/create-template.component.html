@@ -1,117 +1,131 @@
-<div [formGroup]="templateFormGroup" >
-<div class="container-fluid" >
-  <div class="row justify-content-center">
-    <div class="col-lg-12">
-      <div class="card">
-        <div class="card-body">
-          <div class="form-validation">
+<div [formGroup]="templateFormGroup">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-validation">
 
-            <div class="form-group row">
-              <label class="col-lg-4 col-form-label" for="subnet">Subnet
-              </label>
-              <div class="col-lg-6">
-                <select class="form-control" id="subnet" data-live-search="true" (ngModelChange)="onChangeSubnet($event)"
-                        [class.is-valid]="!templateFormGroup.controls['subnet'].errors && templateFormGroup.controls['subnet'].touched"
-                        [class.is-invalid]="templateFormGroup.controls['subnet'].errors && templateFormGroup.controls['subnet'].touched"
-                        formControlName="subnet">
-                  <option value="" selected disabled class="text-secondary">Please Select Your Subnet</option>
-                  <option *ngFor="let subnet of subnets"
-                          [value]="subnet.vpcId">{{subnet.subnetId}} </option>
-                </select>
-                <div class="text-danger col-lg-6 align-items-end align-self-end"
-                     *ngIf="templateFormGroup.controls['subnet'].errors && templateFormGroup.controls['subnet'].touched">
-                  <small *ngIf="templateFormGroup.controls['subnet'].hasError('required')"
-                         class="form-text text-danger">required subnet</small>
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="subnet">Subnet
+                </label>
+                <div class="col-lg-6">
+                  <select class="form-control" id="subnet" data-live-search="true"
+                    (ngModelChange)="onChangeSubnet($event)"
+                    [class.is-valid]="!templateFormGroup.controls['subnet'].errors && templateFormGroup.controls['subnet'].touched"
+                    [class.is-invalid]="templateFormGroup.controls['subnet'].errors && templateFormGroup.controls['subnet'].touched"
+                    formControlName="subnet">
+                    <option value="" selected disabled class="text-secondary">Please Select Your Subnet</option>
+                    <option *ngFor="let subnet of subnets" [value]="subnet.vpcId">{{subnet.subnetId}} </option>
+                  </select>
+                  <div class="text-danger col-lg-6 align-items-end align-self-end"
+                    *ngIf="templateFormGroup.controls['subnet'].errors && templateFormGroup.controls['subnet'].touched">
+                    <small *ngIf="templateFormGroup.controls['subnet'].hasError('required')"
+                      class="form-text text-danger">required subnet</small>
+                  </div>
                 </div>
               </div>
-            </div>
 
 
-            <div class="row " *ngIf="!templateFormGroup.controls['subnet'].errors ">
+              <div class="row " *ngIf="!templateFormGroup.controls['subnet'].errors ">
 
-              <div  class="form-group row">
-              <label class="col-lg-4 col-form-label" for="security">Security Groups </label>
-              <div class="col-lg-6">
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="security">Security Groups </label>
+                  <div class="col-lg-6">
 
-                <div id="security"  class="form-group row radio-container border-bottom " style="border-color: #ced4da">
+                    <div id="security" class="form-group row radio-container border-bottom "
+                      style="border-color: #ced4da">
 
-                  <div class="form-group row " >
+                      <div class="form-group row ">
 
-                    <div class="card-checkbox-container w-100 ">
-                      <label class="row pr-lg-4 pr-2" *ngFor="let securityG of securityGroups;let currentIndex=index" for="{{securityG.securityGroupId}}">
-                        <div class="card-checkbox  p-1  w-100 mr-5 row">
-                          <input type="checkbox" name="template-type" id="{{securityG.securityGroupId}}" class="col-2"  [(ngModel)]="isChecked[securityGroups.indexOf(securityG)]" [ngModelOptions]="{standalone: true}">
-                          <label class="label-class" for="{{securityG.securityGroupId}}">
-                            <h5 class="h5-class">Security Name: <span>{{securityG.name}}</span></h5>
-                            <h2 class="h2-class font-italic"><span class="font-weight-bold ">  Description : </span> {{securityG.description}} </h2>
-                            <h2 class="h2-class font-italic"> <span class="font-weight-bold "> VPC ID : </span> {{securityG.vpcId}} </h2>
-                            <h2 class="h2-class font-italic"> <span class="font-weight-bold ">Security Group ID : </span>{{securityG.securityGroupId}}</h2>
+                        <div class="card-checkbox-container w-100 ">
+                          <label class="row pr-lg-4 pr-2"
+                            *ngFor="let securityG of securityGroups;let currentIndex=index"
+                            for="{{securityG.securityGroupId}}">
+                            <div class="card-checkbox  p-1  w-100 mr-5 row">
+                              <input type="checkbox" name="template-type" id="{{securityG.securityGroupId}}"
+                                class="col-2" [(ngModel)]="isChecked[securityGroups.indexOf(securityG)]"
+                                [ngModelOptions]="{standalone: true}">
+                              <label class="label-class" for="{{securityG.securityGroupId}}">
+                                <h5 class="h5-class">Security Name: <span>{{securityG.name}}</span></h5>
+                                <h2 class="h2-class font-italic"><span class="font-weight-bold "> Description : </span>
+                                  {{securityG.description}} </h2>
+                                <h2 class="h2-class font-italic"> <span class="font-weight-bold "> VPC ID : </span>
+                                  {{securityG.vpcId}} </h2>
+                                <h2 class="h2-class font-italic"> <span class="font-weight-bold ">Security Group ID :
+                                  </span>{{securityG.securityGroupId}}</h2>
+                              </label>
+                            </div>
+
                           </label>
+
+
+
                         </div>
 
-                      </label>
 
 
 
+                      </div>
                     </div>
 
 
-
-
+                    <div class="text-danger col-lg-6 align-items-end align-self-end">
+                      <small *ngIf="isSecurityGroupsSelected==false" class="form-text text-danger">required security
+                        group</small>
+                    </div>
                   </div>
                 </div>
 
+              </div>
 
-                <div class="text-danger col-lg-6 align-items-end align-self-end">
-                  <small *ngIf="isSecurityGroupsSelected==false"
-                         class="form-text text-danger">required security group</small>
+
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="ami">AMI <a style="font-size: 13px"
+                    href="https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1&skipRegion=true#"> Click
+                    Here</a>
+                </label>
+                <div class="col-lg-6">
+                  <input #inputAMI type="text" class="form-control" id="ami" name="ami" placeholder="Enter your AMI"
+                    [class.is-valid]="!templateFormGroup.controls['ami'].errors"
+                    [class.is-invalid]="templateFormGroup.controls['ami'].errors && templateFormGroup.controls['ami'].touched"
+                    formControlName="ami">
+                  <div class="text-danger col-lg-6 align-items-end align-self-end"
+                    *ngIf="templateFormGroup.controls['ami'].errors && templateFormGroup.controls['ami'].touched">
+                    <small *ngIf="templateFormGroup.controls['ami'].hasError('required')"
+                      class="form-text text-danger">required ami</small>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            </div>
-
-
-            <div class="form-group row">
-              <label class="col-lg-4 col-form-label" for="ami">AMI <a style="font-size: 13px" href="https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1&skipRegion=true#"> Click Here</a>
-              </label>
-              <div class="col-lg-6">
-                <input #inputAMI type="text" class="form-control" id="ami" name="ami" placeholder="Enter your AMI"
-                       [class.is-valid]="!templateFormGroup.controls['ami'].errors"
-                       [class.is-invalid]="templateFormGroup.controls['ami'].errors && templateFormGroup.controls['ami'].touched"
-                       formControlName="ami">
-                <div class="text-danger col-lg-6 align-items-end align-self-end"
-                     *ngIf="templateFormGroup.controls['ami'].errors && templateFormGroup.controls['ami'].touched">
-                  <small *ngIf="templateFormGroup.controls['ami'].hasError('required')"
-                         class="form-text text-danger">required ami</small>
+              <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="instance">Instance Type
+                </label>
+                <div class="col-lg-6">
+                  <select class="form-control" id="instance"
+                    [class.is-valid]="!templateFormGroup.controls['instance'].errors && templateFormGroup.controls['instance'].touched"
+                    [class.is-invalid]="templateFormGroup.controls['instance'].errors && templateFormGroup.controls['instance'].touched"
+                    formControlName="instance">
+                    <option value="">Please Select Your Instance Type</option>
+                    <option *ngFor="let instance of instanceTypes" [value]="instance.instanceType">
+                      {{instance.instanceType}} </option>
+                  </select>
+                  <div class="text-danger col-lg-6 align-items-end align-self-end"
+                    *ngIf="templateFormGroup.controls['instance'].errors && templateFormGroup.controls['instance'].touched">
+                    <small *ngIf="templateFormGroup.controls['instance'].hasError('required')"
+                      class="form-text text-danger">required instance</small>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="form-group row">
-              <label class="col-lg-4 col-form-label" for="instance">Instance Type
-              </label>
-              <div class="col-lg-6">
-                <select class="form-control" id="instance" [class.is-valid]="!templateFormGroup.controls['instance'].errors && templateFormGroup.controls['instance'].touched"
-                        [class.is-invalid]="templateFormGroup.controls['instance'].errors && templateFormGroup.controls['instance'].touched"
-                        formControlName="instance">
-                  <option value="">Please Select Your Instance Type</option>
-                  <option *ngFor="let instance of instanceTypes"
-                          [value]="instance.instanceType">{{instance.instanceType}} </option>
-                </select>
-                <div class="text-danger col-lg-6 align-items-end align-self-end"
-                     *ngIf="templateFormGroup.controls['instance'].errors && templateFormGroup.controls['instance'].touched">
-                  <small *ngIf="templateFormGroup.controls['instance'].hasError('required')"
-                         class="form-text text-danger">required instance</small>
+              <div class="form-group row">
+                <div class="col-lg-8 ml-auto mx-auto text-center">
+                  <button type="button" id="btn-submit" (click)="submitBtn()"
+                    class="btn btn-primary col-lg-4 col-form-label" [disabled]="templateFormGroup.invalid"
+                    [disabled]="templateFormGroup.invalid" data-toggle="modal" data-target="#exampleModalCenter"
+                    data-toggle="modal" data-target="#exampleModalCenter">Add</button>
+
                 </div>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <div class="col-lg-8 ml-auto mx-auto text-center">
-                <button type="button" id="btn-submit" (click)="submitBtn()" class="btn btn-primary col-lg-4 col-form-label" [disabled]="templateFormGroup.invalid"   [disabled]="templateFormGroup.invalid"
-                        data-toggle="modal" data-target="#exampleModalCenter" data-toggle="modal" data-target="#exampleModalCenter">Submit</button>
-
               </div>
             </div>
           </div>
@@ -120,16 +134,15 @@
     </div>
   </div>
 </div>
-</div>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
 
 
 
     <div *ngIf="isLoading">
-      <app-loader ></app-loader>
+      <app-loader></app-loader>
     </div>
     <div *ngIf="!isLoading">
       <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action"></app-success-popup>
@@ -146,7 +159,7 @@
 
 
 <script type="text/javascript">
-  $(document).ready(function() {
+  $(document).ready(function () {
     $('#security').multiselect();
   });
 
