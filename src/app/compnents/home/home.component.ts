@@ -41,9 +41,6 @@ export class HomeComponent implements OnInit {
 
   passValues(onInstance , offInstance, pendInstance):void
   {
-    onInstance=3;
-    offInstance=4;
-    pendInstance=5;
     this.pieChart={
       chartType : GoogleChartType.PieChart,
       dataTable:[
