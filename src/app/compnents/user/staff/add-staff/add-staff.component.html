@@ -1,12 +1,16 @@
 <div >
+  <div class="col-lg-4 col-12 mb-3 row justify-content-center mb-3 mb-lg-5 mx-auto">
+    <img class="col-lg-2 col-3 mt-1" src="assets/images/usedImages/management.png">
+    <h2 class="col-lg-8 col-8 pt-4 mb-0 pt-2 text-start px-0 text-muted font-italic">Add Staff Member</h2>
+  </div>
+
   <div class="card">
-    <div class="card-body">
-      <h4 class="card-title">Adding New Staff Form</h4>
+    <div class="card-body rounded shadow">
       <div class="basic-form" [formGroup]="addStaff">
 
         <div >
           <div class="form-group row">
-            <label class="col-lg-4 col-form-label" >Enter Username </label>
+            <label class="col-lg-4 col-form-label text-muted font-weight-bold" >Enter Username </label>
             <div class="col-lg-6">
               <input #usernameInput [class.is-invalid]="addStaff.controls['userName'].errors && addStaff.controls['userName'].touched"
                      [class.is-valid]="!addStaff.controls['userName'].errors"
@@ -20,7 +24,7 @@
           </div>
 
           <div class="form-group row">
-            <label class="col-lg-4 col-form-label" >Enter Email </label>
+            <label class="col-lg-4 col-form-label text-muted font-weight-bold" >Enter Email </label>
             <div class="col-lg-6">
               <input #emailInput [class.is-invalid]="addStaff.controls['email'].errors && addStaff.controls['email'].touched"
                      [class.is-valid]="!addStaff.controls['email'].errors"
@@ -33,61 +37,75 @@
           </div>
         </div>
 
-        <div >
-          <button class="btn btn-submit" type="button" [disabled]="addStaff.invalid"  (click)="add()">Add</button>
-          <input #fileImportInput class="form-control" type="file" id="formFile" class="upload" (change) = "fileChangeListener($event)">
+        <div class="text-center">
+          <button class="btn btn-submit btn-danger mb-2 mx-auto text-center mr-5 " type="button" [disabled]="addStaff.invalid"  (click)="add()">Add Staff</button>
+          <input #fileImportInput class="form-control " type="file" id="formFile" class="upload ml-2" (change) = "fileChangeListener($event)">
         </div>
         <small class="text-danger">{{errorMessage}}</small>
       </div>
     </div>
   </div>
 
-  <div class="container-fluid" *ngIf="staffList.length > 0" >
-    <div class="row justify-content-center">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <div class=" m-auto pt-3">
-              <h1 class="text-center"> Students</h1>
-              <div class="col-11 text-center m-auto">
-                <table class="table text-center mt-5">
-                  <thead>
-                  <td>Username</td>
-                  <td>Email</td>
-                  <td>Delete</td>
-                  </thead>
-                  <tbody>
-                  <tr *ngFor="let staff of staffList | paginate:{itemsPerPage:10,currentPage:page,totalItems:staffList.length};let currentIndex=index" >
-                    <td> {{staff.username}}</td>
-                    <td> {{staff.email}}</td>
-                    <td> <input type="button" (click)="delete(currentIndex)" value="Delete" class="btn btn-danger"> </td>
-                  </tr>
-                  </tbody>
-                </table>
-                <button type="button"   class="btn btn-submit" data-toggle="modal" data-target="#exampleModalCenter" (click)="submit()">submit</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <div  class="col-12  text-center" >
-      <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
-      </pagination-controls>
-    </div>
-  </div>
 
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered" role="document">
-      <div>
+      <div >
         <app-success-popup *ngIf="isSuccess" [item]="item" [action]="action"></app-success-popup>
         <app-failed-popup *ngIf="!isSuccess" [item]="item" [action]="action"></app-failed-popup>
       </div>
+
     </div>
   </div>
 
+<div class="container bg-light mt-5 mb-5 mt-5" >
+  <div class="row mb-lg-5 mb-2 mt-2 justify-content-around">
+    <div class="col-lg-4 col-12 row justify-content-around ">
+      <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/management.png">
+      <h2 class="col-lg-10 col-10 mb-0 pt-3">All Staff</h2>
+    </div>
+    <div class="search col-lg-4 col-10 rounded bg-white justify-content-around mt-lg-0 mt-3">
+      <i class="fa fa-search text-muted col-lg-1 col-1 "></i>
+      <input class="border-0 col-10  col-lg-10 py-2 " placeholder="Search by name or email..." type="text" #search [ngModel]="searchValue">
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div  class="row  border-0 justify-content-start my-2 rounded bg-transparent p-1 py-3 col-lg-10 mx-lg-auto">
+      <p  class="col-3 col-lg-3 m-auto align-items-lg-start text-muted font-weight-bold" >Username</p>
+      <p  class="col-3 col-lg-3 m-auto align-items-lg-start text-muted font-weight-bold" >Email</p>
+      <p class="edit col-3 col-lg-3 text-info mb-0 text-muted font-weight-bold">Delete</p>
+    </div>
+
+    <div>
+      <div  *ngFor="let staff of staffList | staffSearchByName:search.value |
+      paginate:{itemsPerPage:8,currentPage:page,totalItems:staffList.length} ;let currentIndex=index" class="my-1">
+        <button  class="row tableRow border-0 justify-content-start text-start text-lg-start justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+          <p  class="col-3 col-lg-3 m-auto align-items-lg-start font-weight-bold text-muted" >{{(staff.username.length>15)? (staff.username | slice:0:15)+'..':(staff.username)}}</p>
+          <p  class="col-3 col-lg-3 m-auto align-items-lg-start" >{{(staff.email.length>30)? (staff.email | slice:0:30)+'..':(staff.email)}}</p>
+          <div class=" col-3 col-lg-3 ">  <p type="button" (click)="delete(currentIndex)" value="Delete" class="btn btn-danger col-3"><i class="fa fa-trash" aria-hidden="true"></i></p>
+          </div>
+        </button>
+      </div>
+
+      <div class="text-center mx-auto mt-3">
+        <button type="button"   class="btn btn-submit btn-danger" data-toggle="modal" data-target="#exampleModalCenter" (click)="submit()">ADD All</button>
+
+      </div>
+    </div>
+
+
+  </div>
+
+  <div  class="col-12 mt-3 text-center" *ngIf="staffList.length>7">
+
+    <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+
+    </pagination-controls>
+
+  </div>
 </div>
+
 

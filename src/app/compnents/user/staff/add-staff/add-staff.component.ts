@@ -96,6 +96,8 @@ export class AddStaffComponent implements OnInit {
   }
 
   @ViewChild('fileImportInput') fileImportInput: any;
+  searchValue: any;
+  isLoading=true;
 
   fileChangeListener($event: any): void {
     const files = $event.srcElement.files;
@@ -124,11 +126,14 @@ export class AddStaffComponent implements OnInit {
             this.staffFromFile = [];
             this.errorMessage = "File isn't well formatted";
             this.fileImportInput.nativeElement.value='';
-          }},
+          }
+          this.isLoading=false;
+          },
 
         error: (error: NgxCSVParserError): void => {
           this.errorMessage = "File isn't well formatted";
           this.staffFromFile = [];
+          this.isLoading=false;
         }
       }
     );

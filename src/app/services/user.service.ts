@@ -3,6 +3,7 @@ import {ApiService} from "./api.service";
 import {StudentModel} from "../models/users/student.model";
 import {UserRolesModel} from "../models/users/user.roles.model";
 import {UserTracksModel} from "../models/users/user.tracks.model";
+import {PasswordModel} from "../models/password/password.model";
 
 @Injectable({
   providedIn: 'root'
@@ -57,5 +58,13 @@ export class UserService {
 
   getUserById(){
     return this.api.get(`/api/users/profile`);
+  }
+
+  getOldPassword(){
+
+  }
+
+  updatePassword(password:PasswordModel){
+    return this.api.update(`/api/users`,password);
   }
 }
