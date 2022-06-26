@@ -47,6 +47,10 @@ export class ViewInstancesComponent implements OnInit {
     this.instanceService.getAllInstances().subscribe({
       next: (data:any) =>{
 
+        this.instances = [];
+        this.statusArray=[];
+        this.instancesBackup=[];
+
         data.listOfInstance.forEach(e => {
 
           console.log(e);
@@ -67,8 +71,7 @@ export class ViewInstancesComponent implements OnInit {
   changeInstanceStatus(instance:InstanceModel ,currentIndex:number){
 
 
-
-    if( instance.state==='Running'){
+    if( instance.state==='running'){
 
       this.instanceService.stopInstance(instance.instanceId).subscribe({
         next: (data:any) =>{
@@ -86,7 +89,7 @@ export class ViewInstancesComponent implements OnInit {
 
 
     }
-    else{
+    else if(instance.state=='stopped'){
 
       this.instanceService.startInstance(instance.instanceId).subscribe({
         next: (data:any) =>{
