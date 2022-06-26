@@ -31,7 +31,7 @@ export class TemplateService {
   }
 
   add(templateModel: TemplateModel){
-    return this.api.post("/api/template", templateModel);
+    return this.api.post("/api/templates", templateModel);
   }
 
   assignTemplateToInstructors(assignTemplate: AssignTemplateModel){

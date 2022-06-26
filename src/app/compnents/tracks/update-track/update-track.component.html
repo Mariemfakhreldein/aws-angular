@@ -17,7 +17,6 @@
                 <div class="col-lg-6">
                   <input  type="text" class="form-control" id="val-username" name="val-trackName"
                            required formControlName="trackName"
-                          [(ngModel)]="trackName"
                           [class.is-valid]="!myGroup.controls['trackName'].errors "
                           [class.is-invalid]="myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched"
                          >

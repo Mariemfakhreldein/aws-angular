@@ -15,6 +15,9 @@ import {TrainingProgram} from "../../../models/instances/training.program.model"
 import {Track} from "../../../models/instances/track.model";
 import {Intake} from "../../../models/instances/intake.model";
 import {BranchService} from "../../../services/branch.service";
+import {AuthService} from "../../../services/auth.service";
+import {SecurityGroupsModel} from "../../../models/templates/securityGroups.model";
+import {SecurityGroupInfoModel} from "../../../models/templates/securityGroupInfo.model";
 
 @Component({
   selector: 'app-create-instance',
@@ -44,13 +47,14 @@ export class CreateInstanceComponent implements OnInit {
   selectedItemsList: any[]=[] ;
   isChecked: any[]=[];
   selectedTrack: any;
-
+  securityGroupInfoModel:SecurityGroupInfoModel[]=[];
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private templateService: TemplateService,
               private instanceService: InstanceService,
-              private branchService: BranchService) {
+              private branchService: BranchService,
+              private authService:AuthService) {
   }
 
   ngOnInit(): void {
@@ -66,9 +70,13 @@ export class CreateInstanceComponent implements OnInit {
 
     });
 
+    // this.authService.getPrivileges().forEach(e=>{
+    //   console.log("hhh"+e);
+    // });
+
     // this.getAllStudents();
 
-    this.getAllIntakes();
+    // this.getAllIntakes();
     this.getAllBranches();
     this.getAllTemplates();
 
@@ -128,7 +136,7 @@ export class CreateInstanceComponent implements OnInit {
 
   }
 
-  private getAllStudents(){
+   getAllStudents(){
     this.userService.getAllStudents().subscribe(
       (response:any)=>{
         console.log(response.userResponsesList)
@@ -139,15 +147,52 @@ export class CreateInstanceComponent implements OnInit {
     )
   }
 
-  private getAllTemplates(){
+   getAllTemplates(){
+     let i=0;
+
     this.templateService.getAllTemplates().subscribe(
       (response:any)=>{
-        console.log(response.templateResponseList)
+        console.log("llllll"+response.templateResponseList)
         this.templates = response.templateResponseList;
+        this.templates.forEach(e=>{
+
+          this.securityGroupInfoModel[i]=new SecurityGroupInfoModel();
+          // this.securityGroupInfoModel[i].securityGroupsNames.push("hhhhh");
+          e.securityGroups.forEach(s=>{
+
+            this.securityGroupInfoModel[i].securityGroupsNames.push(s.name);
+            this.securityGroupInfoModel[i].securityGroupsVpcIds.push(s.vpcId);
+
+          });
+          i++;
+
+        })
       },(error:any)=>{
         console.log(error);
       }
     )
+  }
+
+  getAllBranches() {
+
+    this.branchService.getAll().subscribe(
+      {
+        next: (data: any) => {
+
+          data.branchResponsesList.forEach(e => {
+
+              console.log( "eeee" + e);
+
+              this.branches.push(e);
+            }
+          )
+        }
+
+
+      }
+
+    );
+    console.log( "bbbbbbbbranches" + this.branches);
   }
 
   changeTemplateId(event: any){
@@ -182,29 +227,28 @@ export class CreateInstanceComponent implements OnInit {
 
   }
 
-  private getAllBranches() {
-
-    this.branchService.getAll().subscribe(
-      {
-        next: (data: any) => {
-
-          data.branchResponsesList.forEach(e => {
-
-              console.log( "eeee" + e);
-
-              this.branches.push(e);
-            }
-          )
-        }
-
-
-      }
-
-      );
-    console.log( "bbbbbbbbranches" + this.branches);
-  }
-
   onChangeTrainingProgram(trainingProgramId:any) {
+    console.log("tID"+trainingProgramId);
+
+    this.intakes=[];
+    if(trainingProgramId!=undefined){
+      this.instanceService.getIntakeByTrainingProgram(trainingProgramId).subscribe(
+        {
+          next: (data: any) => {
+            data.intakeResponsesList.forEach(e => {
+
+                console.log( "intakesssssss" + e.intakeName);
+
+                this.intakes.push(e);
+              }
+            )
+          }
+
+        }
+      );
+    }
+
+
 
   }
 
@@ -212,20 +256,24 @@ export class CreateInstanceComponent implements OnInit {
       console.log("++++"  + intakeId)
 
     this.tracks=[];
-    this.instanceService.getTrackByIntake(intakeId).subscribe(
-      {
-        next: (data: any) => {
-          data.trackResponsesList.forEach(e => {
+    if(intakeId!=undefined){
 
-              console.log( "trainingPrograms" + e);
-              this.isStudentChecked();
-              this.tracks.push(e);
-            }
-          )
+      this.instanceService.getTrackByIntake(intakeId).subscribe(
+        {
+          next: (data: any) => {
+            data.trackResponsesList.forEach(e => {
+
+                console.log( "tracksssss" + e.name);
+                this.isStudentChecked();
+                this.tracks.push(e);
+              }
+            )
+          }
+
         }
+      );
+    }
 
-      }
-    )
   }
 
   onChangeTrack(trackId:any) {
@@ -252,21 +300,21 @@ export class CreateInstanceComponent implements OnInit {
 
   }
 
-  private getAllIntakes() {
-     this.instanceService.getIntakes().subscribe({
-       next: (data: any) => {
-
-         data.intakeResponsesList.forEach(e => {
-
-             console.log("eeee" + e);
-
-             this.intakes.push(e);
-           }
-         )
-       }
-     }
-  );
-  }
+  //  getAllIntakes() {
+  //    this.instanceService.getIntakes().subscribe({
+  //      next: (data: any) => {
+  //
+  //        data.intakeResponsesList.forEach(e => {
+  //
+  //            console.log("eeee" + e);
+  //
+  //            this.intakes.push(e);
+  //          }
+  //        )
+  //      }
+  //    }
+  // );
+  // }
 
   isStudentChecked(){
     this.isChecked = [];
