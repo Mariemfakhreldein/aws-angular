@@ -1,0 +1,50 @@
+<!--<div id="preloader">-->
+<!--  <div class="loader">-->
+<!--    <svg class="circular" viewBox="25 25 50 50">-->
+<!--      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />-->
+<!--    </svg>-->
+<!--  </div>-->
+<!--</div>-->
+
+<div class="col-lg-12">
+  <div class="card">
+    <div class="card-body">
+      <!--      <h4 class="card-title">Bordered Table</h4>-->
+      <div class="table-responsive">
+        <table class="table table-bordered verticle-middle">
+          <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Image ID</th>
+            <th scope="col">Architecture</th>
+            <th scope="col">Image Name</th>
+            <th scope="col">Subnet ID</th>
+            <th scope="col">Instance Type</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr style="padding-top: 200px;" *ngFor="let template of templates">
+            <td style="padding: 15px 5px;">{{template.id}}</td>
+            <td>{{template.ami.amiId}}</td>
+            <td>{{template.ami.architecture}}</td>
+            <td>{{template.ami.imageName}}</td>
+            <td>{{template.subnetId}}</td>
+            <td>{{template.instanceType}}</td>
+            <td>
+              <span >
+                <a href="#" data-toggle="tooltip" data-placement="top" title="Edit">
+                  <i class="fa fa-pencil color-muted m-r-5" style="margin: 0px 15px;"></i>
+                </a>
+                <a href="#" data-toggle="tooltip" data-placement="top" title="Close">
+                  <i class="fa fa-close color-danger"></i>
+                </a>
+              </span>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

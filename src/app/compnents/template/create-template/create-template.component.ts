@@ -109,6 +109,8 @@ export class CreateTemplateComponent implements OnInit {
     }
     return this.amiFlag;
   }
+
+
   getInstanceType(){
     this.templateService.getInstancesTypes().subscribe(
       (response:any)=>{
@@ -177,6 +179,8 @@ export class CreateTemplateComponent implements OnInit {
     }
    return this.selectedItemsList;
   }
+
+
   getSubnetIdByVpc(vpc:string): string{
     for (let i of this.subnets){
      if(i.vpcId === vpc){

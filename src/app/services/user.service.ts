@@ -17,6 +17,10 @@ export class UserService {
     return this.api.get("/api/students");
   }
 
+  getAllInstructors() {
+    return this.api.get("/api/staff/instructors");
+  }
+
   getAllUsers() {
     return this.api.get("/api/students");
   }
@@ -46,4 +50,5 @@ export class UserService {
     this.userTracks.push(new UserTracksModel(5, "hafsa5"));
     return this.userTracks;
   }
+
 }
