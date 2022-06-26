@@ -39,6 +39,10 @@ export class ViewInstancesComponent implements OnInit {
   constructor(private instanceService: InstanceService , private authService: AuthService,private router: Router) { }
 
   canCreateTerminateAssignInstance: boolean = false
+  timeDifference:any;
+  timeToLive:any;
+  creationDateTime:any;
+  today=Date.now();
 
   ngOnInit(): void {
 
@@ -49,17 +53,18 @@ export class ViewInstancesComponent implements OnInit {
     // this.getInstanceTime(1);
     // console.log("********************************"+this.instanceTime)
 
-    console.log("---------------------------------------------------------------------")
-    console.log(this.pipe.transform(Date.now(),'dd/mm/yy hh:mm:ss') + "++ current time ");
-    console.log(this.pipe.transform(Date.now(),'dd/mm/yy hh:mm:ss'))
-    console.log(new Date('2022-06-26 15:00:32.967527').getTime());
-    console.log((Date.now() - new Date('2022-06-26 15:00:32.967527').getTime() )/1000/60);
+    // console.log("---------------------------------------------------------------------")
+    // console.log(this.pipe.transform(Date.now(),'dd/mm/yy hh:mm:ss') + "++ current time ");
+    // console.log(this.pipe.transform(Date.now(),'dd/mm/yy hh:mm:ss'))
+    // console.log(new Date('2022-06-26 15:00:32.967527').getTime());
+    // console.log((Date.now() - new Date('2022-06-26 15:00:32.967527').getTime() )/1000/60);
 
 
   }
 
 
   getInstances(){
+    this.counterArray=[];
     this.instanceService.getAllInstances().subscribe({
       next: (data:any) =>{
         data.listOfInstance.forEach(e => {
@@ -70,10 +75,32 @@ export class ViewInstancesComponent implements OnInit {
           this.statusArray.push(e.state);
           this.instancesBackup.push(e);
           console.log("timerrrrrrrr i "+e.creationDateTime);
+          // (Date.now()-(new Date(creationDateTime).getTime()+new Date(timeToLive*60).getTime()))
+          this.creationDateTime=new Date(e.creationDateTime).getTime();
+          this.timeToLive=new Date(e.timeToLiveInMinutes).getTime(); //in sec
+          // this.timeDifference=(this.today-this.creationDateTime);
+          this.timeDifference= Math.abs(this.today- this.creationDateTime) / 36e5 * 60;
+
+          console.log("creationDateTime i "+this.creationDateTime);
+          console.log("timeToLive i "+ this.timeToLive);
+          console.log("today i "+ this.today);
+          console.log("this.timeDifference "+this.timeDifference);
 
 
-          this.counter=new Date(e.creationDateTime).getTime()-new Date(e.timeToLiveInMinutes).getTime()
-          this.addToCounterArray(new Date(e.creationDateTime),new Date(e.timeToLiveInMinutes));
+          if(this.timeToLive >= this.timeDifference ){
+            console.log("today i "+ this.today);
+            console.log("today i "+ this.today);
+            this.counter=this.timeToLive- Math.ceil(this.timeDifference);
+            console.log("counterrrrrrrr i "+ this.counter);
+
+          }else{
+            this.counter=0;
+
+          }
+
+          this.addToCounterArray(this.counter);
+
+          // this.addToCounterArray(this.counter);
 
           console.log("********************************"+this.counter)
 
@@ -143,7 +170,7 @@ export class ViewInstancesComponent implements OnInit {
       }
    })
 
-    console.log("running"+runningCounter);
+    // console.log("running"+runningCounter);
     return runningCounter;
 
   }
@@ -159,14 +186,14 @@ export class ViewInstancesComponent implements OnInit {
       }
     })
 
-    console.log("stopped"+stoppedCounter);
+    // console.log("stopped"+stoppedCounter);
     return stoppedCounter;
 
   }
 
   getNumberOfInstances():number{
 
-    console.log("totalll"+this.instances.length);
+    // console.log("totalll"+this.instances.length);
     return this.instances.length;
 
   }
@@ -193,20 +220,33 @@ export class ViewInstancesComponent implements OnInit {
     }
   }
 
-  public addToCounterArray(creationDateTime,timeToLive){
+  public addToCounterArray(counter){
 
 
 
-      this.counterArray.push( (Date.now()-(new Date(creationDateTime).getTime()+new Date(timeToLive*60).getTime()))/1000);
+      this.counterArray.push( counter);
 
 
   }
 
   subscribeCounter(){
     for(let i=0;i<this.counterArray.length;i++){
-      this.countDown = timer(0, this.tick).subscribe(() => --this.counterArray[i]);
+      if(this.counterArray[i]==0){
+        this.countDown=timer(0, 0).subscribe(() =>{
+          // this.setFormData();
+        });
+      }else{
+        console.log("counterarrayyyyyyyyy"+this.counterArray[i]);
+        this.countDown = timer(0, this.tick).subscribe(() => --this.counterArray[i]);
+      }
+
     }
 
+  }
+
+  private setFormData() {
+
+    this.countDown.unsubscribe();
   }
 
 }

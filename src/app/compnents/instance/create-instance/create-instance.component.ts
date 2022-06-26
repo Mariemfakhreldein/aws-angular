@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {InstanceModel} from "../../../models/instances/instance.models";
-import {TemplateModel} from "../../../models/templates/template.model";
+
 import {UserModel} from "../../../models/users/user.model";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
