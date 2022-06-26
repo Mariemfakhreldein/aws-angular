@@ -19,7 +19,7 @@
                     (ngModelChange)="onChangeBranch($event)" formControlName="branches"
                     [class.is-valid]="!addStudents.controls['branches'].errors && addStudents.controls['branches'].touched"
                     [class.is-invalid]="addStudents.controls['branches'].errors && addStudents.controls['branches'].touched">
-              <option  selected disabled class="text-secondary" >Please Select Branch</option>
+              <option  selected disabled value="" class="text-secondary" >Please Select Branch</option>
               <option *ngFor="let branch of branches"
                       [value]="branch.id">{{branch.name}} </option>
             </select>
