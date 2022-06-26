@@ -59,6 +59,9 @@ import { TrackSearchByNamePipe } from './compnents/pipes/search/tracks/track-sea
 import { ViewTemplatesComponent } from './compnents/template/view-templates/view-templates.component';
 import { AssignTemplateComponent } from './compnents/template/assign-template/assign-template.component';
 import { AddStaffComponent } from './compnents/user/staff/add-staff/add-staff.component';
+import { TrainingProgramSearchByNamePipe } from './compnents/pipes/search/training-programs/training-program-search-by-name.pipe';
+import { BranchSearchByNamePipe } from './compnents/pipes/search/branches/branch-search-by-name.pipe';
+import { StudentSearchByNamePipe } from './compnents/pipes/search/students/student-search-by-name.pipe';
 
 @NgModule({
   declarations: [
@@ -129,7 +132,11 @@ import { AddStaffComponent } from './compnents/user/staff/add-staff/add-staff.co
     ViewTemplatesComponent,
     AssignTemplateComponent,
     AddStudentsComponent,
-    AddStaffComponent
+    AddStaffComponent,
+    TrackSearchByNamePipe,
+    TrainingProgramSearchByNamePipe,
+    BranchSearchByNamePipe,
+    StudentSearchByNamePipe
   ],
     imports: [
         BrowserModule,

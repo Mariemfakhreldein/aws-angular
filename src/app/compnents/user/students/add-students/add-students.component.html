@@ -1,13 +1,18 @@
-<div >
+<div  class="h-100 bg-light">
+  <div class="container-fluid justify-content-center mx-auto">
+    <div class="col-lg-4 col-12 mb-3 row justify-content-center mb-3 mb-lg-5 mx-auto">
+      <img class="col-lg-2 col-3 mt-1" src="assets/images/usedImages/addStudent.png">
+      <h2 class="col-lg-6 col-6 pt-4 mb-0 pt-2 text-start px-0 text-muted font-italic">Add Student</h2>
+    </div>
+
+
   <div class="card">
-    <div class="card-body">
-      <h4 class="card-title">Adding New Student Form</h4>
+    <div class="card-body rounded shadow">
       <div class="basic-form" [formGroup]="addStudents">
 
-        <!--        Branches          -->
+
         <div class="form-group row">
-          <label class="col-lg-4 col-form-label" for="branches">Select Branch
-            <span class="text-danger">*</span>
+          <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="branches">Select Branch
           </label>
           <div class="col-lg-6">
             <select class="form-control" id="branches" data-live-search="true"
@@ -27,8 +32,8 @@
         </div>
 
         <!--        Training programs   -->
-        <div class="form-group row" *ngIf="!addStudents.controls['branches'].errors && trainingPrograms.length > 0" >
-          <label class="col-lg-4 col-form-label" for="trainingPrograms">Select Training Program <span class="text-danger">*</span>
+        <div class="form-group row" *ngIf="!addStudents.controls['branches'].errors" >
+          <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="trainingPrograms">Select Training Program
           </label>
           <div class="col-lg-6">
             <select class="form-control" id="trainingPrograms" data-live-search="true"
@@ -48,9 +53,8 @@
         </div>
 
         <!--    Intakes    -->
-        <div class="form-group row" *ngIf="!addStudents.controls['trainingPrograms'].errors &&intakes.length>0">
-          <label class="col-lg-4 col-form-label" for="intakes">Select Intake <span
-            class="text-danger">*</span>
+        <div class="form-group row" *ngIf="!addStudents.controls['trainingPrograms'].errors">
+          <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="intakes">Select Intake
           </label>
           <div class="col-lg-6">
             <select class="form-control" id="intakes" data-live-search="true"
@@ -70,9 +74,8 @@
         </div>
 
         <!--   Tracks    -->
-        <div class="form-group row" *ngIf="!addStudents.controls['intakes'].errors && tracks.length>0">
-          <label class="col-lg-4 col-form-label" for="intakes">Select Track <span
-            class="text-danger">*</span>
+        <div class="form-group row" *ngIf="!addStudents.controls['intakes'].errors">
+          <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="intakes">Select Track
           </label>
           <div class="col-lg-6">
             <select class="form-control" id="tracks" data-live-search="true"
@@ -91,9 +94,9 @@
           </div>
         </div>
 
-        <div *ngIf="!addStudents.controls['tracks'].errors">
+        <div >
           <div class="form-group row">
-            <label class="col-lg-4 col-form-label" for="intakes">Enter Username </label>
+            <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="intakes">Enter Username </label>
             <div class="col-lg-6">
               <input #usernameInput [class.is-invalid]="addStudents.controls['userName'].errors && addStudents.controls['userName'].touched"
                      [class.is-valid]="!addStudents.controls['userName'].errors"
@@ -107,7 +110,7 @@
           </div>
 
           <div class="form-group row">
-            <label class="col-lg-4 col-form-label" for="intakes">Enter Email </label>
+            <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="intakes">Enter Email </label>
             <div class="col-lg-6">
               <input #emailInput [class.is-invalid]="addStudents.controls['email'].errors && addStudents.controls['email'].touched"
                      [class.is-valid]="!addStudents.controls['email'].errors"
@@ -120,61 +123,90 @@
           </div>
         </div>
 
-        <div *ngIf="!addStudents.controls['tracks'].errors">
-          <button class="btn btn-submit" type="button" [disabled]="addStudents.invalid"  (click)="add()">Add</button>
-          <input #fileImportInput class="form-control" type="file" id="formFile" class="upload" (change) = "fileChangeListener($event)">
+        <div class="mt-4 text-center mx-auto ">
+          <button class="btn btn-submit btn-danger mr-2 mb-2" type="button" [disabled]="addStudents.invalid"  (click)="add()">Add Student</button>
+          <input #fileImportInput class="form-control btn-light btn b-0 text-muted" type="file" id="formFile" class="upload" (change) = "fileChangeListener($event)">
         </div>
           <small class="text-danger">{{errorMessage}}</small>
       </div>
     </div>
   </div>
 
-  <div class="container-fluid" *ngIf="students.length > 0" >
-    <div class="row justify-content-center">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-body">
-            <div class=" m-auto pt-3">
-              <h1 class="text-center"> Students</h1>
-              <div class="col-11 text-center m-auto">
-                <table class="table text-center mt-5">
-                  <thead>
-                    <td>Username</td>
-                    <td>Email</td>
-                    <td>Delete</td>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let student of students | paginate:{itemsPerPage:10,currentPage:page,totalItems:students.length};let currentIndex=index" >
-                      <td> {{student.username}}</td>
-                      <td> {{student.email}}</td>
-                      <td> <input type="button" (click)="delete(currentIndex)" value="Delete" class="btn btn-danger"> </td>
-                    </tr>
-                  </tbody>
-                </table>
-                <button type="button"   class="btn btn-submit" data-toggle="modal" data-target="#exampleModalCenter" (click)="submit()">submit</button>
-              </div>
-            </div>
+
+
+
+
+
+
+
+
+
+
+
+<div class="container bg-light mt-5 mb-5" *ngIf="students.length>0">
+  <div class="row mb-lg-5 mb-2 mt-2 justify-content-around">
+    <div class="col-lg-4 col-12 row justify-content-around ">
+      <img class="col-lg-2 col-2 mt-1" src="assets/images/user/users.png">
+      <h2 class="col-lg-10 col-10 mb-0 pt-3">All Students</h2>
+    </div>
+    <div class="search col-lg-4 col-10 rounded bg-white justify-content-around mt-lg-0 mt-3">
+      <i class="fa fa-search text-muted col-lg-1 col-1 "></i>
+      <input class="border-0 col-10  col-lg-10 py-2 " placeholder="Search by name or email..." type="text" #search [ngModel]="searchValue">
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div  class="row  border-0 justify-content-start my-2 rounded bg-transparent p-1 py-3 col-lg-10 mx-lg-auto">
+      <p  class="col-3 col-lg-3 m-auto align-items-lg-start text-muted font-weight-bold" >Username</p>
+      <p  class="col-3 col-lg-3 m-auto align-items-lg-start text-muted font-weight-bold" >Email</p>
+      <p class="edit col-3 col-lg-3 text-info mb-0 text-muted font-weight-bold">Delete</p>
+    </div>
+
+    <div>
+      <div  *ngFor="let student of students | studentSearchByName:search.value |
+      paginate:{itemsPerPage:8,currentPage:page,totalItems:students.length} ;let currentIndex=index" class="my-1">
+        <button  class="row tableRow border-0 justify-content-start text-start text-lg-start justify-content-lg-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+          <p  class="col-3 col-lg-3 m-auto align-items-lg-start font-weight-bold text-muted" >{{(student.username.length>15)? (student.username | slice:0:15)+'..':(student.username)}}</p>
+          <p  class="col-3 col-lg-3 m-auto align-items-lg-start" >{{(student.email.length>30)? (student.email | slice:0:30)+'..':(student.email)}}</p>
+          <div class=" col-3 col-lg-3 ">  <p type="button" (click)="delete(currentIndex)" value="Delete" class="btn btn-danger col-3"><i class="fa fa-trash" aria-hidden="true"></i></p>
           </div>
+        </button>
+      </div>
+
+      <div class="text-center mx-auto mt-3">
+        <button type="button"   class="btn btn-submit btn-danger" data-toggle="modal" data-target="#exampleModalCenter" (click)="submit()">submit</button>
+
+      </div>
+    </div>
+
+
+  </div>
+
+  <div  class="col-12 mt-3 text-center" *ngIf="students.length>7">
+
+    <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
+
+    </pagination-controls>
+
+  </div>
+</div>
+
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div>
+          <app-success-popup *ngIf="isSuccess" [item]="successMessage"></app-success-popup>
+          <app-failed-popup *ngIf="!isSuccess" [item]="failedMessage"></app-failed-popup>
         </div>
       </div>
     </div>
-
-
-    <div  class="col-12  text-center" >
-      <pagination-controls  (pageChange)="page=$event"   style="bottom: 100px;left: 50vw">
-      </pagination-controls>
-    </div>
   </div>
-
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-       aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div>
-        <app-success-popup *ngIf="isSuccess" [item]="successMessage"></app-success-popup>
-        <app-failed-popup *ngIf="!isSuccess" [item]="failedMessage"></app-failed-popup>
-      </div>
-    </div>
-  </div>
-
 </div>
+
+
+
+
 

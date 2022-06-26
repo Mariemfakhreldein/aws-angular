@@ -54,4 +54,8 @@ export class UserService {
     this.userTracks.push(new UserTracksModel(5, "hafsa5"));
     return this.userTracks;
   }
+
+  getUserById(){
+    return this.api.get(`/api/users/profile`);
+  }
 }

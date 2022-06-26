@@ -10,6 +10,7 @@ import { TrainingProgramService } from 'src/app/services/training-program.servic
 export class ViewTrainingProgramsComponent implements OnInit {
   trainingPrograms: TrainingProgram[]=[];
   page=1;
+  searchValue: any;
 
   constructor(private trainingProgramService:TrainingProgramService) { }
 
