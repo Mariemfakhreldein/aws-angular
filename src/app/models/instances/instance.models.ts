@@ -6,6 +6,8 @@ export class InstanceModel {
   instanceId:string;
   state:string;
   keyMaterial:string;
+  keyPair:any;
+  timeToLiveInMinutes:any;
   // publicIp:string;
   // publicDnsName:string;
   instanceType:string;
@@ -15,7 +17,6 @@ export class InstanceModel {
   // username:string;
   creationDateTime:string;
   // platform:string;
-  // keyPair:string; //////////////////////////edit
   // creator:string; /////////////////////////edit
   // instanceUsers:[]; //////////////////////edit
   // securityGroups:[];///////////////////////edit
