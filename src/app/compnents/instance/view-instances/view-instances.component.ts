@@ -25,6 +25,7 @@ export class ViewInstancesComponent implements OnInit {
   //count down
   countDown: Subscription;
   counter = (Date.now() - new Date('2022-06-26 15:00:32.967527').getTime() )/1000/60;
+  counterArray:any[] =new Array();
   tick = 1000;
 
   statusArray:string[]=[];
@@ -53,6 +54,7 @@ export class ViewInstancesComponent implements OnInit {
     console.log(new Date('2022-06-26 15:00:32.967527').getTime());
     console.log((Date.now() - new Date('2022-06-26 15:00:32.967527').getTime() )/1000/60);
 
+
   }
 
 
@@ -75,6 +77,7 @@ export class ViewInstancesComponent implements OnInit {
 
         console.log(this.statusArray);
 
+        this.addToCounterArray();
       },
       error: (e) => console.error(e+"errorr"),
       complete: () => console.info('complete')
@@ -183,6 +186,13 @@ export class ViewInstancesComponent implements OnInit {
      console.log("*%%%%%*%*%*"+i);
 
     }
+  }
+
+  public addToCounterArray(){
+
+    this.instanceTime.forEach(i=>{
+      this.counterArray.push( new Date((i.creationDate.getTime() +i.timeToLive.getTime()-Date.now()) /1000/60));
+    });
   }
 
 }
