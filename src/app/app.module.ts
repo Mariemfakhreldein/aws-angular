@@ -62,6 +62,7 @@ import { AddStaffComponent } from './compnents/user/staff/add-staff/add-staff.co
 import { TrainingProgramSearchByNamePipe } from './compnents/pipes/search/training-programs/training-program-search-by-name.pipe';
 import { BranchSearchByNamePipe } from './compnents/pipes/search/branches/branch-search-by-name.pipe';
 import { StudentSearchByNamePipe } from './compnents/pipes/search/students/student-search-by-name.pipe';
+import { CreateMyinstanceComponent } from './compnents/instance/create-myinstance/create-myinstance.component';
 
 @NgModule({
   declarations: [
@@ -136,7 +137,8 @@ import { StudentSearchByNamePipe } from './compnents/pipes/search/students/stude
     TrackSearchByNamePipe,
     TrainingProgramSearchByNamePipe,
     BranchSearchByNamePipe,
-    StudentSearchByNamePipe
+    StudentSearchByNamePipe,
+    CreateMyinstanceComponent
   ],
     imports: [
         BrowserModule,
