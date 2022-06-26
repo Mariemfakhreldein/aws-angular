@@ -183,7 +183,8 @@ export class ViewInstancesComponent implements OnInit {
 
     let counter;
     for (const i of this.instanceTime) {
-     console.log("*%%%%%*%*%*"+i);
+     console.log("ssk" +
+       ""+i);
 
     }
   }
