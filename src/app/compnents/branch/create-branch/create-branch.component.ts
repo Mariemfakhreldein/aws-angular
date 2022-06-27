@@ -26,6 +26,7 @@ export class CreateBranchComponent implements OnInit {
   ngOnInit(): void {
     this.BranchFormGroup=this._formBuilder.group({
       name:["",[Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+      value:[true,[Validators.required]],
       address:["",[Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
     });
   }
