@@ -1,15 +1,20 @@
-<div>
+<div class="servce-do">
+  <div class="col-lg-4 col-12 mb-3 row justify-content-center mb-3 mb-lg-5 mx-auto">
+    <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/processing.png">
+    <h2 class="col-lg-9 col-6 mb-0 pt-2 text-start px-0 text-muted font-italic">Create My Instance</h2>
+  </div>
+
   <div class="container-fluid">
+
     <div class="row justify-content-center">
       <div class="col-lg-12">
         <div class="card">
-          <div class="card-body">
+          <div class="card-body shadow rounded">
 
             <div class="form-validation" [formGroup]="myGroup">
 
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="val-username">Instance Name <span
-                  class="text-danger">*</span>
+                <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="val-username">Instance Name
                 </label>
                 <div class="col-lg-6">
                   <input #instanceName type="text" class="form-control" id="val-username" name="val-username"
@@ -25,8 +30,7 @@
               </div>
 
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="val-username">Key Pair Name <span
-                  class="text-danger">*</span>
+                <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="val-username">Key Pair Name
                 </label>
                 <div class="col-lg-6">
                   <input #keypairName type="text" class="form-control" id="val-keyPairName" name="val-keyPairName"
@@ -42,8 +46,7 @@
               </div>
 
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="val-timeToLiveInMinutes">Enter TimeToLive in minutes <span
-                  class="text-danger">*</span>
+                <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="val-timeToLiveInMinutes">Enter TimeToLive in minutes
                 </label>
                 <div class="col-lg-6">
                   <input #timeToLiveInMinutes type="number" class="form-control" required (keydown.backspace)="$event.preventDefault();" id="val-timeToLiveInMinutes" name="val-timeToLiveInMinutes"
@@ -64,7 +67,7 @@
 
               <div class="form-group row radio-container">
                 <div class="form-group row">
-                  <label class="col-lg-4 col-form-label">Select Template <span class="text-danger">*</span></label>
+                  <label class="col-lg-4 col-form-label text-muted font-weight-bold">Select Template </label>
                   <div class="col-lg-6 card-radio-container">
                     <label class="row" *ngFor="let template of templates; let index = index" for="{{template.id}}">
 
@@ -84,10 +87,10 @@
 
               </div>
               <div class="form-group row">
-                <div class="col-lg-8 ml-auto">
+                <div class="col-lg-8 ml-auto mx-auto text-center">
                   <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid || templateId==0"
-                          (click)="submitBtn(instanceName.value, keypairName.value, +timeToLiveInMinutes.value)" class="btn" data-toggle="modal" data-target="#exampleModalCenter">
-                    Submit
+                          (click)="submitBtn(instanceName.value, keypairName.value, +timeToLiveInMinutes.value)" class="btn btn-danger font-weight-bold" data-toggle="modal" data-target="#exampleModalCenter">
+                    Create Instance
                   </button>
                 </div>
               </div>
