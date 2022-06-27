@@ -14,6 +14,7 @@ export class InstanceModel {
   subnetId:string;
   vpcId:string;
   creationDateTime:any;
+  lastStartedDateTime:any;
   // decryptedPassword:string;
   // username:string;
 

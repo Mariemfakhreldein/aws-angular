@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {InstanceModel} from "../../../models/instances/instance.models";
 import {InstanceService} from "../../../services/instance.service";
 import {ActivatedRoute} from "@angular/router";
+import {Subscription, timer} from "rxjs";
+import {TimerService} from "../../../services/timer.service";
 
 @Component({
   selector: 'app-view-instance-details',
@@ -22,8 +24,16 @@ export class ViewInstanceDetailsComponent implements OnInit {
   terminated=false;
   currentItem='Instance';
   action='Terminated';
+  countDown: Subscription;
+  tick: number = 1000;
+  timeDifference: any;
+  timeToLive: any;
+  creationDateTime: any;
+  today = Date.now();
+  lastStartedDateTime:any;
+  counter: any;
 
-  constructor(private _activatedRoute:ActivatedRoute,private instanceService: InstanceService ) { }
+  constructor(private _activatedRoute:ActivatedRoute,private instanceService: InstanceService ,private timerService:TimerService) { }
 
   ngOnInit(): void {
 
@@ -40,10 +50,40 @@ export class ViewInstanceDetailsComponent implements OnInit {
     this.instanceService.getById(id).subscribe({
       next: (response:any) =>{
         this.instance=response;
+        this.creationDateTime = new Date(response.creationDateTime).getTime();
+        this.timeToLive = new Date(response.timeToLiveInMinutes).getTime(); //in sec
+        this.lastStartedDateTime=new Date(response.lastStartedDateTime).getTime();
+
+        this.timeDifference=this.timerService.calculateTimeDifference(this.today,this.lastStartedDateTime);
+        this.counter = this.timerService.getCounterValue(this.timeToLive,this.timeDifference);
+
+        this.subscribeCounter() ;
       },
       error: (e) => console.error(e+"errorr"),
       complete: () => console.info('complete')
     }) ;
+  }
+
+
+  subscribeCounter(){
+
+
+      this.countDown = timer(0, this.tick).subscribe(() => {
+
+        if (Math.ceil(this.counter) > 0) {
+          console.log("counterrr"+this.counter);
+          --this.counter;
+          if(Math.ceil(this.counter)==0){
+            this.countDown = null;
+            this.counter=0;
+          }
+        }else {
+          this.counter=0;
+        }
+
+
+      });
+
   }
 
   isReadMore = true;

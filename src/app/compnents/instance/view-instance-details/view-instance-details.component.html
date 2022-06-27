@@ -59,7 +59,9 @@
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
     <h4  class="col-5  m-auto  text-muted">Time To Live : </h4>
-    <p  class="col-5  m-auto align-items-lg-start text-muted" >{{instance.timeToLiveInMinutes}} m</p>
+    <p  class="col-5    m-auto align-items-lg-start text-muted" >
+      <span [style.color]="counter/60<=5 ? '#e62e00' :  '#ffffff'">{{counter | instanceTimer}}</span>
+    </p>
   </div>
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">

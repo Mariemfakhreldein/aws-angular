@@ -3,11 +3,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { InstanceService } from "../../../services/instance.service";
 import { InstanceModel } from "../../../models/instances/instance.models";
-import { Router } from "@angular/router";
+import {Router, Routes} from "@angular/router";
 import { AuthService } from "../../../services/auth.service";
 import { Subscription, timer } from "rxjs";
 import { InstanceDateModel } from "../../../models/instances/instance.date.model";
 import { DatePipe } from "@angular/common";
+import {color} from "chart.js/helpers";
+import {TimerService} from "../../../services/timer.service";
+
 
 @Component({
   selector: 'app-view-instances',
@@ -15,6 +18,7 @@ import { DatePipe } from "@angular/common";
   styleUrls: ['./view-instances.component.css']
 })
 export class ViewInstancesComponent implements OnInit, OnDestroy {
+
 
   clicked: boolean = false;
 
@@ -25,10 +29,11 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
 
   //count down
   countDown: Subscription;
+  tick: number = 1000;
   // counter = (Date.now() - new Date('2022-06-26 15:00:32.967527').getTime() )/1000/60;
   counter: any;
   counterArray: any[] = new Array();
-  tick: number = 1000;
+
 
   statusArray: string[] = [];
   // statusArray:string[]=['running','stopped','running','stopped','running','stopped','running'];
@@ -38,14 +43,16 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
 
 
   pipe = new DatePipe("en");
-  constructor(private instanceService: InstanceService, private authService: AuthService, private router: Router) { }
+  constructor(private instanceService: InstanceService, private authService: AuthService, private router: Router,private timerService:TimerService) { }
 
   canCreateTerminateAssignInstance: boolean = false
   timeDifference: any;
   timeToLive: any;
   creationDateTime: any;
   today = Date.now();
+  lastStartedDateTime:any;
   timed = false;
+
 
   ngOnInit(): void {
 
@@ -74,18 +81,10 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
           this.instancesBackup.push(e);
           this.creationDateTime = new Date(e.creationDateTime).getTime();
           this.timeToLive = new Date(e.timeToLiveInMinutes).getTime(); //in sec
-          this.timeDifference = Math.abs(this.today - this.creationDateTime) / 36e5 * 60;
+          this.lastStartedDateTime=new Date(e.lastStartedDateTime).getTime();
 
-          if (this.timeToLive >= this.timeDifference) {
-            this.counter = this.timeToLive - Math.ceil(this.timeDifference);
-
-          } else {
-            this.counter = 0;
-
-
-          }
-
-
+          this.timeDifference=this.timerService.calculateTimeDifference(this.today,this.lastStartedDateTime);
+          this.counter = this.timerService.getCounterValue(this.timeToLive,this.timeDifference);
 
           this.addToCounterArray(this.counter);
 
@@ -200,12 +199,14 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
 
 
 
-    this.counterArray.push(counter * 60);
+    this.counterArray.push((counter+1) * 60);
 
 
   }
 
   subscribeCounter() {
+
+    console.log("kkkk"+this.counterArray);
     for (let i = 0; i < this.counterArray.length; i++) {
       if (this.statusArray[i] != 'running') {
         this.counterArray[i] = 0;
@@ -213,9 +214,9 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
 
       if (this.counterArray[i] == 0) {
 
-        if (this.statusArray[i] == 'running') {
+       /* if (this.statusArray[i] == 'running') {
           this.instanceService.stopInstance(this.instancesBackup[i].instanceId).subscribe();
-        }
+        }*/
         this.timed = false;
         this.countDown = timer(0, 0).subscribe(() => {
           // this.setFormData();
@@ -224,9 +225,17 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
       } else {
         this.timed = true
         this.countDown = timer(0, this.tick).subscribe(() => {
+
           if (this.counterArray[i] > 0) {
             --this.counterArray[i];
+            if(Math.ceil(this.counterArray[i])==0){
+              this.countDown = null;
+              this.counterArray[i]=0;
+            }
+          }else{
+            this.counterArray[i]=0;
           }
+
 
         });
 
