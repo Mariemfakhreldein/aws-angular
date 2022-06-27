@@ -46,7 +46,7 @@ h4 ,p{
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #14C38E;
 }
 
 input:focus + .slider {
@@ -71,4 +71,8 @@ input:checked + .slider:before {
 .limitTextHeight {
   height: 45px !important;
   overflow: hidden !important;
+}
+
+.borderColor{
+  border-color: #14C38E !important;
 }

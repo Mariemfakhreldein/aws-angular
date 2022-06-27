@@ -6,16 +6,18 @@ export class InstanceModel {
   instanceId:string;
   state:string;
   keyMaterial:string;
+  keyPair:any;
+  timeToLiveInMinutes:any;
   // publicIp:string;
   // publicDnsName:string;
   instanceType:string;
   subnetId:string;
   vpcId:string;
+  creationDateTime:any;
   // decryptedPassword:string;
   // username:string;
-  creationDateTime:string;
+
   // platform:string;
-  // keyPair:string; //////////////////////////edit
   // creator:string; /////////////////////////edit
   // instanceUsers:[]; //////////////////////edit
   // securityGroups:[];///////////////////////edit

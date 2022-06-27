@@ -1,3 +1,8 @@
+<div class="container-fluid justify-content-center mx-auto">
+  <div class="col-lg-4 col-12 mb-3 row justify-content-center mb-3 mb-lg-5 mx-auto">
+    <img class="col-lg-1 col-1 mt-1" style="width: 90px;height: 70px" src="assets/images/usedImages/engineering.png">
+    <h2 class="col-lg-9 col-5 mb-0 pt-3 text-start px-0 text-muted font-italic">View All Instances</h2>
+  </div>
 
 
 <div class="bg-transparent bg-dark rounded shadow-lg p-lg-5 m-3" >
@@ -47,14 +52,16 @@
 
 
 
-
   <div  class="hexagon col-lg-8 col-12 mx-1" *ngFor="let instance of instancesBackup |
       paginate:{itemsPerPage:5,currentPage:page,totalItems:instances.length};let currentIndex=index"
         [style.background-color]="statusArray[currentIndex]=='running' ? '#14C38E ' : statusArray[currentIndex]=='stopped'? '#B8F1B0': 'rgba(20,195,142,0.53)'">
 
     <a  routerLink="/instances/{{instance.instanceId}}" class="text-decoration-none">
+<!--      value in sec-->
+      <h5 class="mt-5 text-white pt-4">{{counterArray[instancesBackup.indexOf(instance)] | instanceTimer}} </h5>
+      <h5 class="text-white font-weight-bold">{{instance.name}}</h5>
 
-      <h5 class="text-white mt-5 pt-4"><br>{{instance.name}}</h5>
+
 
 
     </a>
@@ -62,13 +69,6 @@
 
 
       <div class="instanceStatusContent">
-
-<!--        <button  type="button" id="button_play" class="btn btn-light "-->
-<!--                 (click)="changeInstanceStatus(instance,currentIndex)" >-->
-<!--          <i *ngIf="statusArray[currentIndex].toLowerCase()==='stopped' || statusArray[currentIndex].toLowerCase()==='stopping'" class="fa fa-play"></i>-->
-<!--          <i *ngIf="statusArray[currentIndex].toLowerCase()==='running'" class="fa fa-stop"></i>-->
-
-<!--        </button>-->
 
         <button   type="button" id="button_play" class="btn btn-light "
                  (click)="changeInstanceStatus(instance,currentIndex)" href="/instances">
@@ -90,8 +90,8 @@
 
     <a  [routerLink]="['/instances/createInstance']" class="text-decoration-none">
 
-      <h5 class="mt-5 pt-4">{{counter  | instanceTimer}} </h5>
-      <h5 class="pt-2">Create Instance <br></h5>
+<!--      <h5 class="mt-5 pt-4">{{counter  | instanceTimer}} </h5>-->
+      <h5 class="pt-4 mt-5">Create Instance <br></h5>
 
 
 

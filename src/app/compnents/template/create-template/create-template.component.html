@@ -1,13 +1,17 @@
 <div [formGroup]="templateFormGroup">
   <div class="container-fluid">
-    <div class="row justify-content-center">
+  <div class="container-fluid justify-content-center mx-auto">
+    <div class="col-lg-4 col-12 mb-3 row justify-content-center mb-3 mb-lg-5 mx-auto">
+      <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/template.png">
+      <h2 class="col-lg-9 col-5 mb-0 pt-2 text-start px-0 text-muted font-italic">Create Template</h2>
+    </div>  <div class="row justify-content-center">
       <div class="col-lg-12">
         <div class="card">
-          <div class="card-body">
+          <div class="card-bodyrounded shadow">
             <div class="form-validation">
 
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="subnet">Subnet
+                <label class="col-lg-4 col-form-labeltext-muted font-weight-bold" for="subnet">Subnet
                 </label>
                 <div class="col-lg-6">
                   <select class="form-control" id="subnet" data-live-search="true"
@@ -30,7 +34,7 @@
               <div class="row " *ngIf="!templateFormGroup.controls['subnet'].errors ">
 
                 <div class="form-group row">
-                  <label class="col-lg-4 col-form-label" for="security">Security Groups </label>
+                  <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="security">Security Groups </label>
                   <div class="col-lg-6">
 
                     <div id="security" class="form-group row radio-container border-bottom "
@@ -81,7 +85,7 @@
 
 
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="ami">AMI <a style="font-size: 13px"
+                <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="ami">AMI <a style="font-size: 13px"
                     href="https://us-east-1.console.aws.amazon.com/ec2/v2/home?region=us-east-1&skipRegion=true#"> Click
                     Here</a>
                 </label>
@@ -99,7 +103,7 @@
               </div>
 
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="instance">Instance Type
+                <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="instance">Instance Type
                 </label>
                 <div class="col-lg-6">
                   <select class="form-control" id="instance"
@@ -118,12 +122,10 @@
                 </div>
               </div>
 
-              <div class="form-group row">
-                <div class="col-lg-8 ml-auto mx-auto text-center">
-                  <button type="button" id="btn-submit" (click)="submitBtn()"
-                    class="btn btn-primary col-lg-4 col-form-label" [disabled]="templateFormGroup.invalid"
-                    [disabled]="templateFormGroup.invalid" data-toggle="modal" data-target="#exampleModalCenter"
-                    data-toggle="modal" data-target="#exampleModalCenter">Add</button>
+            <div class="form-group row">
+              <div class="col-lg-8 ml-auto mx-auto text-center">
+                <button type="button" id="btn-submit" (click)="submitBtn()" class="btn btn-danger font-weight-bold col-lg-4 col-form-label" [disabled]="templateFormGroup.invalid"   [disabled]="templateFormGroup.invalid"
+                        data-toggle="modal" data-target="#exampleModalCenter" data-toggle="modal" data-target="#exampleModalCenter">Create </button>
 
                 </div>
               </div>

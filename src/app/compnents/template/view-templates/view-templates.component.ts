@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TemplateService} from "../../../services/template.service";
-import {TemplateResponseModel} from "../../../models/templates/template.response.model";
+import {TemplateResponseModel} from "../../../models/templates/templateResponse.model";
+
 
 
 @Component({
@@ -11,6 +12,8 @@ import {TemplateResponseModel} from "../../../models/templates/template.response
 export class ViewTemplatesComponent implements OnInit {
 
   templates: TemplateResponseModel[] = [];
+  searchValue: any;
+  page: number=1;
   constructor(private templateService: TemplateService) { }
 
   ngOnInit(): void {

@@ -56,7 +56,6 @@ export class EditIntakeComponent implements OnInit {
       this.intakePut.id = this.id;
       this.intakePut.intakeName = this.intakeName;
       this.intakePut.intakeDescription = this.intakeDescription;
-      this.intakePut.trainingProgramId = 1;
       this.updateIntake(this.intakePut);
 
     }
