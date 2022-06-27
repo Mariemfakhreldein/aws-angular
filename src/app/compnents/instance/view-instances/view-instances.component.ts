@@ -16,6 +16,7 @@ import {DatePipe} from "@angular/common";
 })
 export class ViewInstancesComponent implements OnInit , OnDestroy {
 
+  clicked:boolean = false;
 
   instances:InstanceModel[]=[];
   instancesBackup:InstanceModel[]=[];
@@ -67,6 +68,13 @@ export class ViewInstancesComponent implements OnInit , OnDestroy {
     this.counterArray=[];
     this.instanceService.getAll().subscribe({
       next: (data:any) =>{
+
+        this.clicked = false;
+        this.instances = [];
+        this.statusArray=[];
+        this.instancesBackup=[];
+        this.counterArray=[];
+
         data.listOfInstance.forEach(e => {
 
           console.log(e);
@@ -115,11 +123,11 @@ export class ViewInstancesComponent implements OnInit , OnDestroy {
       complete: () => console.info('complete')
     }) ;
   }
+
   changeInstanceStatus(instance:InstanceModel ,currentIndex:number){
 
-
-
-    if( instance.state==='Running'){
+    this.clicked = true;
+    if( instance.state==='running'){
 
       this.instanceService.stopInstance(instance.instanceId).subscribe({
         next: (data:any) =>{
@@ -137,7 +145,7 @@ export class ViewInstancesComponent implements OnInit , OnDestroy {
 
 
     }
-    else{
+    else if(instance.state=='stopped'){
 
       this.instanceService.startInstance(instance.instanceId).subscribe({
         next: (data:any) =>{
@@ -259,5 +267,6 @@ export class ViewInstancesComponent implements OnInit , OnDestroy {
 
     this.countDown.unsubscribe();
   }
+
 
 }

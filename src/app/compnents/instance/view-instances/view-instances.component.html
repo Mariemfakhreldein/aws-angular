@@ -35,7 +35,7 @@
         <div class="col-3">
           <div class=" row">
 
-            <button href="/instances"
+            <button href="/instances" (click)="getInstances()"
                     class="col-3 rounded shadow p-1 btn btn-light">
 <!--              <i class="fa fa-play"></i>-->
               <i class="fa fa-refresh" aria-hidden="true"></i>
@@ -71,11 +71,13 @@
       <div class="instanceStatusContent">
 
         <button   type="button" id="button_play" class="btn btn-light "
+                  [disabled]="clicked"
                  (click)="changeInstanceStatus(instance,currentIndex)" href="/instances">
+
           <i *ngIf="statusArray[currentIndex]==='stopped'" class="fa fa-play"></i>
           <i *ngIf="statusArray[currentIndex]==='running'"class="fa fa-stop"></i>
 
-          <i id="btn-pending" *ngIf=" statusArray[currentIndex]!=='running' && statusArray[currentIndex]!=='stopped'" class="fa fa-circle-o-notch fa-spin"></i>
+          <i id="btn-pending" *ngIf="statusArray[currentIndex]!=='running' && statusArray[currentIndex]!=='stopped'" class="fa fa-circle-o-notch fa-spin"></i>
 
         </button>
 
