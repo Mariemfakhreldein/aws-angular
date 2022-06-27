@@ -60,11 +60,11 @@
                       <div class="form-group row " >
 
                         <div class="card-checkbox-container w-100 ">
-                          <label class="row pr-lg-4 pr-2" *ngFor="let track of tracks;let currentIndex=index" for="{{track.id}}">
+                          <label class="row pr-lg-4 pr-2" *ngFor="let track of allTracks;let currentIndex=index" for="{{track.id}}">
                             <div class="card-checkbox  p-1  w-100 mr-5 row">
-                              <input type="checkbox" name="template-type" id="{{track.id}}" class="col-2"  [(ngModel)]="isChecked[tracks.indexOf(track)]" [ngModelOptions]="{standalone: true}">
+                              <input type="checkbox" name="template-type" id="{{track.id}}"  class="col-2" [(ngModel)]="isChecked[allTracks.indexOf(track)]" [ngModelOptions]="{standalone: true}">
                               <label class="label-class" for="{{track.id}}">
-                                <h5 class="h5-class">Security Name: <span>{{track.track}}</span></h5>
+                                <h5 class="h5-class">Track Name: <span>{{track.name}}</span></h5>
                               </label>
                             </div>
 
@@ -82,7 +82,7 @@
 
 
                     <div class="text-danger col-lg-6 align-items-end align-self-end">
-                      <small *ngIf="isSecurityGroupsSelected==false"
+                      <small *ngIf="isTracksSelected==false"
                              class="form-text text-danger">required Tracks</small>
                     </div>
                   </div>
@@ -95,9 +95,9 @@
                   <select class="form-control" id="role" [class.is-valid]="!editUserFormGroup.controls['role'].errors && editUserFormGroup.controls['role'].touched"
                           [class.is-invalid]="editUserFormGroup.controls['role'].errors && editUserFormGroup.controls['role'].touched"
                           formControlName="role">
-                    <option value="">Please Select Your Role</option>
-                    <option *ngFor="let role of roles"
-                            [value]="role.role">{{role.role}} </option>
+                    <option value="" >Please Select Your Role</option>
+                    <option *ngFor="let role of allRoles"
+                            [value]="role.name">{{role.name}}</option>
                   </select>
                   <div class="text-danger col-lg-6 align-items-end align-self-end"
                        *ngIf="editUserFormGroup.controls['role'].errors && editUserFormGroup.controls['role'].touched">

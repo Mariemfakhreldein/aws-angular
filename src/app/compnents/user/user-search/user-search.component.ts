@@ -39,6 +39,14 @@ export class UserSearchComponent implements OnInit {
 
   }
 
+  public getTracksAsString(userTracks: any): string{
+    let tracksAsString = "";
+    for(let i=0; i<userTracks.length; i++){
+      tracksAsString += userTracks[i].trackName + ', ';
+    }
+    return tracksAsString;
+  }
+
 
 
 }

@@ -1,16 +1,13 @@
-import {PrivilegeModel} from "../privileges/privilege.model";
-
 export class RoleModel{
 
-  id:any;
-  name:string;
-  privileges:any[];
+  id: number;
+  name: string;
+  privileges: number[];
+
   constructor(name: string, privilegeIds: number[]){
-    this.name=name;
-    this.privileges=privilegeIds;
+    this.name = name;
+    this.privileges = privilegeIds;
   }
-
-
 
 
 }

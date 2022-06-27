@@ -1,4 +1,4 @@
-import {TrackModel} from "../track/track.model";
+import {TrackModel} from "../tracks/track.model";
 
 export class UserModel {
 
