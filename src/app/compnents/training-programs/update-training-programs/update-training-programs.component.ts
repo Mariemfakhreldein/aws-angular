@@ -9,6 +9,7 @@ import { TrainingProgramService } from 'src/app/services/training-program.servic
   templateUrl: './update-training-programs.component.html',
   styleUrls: ['./update-training-programs.component.css']
 })
+
 export class UpdateTrainingProgramsComponent implements OnInit {
   myGroup: FormGroup = new FormGroup({});
   trainingProgram: TrainingProgram = new TrainingProgram();
@@ -17,6 +18,7 @@ export class UpdateTrainingProgramsComponent implements OnInit {
   isLoading = true;
   currentItem = 'trainingProgram';
   trainingProgramId:number;
+  action="Updated";
 
   action="Updated"
   constructor(private formBuilder: FormBuilder,

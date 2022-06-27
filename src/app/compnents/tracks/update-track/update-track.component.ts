@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, Output} from '@angular/core';
 import {Track} from "../../../models/instances/track.model";
 import {ActivatedRoute} from "@angular/router";
 import {TrackService} from "../../../services/track.service";
@@ -10,26 +10,28 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
   templateUrl: './update-track.component.html',
   styleUrls: ['./update-track.component.css']
 })
-export class UpdateTrackComponent implements OnInit ,AfterViewInit{
+export class UpdateTrackComponent implements OnInit {
+
+
 
   myGroup: FormGroup = new FormGroup({});
   track:Track=new Track();
   private id: any;
-  isSuccess=false;
-  isLoading=true;
+  @Output() isSuccess=false;
+  isLoading:boolean=true;
   currentItem='track';
   action='updated';
   trackName:any=true;
-
   constructor(private formBuilder: FormBuilder,private _activatedRoute:ActivatedRoute,private trackService: TrackService ) { }
 
-
-
   ngOnInit(): void {
+
 
     this.myGroup=this.formBuilder.group({
       trackName:[this.trackName ,[Validators.required]],
     });
+
+
 
     this._activatedRoute.paramMap
       .subscribe(
@@ -38,28 +40,25 @@ export class UpdateTrackComponent implements OnInit ,AfterViewInit{
           this.getTrack(this.id);
           console.log(this.id);
 
+
         }
       );
 
+
+
+
   }
 
-  ngAfterViewInit(): void {
-    this.myGroup
-      .get('trackName').valueChanges
-      .subscribe((value) => {
-        this.trackName=value;
-      });
-  }
+
 
   private getTrack(trackId: any) {
     console.log(trackId);
-    this.trackService.getById(trackId).subscribe(
+    this.trackService.getAllTrackById(trackId).subscribe(
       {
         next: (data: any) => {
           console.log(data);
           this.track =data;
           this.trackName=data.name;
-          this.myGroup.get('trackName').setValue(this.trackName);
         } });
 
 
@@ -67,20 +66,19 @@ export class UpdateTrackComponent implements OnInit ,AfterViewInit{
 
   updateTrack(){
     this.track.name=this.trackName;
-    this.trackService.update(this.track.id,this.track).subscribe(
-      {
-        next: (data: any) => {
-          this.isLoading=false;
-          this.isSuccess=true;
-
-        },
-        error: (e) => { this.isLoading=false;this.isSuccess=false},
-        // complete: () => console.info('complete')
-      });
+    this.trackService.updateTrack(this.track.id,this.track).subscribe(
+      (response: any) => {
+        this.isLoading = false;
+        this.isSuccess = true;
+      }, (error: any) => {
+        this.isLoading = false;
+        this.isSuccess = false;
+      }
+      );
 
   }
 
-  getIsSuccess(): boolean{
+  public getIsSuccess(): boolean{
     return this.isSuccess;
   }
 
