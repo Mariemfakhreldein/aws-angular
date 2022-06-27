@@ -31,6 +31,8 @@ export class CreateMyinstanceComponent implements OnInit {
 
   myGroup: FormGroup = new FormGroup({});
 
+
+
   isTemplatesEmpty=false;
 
   isChecked: any[]=[];

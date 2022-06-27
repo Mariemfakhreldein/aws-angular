@@ -3,7 +3,7 @@ import {AuthService} from "../../../services/auth.service";
 import {UserService} from "../../../services/user.service";
 import {UserModel} from "../../../models/users/user.model";
 import {PasswordModel} from "../../../models/password/password.model";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-userprofile',
@@ -25,9 +25,19 @@ export class UserprofileComponent implements OnInit {
   errorItem: any;
   isEqual: boolean;
 
+  myGroup: FormGroup = new FormGroup({});
+
+
+
   constructor(private authService:AuthService,private userService:UserService,private formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {
+
+    this.myGroup=this.formBuilder.group({
+      oldPassword:['',[Validators.required]],
+      newPassword:['',[Validators.required, Validators.pattern("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$")]],
+      confirmPassword:['',[Validators.required]]
+    });
 
     this.userService.getUserById().subscribe(
       (response:any)=>{
