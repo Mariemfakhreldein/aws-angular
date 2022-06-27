@@ -69,6 +69,6 @@ export class UserService {
   }
 
   getStudentsByTrack(trackId) {
-    return this.api.get('/api/tracks/${trackId}/students');
+    return this.api.get(`/api/tracks/${trackId}/students`);
   }
 }
