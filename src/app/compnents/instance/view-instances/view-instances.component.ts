@@ -12,6 +12,7 @@ import {color} from "chart.js/helpers";
 import {TimerService} from "../../../services/timer.service";
 
 
+
 @Component({
   selector: 'app-view-instances',
   templateUrl: './view-instances.component.html',
@@ -52,6 +53,7 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
   today = Date.now();
   lastStartedDateTime:any;
   timed = false;
+  currentValue=0;
 
 
   ngOnInit(): void {
@@ -86,7 +88,7 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
           this.timeDifference=this.timerService.calculateTimeDifference(this.today,this.lastStartedDateTime);
           this.counter = this.timerService.getCounterValue(this.timeToLive,this.timeDifference);
 
-          this.addToCounterArray(this.counter);
+          this.addToCounterArray(this.counter  );
 
 
         })
@@ -235,6 +237,7 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
           }else{
             this.counterArray[i]=0;
           }
+
 
 
         });
