@@ -30,6 +30,6 @@ export class InstanceService {
   }
 
   terminate(id) {
-    return this.api.delete('/api/instances/delete', id);
+    return this.api.delete('/api/instances/delete/', id);
   }
 }
