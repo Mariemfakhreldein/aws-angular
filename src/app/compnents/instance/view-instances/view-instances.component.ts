@@ -28,7 +28,7 @@ export class ViewInstancesComponent implements OnInit , OnDestroy {
   // counter = (Date.now() - new Date('2022-06-26 15:00:32.967527').getTime() )/1000/60;
   counter :any;
   counterArray:any[] =new Array();
-  tick = 1000;
+  tick:number = 1000;
 
   statusArray:string[]=[];
   // statusArray:string[]=['running','stopped','running','stopped','running','stopped','running'];
@@ -71,11 +71,12 @@ export class ViewInstancesComponent implements OnInit , OnDestroy {
     this.instanceService.getAll().subscribe({
       next: (data:any) =>{
 
+        this.tick=1000;
         this.clicked = false;
         this.instances = [];
         this.statusArray=[];
         this.instancesBackup=[];
-        this.counterArray=[];
+        this.counterArray=new Array();
 
         data.listOfInstance.forEach(e => {
 
@@ -243,6 +244,13 @@ export class ViewInstancesComponent implements OnInit , OnDestroy {
   subscribeCounter(){
     for(let i=0;i<this.counterArray.length;i++){
       console.log(this.counterArray)
+
+      if(this.statusArray[i] != 'running'){
+
+        this.counterArray[i] = 0;
+
+      }
+
       if(this.counterArray[i]==0){
 
         if(this.statusArray[i] == 'running') {
