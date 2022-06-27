@@ -26,14 +26,11 @@ export class ManageTracksComponent implements OnInit {
   intakes:Intake[]=[];
   track:Track=new Track();
   trackName: any;
-  // private isSuccess: boolean;
-  // private isLoading: boolean;
   isSuccess=false;
   isLoading=true;
-  currentItem='track';
-  action='created';
+  successMessage = 'track is created successfully';
+  failMessage = 'Something goes wrong';
   selectedTrainingProgram: any="";
-
 
 
   constructor(private formBuilder: FormBuilder,
@@ -52,8 +49,6 @@ export class ManageTracksComponent implements OnInit {
       trackName:["",[Validators.required]],
     });
 
-
-
     this.myGroup.get('branches').valueChanges.subscribe((value)=>{
       this.myGroup.get('trainingPrograms').setValue(null);
 
@@ -62,9 +57,7 @@ export class ManageTracksComponent implements OnInit {
       this.myGroup.get('intakes').setValue(null);
 
     })
-
     this.getAllBranches();
-
   }
 
   private getAllBranches() {
@@ -77,18 +70,11 @@ export class ManageTracksComponent implements OnInit {
             }
           )
         },
-        error: (e) => {},
-        // complete: () => console.info('complete')
-      });
-
+        error: (e) => {},});
   }
 
-
-
   onChangeBranch(branchId:any) {
-
     this.trainingPrograms = [];
-
     this.selectedTrainingProgram=null;
     this.trainingProgramService.getTrainingProgramsByBranch(branchId).subscribe(
       {
@@ -98,35 +84,22 @@ export class ManageTracksComponent implements OnInit {
               this.trainingPrograms.push(e);
             }
           )
-
         },
         error: (e) => {},
-        // complete: () => console.info('complete')
       });
-
-
-
-
-
-
   }
 
   onChangeTrainingProgram() {
-
-
-
     this.intakes = [];
     this.intakeService.getIntakeByTrainingProgram(this.selectedTrainingProgram).subscribe({
 
       next: (data: any) => {
-
           data.intakeResponsesList.forEach(e => {
               this.intakes.push(e);
             }
           )
         },
       error: (e) => {},
-      // complete: () => console.info('complete')
     });
 
   }
@@ -135,19 +108,17 @@ export class ManageTracksComponent implements OnInit {
     this.track.intakeId=intakeId;
   }
 
-
-
   submit() {
     this.track.name=this.trackName;
     this.trackService.create(this.track).subscribe({
       next: (data:any) =>{
-
-        this.isLoading=false;
-        this.isSuccess=true;
-
+        this.emptyFields();
+        this.changeSuccessAndLoading(false, true);
       },
-      error: (e) => { this.isLoading=false;this.isSuccess=false},
-      // complete: () => console.info('complete')
+      error: (e) => {
+        this.emptyFields();
+        this.changeSuccessAndLoading(false, false);
+      },
     });
   }
 
@@ -155,8 +126,13 @@ export class ManageTracksComponent implements OnInit {
     return this.isSuccess;
   }
 
+  emptyFields(){
+    this.myGroup.reset();
+  }
 
-
-
+  changeSuccessAndLoading(loading: boolean, success:boolean){
+    this.isLoading = loading;
+    this.isSuccess = success;
+  }
 
 }

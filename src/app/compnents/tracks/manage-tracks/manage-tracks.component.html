@@ -11,13 +11,7 @@
       <div class="col-lg-12">
         <div class="card">
           <div class="card-body rounded shadow ">
-
             <div class="form-validation" [formGroup]="myGroup">
-
-
-
-
-
               <div class="form-group row">
                 <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="branches">Select Branch
                 </label>
@@ -27,9 +21,7 @@
                           (ngModelChange)="onChangeBranch($event)" formControlName="branches"
 
                           [class.is-valid]="!myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
-                          [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
-
-                  >
+                          [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched">
 
                     <option value="" selected disabled class="text-secondary">Please Select Branch</option>
                     <option *ngFor="let branch of branches"
@@ -38,10 +30,13 @@
                   <div class="text-danger  col-lg-6 align-items-end align-self-end"
                        *ngIf="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched">
                     <small *ngIf="myGroup.controls['branches'].hasError('required')"
-                           class="form-text text-danger">required instance name</small>
+                           class="form-text text-danger">required branch name</small>
                   </div>
-
                 </div>
+              </div>
+
+              <div class="text-danger col-lg-6 align-items-end text-end mb-3 mx-auto" *ngIf="!myGroup.controls['branches'].errors && trainingPrograms.length ==0">
+                <small class="form-text text-danger">*There is no training programs for this branch, create training programs first</small>
               </div>
 
               <div class="form-group row" *ngIf="!myGroup.controls['branches'].errors && trainingPrograms.length > 0" >
@@ -52,8 +47,7 @@
                           (change)="onChangeTrainingProgram()" formControlName="trainingPrograms"
                           [class.is-valid]="!myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched"
                           [class.is-invalid]="myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched"
-                          [(ngModel)]="selectedTrainingProgram"
-                  >
+                          [(ngModel)]="selectedTrainingProgram">
                     <option value="" selected disabled class="text-secondary">Please Select Training Program </option>
                     <option *ngFor="let trainingProgram of trainingPrograms "
                             [value]="trainingProgram.id"  >{{trainingProgram.name}} </option>
@@ -66,6 +60,10 @@
                 </div>
               </div>
 
+              <div class="text-danger col-lg-6 align-items-end text-end mb-3 mx-auto" *ngIf="!myGroup.controls['trainingPrograms'].errors &&intakes.length ==0">
+                <small class="form-text text-danger">*There is no intakes for this training program, create intakes first</small>
+              </div>
+
               <div class="form-group row" *ngIf="!myGroup.controls['trainingPrograms'].errors && intakes.length > 0">
                 <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="intakes">Select Intake
                 </label>
@@ -73,9 +71,7 @@
                   <select class="form-control" id="intakes" data-live-search="true"
                           (ngModelChange)="onChangeIntake($event)" formControlName="intakes"
                           [class.is-valid]="!myGroup.controls['intakes'].errors && myGroup.controls['intakes'].touched"
-                          [class.is-invalid]="myGroup.controls['intakes'].errors && myGroup.controls['intakes'].touched"
-
-                  >
+                          [class.is-invalid]="myGroup.controls['intakes'].errors && myGroup.controls['intakes'].touched">
                     <option value="" selected disabled class="text-secondary">Please Select Intake </option>
 
                     <option *ngFor="let intake of intakes"
@@ -108,7 +104,6 @@
 
 
               </div>
-
               <div class="form-group row">
                 <div class="col-lg-8 mx-auto text-center">
                   <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid"
@@ -127,18 +122,13 @@
        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div *ngIf="!isLoading">
-        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action"></app-success-popup>
-        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
+        <app-success-popup *ngIf="getIsSuccess()" [item]="successMessage"></app-success-popup>
+        <app-failed-popup *ngIf="!getIsSuccess()" [item]="failMessage"></app-failed-popup>
       </div>
 
       <app-loader *ngIf="isLoading"></app-loader>
 
     </div>
   </div>
-
-
-
-
-
-
+</div>
 </div>
