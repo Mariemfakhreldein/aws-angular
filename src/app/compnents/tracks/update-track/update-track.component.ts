@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, Output} from '@angular/core';
 import {Track} from "../../../models/instances/track.model";
 import {ActivatedRoute} from "@angular/router";
 import {TrackService} from "../../../services/track.service";
@@ -12,11 +12,13 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class UpdateTrackComponent implements OnInit {
 
+
+
   myGroup: FormGroup = new FormGroup({});
   track:Track=new Track();
   private id: any;
-  isSuccess=false;
-  isLoading=true;
+  @Output() isSuccess=false;
+  isLoading:boolean=true;
   currentItem='track';
   action='updated';
   trackName:any=true;
@@ -65,19 +67,18 @@ export class UpdateTrackComponent implements OnInit {
   updateTrack(){
     this.track.name=this.trackName;
     this.trackService.updateTrack(this.track.id,this.track).subscribe(
-      {
-        next: (data: any) => {
-          this.isLoading=false;
-          this.isSuccess=true;
-
-        },
-        error: (e) => { this.isLoading=false;this.isSuccess=false},
-        // complete: () => console.info('complete')
-      });
+      (response: any) => {
+        this.isLoading = false;
+        this.isSuccess = true;
+      }, (error: any) => {
+        this.isLoading = false;
+        this.isSuccess = false;
+      }
+      );
 
   }
 
-  getIsSuccess(): boolean{
+  public getIsSuccess(): boolean{
     return this.isSuccess;
   }
 

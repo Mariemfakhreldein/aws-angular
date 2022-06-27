@@ -1,60 +1,59 @@
 <div>
   <div class="container-fluid justify-content-center mx-auto">
     <div class="col-lg-4 col-12 mb-3 row justify-content-center mb-3 mb-lg-5 mx-auto">
-      <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/editTrack.png">
+      <img class="col-lg-2 col-2 mt-1" src="assets/images/user/track.png">
       <h2 class="col-lg-9 col-5 mb-0 pt-2 text-start px-0 text-muted font-italic">Edit Track</h2>
     </div>
-  <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-lg-12">
         <div class="card">
-          <div class="card-body shadow rounded">
-
+          <div class="card-body">
             <div class="form-validation" [formGroup]="myGroup">
+
               <div class="form-group row">
-                <label class="col-lg-4 col-form-label  text-muted font-weight-bold" for="val-username">Track Name
-                </label>
+                <label class="col-lg-4 col-form-label" for="val-username">Track Name</label>
                 <div class="col-lg-6">
-                  <input  type="text" class="form-control" id="val-username" name="val-trackName"
-                           required formControlName="trackName"
-                          [(ngModel)]="trackName"
-                          [class.is-valid]="!myGroup.controls['trackName'].errors "
-                          [class.is-invalid]="myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched"
-                         >
+                  <input type="text" class="form-control" id="val-username" name="val-username"
+                    value="{{trackName}}" placeholder="Enter a Track Name.." required
+                    formControlName="trackName"
+                    [class.is-valid]="!myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched"
+                    [class.is-invalid]="myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched"
+                    [(ngModel)]="trackName">
                   <div class="text-danger  col-lg-6 align-items-end align-self-end"
-                       *ngIf="myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched">
+                    *ngIf="myGroup.controls['trackName'].errors && myGroup.controls['trackName'].touched">
                     <small *ngIf="myGroup.controls['trackName'].hasError('required')"
-                           class="form-text text-danger">required track name</small>
+                      class="form-text text-danger">required intake name</small>
                   </div>
                 </div>
-
-
               </div>
 
-              <div class="form-group row">
-                <div class="col-lg-8 ml-auto text-center mx-auto">
-                  <button type="button" id="btn-submit" id="btn-submit" [disabled]="myGroup.invalid || track.name===myGroup.controls['trackName'].value"
-                          (click)="updateTrack()" class="btn font-weight-bold btn-dange" data-toggle="modal" data-target="#exampleModalCenter">
-                    Update Track
+              <!-- [disabled]="this.track.name ===  myGroup.controls['trackName'].value" -->
+
+              <div class="form-group row mx-auto justify-content-center text-center">
+                <div class="col-lg-8 ml-auto mx-auto">
+                  <button type="button" id="btn-submit" id="btn-submit"
+                    (click)="updateTrack()" class="btn font-weight-bold btn-danger" data-toggle="modal"
+                    data-target="#exampleModalCenter">
+                    Edit
                   </button>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-       aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
+
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div *ngIf="!isLoading">
-        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action"></app-success-popup>
-        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
+        <app-success-popup *ngIf="isSuccess" [item]="currentItem" [action]="action"></app-success-popup>
+        <app-failed-popup *ngIf="!isSuccess" [item]="currentItem" [action]="action"></app-failed-popup>
       </div>
-
       <app-loader *ngIf="isLoading"></app-loader>
-
     </div>
   </div>
 
@@ -64,4 +63,3 @@
 
 
 </div>
-
