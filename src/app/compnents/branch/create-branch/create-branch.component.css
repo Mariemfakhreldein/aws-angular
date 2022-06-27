@@ -1,12 +1,4 @@
-/*#btn-submit{*/
-/*  background-color: #901B20;*/
-/*  color: whitesmoke;*/
-/*}*/
 
-/*#btn-submit:hover{*/
-/*  background-color: #5d1518;*/
-/*  color: whitesmoke;*/
-/*}*/
 
 .card-checkbox-container
 {
@@ -25,11 +17,9 @@
 
 }
 .securityName{
-  /*position: absolute;*/
-  /*top: -7px;*/
-  /*left: 0px;*/
 
 }
+
 input[type="checkbox"]{
   -webkit-appearance: none;
   appearance: none;
