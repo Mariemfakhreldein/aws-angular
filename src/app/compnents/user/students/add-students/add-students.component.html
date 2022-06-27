@@ -124,10 +124,16 @@
         </div>
 
         <div class="mt-4 text-center mx-auto ">
-          <button class="btn btn-submit btn-danger mr-2 mb-2" type="button" [disabled]="addStudents.invalid"  (click)="add()">Add Student</button>
-          <input #fileImportInput class="form-control btn-light btn b-0 text-muted" type="file" id="formFile" class="upload" (change) = "fileChangeListener($event)">
+          <button class="btn btn-danger mr-2 mb-2" type="button" style="margin-top: -52px" [disabled]="addStudents.invalid"  (click)="add()">Add Student</button>
+<!--          <input #fileImportInput class="form-control btn-light btn b-0 text-muted" type="file" id="formFile" class="upload" (change) = "fileChangeListener($event)">-->
+          <label class="label" for="formFile">
+            <div class="div">Choose File</div>
+            <input #fileImportInput class="form-control " type="file" id="formFile" class="upload ml-2" (change) = "fileChangeListener($event)">
+          </label>
         </div>
-          <small class="text-danger">{{errorMessage}}</small>
+         <div class="text-center mx-auto">
+           <small class="text-danger ">{{errorMessage}}</small>
+         </div>
       </div>
     </div>
   </div>

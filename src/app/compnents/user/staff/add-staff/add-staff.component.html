@@ -37,11 +37,18 @@
           </div>
         </div>
 
-        <div class="text-center">
-          <button class="btn btn-submit btn-danger mb-2 mx-auto text-center mr-5 " type="button" [disabled]="addStaff.invalid"  (click)="add()">Add Staff</button>
+        <div class="text-center b-0">
+          <button class="btn btn-submit btn-danger mb-2 mx-auto text-center mr-5 " style="margin-top: -52px" type="button" [disabled]="addStaff.invalid"  (click)="add()">Add Staff</button>
+        <label class="label" for="formFile">
+          <div class="div">Choose File</div>
           <input #fileImportInput class="form-control " type="file" id="formFile" class="upload ml-2" (change) = "fileChangeListener($event)">
+       </label>
+
         </div>
-        <small class="text-danger">{{errorMessage}}</small>
+
+        <div class="text-center mx-auto">
+          <small class="text-danger ">{{errorMessage}}</small>
+        </div>
       </div>
     </div>
   </div>
@@ -58,7 +65,7 @@
     </div>
   </div>
 
-<div class="container bg-light mt-5 mb-5 mt-5" >
+<div class="container bg-light mt-5 mb-5 mt-5" *ngFor="staffList.length>0" >
   <div class="row mb-lg-5 mb-2 mt-2 justify-content-around">
     <div class="col-lg-4 col-12 row justify-content-around ">
       <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/management.png">
@@ -107,5 +114,10 @@
 
   </div>
 </div>
+
+
+</div>
+
+
 
 
