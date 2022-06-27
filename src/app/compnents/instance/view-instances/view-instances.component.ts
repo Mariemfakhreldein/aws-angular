@@ -3,11 +3,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { InstanceService } from "../../../services/instance.service";
 import { InstanceModel } from "../../../models/instances/instance.models";
-import { Router } from "@angular/router";
+import {Router, Routes} from "@angular/router";
 import { AuthService } from "../../../services/auth.service";
 import { Subscription, timer } from "rxjs";
 import { InstanceDateModel } from "../../../models/instances/instance.date.model";
 import { DatePipe } from "@angular/common";
+import {color} from "chart.js/helpers";
+
 
 @Component({
   selector: 'app-view-instances',
@@ -15,6 +17,7 @@ import { DatePipe } from "@angular/common";
   styleUrls: ['./view-instances.component.css']
 })
 export class ViewInstancesComponent implements OnInit, OnDestroy {
+
 
   clicked: boolean = false;
 
@@ -46,6 +49,7 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
   creationDateTime: any;
   today = Date.now();
   timed = false;
+  currentValue=0;
 
   ngOnInit(): void {
 
@@ -87,7 +91,7 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
 
 
 
-          this.addToCounterArray(this.counter);
+          this.addToCounterArray(this.counter  );
 
 
         })
@@ -206,6 +210,8 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
   }
 
   subscribeCounter() {
+
+    console.log("kkkk"+this.counterArray);
     for (let i = 0; i < this.counterArray.length; i++) {
       if (this.statusArray[i] != 'running') {
         this.counterArray[i] = 0;
@@ -224,9 +230,11 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
       } else {
         this.timed = true
         this.countDown = timer(0, this.tick).subscribe(() => {
+
           if (this.counterArray[i] > 0) {
             --this.counterArray[i];
           }
+
 
         });
 
