@@ -12,12 +12,21 @@
     <input type="checkbox" checked  (change)="checkValue($event)">
     <span class="slider round"></span>
   </label>-->
+<!--  -->
+  <label  class="align-self-end m-lg-3  m-1 m-auto" *ngIf="this.instance.state == 'running'">
+    <button (click)="terminate()" class=" btn btn-danger rounded p-1 font-weight-bold"   data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-times-circle" aria-hidden="true"></i> Terminate </button>
+  </label>
 
 
 
 <div class=" bg-light rounded shadow-lg p-lg-5 m-lg-3 p-2 m-1 col-lg-10 m-auto " >
 
 
+  <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+    <h4  class="col-5   m-auto  text-black">Name : </h4>
+    <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.name}}</p>
+
+  </div>
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
     <h4  class="col-5   m-auto  text-black">Name : </h4>
     <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.name}}</p>
@@ -59,85 +68,31 @@
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
     <h4  class="col-5  m-auto  text-black">Time To Live : </h4>
-    <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.timeToLiveInMinutes}} m</p>
+    <p  class="col-5    m-auto align-items-lg-start text-muted" >
+      <span [style.color]="counter/60<=5 ? '#e62e00' :  '#000000'">{{counter | instanceTimer}}</span>
+    </p>
   </div>
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto  text-muted">Time To Live : </h4>
-    <p  class="col-5    m-auto align-items-lg-start text-muted" >
-      <span [style.color]="counter/60<=5 ? '#e62e00' :  '#ffffff'">{{counter | instanceTimer}}</span>
-    </p>
     <h4  class="col-5  m-auto  text-black">UserName : </h4>
     <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.instanceUser.username}} </p>
   </div>
 
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+
     <h4  class="col-5 m-auto  text-black"> key Material : </h4>
-    <h4  class="col-5  m-auto"></h4>
+    <div class="col-5  m-auto text-end justify-content-end">
+      <button class=" btn btn-light" style="cursor:pointer;"  [cdkCopyToClipboard]="instance.keyPair" _ngcontent-yio-c63="" _ngcontent-bcc-c58="">
+        copy
+      </button>
+    </div>
     <p  class="col-11 m-auto align-items-lg-start text-muted font-weight-bold mt-3 " (click)="showText()" [ngClass]="{'limitTextHeight': isReadMore}">{{instance.keyPair}}
     </p>
-<!--    <button type="button" class="col-2 mt-2" (click)="showText()">-->
-<!--      {{ isReadMore ? '...': '...' }}-->
-<!--    </button>-->
-  </div>
-
-
-<!--  <button class="btn btn-primary align-items-end mr-2"> << Previous </button>-->
-
-
-<!--  <button class="btn btn-primary align-items-end"> Next >> </button>-->
-
-
-
-  <!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
-  <!--    <h4  class="col-5  m-auto">key Material:</h4>-->
-  <!--    <p  class="col-5  m-auto align-items-lg-start" >{{instance.keyMaterial}}</p>-->
-  <!--  </div>-->
-
-  <!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
-  <!--    <h4  class="col-6 col-lg-3   m-auto"> Public IP : </h4>-->
-  <!--&lt;!&ndash;    <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instance.publicIp}}</p>&ndash;&gt;-->
-
-  <!--  </div>-->
-
-<!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
-<!--&lt;!&ndash;    <h4  class="col-6 col-lg-3  m-auto"> Subnet ID : </h4>&ndash;&gt;-->
-<!--&lt;!&ndash;    <p  class="col-6 col-lg-3   m-auto align-items-lg-start" >{{instances.subnetId}}</p>&ndash;&gt;-->
-
-<!--&lt;!&ndash;    <h4  class="col-6 col-lg-3 m-auto mt-lg-0 mt-2"> VPC ID : </h4>&ndash;&gt;-->
-<!--&lt;!&ndash;    <p  class="col-6 col-lg-3  m-auto align-items-lg-start mt-lg-0 mt-2" >{{instances.vpcId}}</p>&ndash;&gt;-->
-<!--  </div>-->
-
-
-
-<!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
-<!--    <h4  class="col-6 col-lg-3  m-auto"> Platform : </h4>-->
-<!--&lt;!&ndash;    <p  class="col-6 col-lg-3  m-auto align-items-lg-start" >{{instance.platform}}</p>&ndash;&gt;-->
-<!--    -->
-<!--  </div>-->
-
-<!--  <div class="row border-start border-5 border-primary justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
-
-<!--    <h4  class="col-5 "> Public DNS Name : </h4>-->
-<!--&lt;!&ndash;    <p  class="col-5  m-auto align-items-lg-start" >{{instance.publicDnsName}}</p>&ndash;&gt;-->
-<!--  </div>-->
-
-<!--  <div class="row justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
-<!--    <h4  class="col-5  m-auto">  : </h4>-->
-<!--    <p  class="col-5  m-auto align-items-lg-start" >{{instance.}}</p>-->
-<!--  </div>-->
-
-<!--  <div class="row justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">-->
-<!--    <h4  class="col-5  m-auto">  : </h4>-->
-<!--    <p  class="col-5  m-auto align-items-lg-start" >{{instance.}}</p>-->
-<!--  </div>-->
 
 </div>
 
-  <label *ngIf="this.instance.state == 'running'" class="align-self-end m-lg-3  m-1 m-auto">
-    <button (click)="terminate()" class="btn-secondary rounded p-1"   data-toggle="modal" data-target="#exampleModalCenter"> ❌Terminate </button>
-  </label>
+
 
 
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
@@ -154,5 +109,6 @@
   </div>
 </div>
 
+</div>
 </div>
 </div>
