@@ -62,7 +62,6 @@ export class ManageIntakesComponent implements OnInit {
         next: (data: any) => {
           data.branchResponsesList.forEach(e => {
               this.branches.push(e);
-              console.log("brrrrrrrrrrr"+this.branches)
             }
           )
         }

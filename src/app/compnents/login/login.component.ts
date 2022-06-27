@@ -29,15 +29,12 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(loginModel).subscribe(
       (response:any)=>{
-        console.log(response.jwt);
         this.authService.setToken(response.jwt);
         this.authService.changeLoggedStatus(true);
         this.route.navigateByUrl("/home");
       },
       (error:any)=>{
-        console.log("fail");
         this.validUser = false;
-        console.log(error);
       }
     )
   }

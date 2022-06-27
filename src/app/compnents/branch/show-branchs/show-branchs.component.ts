@@ -28,11 +28,8 @@ export class ShowBranchsComponent implements OnInit {
   getBranches(){
     this.branchService.getAll().subscribe(
       (response:any)=>{
-        console.log(response);
         this.branches = response.branchResponsesList;
-        console.log(response.branchResponsesList);
       },(error:any)=>{
-        console.log("fail Hello", error);
       }
     )
   }

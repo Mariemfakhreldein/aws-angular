@@ -38,9 +38,6 @@ export class UpdateTrackComponent implements OnInit {
         parms=>{
           this.id=parms.get('id');
           this.getTrack(this.id);
-          console.log(this.id);
-
-
         }
       );
 
@@ -52,11 +49,9 @@ export class UpdateTrackComponent implements OnInit {
 
 
   private getTrack(trackId: any) {
-    console.log(trackId);
     this.trackService.getById(trackId).subscribe(
       {
         next: (data: any) => {
-          console.log(data);
           this.track =data;
           this.trackName=data.name;
         } });

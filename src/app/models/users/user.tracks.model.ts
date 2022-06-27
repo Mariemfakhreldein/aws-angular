@@ -9,7 +9,4 @@ export class UserTracksModel {
     this.track = track;
   }
 
-  toString(){
-    console.log(this.track + this.track);
-  }
 }

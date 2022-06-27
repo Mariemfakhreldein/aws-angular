@@ -41,15 +41,12 @@ export class UpdateTrainingProgramsComponent implements OnInit {
   }
 
   private getTrainingProgramById() {
-    console.log(this.trainingProgramId)
     this.trainingProgramService.getById(this.trainingProgramId).subscribe(
       {
         next: (data: any) =>
         {
-          console.table(data);
           this.trainingProgram.id = data.id;
           this.trainingProgram.name = data.name;
-          console.log(this.trainingProgram.name)
           this.trainingProgramName = data.name
         }
       }

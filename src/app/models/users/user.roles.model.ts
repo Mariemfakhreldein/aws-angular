@@ -9,7 +9,4 @@ export class UserRolesModel {
     this.name = name;
   }
 
-  toString(){
-    console.log(this.privileges + this.name);
-  }
 }

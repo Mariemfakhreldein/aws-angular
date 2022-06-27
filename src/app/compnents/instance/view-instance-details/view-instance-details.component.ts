@@ -32,7 +32,6 @@ export class ViewInstanceDetailsComponent implements OnInit {
         parms=>{
           this.id=parms.get('id');
           this.getInstanceDetails(this.id);
-          console.log(this.id);
         }
       );
   }
@@ -60,7 +59,6 @@ export class ViewInstanceDetailsComponent implements OnInit {
         this.instanceService.startInstance(this.id).subscribe({
           next: (data:any) =>{
 
-            console.log("instance started"+data);
           },
           error: (e) => console.error(e+"errorr"),
           complete: () => console.info('complete')
@@ -72,8 +70,6 @@ export class ViewInstanceDetailsComponent implements OnInit {
 
         this.instanceService.stopInstance(this.id).subscribe({
           next: (data:any) =>{
-
-            console.log("instance stoped"+data);
           },
           error: (e) => console.error(e+"errorr"),
           complete: () => console.info('complete')
@@ -88,7 +84,6 @@ export class ViewInstanceDetailsComponent implements OnInit {
     this.instanceService.terminate(this.id).subscribe({
       next: (data:any) =>{
 
-        console.log("instance terminated"+data);
       },
       error: (e) => {
         if(e.status == 200){

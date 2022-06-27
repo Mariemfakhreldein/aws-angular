@@ -66,10 +66,8 @@ export class CreateTemplateComponent implements OnInit {
   getSubnet(){
     this.templateService.getSubnet().subscribe(
       (response:any)=>{
-            console.log(response);
             this.subnets = response.subnetList;
           },(error:any)=>{
-            console.log("fail Hello", error);
           }
     )
 
@@ -79,11 +77,9 @@ export class CreateTemplateComponent implements OnInit {
     if (vpc.vpcId != "") {
       this.templateService.getSecurityGroups(vpc).subscribe(
         (response:any)=>{
-          console.log("success security groups", response.securityGroupResponseList);
           this.securityGroups = response.securityGroupResponseList;
           this.isSecurityGroupsListChecked();
         },(error:any)=>{
-          console.log("fail security groups", error);
         }
       )
     }
@@ -100,10 +96,8 @@ export class CreateTemplateComponent implements OnInit {
           if(this.amiFlag){
               this.submit();
           }else{
-             alert("enter a valid ami please  ");
           }
         },(error:any)=>{
-          console.log("fail ami", error);
         }
       )
     }
@@ -115,10 +109,8 @@ export class CreateTemplateComponent implements OnInit {
     this.templateService.getInstancesTypes().subscribe(
       (response:any)=>{
 
-        console.log("success types", response.instanceTypeResponseList);
         this.instanceTypes = response.instanceTypeResponseList;
       },(error:any)=>{
-        console.log("fail types", error);
       }
     )
 
@@ -143,8 +135,6 @@ export class CreateTemplateComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.isSuccess);
-    console.log("here " + this.amiFlag);
     this.templateService.create(this.model).subscribe(
     (response:any)=>{
       this.isLoading=false;

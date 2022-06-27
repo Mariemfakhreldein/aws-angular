@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     const privileges = this.authService.getPrivileges();
-    // privileges.forEach(p => console.log(p));
     this.canViewStatistics=this.authService.containPrivilege('VIEW_STATISTICS');
     this.getData();
   }
@@ -56,10 +55,8 @@ getData() {
 
   (response:any)=>{
     this.statisticModel =response;
-    console.log(this.statisticModel.numberOfInstance);
     this.passValues(response.numberOfOnInstance , response.numberOfOffInstance, response.numberOfPendingInstance);
     },(error:any)=>{
-    console.log("fail Hello", error);
   }
 )
 }

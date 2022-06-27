@@ -24,7 +24,6 @@ export class ViewInstancesLogsComponent implements OnInit {
       {
         next: (data: any) => {
           if (data.statusCode == 200) {
-            console.log(data);
             data.message.forEach(e => {
               this.allInsatanceLogs.push(e);
             }

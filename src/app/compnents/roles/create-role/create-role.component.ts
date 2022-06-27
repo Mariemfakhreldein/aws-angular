@@ -47,7 +47,6 @@ export class CreateRoleComponent implements OnInit {
         next: (data: any) => {
           data.privileges.forEach(e => {
               this.privileges.push(e);
-              console.log("********" + this.privileges)
             }
           )
         }

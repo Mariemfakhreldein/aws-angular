@@ -77,12 +77,9 @@ export class EditBranchComponent implements OnInit {
   updateBranch(id:string, model:BranchPostModel){
     this.branchService.update(id, model).subscribe(
       (response:any)=>{
-        console.log(response);
-        //alert("Successfully updated");
         this.isLoading=false;
         this.isSuccess=true;
       },(error:any)=>{
-        //console.log("fail Hello", error);
         this.action = 'edited';
         this.isLoading=false;
         this.isSuccess=false;
@@ -94,15 +91,12 @@ export class EditBranchComponent implements OnInit {
     // alert("here" + this.id)
     this.branchService.getById(id).subscribe(
       (response:any)=>{
-        console.log(response);
         this.branch = response;
         this.BranchFormGroup.patchValue({
           name: this.branch.name,
           address: this.branch.address
         });
-        console.log(response);
       },(error:any)=>{
-        console.log("fail Hello", error);
       }
     )
 

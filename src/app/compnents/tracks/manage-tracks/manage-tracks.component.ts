@@ -73,9 +73,6 @@ export class ManageTracksComponent implements OnInit {
         next: (data: any) => {
 
           data.branchResponsesList.forEach(e => {
-
-              console.log( "eeee" + e);
-
               this.branches.push(e);
             }
           )
@@ -93,19 +90,11 @@ export class ManageTracksComponent implements OnInit {
     this.trainingPrograms = [];
 
     this.selectedTrainingProgram=null;
-    console.log("$$$$$$$$$$$"+this.trainingPrograms.length);
-
-    console.log("on change" + branchId);
-
-
     this.trainingProgramService.getTrainingProgramsByBranch(branchId).subscribe(
       {
         next: (data: any) => {
 
           data.trainingPrograms.forEach(e => {
-
-              console.log( "trainingPrograms" + e);
-
               this.trainingPrograms.push(e);
             }
           )
@@ -132,9 +121,6 @@ export class ManageTracksComponent implements OnInit {
       next: (data: any) => {
 
           data.intakeResponsesList.forEach(e => {
-
-              console.log( "trainingPrograms" + e);
-
               this.intakes.push(e);
             }
           )
@@ -146,25 +132,13 @@ export class ManageTracksComponent implements OnInit {
   }
 
   onChangeIntake(intakeId: any) {
-
-    console.log("intakeId::::"+intakeId);
-
     this.track.intakeId=intakeId;
-
-    console.log("this.track.intakeId::::"+this.track.intakeId);
-
   }
 
 
 
   submit() {
-
-       // this.isSuccess=true;
-       //
-       // console.log("citemm"+this.currentItem);
     this.track.name=this.trackName;
-    console.log("trackName:"+this.track.intakeId);
-    console.log("trackName:"+this.track.name);
     this.trackService.create(this.track).subscribe({
       next: (data:any) =>{
 
