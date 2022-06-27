@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {RoleModel} from "../../../models/roles/role.model";
-import {IntakeModel} from "../../../models/intake/intake.model";
-import {IntakeService} from "../../../services/intake.service";
 import {RolesService} from "../../../services/roles.service";
 
 @Component({
