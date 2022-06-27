@@ -1,6 +1,6 @@
 //creation time on seconds + time to live in seconds - current time in seconds
 
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {InstanceService} from "../../../services/instance.service";
 import {InstanceModel} from "../../../models/instances/instance.models";
 import {Router} from "@angular/router";
@@ -14,7 +14,7 @@ import {DatePipe} from "@angular/common";
   templateUrl: './view-instances.component.html',
   styleUrls: ['./view-instances.component.css']
 })
-export class ViewInstancesComponent implements OnInit {
+export class ViewInstancesComponent implements OnInit , OnDestroy {
 
 
   instances:InstanceModel[]=[];
@@ -96,11 +96,12 @@ export class ViewInstancesComponent implements OnInit {
           }else{
             this.counter=0;
 
+
           }
 
-          this.addToCounterArray(this.counter);
 
-          // this.addToCounterArray(this.counter);
+
+          this.addToCounterArray(this.counter);
 
           console.log("********************************"+this.counter)
 
@@ -224,7 +225,7 @@ export class ViewInstancesComponent implements OnInit {
 
 
 
-      this.counterArray.push( counter);
+      this.counterArray.push( counter*60);
 
 
   }
@@ -237,11 +238,21 @@ export class ViewInstancesComponent implements OnInit {
         });
       }else{
         console.log("counterarrayyyyyyyyy"+this.counterArray[i]);
-        this.countDown = timer(0, this.tick).subscribe(() => --this.counterArray[i]);
+        this.countDown = timer(0, this.tick).subscribe(() => {
+          if(this.counterArray[i]>0){
+            --this.counterArray[i];
+          }
+
+        });
+
       }
 
     }
 
+  }
+
+  ngOnDestroy() {
+    this.countDown = null;
   }
 
   private setFormData() {
