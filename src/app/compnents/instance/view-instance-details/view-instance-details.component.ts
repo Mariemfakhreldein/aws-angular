@@ -102,6 +102,9 @@ export class ViewInstanceDetailsComponent implements OnInit {
       },
       complete: () => console.info('complete')
     })
+
+    this.ngOnInit();
+
   }
 
   getIsSuccess(): boolean{
