@@ -23,6 +23,11 @@
     <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.name}}</p>
 
   </div>
+  <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+    <h4  class="col-5   m-auto  text-black">Name : </h4>
+    <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.name}}</p>
+
+  </div>
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
     <h4  class="col-5  m-auto  text-black">Instance ID : </h4>
@@ -59,20 +64,21 @@
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
     <h4  class="col-5  m-auto  text-black">Time To Live : </h4>
-    <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.timeToLiveInMinutes}} m</p>
+    <p  class="col-5    m-auto align-items-lg-start text-muted" >
+      <span [style.color]="counter/60<=5 ? '#e62e00' :  '#000000'">{{counter | instanceTimer}}</span>
+    </p>
   </div>
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto  text-muted">Time To Live : </h4>
-    <p  class="col-5    m-auto align-items-lg-start text-muted" >
-      <span [style.color]="counter/60<=5 ? '#e62e00' :  '#ffffff'">{{counter | instanceTimer}}</span>
-    </p>
     <h4  class="col-5  m-auto  text-black">UserName : </h4>
     <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.instanceUser.username}} </p>
   </div>
 
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+    <button style="cursor:pointer;" >
+    <img _ngcontent-yio-c63="" _ngcontent-bcc-c58="" src="assets/images/usedImages/copy-files.png" class="col-lg-1 col-1 mt-1" [cdkCopyToClipboard]="instance.keyPair">
+    </button>
     <h4  class="col-5 m-auto  text-black"> key Material : </h4>
     <h4  class="col-5  m-auto"></h4>
     <p  class="col-11 m-auto align-items-lg-start text-muted font-weight-bold mt-3 " (click)="showText()" [ngClass]="{'limitTextHeight': isReadMore}">{{instance.keyPair}}
