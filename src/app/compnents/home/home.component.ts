@@ -13,7 +13,7 @@ import {Observable} from "rxjs";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
- statisticModel : StatisticsModel;
+ statisticModel : StatisticsModel = new StatisticsModel();
  canViewStatistics: boolean = false;
 
   onInstance:number;

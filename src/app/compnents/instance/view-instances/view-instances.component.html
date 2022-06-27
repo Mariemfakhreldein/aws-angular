@@ -59,7 +59,9 @@
     <a  routerLink="/instances/{{instance.instanceId}}" class="text-decoration-none">
 <!--      value in sec-->
       <h5 class="mt-5 text-white pt-4">{{counterArray[instancesBackup.indexOf(instance)] | instanceTimer}} </h5>
-      <h5 class="text-white font-weight-bold">{{instance.name}}</h5>
+
+      <h5  class=" text-white font-weight-bold">{{instance.name}}</h5>
+<!--      <h5 class="text-white font-weight-bold">{{instance.name}}</h5>-->
 
 
 
@@ -119,4 +121,5 @@
 
   </pagination-controls>
 
+</div>
 </div>

@@ -36,6 +36,7 @@ export class ViewInstancesComponent implements OnInit , OnDestroy {
   page:number=1;
   status:string='Running'
 
+
   pipe = new DatePipe("en");
   constructor(private instanceService: InstanceService , private authService: AuthService,private router: Router) { }
 
@@ -44,6 +45,7 @@ export class ViewInstancesComponent implements OnInit , OnDestroy {
   timeToLive:any;
   creationDateTime:any;
   today=Date.now();
+  timed = false;
 
   ngOnInit(): void {
 
@@ -240,12 +242,20 @@ export class ViewInstancesComponent implements OnInit , OnDestroy {
 
   subscribeCounter(){
     for(let i=0;i<this.counterArray.length;i++){
+      console.log(this.counterArray)
       if(this.counterArray[i]==0){
+
+        if(this.statusArray[i] == 'running') {
+          this.instanceService.stopInstance(this.instancesBackup[i].instanceId).subscribe();
+        }
+        this.timed = false;
         this.countDown=timer(0, 0).subscribe(() =>{
           // this.setFormData();
         });
+
       }else{
         console.log("counterarrayyyyyyyyy"+this.counterArray[i]);
+        this.timed = true
         this.countDown = timer(0, this.tick).subscribe(() => {
           if(this.counterArray[i]>0){
             --this.counterArray[i];
