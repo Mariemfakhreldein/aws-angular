@@ -141,7 +141,7 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
 
     let runningCounter = 0;
     this.statusArray.forEach(s => {
-      if (s === "Running") {
+      if (s === "running") {
 
         runningCounter++;
 
@@ -156,7 +156,7 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
 
     let stoppedCounter = 0;
     this.statusArray.forEach(s => {
-      if (s === "Stopped") {
+      if (s === "stopped") {
 
         stoppedCounter++;
 
