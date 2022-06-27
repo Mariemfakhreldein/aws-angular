@@ -53,7 +53,7 @@ export class UpdateTrackComponent implements OnInit {
 
   private getTrack(trackId: any) {
     console.log(trackId);
-    this.trackService.getAllTrackById(trackId).subscribe(
+    this.trackService.getById(trackId).subscribe(
       {
         next: (data: any) => {
           console.log(data);
@@ -66,7 +66,7 @@ export class UpdateTrackComponent implements OnInit {
 
   updateTrack(){
     this.track.name=this.trackName;
-    this.trackService.updateTrack(this.track.id,this.track).subscribe(
+    this.trackService.update(this.track.id,this.track).subscribe(
       (response: any) => {
         this.isLoading = false;
         this.isSuccess = true;

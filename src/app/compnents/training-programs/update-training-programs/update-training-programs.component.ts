@@ -20,7 +20,6 @@ export class UpdateTrainingProgramsComponent implements OnInit {
   trainingProgramId:number;
   action="Updated";
 
-  action="Updated"
   constructor(private formBuilder: FormBuilder,
     private trainingProgramService: TrainingProgramService,
     private _activatedRoute: ActivatedRoute
