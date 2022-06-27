@@ -44,8 +44,7 @@
               <a [routerLink]="['/instances/createMyInstance']" routerLinkActive="active" class="px-8">
                 <span class="icon-view_array mr-3" ></span>Create my Instance </a>
             </li>
-
-            <li *ngIf="canViewInstanceLogs">
+            <li>
               <a [routerLink]="['/instances-logs/view']" routerLinkActive="active" class="px-8">
                 <span class="icon-view_array mr-3" ></span>Instance Logs </a>
             </li>

@@ -6,7 +6,7 @@ import {AuthService} from "../../../services/auth.service";
 @Injectable({
   providedIn: 'root'
 })
-export class StartStopViewInstanceGuard implements CanActivate {
+export class ViewInstanceLogsGuard implements CanActivate {
   constructor(private authService:AuthService, private router:Router){}
 
   canActivate( route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

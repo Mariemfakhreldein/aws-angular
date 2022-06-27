@@ -49,7 +49,6 @@ import { CreatenewstudentComponent } from './compnents/user/student/createnewstu
 import { UserprofileComponent } from './compnents/user/userprofile/userprofile.component';
 import { AddStudentsComponent } from './compnents/user/students/add-students/add-students.component';
 import {NgxCsvParserModule} from "ngx-csv-parser";
-import { ViewInstancesLogsComponent } from './compnents/instance-logs/view-instances-logs/view-instances-logs.component';
 import { CreateRoleComponent } from './compnents/roles/create-role/create-role.component';
 import { ShowAllRolesComponent } from './compnents/roles/show-all-roles/show-all-roles.component';
 import { RoleSearchByNamePipe } from './compnents/pipes/search/roles/role-search-by-name.pipe';
@@ -65,6 +64,8 @@ import { StudentSearchByNamePipe } from './compnents/pipes/search/students/stude
 import { StaffSearchByNamePipe } from './compnents/pipes/search/staff/staff-search-by-name.pipe';
 import { CreateMyinstanceComponent } from './compnents/instance/create-myinstance/create-myinstance.component';
 import {Ng2GoogleChartsModule}  from 'ng2-google-charts';
+import {ViewInstancesLogsComponent} from "./compnents/instance-logs/view-instances-logs/view-instances-logs.component";
+
 
 @NgModule({
   declarations: [
@@ -142,7 +143,7 @@ import {Ng2GoogleChartsModule}  from 'ng2-google-charts';
     StudentSearchByNamePipe,
     StaffSearchByNamePipe,
     StudentSearchByNamePipe,
-    CreateMyinstanceComponent
+    CreateMyinstanceComponent,
   ],
     imports: [
         BrowserModule,
