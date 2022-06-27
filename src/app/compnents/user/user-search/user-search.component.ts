@@ -2,7 +2,6 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserService} from "../../../services/user.service";
 import {UserModel} from "../../../models/users/user.model";
 import {newArray} from "@angular/compiler/src/util";
-import {UserTrackModel} from "../../../models/tracks/user.track.model";
 
 @Component({
   selector: 'app-user-search',
@@ -40,7 +39,7 @@ export class UserSearchComponent implements OnInit {
 
   }
 
-  public getTracksAsString(userTracks: UserTrackModel[]): string{
+  public getTracksAsString(userTracks: any): string{
     let tracksAsString = "";
     for(let i=0; i<userTracks.length; i++){
       tracksAsString += userTracks[i].trackName + ', ';

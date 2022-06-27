@@ -1,12 +1,10 @@
+export class TrackModel{
 
-export class TrackModel {
+  id:any;
+  trackName:string;
 
-  id: number;
-  name: string;
-  intakeId: string;
-
-
-  toString(){
-    console.log(this.id + this.name);
+  constructor(id:number, track: string){
+    this.id = id;
+    this.trackName = track;
   }
 }

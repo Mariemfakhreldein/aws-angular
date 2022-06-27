@@ -2,11 +2,11 @@ export class RoleModel{
 
   id: number;
   name: string;
-  privileges: string[];
+  privileges: number[];
 
   constructor(name: string, privilegeIds: number[]){
-    this.name=name;
-    this.privileges=privilegeIds;
+    this.name = name;
+    this.privileges = privilegeIds;
   }
 
 

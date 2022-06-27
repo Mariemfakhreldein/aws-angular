@@ -40,35 +40,35 @@ export class UserprofileComponent implements OnInit {
   }
 
   updatePassword() {
-    this.password.oldPassword=this.oldPassword;
-    this.password.newPassword=this.newPassword;
-    this.userService.updatePassword(this.password).subscribe(
-      (response:any)=>{
-        this.isLoading = false;
-        this.isSuccess = true;
-      },
-      (error: any)=>{
-        console.log(error.status);
-        if(error.status==200){
-          this.isLoading = false;
-          this.isSuccess = true;
-          this.oldPassword ='';
-          this.newPassword='';
-          this.confirmPassword='';
-        }else if(error.status ==406){
-          this.isLoading = false;
-          this.isSuccess = false;
-          this.errorItem="Wrong old Password"
-          this.oldPassword ='';
-          this.newPassword='';
-          this.confirmPassword='';
-        }
-        else{
-          this.errorItem="Faild"
-        }
-      }
-    )
-
+  //   this.password.oldPassword=this.oldPassword;
+  //   this.password.newPassword=this.newPassword;
+  //   this.userService.updatePassword(this.password).subscribe(
+  //     (response:any)=>{
+  //       this.isLoading = false;
+  //       this.isSuccess = true;
+  //     },
+  //     (error: any)=>{
+  //       console.log(error.status);
+  //       if(error.status==200){
+  //         this.isLoading = false;
+  //         this.isSuccess = true;
+  //         this.oldPassword ='';
+  //         this.newPassword='';
+  //         this.confirmPassword='';
+  //       }else if(error.status ==406){
+  //         this.isLoading = false;
+  //         this.isSuccess = false;
+  //         this.errorItem="Wrong old Password"
+  //         this.oldPassword ='';
+  //         this.newPassword='';
+  //         this.confirmPassword='';
+  //       }
+  //       else{
+  //         this.errorItem="Faild"
+  //       }
+  //     }
+  //   )
+  //
   }
 
   @ViewChild('newPassword') newPasswordInput;

@@ -16,7 +16,8 @@ import {TrackService} from "../../../services/track.service";
 import {RoleService} from "../../../services/role.service";
 import {RoleModel} from "../../../models/roles/role.model";
 import {UpdateUserModel} from "../../../models/users/update.user.model";
-import {UserTrackModel} from "../../../models/tracks/user.tracks.model";
+import {UserTrackModel} from "../../../models/users/user.track.model";
+import {AllTrackModel} from "../../../models/tracks/all.track.model";
 
 @Component({
   selector: 'app-edituser',
@@ -29,11 +30,12 @@ export class EdituserComponent implements OnInit {
 
   editUserFormGroup: FormGroup = new FormGroup({});
   submitted: boolean=false;
+  id:string;
 
-  roles:UserRolesModel[];
-  tracks:UserTrackModel[];
+  // roles:UserRolesModel[];
+  // tracks:UserTrackModel[];
 
-  allTracks: TrackModel[];
+  allTracks: AllTrackModel[];
   allRoles: RoleModel[];
 
   editUserModel = new EditUserModel();
@@ -48,9 +50,9 @@ export class EdituserComponent implements OnInit {
 
   @Output() isSuccess=false;
 
-  currentItem='template';
+  currentItem='user';
 
-  action='created';
+  action='edited';
   constructor(private _formBuilder:FormBuilder,
               private route:Router,
               private userService: UserService,
@@ -79,32 +81,18 @@ export class EdituserComponent implements OnInit {
 
   getUser(id:string){
       this.userService.getUser(id).subscribe(
-      (response:any)=>{
+      (response:any)=> {
         console.log(response);
         this.editUserModel = response;
 
         this.editUserFormGroup.patchValue({
           name: this.editUserModel.username,
           email: this.editUserModel.email,
-          role:this.editUserModel.role
+          role: this.editUserModel.role
         });
 
-  }
+      })
 
-  getTracks(id:string){
-      this.tracks = this.userService.getStudentTracks();
-      //   .getAmi(amiModel).subscribe(
-      //   (response:any)=>{
-      //     this.amiFlag = response.success;
-      //     if(this.amiFlag){
-      //       this.submit();
-      //     }else{
-      //       alert("enter a valid ami please  ");
-      //     }
-      //   },(error:any)=>{
-      //     console.log("fail ami", error);
-      //   }
-      // )
   }
 
   submitBtn() {
@@ -123,6 +111,7 @@ export class EdituserComponent implements OnInit {
       this.editUserModelUpdated.role = userModel.role;
       this.editUserModelUpdated.tracks = this.selectedItemsList;
 
+      console.log(this.isChecked);
 
       // if(this.editUserModelUpdated.equals(this.editUserModel)){
       //   console.log("Non updateeeeeeeeeeeeeee");
@@ -136,6 +125,7 @@ export class EdituserComponent implements OnInit {
       userUpdatedModel.tracksId.forEach((val) => {
         console.log(val)
       })
+
       this.updateUser(this.id, userUpdatedModel);
 
 
@@ -152,7 +142,10 @@ export class EdituserComponent implements OnInit {
     this.isChecked = [];
     let isFound = false;
     for(let i=0; i<this.allTracks.length;i++){
+      console.log("1 : "+ this.allTracks[i].name);
       for(let j=0; j<this.editUserModel.tracks.length; j++){
+        console.log("2 : "+ this.editUserModel.tracks.length);
+        console.log("2 : "+ this.allTracks[i].name);
         if (this.allTracks[i].name === this.editUserModel.tracks[j].trackName){
           isFound = true;
         }
@@ -178,7 +171,7 @@ export class EdituserComponent implements OnInit {
   }
 
   getAllTracks(){
-    this.trackService.getAllTracks().subscribe(
+    this.trackService.getAll().subscribe(
       (response:any)=>{
         console.log(response);
         this.allTracks = response.trackResponsesList;

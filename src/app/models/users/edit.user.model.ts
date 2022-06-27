@@ -1,4 +1,4 @@
-import {UserTrackModel} from "../tracks/user.tracks.model";
+import {UserTrackModel} from "./user.track.model";
 
 export class EditUserModel {
 
@@ -6,7 +6,7 @@ export class EditUserModel {
   username: string;
   email: string;
   role: string;
-  tracks: UserTrackModel[];
+  tracks: UserTrackModel[] = new Array<UserTrackModel>();
 
 
   public equals(model:EditUserModel): boolean{

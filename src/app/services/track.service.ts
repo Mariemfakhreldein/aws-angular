@@ -12,7 +12,6 @@ export class TrackService {
 
 
   getAll(){
-
     return this.api.get("/api/tracks");
   }
 
