@@ -88,17 +88,17 @@ export class CreateInstanceComponent implements OnInit {
 
 
     this.myGroup.get('branches').valueChanges.subscribe((value)=>{
-      this.myGroup.get('trainingPrograms').setValue(null);
+      this.myGroup.get('trainingPrograms').setValue("");
 
     });
 
     this.myGroup.get('trainingPrograms').valueChanges.subscribe((value)=>{
-      this.myGroup.get('intakes').setValue(null);
+      this.myGroup.get('intakes').setValue("");
 
     });
 
     this.myGroup.get('intakes').valueChanges.subscribe((value)=>{
-      this.myGroup.get('tracks').setValue(null);
+      this.myGroup.get('tracks').setValue("");
 
     });
 

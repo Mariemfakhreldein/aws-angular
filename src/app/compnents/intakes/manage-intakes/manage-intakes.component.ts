@@ -48,7 +48,7 @@ export class ManageIntakesComponent implements OnInit {
     this.getAllBranches();
 
     this.myGroup.get('branches').valueChanges.subscribe((value)=>{
-      this.myGroup.get('trainingPrograms').setValue(null);
+      this.myGroup.get('trainingPrograms').setValue("");
 
     })
 
