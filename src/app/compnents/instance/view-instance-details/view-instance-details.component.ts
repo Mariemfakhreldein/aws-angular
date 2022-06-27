@@ -55,7 +55,7 @@ export class ViewInstanceDetailsComponent implements OnInit {
         this.lastStartedDateTime=new Date(response.lastStartedDateTime).getTime();
 
         this.timeDifference=this.timerService.calculateTimeDifference(this.today,this.lastStartedDateTime);
-        this.counter = this.timerService.getCounterValue(this.timeToLive,this.timeDifference);
+        this.counter =( this.timerService.getCounterValue(this.timeToLive,this.timeDifference)+1)*60;
 
         this.subscribeCounter() ;
       },
