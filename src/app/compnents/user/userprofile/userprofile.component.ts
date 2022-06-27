@@ -35,7 +35,7 @@ export class UserprofileComponent implements OnInit {
 
     this.myGroup=this.formBuilder.group({
       oldPassword:['',[Validators.required]],
-      newPassword:['',[Validators.required, Validators.pattern("(?=^.{8,}$)(?=.*\\d)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$")]],
+      newPassword:['',[Validators.required,  (new RegExp('(.*[A-Z].*)'), {'uppercase': true}), (new RegExp('(.*[a-z].*) '), {'lowercase': true})]],
       confirmPassword:['',[Validators.required]]
     });
 
