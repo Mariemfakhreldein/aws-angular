@@ -29,4 +29,7 @@ export class InstanceService {
     return this.api.get(`/api/instances/${id}`);
   }
 
+  terminate(id) {
+    return this.api.delete('/api/instances/delete', id);
+  }
 }
