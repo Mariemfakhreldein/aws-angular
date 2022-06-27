@@ -127,7 +127,6 @@ export class CreateTemplateComponent implements OnInit {
       // this.getAMI(templateModel.ami);
       this.model.amiId = templateModel.ami;
       this.model.subnetId = this.getSubnetIdByVpc(templateModel.subnet);
-      // alert(this.model.subnetId);
       this.model.securityGroups = this.selectedItemsList.map(value => {return value.securityGroupId});
       this.model.instanceType = templateModel.instance;
       this.submit();

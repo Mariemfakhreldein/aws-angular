@@ -37,7 +37,6 @@ export class EditBranchComponent implements OnInit {
       .subscribe(
         parms => {
           this.id = parms.get('id');
-          // alert(this.id)
           this.getBranchDetails(this.id);
 
         }
@@ -54,12 +53,6 @@ export class EditBranchComponent implements OnInit {
     this.isBranchEmpty=false;
     let txt = JSON.stringify(this.BranchFormGroup.value);
     let templateModel = JSON.parse(txt);
-
-
-    // alert("Done: \n" + "Name: " + templateModel.name
-    //   + "\naddress: " + templateModel.address
-    //   + "\nstatus: " + templateModel.value);
-
     this.branch2.name = templateModel.name;
     this.branch2.address = templateModel.address;
     this.branch2.branchStatus = templateModel.value;
@@ -88,7 +81,6 @@ export class EditBranchComponent implements OnInit {
   }
 
   getBranchDetails(id:string){
-    // alert("here" + this.id)
     this.branchService.getById(id).subscribe(
       (response:any)=>{
         this.branch = response;
