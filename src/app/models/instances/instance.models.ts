@@ -1,3 +1,5 @@
+import {InstanceUserModel} from "./instanceUser.model";
+
 export class InstanceModel {
 
   id:number;
@@ -14,6 +16,7 @@ export class InstanceModel {
   subnetId:string;
   vpcId:string;
   creationDateTime:any;
+  instanceUser:InstanceUserModel;
   // decryptedPassword:string;
   // username:string;
 
