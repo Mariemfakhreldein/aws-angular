@@ -7,13 +7,11 @@ import {AppRoutingModule} from "./app-routing-module";
 import {HomeComponent} from "./compnents/home/home.component";
 import {LoginComponent} from "./compnents/login/login.component";
 import {HttpClientModule, HttpClient} from "@angular/common/http";
-
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ViewInstancesComponent } from './compnents/instance/view-instances/view-instances.component';
 import { CreateInstanceComponent } from './compnents/instance/create-instance/create-instance.component';
 import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance-details/view-instance-details.component';
 import {CreateTemplateComponent} from "./compnents/template/create-template/create-template.component";
-import { CreatenewstaffComponent } from './compnents/user/staff/createnewstuff/createnewstaff.component';
 import { UserdetailsComponent } from './compnents/user/userdetails/userdetails.component';
 import { LogoutComponent } from './compnents/logout/logout.component';
 import { CreateBranchComponent } from './compnents/branch/create-branch/create-branch.component';
@@ -45,7 +43,6 @@ import { SearchFilterPipe } from './compnents/pipes/search/search-filter.pipe';
 import { SearchFilterByEmailPipe } from './compnents/pipes/search/search-filter-by-email.pipe';
 import { EditIntakeComponent } from './compnents/intakes/edit-intake/edit-intake.component';
 
-import { CreatenewstudentComponent } from './compnents/user/student/createnewstudent/createnewstudent.component';
 import { UserprofileComponent } from './compnents/user/userprofile/userprofile.component';
 import { AddStudentsComponent } from './compnents/user/students/add-students/add-students.component';
 import {NgxCsvParserModule} from "ngx-csv-parser";
@@ -54,7 +51,6 @@ import { ShowAllRolesComponent } from './compnents/roles/show-all-roles/show-all
 import { RoleSearchByNamePipe } from './compnents/pipes/search/roles/role-search-by-name.pipe';
 import { IntakeSearchByNamePipe } from './compnents/pipes/search/intakes/intake-search-by-name.pipe';
 import { TrackSearchByNamePipe } from './compnents/pipes/search/tracks/track-search-by-name.pipe';
-// import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-branch.component';
 import { ViewTemplatesComponent } from './compnents/template/view-templates/view-templates.component';
 import { AssignTemplateComponent } from './compnents/template/assign-template/assign-template.component';
 import { AddStaffComponent } from './compnents/user/staff/add-staff/add-staff.component';
@@ -81,7 +77,6 @@ import {ViewInstancesLogsComponent} from "./compnents/instance-logs/view-instanc
     LogoutComponent,
     ViewInstanceDetailsComponent,
     CreateTemplateComponent,
-    CreatenewstaffComponent,
     UserdetailsComponent,
     CreateTemplateComponent,
     CreateBranchComponent,
@@ -111,16 +106,7 @@ import {ViewInstancesLogsComponent} from "./compnents/instance-logs/view-instanc
     SearchFilterByEmailPipe,
     EditIntakeComponent,
     UpdateTrackComponent,
-    // CreateTrainingProgramComponent,
-    // ViewTrainingProgramsComponent,
-    // UpdateTrainingProgramsComponent,
     UpdateTrackComponent,
-    // InstanceTimerPipe,
-    // UserSearchComponent,
-    // SearchFilterPipe,
-    // SearchFilterByEmailPipe,
-    // EditIntakeComponent,
-    CreatenewstudentComponent,
     UserprofileComponent,
     UpdateTrackComponent,
     AddStudentsComponent,
@@ -132,7 +118,6 @@ import {ViewInstancesLogsComponent} from "./compnents/instance-logs/view-instanc
     RoleSearchByNamePipe,
     IntakeSearchByNamePipe,
     TrackSearchByNamePipe,
-    // DetailBranchComponent,
     ViewTemplatesComponent,
     AssignTemplateComponent,
     AddStudentsComponent,

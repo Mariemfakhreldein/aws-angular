@@ -1,11 +1,9 @@
 <div>
-
     <div class="container-fluid justify-content-center mx-auto">
       <div class="col-lg-4 col-12 mb-3 row justify-content-center mb-3 mb-lg-5 mx-auto">
         <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/intake.png">
         <h2 class="col-lg-6 col-5 mb-0 pt-2 text-start px-0 text-muted font-italic">Add Intake</h2>
       </div>
-
   </div>
 
   <div class="container ">
@@ -22,8 +20,7 @@
                           (ngModelChange)="onChangeBranch($event)" formControlName="branches"
 
                           [class.is-valid]="!myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
-                          [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched"
-                  >
+                          [class.is-invalid]="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched">
                     <option value="" selected disabled class="text-secondary">Please Select Branch</option>
                     <option *ngFor="let branch of branches"
                             [value]="branch.id">{{branch.name}} </option>
@@ -31,7 +28,7 @@
                   <div class="text-danger  col-lg-6 align-items-end align-self-end"
                        *ngIf="myGroup.controls['branches'].errors && myGroup.controls['branches'].touched">
                     <small *ngIf="myGroup.controls['branches'].hasError('required')"
-                           class="form-text text-danger">required instance name</small>
+                           class="form-text text-danger">required branch name</small>
                   </div>
                 </div>
               </div>
@@ -52,9 +49,13 @@
                   <div class="text-danger  col-lg-6 align-items-end align-self-end"
                        *ngIf="myGroup.controls['trainingPrograms'].errors && myGroup.controls['trainingPrograms'].touched">
                     <small *ngIf="myGroup.controls['trainingPrograms'].hasError('required')"
-                           class="form-text text-danger">required instance name</small>
+                           class="form-text text-danger">required training program name</small>
                   </div>
                 </div>
+              </div>
+
+              <div class="text-danger col-lg-6 align-items-end text-end mb-3 mx-auto" *ngIf="!myGroup.controls['branches'].errors &&trainingPrograms.length ==0">
+                <small class="form-text text-danger">*There is no training programs for this branch, create training programs first</small>
               </div>
 
               <div class="form-group row" >
@@ -111,18 +112,12 @@
          aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div *ngIf="!isLoading">
-          <app-success-popup *ngIf="isSuccess" [item]="currentItem" [action]="action"></app-success-popup>
-          <app-failed-popup *ngIf="!isSuccess" [item]="currentItem" [action]="action"></app-failed-popup>
+          <app-success-popup *ngIf="isSuccess" [item]="successMessage"></app-success-popup>
+          <app-failed-popup *ngIf="!isSuccess" [item]="failMessage"></app-failed-popup>
         </div>
         <app-loader *ngIf="isLoading"></app-loader>
       </div>
     </div>
-
-
-
-
-
-
 </div>
 
 

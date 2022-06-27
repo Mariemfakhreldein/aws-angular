@@ -15,12 +15,13 @@ export class EditBranchComponent implements OnInit {
   BranchFormGroup: FormGroup = new FormGroup({});
   branch = new BranchModel();
   branch2 = new BranchPostModel();
-  id:string;
-  isSuccess=false;
-  isLoading=true;
-  currentItem='branch';
-  isBranchEmpty=false;
-  action='edited';
+  id: string;
+  isSuccess = false;
+  isLoading = true;
+  isBranchEmpty = false;
+  successMessage = 'branch is updated successfully';
+  failMessage = ''
+
   constructor(private _formBuilder:FormBuilder,
               private branchService: BranchService,
               private _activatedRoute: ActivatedRoute,
@@ -38,15 +39,9 @@ export class EditBranchComponent implements OnInit {
         parms => {
           this.id = parms.get('id');
           this.getBranchDetails(this.id);
-
         }
       );
-    //this.getTrainingManager();
   }
-
-  // getTrainingManager(){
-  //   this.trainingManagers = this.branchService.getAllTrainingManager();
-  // }
 
 
   submitBtn() {
@@ -58,24 +53,20 @@ export class EditBranchComponent implements OnInit {
     this.branch2.branchStatus = templateModel.value;
 
     if(this.branch2.equals(this.branch)){
-      this.action = 'edited. NO Modification';
-      this.isLoading=false;
-      this.isSuccess=false;
+      this.failMessage = 'No modification in data';
+      this.changeSuccessAndLoading(false, false);
     }else{
       this.updateBranch(this.id, this.branch2);
     }
-
   }
 
   updateBranch(id:string, model:BranchPostModel){
     this.branchService.update(id, model).subscribe(
       (response:any)=>{
-        this.isLoading=false;
-        this.isSuccess=true;
+        this.changeSuccessAndLoading(false, true)
       },(error:any)=>{
-        this.action = 'edited';
-        this.isLoading=false;
-        this.isSuccess=false;
+        this.failMessage = 'Something goes wrong';
+        this.changeSuccessAndLoading(false, false)
       }
     )
   }
@@ -91,10 +82,14 @@ export class EditBranchComponent implements OnInit {
       },(error:any)=>{
       }
     )
-
   }
 
   getIsSuccess(): boolean{
         return this.isSuccess;
-      }
+  }
+
+  changeSuccessAndLoading(loading: boolean, success:boolean){
+    this.isLoading = loading;
+    this.isSuccess = success;
+  }
 }

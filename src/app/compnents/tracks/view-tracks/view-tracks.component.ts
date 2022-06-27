@@ -25,32 +25,19 @@ export class ViewTracksComponent implements OnInit {
         next: (data: any) => {
           data.trackResponsesList.forEach(e => {
               this.tracks.push(e);
-
             }
           )
         },
         error: (e) => {},
-        // complete: () => console.info('complete')
       });
-
   }
 
-
-
-
-
   delete(trackId: any) {
-
     this.trackService.delete(trackId).subscribe(
       {
         next: (data: any) => {
-
         },
         error: (e) => {},
-        // complete: () => console.info('complete')
       });
-
   }
-
-
 }

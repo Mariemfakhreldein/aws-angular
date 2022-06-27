@@ -58,14 +58,14 @@
        aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div >
-        <app-success-popup *ngIf="isSuccess" [item]="item" [action]="action"></app-success-popup>
-        <app-failed-popup *ngIf="!isSuccess" [item]="item" [action]="action"></app-failed-popup>
+        <app-success-popup *ngIf="isSuccess" [item]="successMessage"></app-success-popup>
+        <app-failed-popup *ngIf="!isSuccess" [item]="failedMessage"></app-failed-popup>
       </div>
 
     </div>
   </div>
 
-<div class="container bg-light mt-5 mb-5 mt-5" *ngFor="staffList.length>0" >
+<div class="container bg-light mt-5 mb-5 mt-5" *ngIf="staffList.length > 0" >
   <div class="row mb-lg-5 mb-2 mt-2 justify-content-around">
     <div class="col-lg-4 col-12 row justify-content-around ">
       <img class="col-lg-2 col-2 mt-1" src="assets/images/usedImages/management.png">

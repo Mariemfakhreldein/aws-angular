@@ -20,9 +20,6 @@ export class ShowBranchsComponent implements OnInit {
     this.getBranches();
   }
 
-  // createBranch(){
-  //   this.route.navigateByUrl("/branch/create");
-  // }
   searchValue: any;
 
   getBranches(){
@@ -33,5 +30,4 @@ export class ShowBranchsComponent implements OnInit {
       }
     )
   }
-
 }

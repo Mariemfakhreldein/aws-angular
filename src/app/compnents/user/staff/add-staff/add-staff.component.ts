@@ -6,7 +6,6 @@ import {TrackService} from "../../../../services/track.service";
 import {NgxCsvParser, NgxCSVParserError} from "ngx-csv-parser";
 import {UserService} from "../../../../services/user.service";
 import {Patterns} from "../../../../patterns/patterns";
-import {StudentRequestModel} from "../../../../models/users/student.request.model";
 import {UserModel} from "../../../../models/users/user.model";
 import {StaffModel} from "../../../../models/users/staff.model";
 import {StaffRequestModel} from "../../../../models/users/staff.request.model";
@@ -19,10 +18,8 @@ import {StaffRequestModel} from "../../../../models/users/staff.request.model";
 export class AddStaffComponent implements OnInit {
 
 
-
   staffList: StaffModel[] = [];
   staffFromFile: StaffModel[] = [];
-
 
   page = 1;
 
@@ -30,11 +27,13 @@ export class AddStaffComponent implements OnInit {
   header: boolean = false;
   isParsedWell = true;
   errorMessage = "";
+
   successMessage = "Staff added successfully";
   failedMessage = "";
-  item='staff';
-  action='added';
-  @Output() isSuccess = false;
+
+  isSuccess = false;
+  isLoading = true;
+
 
   addStaff = new FormGroup({});
   constructor(private formBuilder: FormBuilder,
@@ -68,6 +67,7 @@ export class AddStaffComponent implements OnInit {
     this.usernameInput.nativeElement.value='';
     this.emailInput.nativeElement.value='';
     this.staffList.push(staff);
+    this.addStaff.reset();
   }
 
   submit(){
@@ -75,17 +75,15 @@ export class AddStaffComponent implements OnInit {
       next: (response: any) => {},
       error: (e) => {
         if(e.status == 201){
-          this.fileImportInput.nativeElement.value='';
-          this.isSuccess = true;
+          this.changeSuccessAndLoading(false, true);
         }else if(e.status == 406){
           this.failedMessage = "Duplicate email";
-          this.fileImportInput.nativeElement.value='';
-          this.isSuccess = false;
+          this.changeSuccessAndLoading(false, false);
         }else{
-          this.failedMessage = "ٍSomething goes wrong email";
-          this.isSuccess = false;
+          this.failedMessage = "Something goes wrong email";
+          this.changeSuccessAndLoading(false, false);
         }
-        this.staffList = [];
+        this.emptyFields();
       },
     });
   }
@@ -97,7 +95,6 @@ export class AddStaffComponent implements OnInit {
 
   @ViewChild('fileImportInput') fileImportInput: any;
   searchValue: any;
-  isLoading=true;
 
   fileChangeListener($event: any): void {
     const files = $event.srcElement.files;
@@ -138,5 +135,17 @@ export class AddStaffComponent implements OnInit {
       }
     );
   }
+
+  emptyFields(){
+    this.fileImportInput.nativeElement.value='';
+    this.staffList = [];
+    this.staffFromFile = [];
+  }
+
+  changeSuccessAndLoading(loading: boolean, success:boolean){
+    this.isLoading = loading;
+    this.isSuccess = success;
+  }
+
 }
 

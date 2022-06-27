@@ -73,8 +73,8 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div *ngIf="!isLoading">
-        <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem"  [action]="action"></app-success-popup>
-        <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
+        <app-success-popup *ngIf="getIsSuccess()" [item]="successMessage"></app-success-popup>
+        <app-failed-popup *ngIf="!getIsSuccess()" [item]="failMessage"></app-failed-popup>
       </div>
 
       <app-loader *ngIf="isLoading"></app-loader>
@@ -83,4 +83,5 @@
   </div>
 
 
+</div>
 </div>

@@ -31,9 +31,11 @@ export class AssignTemplateComponent implements OnInit {
 
   assignTemplateRequest = new AssignTemplateModel();
 
-  item='template';
-  action='assigned';
-  @Output() isSuccess = false;
+  isSuccess=false;
+  isLoading=true;
+
+  successMessage = "Assign templates to instructors successfully";
+  failMessage = "";
 
   constructor(private formBuilder:FormBuilder,
               private route:Router,
@@ -52,22 +54,16 @@ export class AssignTemplateComponent implements OnInit {
   private getAllTemplates(){
     this.templateService.getAllTemplates().subscribe(
       (response:any)=>{
-        console.log(response.templateResponseList)
         this.templates = response.templateResponseList;
-      },(error:any)=>{
-        console.log(error);
-      }
+      },(error:any)=>{}
     )
   }
 
   private getAllInstructors(){
     this.userService.getAllInstructors().subscribe(
       (response:any)=>{
-        console.log(response)
         this.instructors = response;
-      },(error:any)=>{
-        console.log(error);
-      }
+      },(error:any)=>{}
     )
   }
 
@@ -83,31 +79,22 @@ export class AssignTemplateComponent implements OnInit {
       }
 
       if(myInstructorList.length >0 && myTemplatesList.length > 0){
-        console.log(this.assignTemplateRequest);
         this.templateService.assignTemplateToInstructors(this.assignTemplateRequest).subscribe(
           (response:any)=>{
-            console.log("success");
-            this.isSuccess = true;
-            this.isCheckedInstructor = [];
-            this.isCheckedTemplates = [];
-            this.selectedInstructors = [];
-            this.selectedTemplates = [];
+              this.emptyFields();
+              this.changeSuccessAndLoading(false, true);
           },
           (error: any)=>{
             if(error.status ==500){
-              this.item = "template already"
+              this.failMessage = "Template already assigned before";
+            }else{
+              this.failMessage = "Something goes wrong";
             }
-            console.log("fail");
-            console.log(error);
-            this.isSuccess = false;
-            this.isCheckedInstructor = [];
-            this.isCheckedTemplates = [];
-            this.selectedInstructors = [];
-            this.selectedTemplates = [];
+            this.emptyFields();
+            this.changeSuccessAndLoading(false, false);
           }
         )
       }
-
     }
 
     fetchSelectedInstructors() {
@@ -130,5 +117,16 @@ export class AssignTemplateComponent implements OnInit {
       return this.selectedTemplates;
     }
 
+  emptyFields(){
+    this.isCheckedInstructor = [];
+    this.isCheckedTemplates = [];
+    this.selectedInstructors = [];
+    this.selectedTemplates = [];
+    this.assignTemplateFormGroup.reset();
+  }
 
+  changeSuccessAndLoading(loading: boolean, success:boolean){
+    this.isLoading = loading;
+    this.isSuccess = success;
+  }
 }

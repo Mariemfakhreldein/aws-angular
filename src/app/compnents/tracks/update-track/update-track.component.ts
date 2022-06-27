@@ -19,8 +19,10 @@ export class UpdateTrackComponent implements OnInit {
   private id: any;
   @Output() isSuccess=false;
   isLoading:boolean=true;
-  currentItem='track';
-  action='updated';
+
+  successMessage = 'track is updated successfully';
+  failMessage = 'Something goes wrong';
+
   trackName:any=true;
   constructor(private formBuilder: FormBuilder,private _activatedRoute:ActivatedRoute,private trackService: TrackService ) { }
 
@@ -31,8 +33,6 @@ export class UpdateTrackComponent implements OnInit {
       trackName:[this.trackName ,[Validators.required]],
     });
 
-
-
     this._activatedRoute.paramMap
       .subscribe(
         parms=>{
@@ -40,10 +40,6 @@ export class UpdateTrackComponent implements OnInit {
           this.getTrack(this.id);
         }
       );
-
-
-
-
   }
 
 
@@ -55,27 +51,26 @@ export class UpdateTrackComponent implements OnInit {
           this.track =data;
           this.trackName=data.name;
         } });
-
-
   }
 
   updateTrack(){
     this.track.name=this.trackName;
     this.trackService.update(this.track.id,this.track).subscribe(
       (response: any) => {
-        this.isLoading = false;
-        this.isSuccess = true;
+        this.changeSuccessAndLoading(false, true);
       }, (error: any) => {
-        this.isLoading = false;
-        this.isSuccess = false;
+        this.changeSuccessAndLoading(false, false);
       }
       );
-
   }
 
   public getIsSuccess(): boolean{
     return this.isSuccess;
   }
 
+  changeSuccessAndLoading(loading: boolean, success:boolean){
+    this.isLoading = loading;
+    this.isSuccess = success;
+  }
 
 }

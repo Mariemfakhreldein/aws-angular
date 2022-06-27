@@ -16,9 +16,11 @@ export class UpdateTrainingProgramsComponent implements OnInit {
   trainingProgramName: string;
   isSuccess = false;
   isLoading = true;
-  currentItem = 'trainingProgram';
+
   trainingProgramId:number;
-  action="Updated";
+
+  successMessage = 'training program is updated successfully';
+  failMessage = 'Something goes wrong'
 
   constructor(private formBuilder: FormBuilder,
     private trainingProgramService: TrainingProgramService,
@@ -55,19 +57,23 @@ export class UpdateTrainingProgramsComponent implements OnInit {
 
 
   submit() {
-
     this.trainingProgram.name = this.trainingProgramName.trim();
-    console.table(this.trainingProgram);
     this.trainingProgramService.update(this.trainingProgram).subscribe({
       next: (data:any) =>{
-        this.isLoading=false;
-        this.isSuccess=true;
+        this.changeSuccessAndLoading(false, true);
       },
-      error: (e) => { this.isLoading=false;this.isSuccess=false},
+      error: (e) => {
+        this.changeSuccessAndLoading(false, false);
+      },
     });
   }
 
   getIsSuccess(): boolean {
     return this.isSuccess;
+  }
+
+  changeSuccessAndLoading(loading: boolean, success:boolean){
+    this.isLoading = loading;
+    this.isSuccess = success;
   }
 }

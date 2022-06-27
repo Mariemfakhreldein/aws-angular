@@ -16,10 +16,9 @@ export class EditIntakeComponent implements OnInit {
 
   isLoading: boolean = true;
   @Output() isSuccess = false;
-  currentItem: string = "Intake";
+
 
   intake=new IntakeModel();
-  action="Updated"
 
   myGroup: FormGroup = new FormGroup({});
   branches: BranchModel[] = [];
@@ -29,6 +28,9 @@ export class EditIntakeComponent implements OnInit {
   intakeName: any;
   intakeDescription: any;
   id:any;
+
+  successMessage = 'intake is updated successfully';
+  failMessage = 'Something goes wrong'
 
   constructor(private formBuilder: FormBuilder,
               private intakeService: IntakeService,
@@ -42,33 +44,23 @@ export class EditIntakeComponent implements OnInit {
           this.getIntakeDetails(this.id);
         }
       );
-
-    // this.intakeName=this.intake.intakeName;
-    // this.intakeDescription=this.intake.intakeDescription;
-    // this.trainingPrograms=this.intake.trainingProgram;
-
-
   }
 
 
   submitBtn() {
-
       this.intakePut.id = this.id;
       this.intakePut.intakeName = this.intakeName;
       this.intakePut.intakeDescription = this.intakeDescription;
       this.updateIntake(this.intakePut);
-
     }
 
 
   updateIntake(model: IntakePutModel) {
     this.intakeService.update(model).subscribe(
       (response: any) => {
-        this.isLoading = false;
-        this.isSuccess = true;
+        this.changeSuccessAndLoading(false, true);
       }, (error: any) => {
-        this.isLoading = false;
-        this.isSuccess = false;
+        this.changeSuccessAndLoading(false, false);
       }
     )
   }
@@ -82,9 +74,6 @@ export class EditIntakeComponent implements OnInit {
         this.intake.trainingProgram = data.trainingProgram;
         this.intakeName = this.intake.intakeName;
         this.intakeDescription = this.intake.intakeDescription
-        console.log(data);
-        console.log("222222"+this.intake);
-
         this.myGroup = this.formBuilder.group({
           trainingPrograms: [this.intake.trainingProgram],
           intakeName: [this.intake.intakeName, [Validators.required]],
@@ -92,6 +81,11 @@ export class EditIntakeComponent implements OnInit {
         });
       }
     })
+  }
+
+  changeSuccessAndLoading(loading: boolean, success:boolean){
+    this.isLoading = loading;
+    this.isSuccess = success;
   }
 
 }

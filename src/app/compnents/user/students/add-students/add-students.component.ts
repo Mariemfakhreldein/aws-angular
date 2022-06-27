@@ -10,7 +10,6 @@ import {IntakeService} from "../../../../services/intake.service";
 import {TrackService} from "../../../../services/track.service";
 import {UserModel} from "../../../../models/users/user.model";
 import {NgxCsvParser, NgxCSVParserError} from "ngx-csv-parser";
-
 import {UserService} from "../../../../services/user.service";
 import {StudentModel} from "../../../../models/users/student.model";
 import {StudentRequestModel} from "../../../../models/users/student.request.model";
@@ -32,8 +31,6 @@ export class AddStudentsComponent implements OnInit {
   students: StudentModel[] = [];
   studentsFromFile: StudentModel[] = [];
 
-  lines = []; //for headings
-  linesR = []; // for rows
   trackId: number;
   page = 1;
 
@@ -44,7 +41,8 @@ export class AddStudentsComponent implements OnInit {
   successMessage = "Students added successfully";
   failedMessage = "";
 
-  @Output() isSuccess = false;
+  isSuccess = false;
+  isLoading = true;
 
   addStudents = new FormGroup({});
   constructor(private formBuilder: FormBuilder,
@@ -58,9 +56,6 @@ export class AddStudentsComponent implements OnInit {
   ngOnInit(): void {
     this.reactiveStaffForm();
     this.getAllBranches();
-
-
-
   }
 
   reactiveStaffForm() :void
@@ -73,26 +68,18 @@ export class AddStudentsComponent implements OnInit {
       userName: ['',[Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       email: ['',[Validators.required, Validators.pattern(Patterns.Email)]],
     });
-
     this.addStudents.get('branches').valueChanges.subscribe((value)=>{
       this.addStudents.get('trainingPrograms').setValue(null);
 
     });
-
     this.addStudents.get('trainingPrograms').valueChanges.subscribe((value)=>{
       this.addStudents.get('intakes').setValue(null);
 
     });
-
     this.addStudents.get('intakes').valueChanges.subscribe((value)=>{
       this.addStudents.get('tracks').setValue(null);
 
     });
-
-
-
-
-
   }
 
 
@@ -107,12 +94,10 @@ export class AddStudentsComponent implements OnInit {
   }
 
   onChangeBranch(branchId: number) {
-    // this.tracks = [];
     this.getTrainingProgramsByBranch(branchId);
   }
 
   getTrainingProgramsByBranch(branchId: number){
-
     this.trainingPrograms=[];
     this.trainingProgramService.getTrainingProgramsByBranch(branchId).subscribe(
       {
@@ -139,8 +124,6 @@ export class AddStudentsComponent implements OnInit {
       });
 
     }
-
-
   }
 
   onChangeIntake(intakeId: number) {
@@ -157,7 +140,6 @@ export class AddStudentsComponent implements OnInit {
         error: (e) => {},
       });
     }
-
   }
 
   onChangeTrack(trackId: number) {
@@ -175,6 +157,7 @@ export class AddStudentsComponent implements OnInit {
     this.usernameInput.nativeElement.value='';
     this.emailInput.nativeElement.value='';
     this.students.push(student);
+    this.addStudents.reset();
   }
 
   submit(){
@@ -182,21 +165,18 @@ export class AddStudentsComponent implements OnInit {
       next: (response: any) => {},
       error: (e) => {
         if(e.status == 201){
-          this.fileImportInput.nativeElement.value='';
-          this.isSuccess = true;
+          this.changeSuccessAndLoading(false, true);
         }else if(e.status == 406){
           this.failedMessage = "Duplicate email";
-          this.fileImportInput.nativeElement.value='';
-          this.isSuccess = false;
+          this.changeSuccessAndLoading(false, false);
         }else{
-          this.failedMessage = "ٍSomething goes wrong email";
-          this.isSuccess = false;
+          this.failedMessage = "Something goes wrong";
+          this.changeSuccessAndLoading(false, false);
         }
-        this.students = [];
+        this.emptyFields();
       },
     });
   }
-
 
   delete(index: number) {
     this.students.splice(index,1);
@@ -240,5 +220,26 @@ export class AddStudentsComponent implements OnInit {
       }
     }
     );
+  }
+
+  emptyFields(){
+    this.fileImportInput.nativeElement.value='';
+    this.students = [];
+    this.addStudents.reset();
+  }
+
+  changeSuccessAndLoading(loading: boolean, success:boolean){
+    this.isLoading = loading;
+    this.isSuccess = success;
+  }
+
+  canUploadFile(): boolean{
+    if(this.addStudents.get("branches").status =='VALID' &&
+      this.addStudents.get("trainingPrograms").status =='VALID' &&
+      this.addStudents.get("intakes").status =='VALID' &&
+      this.addStudents.get("tracks").status =='VALID' ){
+      return true;
+    }
+    return false;
   }
 }

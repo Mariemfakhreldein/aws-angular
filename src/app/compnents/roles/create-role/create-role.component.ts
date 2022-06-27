@@ -2,10 +2,9 @@ import {Component, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PrivilegeModel} from "../../../models/privileges/privilege.model";
 import {RoleModel} from "../../../models/roles/role.model";
-import {IntakeService} from "../../../services/intake.service";
 import {RolesService} from "../../../services/roles.service";
 import {PrivilegesService} from "../../../services/privileges.service";
-import {InstanceCreateModel} from "../../../models/instances/instance.create.model";
+
 
 @Component({
   selector: 'app-create-role',
@@ -17,9 +16,8 @@ export class CreateRoleComponent implements OnInit {
 
   isLoading: boolean = true;
   @Output() isSuccess = false;
-  currentItem: string = "Role";
-  errorItem: string = "Role name  is exist ";
-  action: any;
+  successMessage = 'role is created successfully';
+  failMessage = 'role is already exist'
 
   myGroup: FormGroup = new FormGroup({});
   privileges: PrivilegeModel[] = [];
@@ -30,9 +28,7 @@ export class CreateRoleComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private roleService: RolesService,
-              private privilegeService: PrivilegesService,
-  ) {
-  }
+              private privilegeService: PrivilegesService,) {}
 
   ngOnInit(): void {
     this.myGroup = this.formBuilder.group({
@@ -50,11 +46,8 @@ export class CreateRoleComponent implements OnInit {
             }
           )
         }
-
-
       }
     );
-
   }
 
   isPrivilegeChecked() {
@@ -76,8 +69,6 @@ export class CreateRoleComponent implements OnInit {
       }
     }
     return this.selectedItemsList;
-
-
   }
 
   submitBtn(roleName) {
@@ -94,14 +85,13 @@ export class CreateRoleComponent implements OnInit {
       let roleModel = new RoleModel(roleName, privilegeIdList);
       this.roleService.create(roleModel).subscribe(
         (response: any) => {
-          this.isLoading = false;
-          this.isSuccess = true;
+          this.emptyFields();
+          this.changeSuccessAndLoading(false, true);
         }, (error: any) => {
-          this.isLoading = false;
-          this.isSuccess = false;
+          this.emptyFields();
+          this.changeSuccessAndLoading(false, false);
         }
       )
-
     }
   }
 
@@ -110,4 +100,16 @@ export class CreateRoleComponent implements OnInit {
   showText() {
     this.isReadMore = !this.isReadMore;
   }
+
+  emptyFields(){
+    this.isChecked = [];
+    this.selectedItemsList = [];
+    this.myGroup.reset();
+  }
+
+  changeSuccessAndLoading(loading: boolean, success:boolean){
+    this.isLoading = loading;
+    this.isSuccess = success;
+  }
+
 }

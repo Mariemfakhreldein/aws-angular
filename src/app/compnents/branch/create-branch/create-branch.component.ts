@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router} from "@angular/router";
-import {TemplateService} from "../../../services/template.service";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {AuthService} from "../../../services/auth.service";
-import {TemplateModel} from "../../../models/templates/template.model";
 import {BranchService} from "../../../services/branch.service";
-import {BranchModel} from "../../../models/branch/branch.model";
 import {BranchPostModel} from "../../../models/branch/branch.post.model";
 
 @Component({
@@ -20,9 +14,10 @@ export class CreateBranchComponent implements OnInit {
   branch = new BranchPostModel();
   isSuccess=false;
   isLoading=true;
-  currentItem='branch';
+
+  successMessage = 'branch is created successfully';
+  failMessage = ''
   isBranchEmpty=false;
-  action='created';
 
   constructor(private _formBuilder:FormBuilder,
               private branchService: BranchService,
@@ -34,12 +29,8 @@ export class CreateBranchComponent implements OnInit {
       value:[true,[Validators.required]],
       address:["",[Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
     });
-    //this.getTrainingManager();
   }
 
-  // getTrainingManager(){
-  //   this.trainingManagers = this.branchService.getAllTrainingManager();
-  // }
 
 
   submitBtn() {
@@ -58,35 +49,31 @@ export class CreateBranchComponent implements OnInit {
   postBranch(model:BranchPostModel){
     this.branchService.create(model).subscribe(
       (response:any)=>{
-        this.isLoading=false;
-        this.isSuccess=true;
+        this.changeSuccessAndLoading(false, true);
+        this.emptyFields();
       },(error:any)=>{
-        this.isLoading=false;
-        this.isSuccess=false;
+        if(error.status == 406){
+          this.failMessage = 'failed to create branch, there is a branch with this name'
+        }else{
+          this.failMessage = 'failed to create branch, something goes wrong';
+        }
+        this.emptyFields()
+        this.changeSuccessAndLoading(false, false);
       }
     )
   }
 
   getIsSuccess(): boolean{
-      return this.isSuccess;
-    }
+    return this.isSuccess;
+  }
 
-  // isTrainingProgramsChecked(){
-  //   this.isChecked = [];
-  //   this.isChecked.push(true);
-  //   for(let i=1; i<this.trainingPrograms.length;i++){
-  //       this.isChecked.push(false);
-  //   }
-  // }
-  //
-  // private fetchSelectedItems() {
-  //   this.selectedItemsList=[];
-  //   for (let i=0 ; i<this.isChecked.length ; i++){
-  //     if(this.isChecked[i] == true){
-  //       this.selectedItemsList.push(this.trainingPrograms[i]);
-  //     }
-  //   }
-  //   return this.selectedItemsList;
-  // }
+  emptyFields(){
+    this.BranchFormGroup.reset();
+  }
+
+  changeSuccessAndLoading(loading: boolean, success:boolean){
+    this.isLoading = loading;
+    this.isSuccess = success;
+  }
 
 }

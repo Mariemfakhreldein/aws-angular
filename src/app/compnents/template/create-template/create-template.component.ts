@@ -1,13 +1,8 @@
 import {Component, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
-import {AuthService} from "../../../services/auth.service";
 import {TemplateService} from "../../../services/template.service";
-import {parseJson} from "@angular/cli/utilities/json-file";
-import {delay, Observable} from "rxjs";
 import {TemplateModel} from "../../../models/templates/template.model";
-import {newArray} from "@angular/compiler/src/util";
 import {InstanceTypeModel} from "../../../models/templates/instanceType.model";
 import {SubnetModel} from "../../../models/templates/subnet.model";
 import {AmiModel} from "../../../models/templates/ami.model";
@@ -40,18 +35,15 @@ export class CreateTemplateComponent implements OnInit {
 
   isSecurityGroupsSelected=true;
 
-
-
   @Output() isSuccess=false;
 
-  currentItem='template';
+  successMessage = 'template is created successfully';
+  failMessage = 'Something goes wrong';
 
-  action='created';
   constructor(private _formBuilder:FormBuilder,
               private route:Router,
               private templateService: TemplateService,
-              private activatedRouter: ActivatedRoute
-              ) { }
+              private activatedRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.templateFormGroup=this._formBuilder.group({
@@ -68,9 +60,8 @@ export class CreateTemplateComponent implements OnInit {
       (response:any)=>{
             this.subnets = response.subnetList;
           },(error:any)=>{
-          }
+      }
     )
-
   }
 
   onChangeSubnet(vpc: any) {
@@ -83,7 +74,6 @@ export class CreateTemplateComponent implements OnInit {
         }
       )
     }
-
   }
 
   getAMI(amiString:string) : boolean{
@@ -104,7 +94,6 @@ export class CreateTemplateComponent implements OnInit {
     return this.amiFlag;
   }
 
-
   getInstanceType(){
     this.templateService.getInstancesTypes().subscribe(
       (response:any)=>{
@@ -115,7 +104,6 @@ export class CreateTemplateComponent implements OnInit {
     )
 
   }
-
   submitBtn() {
     if(this.fetchSelectedItems().length === 0 ){
       this.isSecurityGroupsSelected=false;
@@ -123,8 +111,6 @@ export class CreateTemplateComponent implements OnInit {
     }else{
       let txt = JSON.stringify(this.templateFormGroup.value);
       let templateModel = JSON.parse(txt);
-
-      // this.getAMI(templateModel.ami);
       this.model.amiId = templateModel.ami;
       this.model.subnetId = this.getSubnetIdByVpc(templateModel.subnet);
       this.model.securityGroups = this.selectedItemsList.map(value => {return value.securityGroupId});
@@ -136,17 +122,14 @@ export class CreateTemplateComponent implements OnInit {
   submit(){
     this.templateService.create(this.model).subscribe(
     (response:any)=>{
-      this.isLoading=false;
-      this.isSuccess=true;
+      this.emptyFields();
+      this.changeSuccessAndLoading(false, true);
     },(error:any)=>{
-        this.isLoading=false;
-      this.isSuccess=false;
+        this.emptyFields();
+        this.changeSuccessAndLoading(false, false);
     }
     )
-
   }
-
-
 
   isSecurityGroupsListChecked(){
     this.isChecked = [];
@@ -159,7 +142,7 @@ export class CreateTemplateComponent implements OnInit {
     }
   }
 
-  private fetchSelectedItems() {
+   fetchSelectedItems() {
     this.selectedItemsList=[];
     for (let i=0 ; i<this.isChecked.length ; i++){
         if(this.isChecked[i] == true){
@@ -168,7 +151,6 @@ export class CreateTemplateComponent implements OnInit {
     }
    return this.selectedItemsList;
   }
-
 
   getSubnetIdByVpc(vpc:string): string{
     for (let i of this.subnets){
@@ -183,6 +165,15 @@ export class CreateTemplateComponent implements OnInit {
     return this.isSuccess;
   }
 
+  emptyFields(){
+    this.isChecked = [];
+    this.selectedItemsList = [];
+  }
+
+  changeSuccessAndLoading(loading: boolean, success:boolean){
+    this.isLoading = loading;
+    this.isSuccess = success;
+  }
 }
 
 
