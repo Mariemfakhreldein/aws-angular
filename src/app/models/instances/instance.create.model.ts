@@ -6,6 +6,7 @@ export class InstanceCreateModel{
   templateId: number;
   timeToLiveInMinutes:number;
 
+
   constructor(instanceName: string, keyPair: string, studentIds: number[], templateId: number, timeToLiveInMinutes:number){
     this.instanceName = instanceName;
     this.keyPair = keyPair;

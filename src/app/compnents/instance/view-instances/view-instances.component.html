@@ -58,7 +58,11 @@
 
     <a  routerLink="/instances/{{instance.instanceId}}" class="text-decoration-none">
 <!--      value in sec-->
-      <h5 class="mt-5 text-white pt-4">{{counterArray[instancesBackup.indexOf(instance)] | instanceTimer}} </h5>
+      <h5 class="mt-5 text-white pt-4">
+        <span [style.color]="counterArray[instancesBackup.indexOf(instance)]/60<=5 ? '#e62e00' :  '#ffffff'">{{counterArray[instancesBackup.indexOf(instance)] | instanceTimer}}</span>
+
+
+      </h5>
 
       <h5  class=" text-white font-weight-bold font-italic ">{{instance.name}}</h5>
       <h5  class=" text-white " *ngIf="canCreateTerminateAssignInstance"> <span>@</span>     {{(instance.instanceUser.username.length>15)? (instance.instanceUser.username | slice:0:15)+'..':(instance.instanceUser.username)}}</h5>

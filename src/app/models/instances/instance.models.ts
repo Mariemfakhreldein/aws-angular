@@ -17,6 +17,7 @@ export class InstanceModel {
   vpcId:string;
   creationDateTime:any;
   instanceUser:InstanceUserModel;
+  lastStartedDateTime:any;
   // decryptedPassword:string;
   // username:string;
 
