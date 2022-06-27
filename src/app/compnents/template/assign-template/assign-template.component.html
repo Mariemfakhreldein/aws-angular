@@ -13,8 +13,9 @@
           <div class="card-body">
             <div class="form-validation">
 
-              <div class="row">
-                <div  class="form-group row">
+              <div class="row" >
+
+                <div  class="form-group row" *ngIf="templates.length > 0">
                   <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="template">Select Templates </label>
                   <div class="col-lg-6">
                     <div id="template"  class="form-group row radio-container border-bottom " style="border-color: #ced4da">
@@ -31,6 +32,7 @@
                               </label>
                             </div>
                           </div>
+
                         </div>
 
                       </div>
@@ -41,10 +43,12 @@
                     </div>
                   </div>
                 </div>
+
+                <p class="py-5 text-muted text-center font-weight-bold" *ngIf="templates.length==0">You don't have templated yet</p>
               </div>
 
-              <div class="row">
-                <div  class="form-group row">
+              <div class="row" >
+                <div  class="form-group row" *ngIf="instructors.length > 0">
                   <label class="col-lg-4 col-form-label text-muted font-weight-bold" for="instructors">Select Instructors </label>
                   <div class="col-lg-6">
                     <div id="instructors"  class="form-group row radio-container border-bottom " style="border-color: #ced4da">
@@ -70,11 +74,13 @@
                   </div>
                 </div>
 
+
+                <p class="py-5 text-muted text-center font-weight-bold" *ngIf="instructors.length==0">You don't have any instructors</p>
               </div>
 
               <div class="form-group row">
                 <div class="col-lg-8 ml-auto mx-auto text-center">
-                  <button type="button" id="btn-submit" (click)="submitBtn()"  class="btn btn-danger font-weight-bold" [disabled]="fetchSelectedTemplates().length==0">Assign</button>
+                  <button data-toggle="modal" data-target="#exampleModalCenter" type="button" id="btn-submit" (click)="submitBtn()"  class="btn btn-danger font-weight-bold" [disabled]="fetchSelectedTemplates().length==0">Assign</button>
                 </div>
               </div>
             </div>
@@ -89,8 +95,8 @@
 aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
 <div class="modal-dialog modal-dialog-centered" role="document">
   <div>
-    <app-success-popup *ngIf="isSuccess" [item]="item" [action]="action"></app-success-popup>
-    <app-failed-popup *ngIf="!isSuccess" [item]="item" [action]="action"></app-failed-popup>
+    <app-success-popup *ngIf="isSuccess" [item]="successMessage"></app-success-popup>
+    <app-failed-popup *ngIf="!isSuccess" [item]="failMessage"></app-failed-popup>
   </div>
 </div>
 </div>
@@ -104,3 +110,4 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true" >
   });
 </script>
 
+</div>
