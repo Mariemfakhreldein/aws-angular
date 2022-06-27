@@ -55,6 +55,7 @@ import {
   ManageTrainingProgramsGuard
 } from "./guards/authorization-guards/trainingPrograms/manage-training-programs.guard";
 import {ManageRolesGuard} from "./guards/authorization-guards/role/manage-roles.guard";
+import {ViewInstanceLogsGuard} from "./guards/authorization-guards/instances/view.instance.logs.guard";
 const routes: Routes = [
 
   {path:'home', component:HomeComponent , canActivate:[AuthGuard]},
@@ -104,7 +105,7 @@ const routes: Routes = [
   {path:'training-programs/create', component: CreateTrainingProgramComponent, canActivate:[AuthGuard, ManageTrainingProgramsGuard]},
   {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent, canActivate:[AuthGuard, ManageTrainingProgramsGuard]},
 
-  {path:'instances-logs/view', component: ViewInstancesLogsComponent},
+  {path:'instances-logs/view', component: ViewInstancesLogsComponent, canActivate:[AuthGuard, ViewInstanceLogsGuard]},
 
 
   {path:'roles/create',component:CreateRoleComponent, canActivate:[AuthGuard, ManageRolesGuard]},

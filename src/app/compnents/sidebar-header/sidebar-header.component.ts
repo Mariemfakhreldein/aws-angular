@@ -10,7 +10,7 @@ import {UserModel} from "../../models/users/user.model";
 })
 export class SidebarHeaderComponent implements OnInit {
 
-  user : UserModel;
+  user = new UserModel();
 
   canStopStartViewInstances: boolean = false; //START_STOP_VIEW_INSTANCE
   canCreateTerminateAssignInstance: boolean = false; //CREATE_TERMINATE_ASSIGN_INSTANCE
