@@ -15,11 +15,13 @@ export class CreateTrainingProgramComponent implements OnInit {
   branches: BranchModel[] = [];
   trainingProgram: TrainingProgram = new TrainingProgram();
   trainingProgramName: string;
+
   branchId: string="";
   isSuccess = false;
   isLoading = true;
-  currentItem = 'trainingProgram';
-  action="Created";
+
+  successMessage = 'training program is created successfully';
+  failMessage = 'Something goes wrong'
 
   constructor(private formBuilder: FormBuilder,
     private trainingProgramService: TrainingProgramService,
@@ -37,11 +39,7 @@ export class CreateTrainingProgramComponent implements OnInit {
     this.branchService.getAll().subscribe(
       {
         next: (data: any) => {
-
           data.branchResponsesList.forEach(branch => {
-
-            console.table("branch" + branch);
-
             this.branches.push(branch);
           }
           )
@@ -50,25 +48,32 @@ export class CreateTrainingProgramComponent implements OnInit {
     );
   }
 
-
   submit() {
-
-    console.log(this.branchId);
     this.trainingProgram.name = this.trainingProgramName.trim();
     this.trainingProgram.branchId = +this.branchId;
-    console.table(this.trainingProgram);
     this.trainingProgramService.create(this.trainingProgram).subscribe({
       next: (data:any) =>{
-
-        this.isLoading=false;
-        this.isSuccess=true;
-
+        this.emptyFields();
+        this.changeSuccessAndLoading(false, true);
       },
-      error: (e) => { this.isLoading=false;this.isSuccess=false},
+      error: (e) => {
+        this.emptyFields();
+        this.changeSuccessAndLoading(false, false);
+      },
     });
   }
 
   getIsSuccess(): boolean {
     return this.isSuccess;
   }
+
+  emptyFields(){
+    this.myGroup.reset();
+  }
+
+  changeSuccessAndLoading(loading: boolean, success:boolean){
+    this.isLoading = loading;
+    this.isSuccess = success;
+  }
+
 }
