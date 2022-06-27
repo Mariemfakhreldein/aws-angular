@@ -17,7 +17,8 @@
 
 }
 .card-checkbox{
-  height: 150px !important;
+  /*height: 150px !important;*/
+  /*padding: 10px 0px;*/
   width: 400px;
   margin: 1.5%;
   position: relative;
@@ -102,7 +103,7 @@ input[type="checkbox"]:checked:after{
 
 }
 .card-checkbox{
-  height: 40px;
+  height: 49px;
   width: 400px;
   margin: 1.5%;
   position: relative;
