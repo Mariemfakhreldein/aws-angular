@@ -20,7 +20,6 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
 
   instances: InstanceModel[] = [];
   instancesBackup: InstanceModel[] = [];
-
   instanceTime: InstanceDateModel[] = [];
 
   //count down
@@ -48,7 +47,6 @@ export class ViewInstancesComponent implements OnInit, OnDestroy {
   timed = false;
 
   ngOnInit(): void {
-
     this.getInstances();
     this.canCreateTerminateAssignInstance = this.authService.containPrivilege('CREATE_TERMINATE_ASSIGN_INSTANCE');
 

@@ -60,8 +60,11 @@
 <!--      value in sec-->
       <h5 class="mt-5 text-white pt-4">{{counterArray[instancesBackup.indexOf(instance)] | instanceTimer}} </h5>
 
-      <h5  class=" text-white font-weight-bold">{{instance.name}}</h5>
-<!--      <h5 class="text-white font-weight-bold">{{instance.name}}</h5>-->
+      <h5  class=" text-white font-weight-bold font-italic ">{{instance.name}}</h5>
+      <h5  class=" text-white " *ngIf="canCreateTerminateAssignInstance"> <span>@</span>     {{(instance.instanceUser.username.length>15)? (instance.instanceUser.username | slice:0:15)+'..':(instance.instanceUser.username)}}</h5>
+
+
+      <!--      <h5 class="text-white font-weight-bold">{{instance.name}}</h5>-->
 
 
 
