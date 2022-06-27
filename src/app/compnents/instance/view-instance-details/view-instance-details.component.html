@@ -19,53 +19,53 @@
 
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5   m-auto  text-muted">Name : </h4>
-    <p  class="col-5  m-auto align-items-lg-start text-muted" >{{instance.name}}</p>
+    <h4  class="col-5   m-auto  text-black">Name : </h4>
+    <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.name}}</p>
 
   </div>
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto  text-muted">Instance ID : </h4>
-    <p  class="col-5  m-auto align-items-lg-start text-muted" >{{instance.instanceId}}</p>
+    <h4  class="col-5  m-auto  text-black">Instance ID : </h4>
+    <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.instanceId}}</p>
   </div>
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5   m-auto  text-muted">State : </h4>
-    <p  class="col-5    m-auto align-items-lg-start text-muted" >{{instance.state}}</p>
+    <h4  class="col-5   m-auto  text-black">State : </h4>
+    <p  class="col-5    m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.state}}</p>
 
-  </div>
-
-
-
-  <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto  text-muted"> Instance Type  : </h4>
-    <p  class="col-5  m-auto align-items-lg-start text-muted" >{{instance.instanceType}}</p>
-  </div>
-
-  <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto  text-muted"> VPC ID : </h4>
-    <p  class="col-5  m-auto align-items-lg-start text-muted" >{{instance.vpcId}}</p>
   </div>
 
 
 
+  <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+    <h4  class="col-5  m-auto  text-black"> Instance Type  : </h4>
+    <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.instanceType}}</p>
+  </div>
+
+  <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
+    <h4  class="col-5  m-auto  text-black"> VPC ID : </h4>
+    <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.vpcId}}</p>
+  </div>
+
+
+
 
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto  text-muted" > Subnet ID : </h4>
-    <p  class="col-5    m-auto align-items-lg-start text-muted" >{{instance.subnetId}}</p>
+    <h4  class="col-5  m-auto  text-black" > Subnet ID : </h4>
+    <p  class="col-5    m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.subnetId}}</p>
 
   </div>
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5  m-auto  text-muted">Time To Live : </h4>
-    <p  class="col-5  m-auto align-items-lg-start text-muted" >{{instance.timeToLiveInMinutes}} m</p>
+    <h4  class="col-5  m-auto  text-black">Time To Live : </h4>
+    <p  class="col-5  m-auto align-items-lg-start text-muted font-weight-bold" >{{instance.timeToLiveInMinutes}} m</p>
   </div>
 
   <div class="row border-start border-5 borderColor justify-content-center my-2 rounded bg-white p-1 shadow-sm py-3 col-lg-10 mx-auto">
-    <h4  class="col-5 m-auto  text-muted"> key Material : </h4>
+    <h4  class="col-5 m-auto  text-black"> key Material : </h4>
     <h4  class="col-5  m-auto"></h4>
-    <p  class="col-11 m-auto align-items-lg-start text-muted mt-3" (click)="showText()" [ngClass]="{'limitTextHeight': isReadMore}">{{instance.keyPair}}
+    <p  class="col-11 m-auto align-items-lg-start text-muted font-weight-bold mt-3 " (click)="showText()" [ngClass]="{'limitTextHeight': isReadMore}">{{instance.keyPair}}
     </p>
 <!--    <button type="button" class="col-2 mt-2" (click)="showText()">-->
 <!--      {{ isReadMore ? '...': '...' }}-->
