@@ -25,17 +25,11 @@ export class ViewTrainingProgramsComponent implements OnInit {
         next: (data: any) => {
           data.trainingPrograms.forEach(e => {
               this.trainingPrograms.push(e);
-
             }
           )
         },
         error: (e) => {},
-        // complete: () => console.info('complete')
       });
 
   }
-
-
-
-
 }
