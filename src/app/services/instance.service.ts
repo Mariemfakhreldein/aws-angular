@@ -49,4 +49,8 @@ export class InstanceService {
   getStudentsByTrack(trackId) {
     return this.api.get(`/api/tracks/${trackId}/students`)
   }
+
+  terminate(id) {
+    return this.api.delete(`/api/instances/delete/`, id);
+  }
 }

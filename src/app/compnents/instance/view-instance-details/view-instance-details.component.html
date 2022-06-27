@@ -3,10 +3,12 @@
   <h1>Instance Details</h1>
 
 
-  <label class="switch align-self-end m-lg-3  m-1 m-auto">
+<!--  <label class="switch align-self-end m-lg-3  m-1 m-auto">
     <input type="checkbox" checked  (change)="checkValue($event)">
     <span class="slider round"></span>
-  </label>
+  </label>-->
+
+
 
 <div class=" bg-light rounded shadow-lg p-lg-5 m-lg-3 p-2 m-1 col-lg-10 m-auto " >
 
@@ -142,6 +144,9 @@
 
 </div>
 
+  <label class="align-self-end m-lg-3  m-1 m-auto">
+    <button (click)="terminate()" class="btn-secondary rounded p-1" > ❌Terminate </button>
+  </label>
 <!--  <p type="text" id="myInput"></p>-->
 <!--  <button onclick="myFunction()">Copy text</button>-->
 <!--</div>-->
@@ -158,4 +163,20 @@
 <!--    alert("Copied the text: " + copyText.value);-->
 <!--  }-->
 <!--</script>-->
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true" *ngIf="!terminated">
+
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div *ngIf="!isLoading">
+      <app-success-popup *ngIf="getIsSuccess()" [item]="currentItem" [action]="action" ></app-success-popup>
+      <app-failed-popup *ngIf="!getIsSuccess()" [item]="currentItem" [action]="action"></app-failed-popup>
+    </div>
+
+    <app-loader *ngIf="isLoading"></app-loader>
+
+  </div>
+</div>
+
 </div>

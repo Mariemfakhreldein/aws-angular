@@ -17,6 +17,11 @@ export class ViewInstanceDetailsComponent implements OnInit {
   // instance:InstanceModel=new InstanceModel();  //
   instance:InstanceModel=new InstanceModel();
 
+  isSuccess=false;
+  isLoading=true;
+  terminated=false;
+  currentItem='Instance';
+  action='Terminated';
 
   constructor(private _activatedRoute:ActivatedRoute,private instanceService: InstanceService ) { }
 
@@ -78,7 +83,30 @@ export class ViewInstanceDetailsComponent implements OnInit {
   }
 
 
+  terminate(){
+    this.terminated = true;
+    this.instanceService.terminate(this.id).subscribe({
+      next: (data:any) =>{
 
+        console.log("instance terminated"+data);
+      },
+      error: (e) => {
+        if(e.status == 200){
+          this.isLoading=false;
+          this.isSuccess=true;
+        }else{
+          this.isLoading=false;
+          this.isSuccess=false;
+        }
+
+      },
+      complete: () => console.info('complete')
+    })
+  }
+
+  getIsSuccess(): boolean{
+    return this.isSuccess;
+  }
 
 
 }
