@@ -104,7 +104,7 @@ const routes: Routes = [
   {path:'training-programs/create', component: CreateTrainingProgramComponent, canActivate:[AuthGuard, ManageTrainingProgramsGuard]},
   {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent, canActivate:[AuthGuard, ManageTrainingProgramsGuard]},
 
-  {path:'instances-logs/view', component: ViewInstancesLogsComponent, canActivate:[AuthGuard, ViewInstancesLogsComponent]},
+  {path:'instances-logs/view', component: ViewInstancesLogsComponent},
 
 
   {path:'roles/create',component:CreateRoleComponent, canActivate:[AuthGuard, ManageRolesGuard]},
