@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import {HomeComponent} from "./compnents/home/home.component";
 import {LoginComponent} from "./compnents/login/login.component";
 import {AuthGuard} from "./guards/auth.guard";
-
 import { ViewInstancesComponent } from './compnents/instance/view-instances/view-instances.component';
 import { CreateInstanceComponent } from './compnents/instance/create-instance/create-instance.component';
 import { ViewInstanceDetailsComponent } from './compnents/instance/view-instance-details/view-instance-details.component';
@@ -13,14 +11,11 @@ import {CreateTemplateComponent} from "./compnents/template/create-template/crea
 import {UserdetailsComponent} from "./compnents/user/userdetails/userdetails.component";
 import {CreateBranchComponent} from "./compnents/branch/create-branch/create-branch.component";
 import {ShowBranchsComponent} from "./compnents/branch/show-branchs/show-branchs.component";
-import {CreatenewstudentComponent} from "./compnents/user/student/createnewstudent/createnewstudent.component";
 import {EditBranchComponent} from "./compnents/branch/edit-branch/edit-branch.component";
 import { ManageTracksComponent } from './compnents/tracks/manage-tracks/manage-tracks.component';
 import {NotFoundComponent} from "./compnents/pages/not-found/not-found.component";
 import {NotAuthorizedComponent} from "./compnents/pages/not-authorized/not-authorized.component";
-import {
-  CreateAssignTerminateInstanceGuard
-} from "./guards/authorization-guards/instances/create-assign-terminate-instance.guard";
+import {CreateAssignTerminateInstanceGuard} from "./guards/authorization-guards/instances/create-assign-terminate-instance.guard";
 import {StartStopViewInstanceGuard} from "./guards/authorization-guards/instances/start.stop.view.instance.guard";
 import {ManageTemplatesGuard} from "./guards/authorization-guards/templates/manage-templates.guard";
 import {ManageBranchesGuard} from "./guards/authorization-guards/branches/manage-branches.guard";
