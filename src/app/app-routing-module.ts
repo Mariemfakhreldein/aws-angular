@@ -46,58 +46,70 @@ import {AssignTemplateComponent} from "./compnents/template/assign-template/assi
 
 import { AddStaffComponent } from './compnents/user/staff/add-staff/add-staff.component';
 import {CreateMyinstanceComponent} from "./compnents/instance/create-myinstance/create-myinstance.component";
+import {ViewStatisticsGuard} from "./guards/authorization-guards/statistics/view-statistics.guard";
+import {ManageStudentsGuard} from "./guards/authorization-guards/users/manage-students.guard";
+import {ManageStaffGuard} from "./guards/authorization-guards/users/manage-staff.guard";
+import {ManageTracksGuard} from "./guards/authorization-guards/tracks/manage-tracks.guard";
+import {ManageIntakesGuard} from "./guards/authorization-guards/intakes/manage-intakes.guard";
+import {
+  ManageTrainingProgramsGuard
+} from "./guards/authorization-guards/trainingPrograms/manage-training-programs.guard";
+import {ManageRolesGuard} from "./guards/authorization-guards/role/manage-roles.guard";
 const routes: Routes = [
+
   {path:'home', component:HomeComponent , canActivate:[AuthGuard]},
-  {path:'instances/createInstance',component:CreateInstanceComponent},
-  {path:'instances/createMyInstance',component:CreateMyinstanceComponent },
-  {path:'instances/:id',component:ViewInstanceDetailsComponent},
-  {path:'instances',component:ViewInstancesComponent},
-  {path:'template',component:CreateTemplateComponent},
-  {path:'templates/view',component:ViewTemplatesComponent},
-  {path:'templates/assign',component:AssignTemplateComponent},
-  {path:'login', component:LoginComponent},
-  {path:'home', component:HomeComponent, canActivate:[AuthGuard]},
-  {path:'instances/createInstance',component:CreateInstanceComponent, canActivate:[AuthGuard, CreateAssignTerminateInstanceGuard] },
-  {path:'instances/:id',component:ViewInstanceDetailsComponent, canActivate:[AuthGuard, StartStopViewInstanceGuard]},
-  {path:'instances',component:ViewInstancesComponent, canActivate:[AuthGuard, StartStopViewInstanceGuard]},
-  {path:'template',component:CreateTemplateComponent, canActivate:[AuthGuard, ManageTemplatesGuard]},
+  {path:'dashboard', component:HomeComponent , canActivate:[AuthGuard, ViewStatisticsGuard]},
+
   {path:'login', component:LoginComponent},
   {path:'logout', component:LogoutComponent},
-  {path:'user/staff/addStaff', component:AddStaffComponent, canActivate:[AuthGuard]},
-  {path:'user/staff/search',component:UserSearchComponent},
-  {path:'users', component:UserdetailsComponent},
-  {path:'branch/create', component:CreateBranchComponent},
-  {path:'branches', component:ShowBranchsComponent},
-  {path:'branch/edit/:id', component:EditBranchComponent},
-  {path:'tracks/update_track/:id', component: UpdateTrackComponent},
-  {path:'tracks/manage_tracks', component:ManageTracksComponent},
+
+  {path:'instances/createInstance',component:CreateInstanceComponent, canActivate:[AuthGuard, CreateAssignTerminateInstanceGuard]},
+  {path:'instances/createMyInstance',component:CreateMyinstanceComponent, canActivate:[AuthGuard, CreateAssignTerminateInstanceGuard]},
+  {path:'instances/:id',component:ViewInstanceDetailsComponent, canActivate:[AuthGuard, StartStopViewInstanceGuard]},
+  {path:'instances',component:ViewInstancesComponent, canActivate:[AuthGuard, StartStopViewInstanceGuard]},
+
+  {path:'template',component:CreateTemplateComponent, canActivate:[AuthGuard, ManageTemplatesGuard]},
+  {path:'templates/view',component:ViewTemplatesComponent, canActivate:[AuthGuard, ManageTemplatesGuard]},
+  {path:'templates/assign',component:AssignTemplateComponent, canActivate:[AuthGuard, ManageTemplatesGuard]},
+
+
+  {path:'user/staff/addStaff', component:AddStaffComponent, canActivate:[AuthGuard, ManageStaffGuard]},
+  {path:'user/staff/search',component:UserSearchComponent, canActivate:[AuthGuard, ManageStaffGuard]},
+  {path:'user/addStudent', component:AddStudentsComponent, canActivate:[AuthGuard, ManageStudentsGuard]},
+  //TODO
+  {path:'user/edit/:id', component: EdituserComponent, canActivate:[AuthGuard]},
+  //TODO
+  {path:'users', component:UserdetailsComponent, canActivate:[AuthGuard]},
+  {path:'user/profile',component:UserprofileComponent, canActivate:[AuthGuard]},
+
   {path:'branch/create', component:CreateBranchComponent, canActivate:[AuthGuard, ManageBranchesGuard]},
+  {path:'branches', component:ShowBranchsComponent, canActivate:[AuthGuard, ManageBranchesGuard]},
+  {path:'branch/edit/:id', component:EditBranchComponent, canActivate:[AuthGuard, ManageBranchesGuard]},
+  {path:'tracks/update_track/:id', component: UpdateTrackComponent, canActivate:[AuthGuard, ManageTracksGuard]},
+  {path:'tracks/manage_tracks', component:ManageTracksComponent, canActivate:[AuthGuard, ManageTracksGuard]},
+  {path:'tracks/view_tracks', component: ViewTracksComponent, canActivate:[AuthGuard, ManageTracksGuard]},
+  //TODO
   {path:'branch/show', component:ShowBranchsComponent, canActivate:[AuthGuard, ManageBranchesGuard]},
+
   {path:'not-found', component:NotFoundComponent},
   {path:'not-authorized', component:NotAuthorizedComponent},
-  {path:'branch/edit/:id', component:EditBranchComponent},
-  {path:'intakes/edit/:id',component:EditIntakeComponent},
-  {path:'intakes/show',component:ShowAllIntakesComponent},
-  {path:'intakes',component:ManageIntakesComponent},
-  {path:'tracks/view_tracks', component: ViewTracksComponent},
-  {path:'user/edit/:id', component: EdituserComponent},
 
-  {path:'training-programs/show', component: ViewTrainingProgramsComponent},
-  {path:'training-programs/create', component: CreateTrainingProgramComponent},
-  {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent},
-  {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent},
+  {path:'intakes/edit/:id',component:EditIntakeComponent, canActivate:[AuthGuard, ManageIntakesGuard]},
+  {path:'intakes/show',component:ShowAllIntakesComponent, canActivate:[AuthGuard, ManageIntakesGuard]},
+  {path:'intakes',component:ManageIntakesComponent, canActivate:[AuthGuard, ManageIntakesGuard]},
 
-  {path:'instances-logs/view', component: ViewInstancesLogsComponent},
 
-  {path:'branch/show', component:ShowBranchsComponent},
-  {path:'user/createStudent',component:CreatenewstudentComponent},
-  {path:'roles/create',component:CreateRoleComponent},
-  {path:'roles/show-all',component:ShowAllRolesComponent},
-  {path:'user/createStudent',component:CreatenewstudentComponent},
-  {path:'user/profile',component:UserprofileComponent},
 
-  // {path:'user/createStudent',component:CreatenewstudentComponent},
-  {path:'user/addStudent', component:AddStudentsComponent, canActivate:[AuthGuard]},
+  {path:'training-programs/show', component: ViewTrainingProgramsComponent, canActivate:[AuthGuard, ManageTrainingProgramsGuard]},
+  {path:'training-programs/create', component: CreateTrainingProgramComponent, canActivate:[AuthGuard, ManageTrainingProgramsGuard]},
+  {path:'training-programs/edit/:id', component: UpdateTrainingProgramsComponent, canActivate:[AuthGuard, ManageTrainingProgramsGuard]},
+
+  {path:'instances-logs/view', component: ViewInstancesLogsComponent, canActivate:[AuthGuard, ViewInstancesLogsComponent]},
+
+
+  {path:'roles/create',component:CreateRoleComponent, canActivate:[AuthGuard, ManageRolesGuard]},
+  {path:'roles/show-all',component:ShowAllRolesComponent, canActivate:[AuthGuard, ManageRolesGuard]},
+
 ]
 
 @NgModule({
