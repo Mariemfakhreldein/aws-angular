@@ -134,6 +134,7 @@ export class ViewInstancesComponent implements OnInit , OnDestroy {
 
       this.instanceService.stopInstance(instance.instanceId).subscribe({
         next: (data:any) =>{
+          this.counterArray[currentIndex] = 0;
 
           console.log("data"+data);
           this.statusArray[currentIndex]='Stopped';
