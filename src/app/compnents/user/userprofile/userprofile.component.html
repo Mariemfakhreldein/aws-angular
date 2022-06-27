@@ -53,7 +53,7 @@
           </div>
         </div>
 
-        <div class="card pl-1" [formGroup]="myGroup">
+        <div class="card pl-1" >
 
           <div class=" row justify-content-start mb-3 mb-lg-5 mt-2 ml-2 ml-lg-0 ">
             <img class="col-lg-1 p-lg-4 p-1 pt-1 col-1 mt-1" src="assets/images/usedImages/lock.png">
@@ -65,15 +65,14 @@
                 <h6 class="mb-0 text-muted font-weight-bold my-auto">Old Password</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input type="text" class="form-control" placeholder="Enter your old password" [(ngModel)]="oldPassword"
-                       [class.is-valid]="!myGroup.controls['oldPassword'].errors && myGroup.controls['oldPassword'].touched"
-                       [class.is-invalid]="myGroup.controls['oldPassword'].errors && myGroup.controls['oldPassword'].touched"
+                <input type="password" class="form-control" placeholder="Enter your old password"
+                       [(ngModel)]="oldPassword"
                 >
-                <div *ngIf="myGroup.controls['oldPassword'].errors && myGroup.controls['oldPassword'].touched">
+<!--                <div *ngIf="myGroup.controls['oldPassword'].errors && myGroup.controls['oldPassword'].touched">-->
 
-                  <small *ngIf="myGroup.controls['oldPassword'].hasError('required')"
-                         class="form-text text-danger">Required</small>
-                </div>
+<!--                  <small *ngIf="myGroup.controls['oldPassword'].hasError('required')"-->
+<!--                         class="form-text text-danger">Required</small>-->
+<!--                </div>-->
               </div>
             </div>
             <div class="row mb-3">
@@ -81,30 +80,36 @@
                 <h6 class="mb-0 text-muted font-weight-bold my-auto" >New Password</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input [disabled]="oldPassword==''" type="password" class="form-control" placeholder="Enter new password"
-                       [class.is-valid]="!myGroup.controls['newPassword'].errors && myGroup.controls['newPassword'].touched"
-                       [class.is-invalid]="myGroup.controls['newPassword'].errors && myGroup.controls['newPassword'].touched"
-                       [(ngModel)]="newPassword">
-                <div *ngIf="myGroup.controls['newPassword'].errors && myGroup.controls['newPassword'].touched">
+                <input [disabled]="oldPassword=='' ||oldPassword.length<8" type="password" class="form-control" placeholder="Enter new password"
+                       [(ngModel)]="newPassword"  (change)="validationpassword(newPassword)"
 
-                  <small *ngIf="myGroup.controls['newPassword'].hasError('required')"
-                         class="form-text text-danger">Required</small>
+                >
+                <div>
+                  <small *ngIf="isLengthlessThan8"
+                         class="form-text text-danger">The password length must be greater than or equal to 8</small>
+                  <small *ngIf="isContainUpperCase"
+                         class="form-text text-danger">The password must contain one or more uppercase characters</small>
+                  <small *ngIf="isContainLowerCase"
+                         class="form-text text-danger">The password must contain one or more lowercase characters</small>
+                  <small *ngIf="isContainNumber"
+                         class="form-text text-danger">The password must contain one or more numeric values</small>
+                  <small *ngIf="isContainsSpecialChar"
+                         class="form-text text-danger">The password must contain one or more special characters</small>
+
                 </div>
               </div>
             </div>
-            <div class="row mb-3">
+            <div class="row mb-3" disabled="">
               <div class="col-sm-3">
                 <h6 class="mb-0 text-muted font-weight-bold my-auto">Confirm Password</h6>
               </div>
               <div class="col-sm-9 text-secondary">
-                <input [disabled]="newPassword==''" (change)="checkPassword()" type="password" class="form-control" placeholder="Confirm new password"
-                       [class.is-valid]="!myGroup.controls['confirmPassword'].errors && myGroup.controls['confirmPassword'].touched"
-                       [class.is-invalid]="myGroup.controls['confirmPassword'].errors && myGroup.controls['confirmPassword'].touched"
+                <input [disabled]="newPassword==''||newPassword.length<8 ||isLengthlessThan8||isContainUpperCase||isContainLowerCase||isContainNumber||isContainsSpecialChar " (change)="checkPassword()" type="password" class="form-control" placeholder="Confirm new password"
                        [(ngModel)]="confirmPassword" >
-                <div *ngIf="myGroup.controls['confirmPassword'].errors && myGroup.controls['confirmPassword'].touched">
 
-                    <small *ngIf="myGroup.controls['timeToLiveInMinutes'].hasError('required')"
-                           class="form-text text-danger">Required</small>
+<!--                    <small *ngIf="myGroup.controls['confirmPassword'].hasError('required')"-->
+<!--                           class="form-text text-danger">Required</small>-->
+
                 </div>
                 <small *ngIf="!isEqual && confirmPassword!=''" class="text-danger mt-3">There is no match</small>
               </div>
@@ -132,5 +137,3 @@
       </div>
     </div>
   </div>
-
-</div>
