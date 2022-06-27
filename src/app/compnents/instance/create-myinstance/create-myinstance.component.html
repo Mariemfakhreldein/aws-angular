@@ -46,7 +46,7 @@
                   class="text-danger">*</span>
                 </label>
                 <div class="col-lg-6">
-                  <input #timeToLiveInMinutes type="number" class="form-control" required (keydown.backspace)="$event.preventDefault();" id="val-timeToLiveInMinutes" name="val-timeToLiveInMinutes"
+                  <input #timeToLiveInMinutes type="number" class="form-control" required id="val-timeToLiveInMinutes" name="val-timeToLiveInMinutes"
                          placeholder="Enter TimeToLive" formControlName="timeToLiveInMinutes" min="5" max="36000"  [class.is-valid]="!myGroup.controls['timeToLiveInMinutes'].errors && myGroup.controls['timeToLiveInMinutes'].touched"
                          [class.is-invalid]="myGroup.controls['timeToLiveInMinutes'].errors && myGroup.controls['timeToLiveInMinutes'].touched">
                   <div class="text-danger  col-lg-6 align-items-end align-self-end"
