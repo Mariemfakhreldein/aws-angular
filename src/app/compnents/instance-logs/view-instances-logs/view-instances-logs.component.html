@@ -31,11 +31,11 @@
             <p class="col-11 col-lg-2 m-auto align-items-lg-start text-muted ">{{instanceLog.actionMaker.username}}</p>
             <p class="col-11 col-lg-2 m-auto align-items-lg-start text-muted ">{{instanceLog.dateTime}}</p>
           </button>
-          <div class="text-center m-auto my-2">
+          <!--<div *ngIf="allInsatanceLogs.length >= 4" class="text-center m-auto my-2">
           <div *ngIf="instanceLog.id == allInsatanceLogs[allInsatanceLogs.length-1].id" class="btn btn-dark font-weight-bold text-center mx-auto"
             (click)="getAllInstancesLogs()">See More...</div>
           </div>
-        </div>
+        </div>-->
       </div>
       </div>
 
@@ -57,4 +57,5 @@
   </ng-template>
 
 
+</div>
 </div>

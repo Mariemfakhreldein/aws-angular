@@ -51,6 +51,8 @@ import { ShowAllRolesComponent } from './compnents/roles/show-all-roles/show-all
 import { RoleSearchByNamePipe } from './compnents/pipes/search/roles/role-search-by-name.pipe';
 import { IntakeSearchByNamePipe } from './compnents/pipes/search/intakes/intake-search-by-name.pipe';
 import { TrackSearchByNamePipe } from './compnents/pipes/search/tracks/track-search-by-name.pipe';
+// import { DetailBranchComponent } from './compnents/branch/detail-branch/detail-branch.component';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 import { ViewTemplatesComponent } from './compnents/template/view-templates/view-templates.component';
 import { AssignTemplateComponent } from './compnents/template/assign-template/assign-template.component';
 import { AddStaffComponent } from './compnents/user/staff/add-staff/add-staff.component';
@@ -139,7 +141,8 @@ import {ViewInstancesLogsComponent} from "./compnents/instance-logs/view-instanc
         ReactiveFormsModule,
         Ng2GoogleChartsModule,
         ReactiveFormsModule,
-        NgxCsvParserModule
+        NgxCsvParserModule,
+        ClipboardModule
     ],
   exports:[
 

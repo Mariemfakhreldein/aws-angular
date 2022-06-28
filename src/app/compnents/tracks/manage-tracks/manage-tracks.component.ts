@@ -50,11 +50,11 @@ export class ManageTracksComponent implements OnInit {
     });
 
     this.myGroup.get('branches').valueChanges.subscribe((value)=>{
-      this.myGroup.get('trainingPrograms').setValue(null);
+      this.myGroup.get('trainingPrograms').setValue("");
 
     })
     this.myGroup.get('trainingPrograms').valueChanges.subscribe((value)=>{
-      this.myGroup.get('intakes').setValue(null);
+      this.myGroup.get('intakes').setValue("");
 
     })
     this.getAllBranches();
@@ -75,7 +75,7 @@ export class ManageTracksComponent implements OnInit {
 
   onChangeBranch(branchId:any) {
     this.trainingPrograms = [];
-    this.selectedTrainingProgram=null;
+    this.selectedTrainingProgram="";
     this.trainingProgramService.getTrainingProgramsByBranch(branchId).subscribe(
       {
         next: (data: any) => {

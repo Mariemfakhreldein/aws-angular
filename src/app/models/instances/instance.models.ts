@@ -10,8 +10,8 @@ export class InstanceModel {
   keyMaterial:string;
   keyPair:any;
   timeToLiveInMinutes:any;
-  // publicIp:string;
-  // publicDnsName:string;
+  publicIp:string;
+  publicDnsName:string;
   instanceType:string;
   subnetId:string;
   vpcId:string;

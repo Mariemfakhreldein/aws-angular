@@ -69,15 +69,15 @@ export class AddStudentsComponent implements OnInit {
       email: ['',[Validators.required, Validators.pattern(Patterns.Email)]],
     });
     this.addStudents.get('branches').valueChanges.subscribe((value)=>{
-      this.addStudents.get('trainingPrograms').setValue(null);
+      this.addStudents.get('trainingPrograms').setValue("");
 
     });
     this.addStudents.get('trainingPrograms').valueChanges.subscribe((value)=>{
-      this.addStudents.get('intakes').setValue(null);
+      this.addStudents.get('intakes').setValue("");
 
     });
     this.addStudents.get('intakes').valueChanges.subscribe((value)=>{
-      this.addStudents.get('tracks').setValue(null);
+      this.addStudents.get('tracks').setValue("");
 
     });
   }
