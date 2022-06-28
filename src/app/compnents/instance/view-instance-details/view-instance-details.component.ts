@@ -4,6 +4,7 @@ import {InstanceService} from "../../../services/instance.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription, timer} from "rxjs";
 import {TimerService} from "../../../services/timer.service";
+import {AuthService} from "../../../services/auth.service";
 
 @Component({
   selector: 'app-view-instance-details',
@@ -33,10 +34,16 @@ export class ViewInstanceDetailsComponent implements OnInit {
   lastStartedDateTime:any;
   counter: any;
 
-  constructor(private _activatedRoute:ActivatedRoute,private instanceService: InstanceService ,private timerService:TimerService) { }
+  canTerminateInstance: boolean = false;
+
+  constructor(private _activatedRoute:ActivatedRoute,
+              private instanceService: InstanceService ,
+              private timerService:TimerService,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
 
+    this.canTerminateInstance = this.authService.containPrivilege("CREATE_TERMINATE_ASSIGN_INSTANCE");
     this._activatedRoute.paramMap
       .subscribe(
         parms=>{

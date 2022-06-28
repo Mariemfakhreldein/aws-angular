@@ -105,6 +105,7 @@ const routes: Routes = [
 
   {path:'roles/create',component:CreateRoleComponent, canActivate:[AuthGuard, ManageRolesGuard]},
   {path:'roles/show-all',component:ShowAllRolesComponent, canActivate:[AuthGuard, ManageRolesGuard]},
+  {path:'**',component:NotFoundComponent},
 
 ]
 

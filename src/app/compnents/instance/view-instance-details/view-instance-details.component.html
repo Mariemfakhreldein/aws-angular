@@ -13,7 +13,7 @@
     <span class="slider round"></span>
   </label>-->
 <!--  -->
-  <label  class="align-self-end m-lg-3  m-1 m-auto" *ngIf="this.instance.state == 'running'">
+  <label class="align-self-end m-lg-3  m-1 m-auto" *ngIf="this.instance.state == 'running' && canTerminateInstance">
     <button (click)="terminate()" class=" btn btn-danger rounded p-1 font-weight-bold"   data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-times-circle" aria-hidden="true"></i> Terminate </button>
   </label>
 
